@@ -1,14 +1,14 @@
-package com.demo.roudykk.demoapp.util
+package com.demo.roudykk.demoapp.util.extensions
 
 import android.annotation.SuppressLint
-import com.airbnb.epoxy.EpoxyController
-import com.airbnb.epoxy.EpoxyRecyclerView
 import java.text.SimpleDateFormat
 import java.util.*
 
-const val NOW_TIME = 10000L
-const val MiNS_AGO_TIME = 5 * 60 * 1000L
-
+const val SECS_TO_MILLS = 1000L
+const val SECS_IN_MINS = 60
+const val NOW_TIME = 10 * SECS_TO_MILLS
+const val SECONDS_AGO_TIME = 1 * SECS_IN_MINS * SECS_TO_MILLS
+const val MiNS_AGO_TIME = 5 * SECS_IN_MINS * SECS_TO_MILLS
 
 fun Long.displayDate(): String {
     val calendar = Calendar.getInstance()
@@ -26,6 +26,10 @@ fun Long.displayDate(): String {
 
     if (todayCalendar.timeInMillis - this <= NOW_TIME) {
         return "Just now"
+    }
+
+    if (todayCalendar.timeInMillis - this <= SECONDS_AGO_TIME) {
+        return "A few seconds ago"
     }
 
     if (todayCalendar.timeInMillis - this <= MiNS_AGO_TIME) {
@@ -74,12 +78,4 @@ private fun Calendar.month(): Int {
 
 private fun Calendar.day(): Int {
     return get(Calendar.DAY_OF_MONTH)
-}
-
-fun EpoxyRecyclerView.withModels(buildModelsCallback: EpoxyController.() -> Unit) {
-    setControllerAndBuildModels(object : EpoxyController() {
-        override fun buildModels() {
-            buildModelsCallback()
-        }
-    })
 }
