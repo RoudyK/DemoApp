@@ -11,6 +11,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/postUserIv"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/image_placeholder_circle" />
+
+        <TextView
+            android:id="@+id/postUserNameTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/postUserIv"
+            app:layout_constraintLeft_toRightOf="@+id/postUserIv"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/postUserIv"
+            tools:text="Roudy Kanaan" />
+
         <TextView
             android:id="@+id/textTv"
             android:layout_width="0dp"
@@ -21,7 +47,7 @@
             android:textColor="@color/colorDark"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/postUserIv"
             tools:text="Text wil lgo here about the post, it can be of a small size or a big size, who knows XD" />
 
         <com.airbnb.epoxy.EpoxyRecyclerView
@@ -87,10 +113,10 @@
 
         <TextView
             android:id="@+id/likeTv"
-            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorAccent"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintLeft_toRightOf="@+id/likeIv"
