@@ -3,8 +3,9 @@ package com.demo.roudykk.demoapp.api.model
 import android.os.Parcel
 import android.os.Parcelable
 
-data class Post (
+data class Post(
         var id: String,
+        var user: User,
         var text: String,
         var timestamp: Long,
         var textSize: Float,
@@ -14,6 +15,7 @@ data class Post (
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readString(),
+            parcel.readParcelable(User::class.java.classLoader),
             parcel.readString(),
             parcel.readLong(),
             parcel.readFloat(),
@@ -23,6 +25,7 @@ data class Post (
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(id)
+        parcel.writeParcelable(user, flags)
         parcel.writeString(text)
         parcel.writeLong(timestamp)
         parcel.writeFloat(textSize)
