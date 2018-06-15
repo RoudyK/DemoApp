@@ -30,14 +30,13 @@ abstract class PostModel : EpoxyModelWithHolder<BaseEpoxyHolder>() {
         holder.itemView.imagesRv.layoutManager = LinearLayoutManager(holder.itemView.context, LinearLayoutManager.HORIZONTAL, false)
         holder.itemView.imagesRv.itemAnimator = null
         holder.itemView.imagesRv.withModels {
-            post.imageUrls.forEach({ imageUrl ->
-                PostImageModel_()
-                        .id(imageUrl).imageUrl(imageUrl).addTo(this)
-            })
+            post.imageUrls.forEach { imageUrl ->
+                PostImageModel_().id(imageUrl).imageUrl(imageUrl).addTo(this)
+            }
         }
         holder.itemView.imagesRv.visibility = if (post.imageUrls.isEmpty()) {
             View.GONE
-        } else{
+        } else {
             View.VISIBLE
         }
         AppImageLoader.loadUserImage(holder.itemView.context,

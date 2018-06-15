@@ -8,13 +8,13 @@ import com.demo.roudykk.demoapp.view.model.PostModel_
 class PostsController : TypedEpoxyController<List<Post>>() {
 
     override fun buildModels(posts: List<Post>?) {
-        posts?.forEach({ post ->
+        posts?.forEach { post ->
             PostModel_()
                     .id(post.id)
                     .post(post)
                     .displayDate(post.timestamp.displayDate())
                     .addTo(this)
-        })
+        }
     }
 
 }

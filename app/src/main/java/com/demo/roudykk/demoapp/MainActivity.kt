@@ -10,7 +10,6 @@ import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import com.demo.roudykk.demoapp.api.model.Post
-import com.demo.roudykk.demoapp.api.model.User
 import com.demo.roudykk.demoapp.util.UiJob
 import com.demo.roudykk.demoapp.util.extensions.addOverScroll
 import com.demo.roudykk.demoapp.util.extensions.scheduleOnUi
@@ -18,7 +17,6 @@ import com.demo.roudykk.demoapp.view.controller.PostsController
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import java.util.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -79,7 +77,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_camera -> {
-                // Handle the camera action
+
             }
             R.id.nav_gallery -> {
 

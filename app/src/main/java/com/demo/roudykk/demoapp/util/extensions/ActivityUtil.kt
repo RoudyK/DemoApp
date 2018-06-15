@@ -7,9 +7,9 @@ import java.util.*
 fun AppCompatActivity.scheduleOnUi(uiJob: UiJob, duration: Long) {
     Timer().scheduleAtFixedRate(object : TimerTask() {
         override fun run() {
-            runOnUiThread({
+            runOnUiThread {
                 uiJob.run()
-            })
+            }
         }
     }, duration, duration)
 }
