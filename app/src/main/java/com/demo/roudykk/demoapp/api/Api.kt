@@ -3,6 +3,7 @@ package com.demo.roudykk.demoapp.api
 import com.demo.roudykk.demoapp.api.endpoint.DiscoverApi
 import com.google.gson.Gson
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -23,6 +24,7 @@ object Api {
             authBuilder.interceptors().clear()
         }
 
+        authBuilder.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.HEADERS))
         authBuilder.addInterceptor { chain ->
             val original = chain.request()
             val originalUrl = original.url()

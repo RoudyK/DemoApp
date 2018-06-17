@@ -42,6 +42,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:ellipsize="end"
+            android:textColor="@color/colorDark"
             android:maxLines="2"
             android:minLines="2"
             android:text="@{movie.title}"
@@ -64,6 +65,7 @@
             android:textColor="@color/colorAccent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/movieTitleTv"
+            tools:rating="3.5"
             tools:text="@tools:sample/us_zipcodes" />
     </android.support.constraint.ConstraintLayout>
 </layout>

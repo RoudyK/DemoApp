@@ -6,5 +6,7 @@ import java.io.Serializable
 
 interface ApiExecutor: Serializable {
 
+    fun title(): String
+
     fun getMovies(page: Int): Observable<MoviesResult>
 }

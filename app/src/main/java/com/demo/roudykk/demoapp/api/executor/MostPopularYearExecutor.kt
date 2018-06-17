@@ -9,6 +9,11 @@ import java.util.*
 
 class MostPopularYearExecutor : ApiExecutor {
 
+    override fun title(): String {
+        val year = Calendar.getInstance().year()
+        return "Most Popular ($year)"
+    }
+
     override fun getMovies(page: Int): Observable<MoviesResult> {
         val year = Calendar.getInstance().year()
         Log.d("year", year.toString())

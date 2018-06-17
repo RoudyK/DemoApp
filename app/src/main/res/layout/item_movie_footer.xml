@@ -16,17 +16,12 @@
         android:clickable="true"
         android:focusable="true">
 
-        <TextView
+        <com.demo.roudykk.demoapp.ui.view.ActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@drawable/background_action"
-            android:foreground="?android:attr/selectableItemBackground"
             android:onClickListener="@{onClickListener}"
-            android:padding="10dp"
-            android:text="View More"
-            android:textColor="@color/white"
-            android:textStyle="bold"
+            android:text="@string/view_more"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

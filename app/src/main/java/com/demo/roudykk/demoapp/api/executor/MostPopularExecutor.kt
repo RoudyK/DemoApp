@@ -5,6 +5,9 @@ import com.demo.roudykk.demoapp.api.model.MoviesResult
 import io.reactivex.Observable
 
 class MostPopularExecutor : ApiExecutor {
+    override fun title(): String {
+        return "Most Popular"
+    }
 
     override fun getMovies(page: Int): Observable<MoviesResult> {
         return Api.discoverApi().getMostPopularMovies(page)
