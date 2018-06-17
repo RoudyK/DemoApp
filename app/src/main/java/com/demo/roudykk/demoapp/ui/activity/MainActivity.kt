@@ -1,11 +1,14 @@
 package com.demo.roudykk.demoapp.ui.activity
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import android.view.View
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.api.executor.*
 import com.demo.roudykk.demoapp.api.model.MoviesResult
@@ -15,9 +18,12 @@ import com.demo.roudykk.demoapp.extensions.initThreads
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_main.*
 
+
 class MainActivity : BaseActivity() {
     private val moviesResults: MutableList<MoviesResult> = mutableListOf()
     lateinit var homeController: HomeController
+    var animating = false
+    var animated = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,8 +71,30 @@ class MainActivity : BaseActivity() {
                     result.title = title
                     result.executor = apiExecutor
                     moviesResults.add(result)
-                    homeController.setData(moviesResults)
+                    if (!animated) {
+                        crossfade()
+                    }
+
+                    if (!animating && animated) {
+                        homeController.setData(moviesResults)
+                    }
                 }
                 .subscribe()
+    }
+
+    private fun crossfade() {
+        val shortDuration = resources.getInteger(android.R.integer.config_shortAnimTime)
+        animating = true
+        animated = true
+
+        loadingView.animate()
+                .alpha(0f)
+                .setDuration(shortDuration.toLong())
+                .setListener(object : AnimatorListenerAdapter() {
+                    override fun onAnimationEnd(animation: Animator) {
+                        animating = false
+                        homeController.setData(moviesResults)
+                    }
+                })
     }
 }

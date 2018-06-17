@@ -62,5 +62,5 @@ dependencies {
     implementation "com.jakewharton.rxbinding2:rxbinding-support-v4:2.1.1"
     implementation 'io.github.inflationx:calligraphy3:3.0.0'
     implementation 'io.github.inflationx:viewpump:1.0.0'
-
+    implementation 'com.airbnb.android:lottie:2.5.4'
 }
