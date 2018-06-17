@@ -1,13 +1,13 @@
-package com.demo.roudykk.demoapp.databinding
+package com.demo.roudykk.demoapp.ui.databinding
 
 import android.databinding.BindingAdapter
 import android.graphics.drawable.Drawable
 import android.support.v7.widget.DefaultItemAnimator
 import android.widget.ImageView
 import com.airbnb.epoxy.EpoxyRecyclerView
-import com.demo.roudykk.demoapp.util.extensions.ModelsBuilder
-import com.demo.roudykk.demoapp.util.extensions.withModels
-import com.demo.roudykk.demoapp.util.images.AppImageLoader
+import com.demo.roudykk.demoapp.extensions.ModelsBuilder
+import com.demo.roudykk.demoapp.extensions.withModels
+import com.demo.roudykk.demoapp.images.AppImageLoader
 
 
 /**

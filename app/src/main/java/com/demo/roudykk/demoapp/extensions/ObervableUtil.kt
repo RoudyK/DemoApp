@@ -1,4 +1,4 @@
-package com.demo.roudykk.demoapp.util.extensions
+package com.demo.roudykk.demoapp.extensions
 
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers

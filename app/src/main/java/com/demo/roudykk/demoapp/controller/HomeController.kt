@@ -1,14 +1,29 @@
 package com.demo.roudykk.demoapp.controller
 
-import com.airbnb.epoxy.CarouselModel_
-import com.airbnb.epoxy.DataBindingEpoxyModel
-import com.airbnb.epoxy.TypedEpoxyController
+import android.content.Context
+import android.support.v7.widget.SnapHelper
+import com.airbnb.epoxy.*
 import com.demo.roudykk.demoapp.HeaderBindingModel_
 import com.demo.roudykk.demoapp.MovieBindingModel_
 import com.demo.roudykk.demoapp.MovieFooterBindingModel_
 import com.demo.roudykk.demoapp.api.model.MoviesResult
+import com.demo.roudykk.demoapp.controller.helper.StartSnapHelper
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL
+
 
 class HomeController : TypedEpoxyController<List<MoviesResult>>() {
+    val onModelBoundListener =
+            OnModelBoundListener<CarouselModel_, Carousel>
+            { _, view, _ -> OverScrollDecoratorHelper.setUpOverScroll(view, ORIENTATION_HORIZONTAL) }
+
+    init {
+        Carousel.setDefaultGlobalSnapHelperFactory(object : Carousel.SnapHelperFactory() {
+            override fun buildSnapHelper(context: Context?): SnapHelper {
+                return StartSnapHelper()
+            }
+        })
+    }
 
     override fun buildModels(moviesResults: List<MoviesResult>?) {
         moviesResults?.forEach { moviesResults ->
@@ -30,6 +45,7 @@ class HomeController : TypedEpoxyController<List<MoviesResult>>() {
             CarouselModel_()
                     .id(moviesResults.title + " carousel")
                     .models(moviesModels)
+                    .onBind(this.onModelBoundListener)
                     .addTo(this)
         }
     }

@@ -1,4 +1,4 @@
-package com.demo.roudykk.demoapp.util.extensions;
+package com.demo.roudykk.demoapp.extensions;
 
 import com.airbnb.epoxy.EpoxyController;
 

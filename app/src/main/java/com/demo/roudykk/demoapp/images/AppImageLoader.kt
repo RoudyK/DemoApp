@@ -1,10 +1,10 @@
-package com.demo.roudykk.demoapp.util.images
+package com.demo.roudykk.demoapp.images
 
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
-import com.demo.roudykk.demoapp.util.images.base.ImageLoader
-import com.demo.roudykk.demoapp.util.images.glide.GlideImageLoader
+import com.demo.roudykk.demoapp.images.base.ImageLoader
+import com.demo.roudykk.demoapp.images.glide.GlideImageLoader
 
 object AppImageLoader : ImageLoader {
     private val curLoader: ImageLoader = GlideImageLoader

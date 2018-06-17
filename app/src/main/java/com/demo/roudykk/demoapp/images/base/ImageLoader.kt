@@ -1,4 +1,4 @@
-package com.demo.roudykk.demoapp.util.images.base
+package com.demo.roudykk.demoapp.images.base
 
 import android.content.Context
 import android.graphics.drawable.Drawable

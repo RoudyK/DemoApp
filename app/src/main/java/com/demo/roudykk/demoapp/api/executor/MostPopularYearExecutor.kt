@@ -3,7 +3,7 @@ package com.demo.roudykk.demoapp.api.executor
 import android.util.Log
 import com.demo.roudykk.demoapp.api.Api
 import com.demo.roudykk.demoapp.api.model.MoviesResult
-import com.demo.roudykk.demoapp.util.extensions.year
+import com.demo.roudykk.demoapp.extensions.year
 import io.reactivex.Observable
 import java.util.*
 

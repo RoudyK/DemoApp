@@ -1,4 +1,4 @@
-package com.demo.roudykk.demoapp.util.images.glide
+package com.demo.roudykk.demoapp.images.glide
 
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -7,7 +7,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.demo.roudykk.demoapp.R
-import com.demo.roudykk.demoapp.util.images.base.ImageLoader
+import com.demo.roudykk.demoapp.images.base.ImageLoader
 
 object GlideImageLoader : ImageLoader {
     override fun loadImage(context: Context, imageUrl: String, imageView: ImageView) {

@@ -1,21 +1,21 @@
-package com.demo.roudykk.demoapp
+package com.demo.roudykk.demoapp.ui.activity
 
 import android.os.Bundle
-import android.support.design.widget.NavigationView
 import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.util.Log
+import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.api.executor.*
 import com.demo.roudykk.demoapp.api.model.MoviesResult
 import com.demo.roudykk.demoapp.controller.HomeController
-import com.demo.roudykk.demoapp.util.extensions.addOverScroll
-import com.demo.roudykk.demoapp.util.extensions.initThreads
+import com.demo.roudykk.demoapp.extensions.addOverScroll
+import com.demo.roudykk.demoapp.extensions.initThreads
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
     private val moviesResults: MutableList<MoviesResult> = mutableListOf()
     lateinit var homeController: HomeController
 
@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        title = ""
         window.statusBarColor = ContextCompat.getColor(this, R.color.colorPrimaryDark)
 
         initRv()
@@ -36,6 +35,16 @@ class MainActivity : AppCompatActivity() {
         homeRv.itemAnimator = DefaultItemAnimator()
         homeController = HomeController()
         homeRv.setController(homeController)
+        homeRv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (homeRv.canScrollVertically(-1)) {
+                    appBarLayout.elevation = 6F
+                } else {
+                    appBarLayout.elevation = 0F
+                }
+            }
+        })
     }
 
     private fun loadMovies() {

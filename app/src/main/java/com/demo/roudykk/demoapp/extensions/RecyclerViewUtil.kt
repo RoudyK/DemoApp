@@ -1,4 +1,4 @@
-package com.demo.roudykk.demoapp.util.extensions
+package com.demo.roudykk.demoapp.extensions
 
 import android.support.v7.widget.RecyclerView
 import com.airbnb.epoxy.EpoxyController
