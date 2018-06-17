@@ -26,13 +26,13 @@ data class Movie(
             parcel.readInt(),
             parcel.readFloat(),
             parcel.readFloat(),
-            parcel.readString(),
+            parcel.readString() ?: "",
             parcel.readString(),
             parcel.readString(),
             arrayListOf<Int>().apply {
                 parcel.readList(this, Int::class.java.classLoader)
             },
-            parcel.readString(),
+            parcel.readString() ?: "",
             parcel.readString())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

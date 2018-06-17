@@ -2,6 +2,7 @@ package com.demo.roudykk.demoapp.controller
 
 import android.content.Context
 import android.support.v7.widget.SnapHelper
+import android.view.View
 import com.airbnb.epoxy.*
 import com.demo.roudykk.demoapp.HeaderBindingModel_
 import com.demo.roudykk.demoapp.MovieBindingModel_
@@ -12,8 +13,13 @@ import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL
 
 
-class HomeController : TypedEpoxyController<List<MoviesResult>>() {
-    val onModelBoundListener =
+class HomeController(val listener: Listener) : TypedEpoxyController<List<MoviesResult>>() {
+
+    interface Listener {
+        fun onLoadMoreMovies(moviesResult: MoviesResult)
+    }
+
+    private val onModelBoundListener =
             OnModelBoundListener<CarouselModel_, Carousel>
             { _, view, _ -> OverScrollDecoratorHelper.setUpOverScroll(view, ORIENTATION_HORIZONTAL) }
 
@@ -26,24 +32,25 @@ class HomeController : TypedEpoxyController<List<MoviesResult>>() {
     }
 
     override fun buildModels(moviesResults: List<MoviesResult>?) {
-        moviesResults?.forEach { moviesResults ->
+        moviesResults?.forEach { moviesResult ->
             HeaderBindingModel_()
-                    .id(moviesResults.title)
-                    .title(moviesResults.title)
+                    .id(moviesResult.title)
+                    .title(moviesResult.title)
                     .addTo(this)
 
             val moviesModels: MutableList<DataBindingEpoxyModel> = mutableListOf()
-            moviesResults.results.forEach { movie ->
+            moviesResult.results.forEach { movie ->
                 moviesModels.add(MovieBindingModel_()
                         .id(movie.id)
                         .movie(movie))
             }
 
             moviesModels.add(MovieFooterBindingModel_()
-                    .id(moviesResults.title + " footer"))
+                    .id(moviesResult.title + " footer")
+                    .onClickListener(View.OnClickListener { listener.onLoadMoreMovies(moviesResult) }))
 
             CarouselModel_()
-                    .id(moviesResults.title + " carousel")
+                    .id(moviesResult.title + " carousel")
                     .models(moviesModels)
                     .onBind(this.onModelBoundListener)
                     .addTo(this)

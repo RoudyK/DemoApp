@@ -19,7 +19,7 @@ import io.reactivex.functions.Function4
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(), HomeController.Listener {
     private val moviesResults: MutableList<MoviesResult> = mutableListOf()
     private var homeController: HomeController? = null
     private var disposable: Disposable? = null
@@ -38,7 +38,7 @@ class MainActivity : BaseActivity() {
         this.homeRv.layoutManager = LinearLayoutManager(this)
         this.homeRv.addOverScroll()
         this.homeRv.itemAnimator = DefaultItemAnimator()
-        this.homeController = HomeController()
+        this.homeController = HomeController(this)
         this.homeRv.setController(homeController!!)
         this.homeRv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
@@ -95,6 +95,10 @@ class MainActivity : BaseActivity() {
     private fun viewError() {
         this.loadingView.visibility = View.GONE
         this.errorView.visibility = View.VISIBLE
+    }
+
+    override fun onLoadMoreMovies(moviesResult: MoviesResult) {
+        MoviesActivity.launch(this, moviesResult)
     }
 
 }
