@@ -43,6 +43,7 @@
             android:layout_marginRight="10dp"
             android:ellipsize="end"
             android:maxLines="2"
+            android:minLines="2"
             android:text="@{movie.title}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -50,17 +51,18 @@
             tools:text="@tools:sample/full_names" />
 
 
-        <TextView
-            android:layout_width="0dp"
+        <RatingBar
+            style="@style/Base.Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="4dp"
             android:layout_marginRight="10dp"
             android:maxLines="2"
-            android:text="@{String.valueOf(movie.vote_average)}"
+            android:numStars="5"
+            android:rating="@{movie.vote_average/2}"
             android:textColor="@color/colorAccent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/movieTitleTv"
             tools:text="@tools:sample/us_zipcodes" />
     </android.support.constraint.ConstraintLayout>

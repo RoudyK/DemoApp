@@ -14,7 +14,7 @@ object GlideImageLoader : ImageLoader {
         GlideApp.with(context)
                 .load(imageUrl)
                 .placeholder(R.drawable.background_post_image)
-                .transforms(RoundedCorners(10), CenterCrop())
+                .transforms(CenterCrop(), RoundedCorners(10))
                 .into(imageView)
     }
 
