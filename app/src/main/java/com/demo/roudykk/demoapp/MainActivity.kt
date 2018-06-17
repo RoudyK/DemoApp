@@ -5,23 +5,18 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.StaggeredGridLayoutManager
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import com.demo.roudykk.demoapp.api.model.Post
-import com.demo.roudykk.demoapp.util.UiJob
-import com.demo.roudykk.demoapp.util.extensions.addOverScroll
-import com.demo.roudykk.demoapp.util.extensions.scheduleOnUi
-import com.demo.roudykk.demoapp.view.controller.PostsController
+import com.demo.roudykk.demoapp.api.executor.*
+import com.demo.roudykk.demoapp.api.model.MoviesResult
+import com.demo.roudykk.demoapp.util.extensions.initThreads
+import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-
-    private var postsController: PostsController? = null
-    private var posts: List<Post>? = null
+    val moviesResults: MutableList<MoviesResult> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,20 +24,30 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setSupportActionBar(toolbar)
 
         initDrawer()
-        initRv()
+        loadMovies()
     }
 
-    private fun initRv() {
-        postsRv.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        val animator = DefaultItemAnimator()
-        animator.supportsChangeAnimations = false
-        postsRv.itemAnimator = animator
-        postsRv.addOverScroll()
+    private fun loadMovies() {
+        this.load(HighestRatedExecutor(), "Highest rated")
+        this.load(MostPopularExecutor(), "Most popular")
+        this.load(MostPopularKidsExecutor(), "Most popular for kids")
+        this.load(MostPopularYearExecutor(), "Most popular this year")
+    }
 
-        postsController = PostsController()
-        postsRv.setController(postsController!!)
-
-        scheduleOnUi(UiJob { postsController?.setData(posts) }, 2000L)
+    private fun load(apiExecutor: ApiExecutor, title: String) {
+        apiExecutor.getMovies(1)
+                .initThreads()
+                .doOnError { error ->
+                    Log.d("Error", error.toString())
+                }
+                .onErrorResumeNext(Observable.empty())
+                .doOnNext { result ->
+                    result.title = title
+                    result.executor = apiExecutor
+                    moviesResults.add(result)
+                    Log.d("Results", title + " " + moviesResults.toString())
+                }
+                .subscribe()
     }
 
     private fun initDrawer() {

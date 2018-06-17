@@ -1,11 +1,14 @@
 package com.demo.roudykk.demoapp.util.images.base
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.widget.ImageView
 
 interface ImageLoader {
 
-    fun loadPostImage(context: Context, imageUrl: String, imageView: ImageView)
+    fun loadImage(context: Context, imageUrl: String, imageView: ImageView)
 
-    fun loadUserImage(context: Context, imageUrl: String, imageView: ImageView)
+    fun loadImage(context: Context, imageUrl: String, placeHolder: Int, imageView: ImageView)
+
+    fun loadImage(context: Context, imageUrl: String, placeHolder: Drawable, imageView: ImageView)
 }

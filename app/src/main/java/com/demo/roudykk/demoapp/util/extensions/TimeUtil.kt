@@ -68,7 +68,7 @@ private fun Calendar.displayMonth(): String {
     return getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())
 }
 
-private fun Calendar.year(): Int {
+fun Calendar.year(): Int {
     return get(Calendar.YEAR)
 }
 
