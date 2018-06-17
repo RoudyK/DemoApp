@@ -5,18 +5,23 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import com.demo.roudykk.demoapp.api.executor.*
 import com.demo.roudykk.demoapp.api.model.MoviesResult
+import com.demo.roudykk.demoapp.controller.HomeController
+import com.demo.roudykk.demoapp.util.extensions.addOverScroll
 import com.demo.roudykk.demoapp.util.extensions.initThreads
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-    val moviesResults: MutableList<MoviesResult> = mutableListOf()
+    private val moviesResults: MutableList<MoviesResult> = mutableListOf()
+    lateinit var homeController: HomeController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +29,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setSupportActionBar(toolbar)
 
         initDrawer()
+        initRv()
         loadMovies()
+    }
+
+    private fun initRv() {
+        postsRv.layoutManager = LinearLayoutManager(this)
+        postsRv.addOverScroll()
+        homeController = HomeController()
+        postsRv.setController(homeController)
     }
 
     private fun loadMovies() {
@@ -45,7 +58,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     result.title = title
                     result.executor = apiExecutor
                     moviesResults.add(result)
-                    Log.d("Results", title + " " + moviesResults.toString())
+                    homeController.setData(moviesResults)
                 }
                 .subscribe()
     }
