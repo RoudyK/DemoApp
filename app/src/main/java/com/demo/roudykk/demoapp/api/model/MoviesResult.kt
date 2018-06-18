@@ -10,7 +10,7 @@ data class MoviesResult(
         var page: Int,
         var total_results: Int,
         var total_pages: Int,
-        var results: ArrayList<Movie>
+        var results: MutableList<Movie>
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readSerializable() as ApiExecutor,

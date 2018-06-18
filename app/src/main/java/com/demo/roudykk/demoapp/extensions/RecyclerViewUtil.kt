@@ -1,5 +1,6 @@
 package com.demo.roudykk.demoapp.extensions
 
+import android.support.design.widget.AppBarLayout
 import android.support.v7.widget.RecyclerView
 import com.airbnb.epoxy.EpoxyController
 import com.airbnb.epoxy.EpoxyRecyclerView
@@ -30,6 +31,19 @@ fun EpoxyRecyclerView.withModels(modelsBuilder: ModelsBuilder) {
     setControllerAndBuildModels(object : EpoxyController() {
         override fun buildModels() {
             modelsBuilder.build(this)
+        }
+    })
+}
+
+fun RecyclerView.withAppBar(appBarLayout: AppBarLayout) {
+    addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+            if (canScrollVertically(-1)) {
+                appBarLayout.elevation = 6F
+            } else {
+                appBarLayout.elevation = 0F
+            }
         }
     })
 }

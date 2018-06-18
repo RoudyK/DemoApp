@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Typeface
 import android.util.AttributeSet
 import android.widget.TextView
+import io.github.inflationx.calligraphy3.CalligraphyUtils
 
 
 class FancyTextView @JvmOverloads constructor(
@@ -12,5 +13,6 @@ class FancyTextView @JvmOverloads constructor(
 
     init {
         typeface = Typeface.createFromAsset(context.assets, "fonts/Main.ttf")
+        CalligraphyUtils.applyFontToTextView(this, typeface)
     }
 }

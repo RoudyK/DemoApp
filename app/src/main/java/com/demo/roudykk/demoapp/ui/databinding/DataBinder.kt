@@ -4,6 +4,7 @@ import android.databinding.BindingAdapter
 import android.graphics.drawable.Drawable
 import android.support.v7.widget.DefaultItemAnimator
 import android.widget.ImageView
+import android.widget.TextView
 import com.airbnb.epoxy.EpoxyRecyclerView
 import com.demo.roudykk.demoapp.extensions.ModelsBuilder
 import com.demo.roudykk.demoapp.extensions.withModels
@@ -23,6 +24,11 @@ fun ImageView.setImageUrl(imageUrl: String, placeHolder: Drawable?) {
     } else {
         AppImageLoader.loadImage(context, imageUrl, this)
     }
+}
+
+@BindingAdapter(value = ["textRes", "textResValue"], requireAll = true)
+fun TextView.setTextRes(textRes: Int, textResValue: String) {
+    text = context.getString(textRes, textResValue)
 }
 
 /**

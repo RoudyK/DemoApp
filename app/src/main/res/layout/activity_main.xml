@@ -42,6 +42,7 @@
                     android:gravity="center"
                     android:includeFontPadding="false"
                     android:lineSpacingExtra="0dp"
+                    fontPath="fonts/Main.ttf"
                     android:padding="0dp"
                     android:text="Movies"
                     android:textColor="@color/colorPrimary"

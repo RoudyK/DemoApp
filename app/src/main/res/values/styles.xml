@@ -21,12 +21,6 @@
         <item name="android:textColorPrimary">@color/colorPrimary</item>
         <item name="android:textColorSecondary">@color/colorPrimary</item>
         <item name="actionMenuTextColor">@color/colorPrimary</item>
-        <item name="fontPath">fonts/Main.ttf</item>
-    </style>
-
-    <style name="ToolbarTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textSize">30sp</item>
-        <item name="android:color">@color/colorPrimary</item>
-        <item name="fontPath">fonts/Main.ttf</item>
+        <item name="fontPath">fonts/AirbnbCereal-Bold.ttf</item>
     </style>
 </resources>

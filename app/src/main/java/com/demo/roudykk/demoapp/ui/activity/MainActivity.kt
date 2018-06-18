@@ -13,6 +13,7 @@ import com.demo.roudykk.demoapp.api.model.MoviesResult
 import com.demo.roudykk.demoapp.controller.HomeController
 import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.extensions.initThreads
+import com.demo.roudykk.demoapp.extensions.withAppBar
 import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Function4
@@ -40,16 +41,7 @@ class MainActivity : BaseActivity(), HomeController.Listener {
         this.homeRv.itemAnimator = DefaultItemAnimator()
         this.homeController = HomeController(this)
         this.homeRv.setController(homeController!!)
-        this.homeRv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                if (homeRv.canScrollVertically(-1)) {
-                    appBarLayout.elevation = 6F
-                } else {
-                    appBarLayout.elevation = 0F
-                }
-            }
-        })
+        this.homeRv.withAppBar(this.appBarLayout)
     }
 
     @OnClick(R.id.reload)
