@@ -34,27 +34,28 @@ android {
 
 def retrofitVersion = "2.4.0"
 def okHttpVersion = "3.10.0"
+def epoxyVersion = "2.14.0"
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support:support-v4:27.1.1'
-    implementation 'com.android.support:design:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.1'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation 'com.jakewharton:butterknife:8.8.1'
-    kapt 'com.jakewharton:butterknife-compiler:8.8.1'
-    implementation 'com.airbnb.android:epoxy:2.12.0'
-    kapt 'com.airbnb.android:epoxy-processor:2.12.0'
-    implementation 'com.airbnb.android:epoxy-databinding:2.12.0'
-    implementation 'com.airbnb.android:epoxy-paging:2.12.0'
-    implementation 'com.android.support:cardview-v7:27.1.1'
-    implementation 'com.github.bumptech.glide:glide:4.7.1'
-    kapt 'com.github.bumptech.glide:compiler:4.7.1'
-    implementation 'me.everything:overscroll-decor-android:1.0.4'
+    implementation "com.android.support:appcompat-v7:27.1.1"
+    implementation "com.android.support:support-v4:27.1.1"
+    implementation "com.android.support:design:27.1.1"
+    implementation "com.android.support.constraint:constraint-layout:1.1.2"
+    testImplementation "junit:junit:4.12"
+    androidTestImplementation "com.android.support.test:runner:1.0.2"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:3.0.2"
+    implementation "com.jakewharton:butterknife:8.8.1"
+    kapt "com.jakewharton:butterknife-compiler:8.8.1"
+    implementation "com.airbnb.android:epoxy:$epoxyVersion"
+    kapt "com.airbnb.android:epoxy-processor:$epoxyVersion"
+    implementation "com.airbnb.android:epoxy-databinding:$epoxyVersion"
+    implementation "com.airbnb.android:epoxy-paging:2.12.0"
+    implementation "com.android.support:cardview-v7:27.1.1"
+    implementation "com.github.bumptech.glide:glide:4.7.1"
+    kapt "com.github.bumptech.glide:compiler:4.7.1"
+    implementation "me.everything:overscroll-decor-android:1.0.4"
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
@@ -62,9 +63,9 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:2.1.10"
     implementation "com.jakewharton.rxbinding2:rxbinding:2.1.1"
     implementation "com.jakewharton.rxbinding2:rxbinding-support-v4:2.1.1"
-    implementation 'io.github.inflationx:calligraphy3:3.0.0'
-    implementation 'io.github.inflationx:viewpump:1.0.0'
-    implementation 'com.airbnb.android:lottie:2.5.4'
+    implementation "io.github.inflationx:calligraphy3:3.0.0"
+    implementation "io.github.inflationx:viewpump:1.0.0"
+    implementation "com.airbnb.android:lottie:2.5.4"
     implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
 }
