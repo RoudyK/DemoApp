@@ -3,14 +3,13 @@ package com.demo.roudykk.demoapp.ui.activity
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.api.executor.*
 import com.demo.roudykk.demoapp.api.model.MoviesResult
-import com.demo.roudykk.demoapp.controller.HomeController
+import com.demo.roudykk.demoapp.controllers.HomeController
 import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.extensions.initThreads
 import com.demo.roudykk.demoapp.extensions.withAppBar

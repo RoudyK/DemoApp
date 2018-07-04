@@ -13,7 +13,7 @@ import butterknife.ButterKnife
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.api.model.Movie
 import com.demo.roudykk.demoapp.api.model.MoviesResult
-import com.demo.roudykk.demoapp.controller.MoviesController
+import com.demo.roudykk.demoapp.controllers.MoviesController
 import com.demo.roudykk.demoapp.db.MoviesDataSource
 import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.extensions.withAppBar

@@ -1,4 +1,4 @@
-package com.demo.roudykk.demoapp.controller
+package com.demo.roudykk.demoapp.controllers
 
 import android.content.Context
 import android.support.v7.widget.SnapHelper
@@ -8,7 +8,7 @@ import com.demo.roudykk.demoapp.HeaderBindingModel_
 import com.demo.roudykk.demoapp.MovieBindingModel_
 import com.demo.roudykk.demoapp.MovieFooterBindingModel_
 import com.demo.roudykk.demoapp.api.model.MoviesResult
-import com.demo.roudykk.demoapp.controller.helper.StartSnapHelper
+import com.demo.roudykk.demoapp.controllers.helper.StartSnapHelper
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL
 

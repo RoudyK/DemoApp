@@ -1,4 +1,4 @@
-package com.demo.roudykk.demoapp.ui.databinding
+package com.demo.roudykk.demoapp.databinding
 
 import android.databinding.BindingAdapter
 import android.graphics.drawable.Drawable

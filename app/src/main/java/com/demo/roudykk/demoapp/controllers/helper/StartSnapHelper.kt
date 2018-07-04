@@ -1,4 +1,4 @@
-package com.demo.roudykk.demoapp.controller.helper
+package com.demo.roudykk.demoapp.controllers.helper
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.LinearSnapHelper

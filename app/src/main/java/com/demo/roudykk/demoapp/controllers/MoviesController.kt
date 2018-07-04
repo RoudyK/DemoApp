@@ -1,4 +1,4 @@
-package com.demo.roudykk.demoapp.controller
+package com.demo.roudykk.demoapp.controllers
 
 import com.airbnb.epoxy.paging.PagingEpoxyController
 import com.demo.roudykk.demoapp.ListMovieBindingModel_
