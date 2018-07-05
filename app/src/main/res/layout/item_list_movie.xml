@@ -8,6 +8,10 @@
         <variable
             name="movie"
             type="com.demo.roudykk.demoapp.api.model.Movie" />
+
+        <variable
+            name="onClickListener"
+            type="android.view.View.OnClickListener" />
     </data>
 
 
@@ -16,7 +20,8 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
-        android:foreground="?android:attr/selectableItemBackground">
+        android:foreground="?android:attr/selectableItemBackground"
+        android:onClickListener="@{onClickListener}">
 
         <ImageView
             android:id="@+id/movieIv"
@@ -66,10 +71,10 @@
 
         <TextView
             android:id="@+id/movieReviewsTv"
-            android:text="@{String.format(@string/x_reviews, String.valueOf(movie.vote_count))}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
+            android:text="@{String.format(@string/x_reviews, String.valueOf(movie.vote_count))}"
             android:textColor="@color/colorAccent"
             android:textSize="12sp"
             app:layout_constraintLeft_toRightOf="@+id/movieRb"

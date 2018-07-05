@@ -1,30 +1,28 @@
 package com.demo.roudykk.demoapp.ui.activity
 
-import android.arch.paging.PagedList
 import android.content.Context
 import android.content.Intent
-import android.os.AsyncTask
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
+import android.widget.Toast
 import butterknife.ButterKnife
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.api.model.Movie
 import com.demo.roudykk.demoapp.api.model.MoviesResult
 import com.demo.roudykk.demoapp.controllers.MoviesController
-import com.demo.roudykk.demoapp.db.MoviesDataSource
 import com.demo.roudykk.demoapp.extensions.addOverScroll
+import com.demo.roudykk.demoapp.extensions.initThreads
 import com.demo.roudykk.demoapp.extensions.withAppBar
+import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_movies.*
-import java.util.concurrent.Executor
 
-class MoviesActivity : BaseActivity() {
+class MoviesActivity : BaseActivity(), MoviesController.MoviesListener {
 
     private var moviesController: MoviesController? = null
-    private var pagedMovies: PagedList<Movie>? = null
     private var moviesResult: MoviesResult? = null
+    private var hasMoreToLoad = true
+    private var disposable: Disposable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,34 +32,50 @@ class MoviesActivity : BaseActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         if (intent != null && intent.hasExtra(MOVIES_RESULT)) {
-            moviesResult = intent.getParcelableExtra(MOVIES_RESULT)
-            title = moviesResult?.title
+            this.moviesResult = intent.getParcelableExtra(MOVIES_RESULT)
+            this.title = moviesResult?.title
         }
 
         initRv()
     }
 
     private fun initRv() {
-        this.pagedMovies = PagedList.Builder<Int, Movie>(
-                MoviesDataSource(moviesResult),
-                PagedList.Config.Builder().run {
-                    setEnablePlaceholders(false)
-                    setPageSize(20)
-                    build()
-                })
-                .run {
-                    setNotifyExecutor(UiThreadExecutor)
-                    setFetchExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
-                    build()
-                }
-
         this.moviesRv.layoutManager = LinearLayoutManager(this)
         this.moviesRv.addOverScroll()
         this.moviesRv.itemAnimator = DefaultItemAnimator()
-        this.moviesController = MoviesController()
+        this.moviesController = MoviesController(this)
         this.moviesRv.setController(this.moviesController!!)
         this.moviesRv.withAppBar(appBarLayout)
-        this.moviesController?.setList(this.pagedMovies)
+        this.moviesController?.setData(this.moviesResult!!.results)
+    }
+
+    override fun hasMoreToLoad(): Boolean {
+        return this.hasMoreToLoad
+    }
+
+    override fun fetchNextPage() {
+        this.moviesResult!!.page++
+        this.disposable = this.moviesResult?.executor?.getMovies(this.moviesResult!!.page)
+                ?.initThreads()
+                ?.subscribe({
+                    it.results.forEach { movie ->
+                        if (!this.moviesResult!!.results.contains(movie)) {
+                            this.moviesResult?.results?.add(movie)
+                        }
+                    }
+                    this.moviesController?.setData(this.moviesResult!!.results)
+                }, {
+                    Toast.makeText(this, "Failed to load", Toast.LENGTH_LONG).show()
+                })
+    }
+
+    override fun onDestroy() {
+        this.disposable?.dispose()
+        super.onDestroy()
+    }
+
+    override fun onMovieClicked(movie: Movie) {
+
     }
 
     companion object {
@@ -71,14 +85,6 @@ class MoviesActivity : BaseActivity() {
             val intent = Intent(context, MoviesActivity::class.java)
             intent.putExtra(MOVIES_RESULT, moviesResult)
             context.startActivity(intent)
-        }
-    }
-
-    object UiThreadExecutor : Executor {
-        private val handler = Handler(Looper.getMainLooper())
-
-        override fun execute(command: Runnable) {
-            handler.post(command)
         }
     }
 }
