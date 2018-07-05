@@ -1,4 +1,9 @@
 <resources>
+
+    //transitions
+    <string translatable="false" name="movie_image">movie_image</string>
+
+    //translatable
     <string name="app_name">DemoApp</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

@@ -1,8 +1,10 @@
 package com.demo.roudykk.demoapp.controllers
 
+import android.widget.ImageView
 import com.airbnb.epoxy.TypedEpoxyController
 import com.demo.roudykk.demoapp.ListMovieBindingModel_
 import com.demo.roudykk.demoapp.LoaderBindingModel_
+import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.api.model.Movie
 
 class MoviesController(private val moviesListener: MoviesListener) : TypedEpoxyController<MutableList<Movie>>() {
@@ -12,8 +14,8 @@ class MoviesController(private val moviesListener: MoviesListener) : TypedEpoxyC
             ListMovieBindingModel_()
                     .id(movie.id)
                     .movie(movie)
-                    .onClickListener { _ ->
-                        this.moviesListener.onMovieClicked(movie)
+                    .onClickListener { view ->
+                        this.moviesListener.onMovieClicked(movie, view.findViewById(R.id.movieIv))
                     }
                     .addTo(this)
         }
@@ -34,6 +36,6 @@ class MoviesController(private val moviesListener: MoviesListener) : TypedEpoxyC
 
         fun fetchNextPage()
 
-        fun onMovieClicked(movie: Movie)
+        fun onMovieClicked(movie: Movie, movieIv: ImageView)
     }
 }

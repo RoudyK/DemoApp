@@ -24,6 +24,7 @@
         android:onClickListener="@{onClickListener}">
 
         <ImageView
+            android:transitionName="@string/movie_image"
             android:id="@+id/movieIv"
             imageUrl="@{movie.getImageUrl()}"
             android:layout_width="80dp"

@@ -3,10 +3,13 @@ package com.demo.roudykk.demoapp.controllers
 import android.content.Context
 import android.support.v7.widget.SnapHelper
 import android.view.View
+import android.widget.ImageView
 import com.airbnb.epoxy.*
 import com.demo.roudykk.demoapp.HeaderBindingModel_
 import com.demo.roudykk.demoapp.MovieBindingModel_
 import com.demo.roudykk.demoapp.MovieFooterBindingModel_
+import com.demo.roudykk.demoapp.R
+import com.demo.roudykk.demoapp.api.model.Movie
 import com.demo.roudykk.demoapp.api.model.MoviesResult
 import com.demo.roudykk.demoapp.controllers.helper.StartSnapHelper
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
@@ -17,6 +20,8 @@ class HomeController(val listener: Listener) : TypedEpoxyController<List<MoviesR
 
     interface Listener {
         fun onLoadMoreMovies(moviesResult: MoviesResult)
+
+        fun onMovieClicked(movie: Movie, movieIv: ImageView)
     }
 
     private val onModelBoundListener =
@@ -42,6 +47,9 @@ class HomeController(val listener: Listener) : TypedEpoxyController<List<MoviesR
             moviesResult.results.forEach { movie ->
                 moviesModels.add(MovieBindingModel_()
                         .id(movie.id)
+                        .onClickListener {
+                            view ->  this.listener.onMovieClicked(movie, view.findViewById(R.id.movieIv))
+                        }
                         .movie(movie))
             }
 

@@ -1,13 +1,17 @@
 package com.demo.roudykk.demoapp.ui.activity
 
 import android.os.Bundle
+
+
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import android.widget.ImageView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.api.executor.*
+import com.demo.roudykk.demoapp.api.model.Movie
 import com.demo.roudykk.demoapp.api.model.MoviesResult
 import com.demo.roudykk.demoapp.controllers.HomeController
 import com.demo.roudykk.demoapp.extensions.addOverScroll
@@ -17,13 +21,11 @@ import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Function4
 import kotlinx.android.synthetic.main.activity_main.*
-
-
 class MainActivity : BaseActivity(), HomeController.Listener {
     private val moviesResults: MutableList<MoviesResult> = mutableListOf()
+
     private var homeController: HomeController? = null
     private var disposable: Disposable? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -90,6 +92,10 @@ class MainActivity : BaseActivity(), HomeController.Listener {
 
     override fun onLoadMoreMovies(moviesResult: MoviesResult) {
         MoviesActivity.launch(this, moviesResult)
+    }
+
+    override fun onMovieClicked(movie: Movie, movieIv: ImageView) {
+        MovieActivity.launch(this, movie, movieIv)
     }
 
 }
