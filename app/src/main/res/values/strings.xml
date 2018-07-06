@@ -15,4 +15,6 @@
     <string name="view_more">View More</string>
     <string name="reload">reload</string>
     <string name="x_reviews">(%1$s reviews)</string>
+    <string name="failed_load_movie">Failed to load movie</string>
+    <string name="retry">Retry</string>
 </resources>
