@@ -1,6 +1,7 @@
 package com.demo.roudykk.demoapp.api
 
 import com.demo.roudykk.demoapp.api.endpoint.DiscoverApi
+import com.demo.roudykk.demoapp.api.endpoint.MovieApi
 import com.google.gson.Gson
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -45,7 +46,11 @@ object Api {
         builder.client(authBuilder.build())
     }
 
-    fun discoverApi(): DiscoverApi{
+    fun discoverApi(): DiscoverApi {
         return builder.build().create(DiscoverApi::class.java)
+    }
+
+    fun movieApi(): MovieApi {
+        return builder.build().create(MovieApi::class.java)
     }
 }

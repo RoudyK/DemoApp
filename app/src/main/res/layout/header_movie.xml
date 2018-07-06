@@ -18,13 +18,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
+            app:contentScrim="@android:color/black"
             app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:titleEnabled="false">
-
-
+            
             <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
@@ -35,11 +34,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/black"
+                    android:scaleType="centerCrop"
                     android:transitionName="@string/movie_image"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintLeft_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/poster" />
 
 
                 <LinearLayout
@@ -53,23 +54,36 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintLeft_toRightOf="parent">
 
+                    <TextView
+                        android:id="@+id/overviewTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="10dp"
+                        android:ellipsize="end"
+                        android:maxLines="5"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        tools:text="'A botched robbery indicates a police informant, and the pressure mounts in the aftermath at a warehouse. Crime begets violence as the survivors -- veteran Mr. White, newcomer Mr. Orange, psychopathic parolee Mr. Blonde, bickering weasel Mr. Pink and Nice Guy Eddie '" />
 
                     <RatingBar
                         android:id="@+id/movieRb"
                         android:layout_width="wrap_content"
                         android:layout_height="46dp"
-                        android:numStars="5" />
+                        android:layout_marginTop="10dp"
+                        android:numStars="5"
+                        tools:rating="3.5" />
 
                     <TextView
-                        android:layout_marginStart="8dp"
                         android:id="@+id/reviewsTv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="32dp"
                         android:textColor="@color/white"
                         android:textSize="18sp"
-                        tools:text="19 reviews" />
+                        tools:text="(19 reviews)" />
                 </LinearLayout>
             </android.support.constraint.ConstraintLayout>
 

@@ -4,68 +4,99 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class Movie(
-        var id: Int,
-        var title: String,
-        var overview: String,
-        var video: Boolean,
-        var vote_count: Int,
+        var id: Int? = null,
+        var title: String? = null,
+        var overview: String? = null,
+        var video: Boolean? = null,
+        var vote_count: Int? = null,
         var vote_average: Float,
-        var popularity: Float,
-        var poster_path: String,
-        var original_language: String,
-        var original_title: String,
-        var genre_ids: ArrayList<Int>,
-        var backdrop_path: String,
-        var release_date: String
+        var popularity: Float? = null,
+        var poster_path: String? = null,
+        var original_language: String? = null,
+        var original_title: String? = null,
+        var genre_ids: ArrayList<Int>? = null,
+        var backdrop_path: String? = null,
+        var release_date: String? = null,
+        var revenue: Float? = null,
+        var runtime: Int? = null,
+        var spoken_languages: ArrayList<SpokenLanguage>? = null,
+        var status: String? = null,
+        var tagline: String? = null,
+        var budget: Float,
+        var genre: ArrayList<Genre>? = null,
+        var production_companies: ArrayList<ProductionCompany>? = null,
+        var production_countries: ArrayList<ProductionCountry>? = null
 ) : Parcelable {
-    constructor(parcel: Parcel) : this(
-            parcel.readInt(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readByte() != 0.toByte(),
-            parcel.readInt(),
-            parcel.readFloat(),
-            parcel.readFloat(),
-            parcel.readString() ?: "",
-            parcel.readString(),
-            parcel.readString(),
-            arrayListOf<Int>().apply {
-                parcel.readList(this, Int::class.java.classLoader)
-            },
-            parcel.readString() ?: "",
-            parcel.readString())
-
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(id)
-        parcel.writeString(title)
-        parcel.writeString(overview)
-        parcel.writeByte(if (video) 1 else 0)
-        parcel.writeInt(vote_count)
-        parcel.writeFloat(vote_average)
-        parcel.writeFloat(popularity)
-        parcel.writeString(poster_path)
-        parcel.writeString(original_language)
-        parcel.writeString(original_title)
-        parcel.writeList(genre_ids)
-        parcel.writeString(backdrop_path)
-        parcel.writeString(release_date)
+    fun getImageUrl(): String {
+        return "https://image.tmdb.org/t/p/w500$poster_path"
     }
 
-    override fun describeContents(): Int {
-        return 0
+    constructor(source: Parcel) : this(
+            source.readValue(Int::class.java.classLoader) as Int?,
+            source.readString(),
+            source.readString(),
+            source.readValue(Boolean::class.java.classLoader) as Boolean?,
+            source.readValue(Int::class.java.classLoader) as Int?,
+            source.readFloat(),
+            source.readValue(Float::class.java.classLoader) as Float?,
+            source.readString(),
+            source.readString(),
+            source.readString(),
+            ArrayList<Int>().apply { source.readList(this, Int::class.java.classLoader) },
+            source.readString(),
+            source.readString(),
+            source.readValue(Float::class.java.classLoader) as Float?,
+            source.readValue(Int::class.java.classLoader) as Int?,
+            source.createTypedArrayList(SpokenLanguage.CREATOR),
+            source.readString(),
+            source.readString(),
+            source.readFloat(),
+            source.createTypedArrayList(Genre.CREATOR),
+            source.createTypedArrayList(ProductionCompany.CREATOR),
+            source.createTypedArrayList(ProductionCountry.CREATOR)
+    )
+
+    override fun describeContents() = 0
+
+    override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
+        writeValue(id)
+        writeString(title)
+        writeString(overview)
+        writeValue(video)
+        writeValue(vote_count)
+        writeFloat(vote_average)
+        writeValue(popularity)
+        writeString(poster_path)
+        writeString(original_language)
+        writeString(original_title)
+        writeList(genre_ids)
+        writeString(backdrop_path)
+        writeString(release_date)
+        writeValue(revenue)
+        writeValue(runtime)
+        writeTypedList(spoken_languages)
+        writeString(status)
+        writeString(tagline)
+        writeFloat(budget)
+        writeTypedList(genre)
+        writeTypedList(production_companies)
+        writeTypedList(production_countries)
     }
 
-    companion object CREATOR : Parcelable.Creator<Movie> {
-        override fun createFromParcel(parcel: Parcel): Movie {
+    @Suppress("unused")
+    companion object {
+        fun createFromParcel(parcel: Parcel): Movie {
             return Movie(parcel)
         }
 
-        override fun newArray(size: Int): Array<Movie?> {
+        fun newArray(size: Int): Array<Movie?> {
             return arrayOfNulls(size)
         }
-    }
 
-    fun getImageUrl(): String {
-        return "https://image.tmdb.org/t/p/w500$poster_path"
+        @JvmField
+        val CREATOR: Parcelable.Creator<Movie> = object : Parcelable.Creator<Movie> {
+            override fun createFromParcel(source: Parcel): Movie = Movie(source)
+            override fun newArray(size: Int): Array<Movie?> = arrayOfNulls(size)
+        }
     }
 }
