@@ -13,7 +13,7 @@ class DemoApplication : Application() {
         ViewPump.init(ViewPump.builder()
                 .addInterceptor(CalligraphyInterceptor(
                         CalligraphyConfig.Builder()
-                                .setDefaultFontPath("fonts/AirbnbCereal-Medium.ttf")
+                                .setDefaultFontPath("fonts/AirbnbCereal-Light.ttf")
                                 .setFontAttrId(R.attr.fontPath)
                                 .build()))
                 .build())

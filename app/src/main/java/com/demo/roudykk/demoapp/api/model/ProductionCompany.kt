@@ -9,6 +9,11 @@ data class ProductionCompany(
         var name: String? = null,
         var origin_country: String? = null
 ) : Parcelable {
+
+    fun getImageUrl(): String {
+        return "https://image.tmdb.org/t/p/w500$logo_path"
+    }
+
     constructor(source: Parcel) : this(
             source.readValue(Int::class.java.classLoader) as Int?,
             source.readString(),

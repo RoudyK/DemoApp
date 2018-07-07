@@ -19,6 +19,7 @@ import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.api.Api
 import com.demo.roudykk.demoapp.api.model.Movie
 import com.demo.roudykk.demoapp.controllers.MovieController
+import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.extensions.initThreads
 import com.demo.roudykk.demoapp.extensions.withAppBar
 import com.demo.roudykk.demoapp.extensions.withModels
@@ -77,7 +78,8 @@ class MovieActivity : BaseActivity() {
                     this.movieController?.setData(this.movie)
                     this.populateGenres()
                     Log.d("MOVIE", this.movie.toString())
-                }, {
+                }, { throwable ->
+                    Log.d("MOVIE", throwable.toString())
                     this.progressBar.visibility = View.GONE
                     this.showSnackBar()
                 })

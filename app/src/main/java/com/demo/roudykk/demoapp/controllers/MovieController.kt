@@ -3,21 +3,49 @@ package com.demo.roudykk.demoapp.controllers
 import android.content.Context
 import android.graphics.Color
 import com.airbnb.epoxy.Carousel
+import com.airbnb.epoxy.CarouselModel_
+import com.airbnb.epoxy.OnModelBoundListener
 import com.airbnb.epoxy.TypedEpoxyController
 import com.demo.roudykk.demoapp.*
 import com.demo.roudykk.demoapp.api.model.Movie
 import com.demo.roudykk.demoapp.controllers.model.IndicatorCarouselModel_
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayerView
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.AbstractYouTubePlayerListener
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 import java.text.DecimalFormat
 
 
 class MovieController(private var context: Context) : TypedEpoxyController<Movie>() {
 
+    private val onModelBoundListener =
+            OnModelBoundListener<CarouselModel_, Carousel>
+            { _, view, _ -> OverScrollDecoratorHelper.setUpOverScroll(view, OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL) }
+
     override fun buildModels(movie: Movie?) {
         this.buildVideos(movie)
+        this.buildProductionCompanies(movie)
         this.buildMetrics(movie)
         this.buildReviews(movie)
+    }
+
+    private fun buildProductionCompanies(movie: Movie?) {
+        val productionModels = mutableListOf<ProductionCompanyBindingModel_>()
+        movie?.production_companies?.forEach { company ->
+            productionModels.add(ProductionCompanyBindingModel_()
+                    .id(company.id)
+                    .company(company))
+        }
+
+        CarouselModel_()
+                .id("production_companies_carousel")
+                .models(productionModels)
+                .padding(Carousel.Padding(0, 0))
+                .onBind(onModelBoundListener)
+                .addIf(productionModels.size > 0, this)
+
+        DividerBindingModel_()
+                .id("production_companies_divider")
+                .addIf(productionModels.size > 0, this)
     }
 
     private fun buildVideos(movie: Movie?) {
@@ -87,4 +115,5 @@ class MovieController(private var context: Context) : TypedEpoxyController<Movie
                     .addTo(this)
         }
     }
+
 }

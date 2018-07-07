@@ -22,6 +22,6 @@
         <item name="android:textColorPrimary">@color/colorPrimary</item>
         <item name="android:textColorSecondary">@color/colorPrimary</item>
         <item name="actionMenuTextColor">@color/colorPrimary</item>
-        <item name="fontPath">fonts/AirbnbCereal-Bold.ttf</item>
+        <item name="fontPath">fonts/AirbnbCereal-Medium.ttf</item>
     </style>
 </resources>
