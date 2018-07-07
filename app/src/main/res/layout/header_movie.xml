@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
+        app:scrimAnimationDuration="100"
         app:contentScrim="@color/colorDim"
         app:expandedTitleMarginEnd="64dp"
         app:expandedTitleMarginStart="48dp"
@@ -60,11 +61,11 @@
                     tools:text="'A botched robbery indicates a police informant, and the pressure mounts in the aftermath at a warehouse. Crime begets violence as the survivors -- veteran Mr. White, newcomer Mr. Orange, psychopathic parolee Mr. Blonde, bickering weasel Mr. Pink and Nice Guy Eddie '" />
 
                 <RatingBar
-                    style="@style/Widget.AppCompat.RatingBar.Small"
                     android:id="@+id/movieRb"
-                    android:layout_marginStart="8dp"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="10dp"
                     android:numStars="5"
                     tools:rating="3.5" />
@@ -80,13 +81,14 @@
                     tools:text="(19 reviews)" />
 
                 <com.demo.roudykk.demoapp.ui.view.ActionButton
-                    android:layout_marginStart="8dp"
+                    android:id="@+id/readMore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="10dp"
-                    android:textSize="12sp"
                     android:layout_marginBottom="10dp"
-                    android:text="@string/read_more" />
+                    android:text="@string/read_more"
+                    android:textSize="12sp" />
             </LinearLayout>
         </android.support.constraint.ConstraintLayout>
 

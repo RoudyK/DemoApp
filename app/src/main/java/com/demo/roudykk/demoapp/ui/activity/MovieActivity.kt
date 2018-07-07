@@ -13,6 +13,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
+import butterknife.OnClick
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.api.Api
 import com.demo.roudykk.demoapp.api.model.Movie
@@ -46,12 +48,15 @@ class MovieActivity : BaseActivity() {
             this.populate(this.movie)
             this.loadMovieDetails(this.movie.id)
         }
+
+        this.readMore.setOnClickListener {
+            this.appBarLayout.setExpanded(false, true)
+        }
     }
 
     private fun initRv() {
         this.movieRv.layoutManager = LinearLayoutManager(this)
         this.movieRv.itemAnimator = DefaultItemAnimator()
-        this.movieRv.addOverScroll()
         this.movieRv.withAppBar(this.appBarLayout)
         this.movieController = MovieController(this)
         this.movieRv.setController(this.movieController!!)

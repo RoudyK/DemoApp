@@ -1,15 +1,16 @@
 package com.demo.roudykk.demoapp.controllers
 
 import android.content.Context
-import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
-import android.util.Log
-import com.airbnb.epoxy.CarouselModel_
+import android.graphics.Color
+import com.airbnb.epoxy.Carousel
 import com.airbnb.epoxy.TypedEpoxyController
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.VideoBindingModel_
 import com.demo.roudykk.demoapp.api.model.Movie
-import com.demo.roudykk.demoapp.ui.fragment.YoutubeVideoFragment
+import com.demo.roudykk.demoapp.controllers.model.IndicatorCarouselModel_
+import com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayerView
+import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.AbstractYouTubePlayerListener
+
 
 class MovieController(private var context: Context) : TypedEpoxyController<Movie>() {
 
@@ -23,23 +24,28 @@ class MovieController(private var context: Context) : TypedEpoxyController<Movie
         movie?.videos?.results?.forEach { video ->
             videoItems.add(VideoBindingModel_()
                     .id(video.id)
-                    .onBind { _, _, _ ->
-                        val fragmentManager = if (context is AppCompatActivity) {
-                            (context as AppCompatActivity).supportFragmentManager
-                        } else {
-                            (context as Fragment).childFragmentManager
-                        }
-
-                        fragmentManager
-                                .beginTransaction()
-                                .replace(R.id.container, YoutubeVideoFragment.newInstance(video.key))
-                                .commitAllowingStateLoss()
+                    .video(video)
+                    .onBind { _, view, _ ->
+                        val youTubePlayerView = view.dataBinding.root.findViewById<YouTubePlayerView>(R.id.youtubeView)
+                        youTubePlayerView.initialize({ initializedYouTubePlayer ->
+                            initializedYouTubePlayer.addListener(
+                                    object : AbstractYouTubePlayerListener() {
+                                        override fun onReady() {
+                                            initializedYouTubePlayer.cueVideo(video.key, 0f)
+                                        }
+                                    })
+                        }, true)
                     })
         }
 
-        CarouselModel_()
+        IndicatorCarouselModel_()
                 .id("videos_carousel")
                 .models(videoItems)
+                .padding(Carousel.Padding(0, 20, 0, 0, 0))
+                .onBind { _, view, _ ->
+                    view.setBackgroundColor(Color.BLACK)
+                    view.setPadding(0, 0, 0, 20)
+                }
                 .addIf(videoItems.size > 0, this)
     }
 
