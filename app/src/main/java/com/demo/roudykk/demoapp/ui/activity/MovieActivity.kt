@@ -13,15 +13,15 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
-import android.widget.Toast
-import butterknife.OnClick
+import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager
+import com.demo.roudykk.demoapp.GenreBindingModel_
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.api.Api
 import com.demo.roudykk.demoapp.api.model.Movie
 import com.demo.roudykk.demoapp.controllers.MovieController
-import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.extensions.initThreads
 import com.demo.roudykk.demoapp.extensions.withAppBar
+import com.demo.roudykk.demoapp.extensions.withModels
 import com.demo.roudykk.demoapp.images.AppImageLoader
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_movie.*
@@ -60,6 +60,10 @@ class MovieActivity : BaseActivity() {
         this.movieRv.withAppBar(this.appBarLayout)
         this.movieController = MovieController(this)
         this.movieRv.setController(this.movieController!!)
+
+        val chipsLayoutManager = ChipsLayoutManager.newBuilder(this).build()
+        this.genresRv.layoutManager = chipsLayoutManager
+        this.genresRv.itemAnimator = DefaultItemAnimator()
     }
 
     private fun loadMovieDetails(id: Int?) {
@@ -71,11 +75,23 @@ class MovieActivity : BaseActivity() {
                     this.progressBar.visibility = View.GONE
                     this.movie = movie
                     this.movieController?.setData(this.movie)
+                    this.populateGenres()
                     Log.d("MOVIE", this.movie.toString())
                 }, {
                     this.progressBar.visibility = View.GONE
                     this.showSnackBar()
                 })
+    }
+
+    private fun populateGenres() {
+        this.genresRv.withModels {
+            movie.genres?.forEach { genre ->
+                GenreBindingModel_()
+                        .id(genre.id)
+                        .genre(genre)
+                        .addTo(this)
+            }
+        }
     }
 
     private fun initWindow() {

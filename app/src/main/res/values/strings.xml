@@ -20,4 +20,10 @@
     <string name="retry">Retry</string>
     <string name="movies">Movies</string>
     <string name="read_more">READ MORE</string>
+    <string name="add_to_watch_list">ADD TO WATCH LIST</string>
+    <string name="release_date">Release date:</string>
+    <string name="budget">Budget ($):</string>
+    <string name="quoted">\"%1$s\"</string>
+    <string name="not_set">Not set</string>
+    <string name="reviews">Reviews</string>
 </resources>

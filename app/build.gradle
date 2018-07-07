@@ -70,4 +70,5 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
     implementation "com.ryanjeffreybrooks:indefinitepagerindicator:1.0.9"
     implementation "com.pierfrancescosoffritti.androidyoutubeplayer:core:8.0.1"
+    implementation "com.beloo.widget:ChipsLayoutManager:0.3.7@aar"
 }

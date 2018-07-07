@@ -23,10 +23,11 @@ data class Movie(
         var status: String? = null,
         var tagline: String? = null,
         var budget: Float,
-        var genre: ArrayList<Genre>? = null,
+        var genres: ArrayList<Genre>? = null,
         var production_companies: ArrayList<ProductionCompany>? = null,
         var production_countries: ArrayList<ProductionCountry>? = null,
-        var videos: VideoResult? = null
+        var videos: VideoResult? = null,
+        var reviews: ReviewResult? = null
 ) : Parcelable {
     fun getImageUrl(): String {
         return "https://image.tmdb.org/t/p/w500$poster_path"
@@ -80,7 +81,7 @@ data class Movie(
         writeString(status)
         writeString(tagline)
         writeFloat(budget)
-        writeTypedList(genre)
+        writeTypedList(genres)
         writeTypedList(production_companies)
         writeTypedList(production_countries)
         writeParcelable(videos, 0)
