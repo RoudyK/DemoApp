@@ -3,9 +3,7 @@
     <color name="colorPrimary">#f70052</color>
     <color name="colorPrimaryDark">#b5003c</color>
     <color name="colorAccent">#f70052</color>
-    <color name="colorPale">#c16e8d</color>
     <color name="colorDark">#262626</color>
-    <color name="colorDivider">#393939</color>
     <color name="white">#ffffff</color>
     <color name="colorLight">#d6d6d6</color>
     <color name="colorDim">#303030</color>
