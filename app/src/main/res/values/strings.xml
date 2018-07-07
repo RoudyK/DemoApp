@@ -19,4 +19,5 @@
     <string name="failed_load_movie">Failed to load movie</string>
     <string name="retry">Retry</string>
     <string name="movies">Movies</string>
+    <string name="read_more">READ MORE</string>
 </resources>

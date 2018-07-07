@@ -10,6 +10,7 @@
     </data>
 
     <TextView
+        tools:background="@color/colorDim"
         fontPath="fonts/AirbnbCereal-Bold.ttf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +18,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
         android:text="@{title}"
-        android:textColor="@color/colorDark"
+        android:textColor="@color/colorLight"
         android:textSize="20sp"
         android:textStyle="bold"
         tools:text="@tools:sample/full_names" />

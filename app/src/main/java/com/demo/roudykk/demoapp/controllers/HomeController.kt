@@ -4,6 +4,7 @@ import android.content.Context
 import android.support.v7.widget.SnapHelper
 import android.view.View
 import android.widget.ImageView
+import android.widget.RatingBar
 import com.airbnb.epoxy.*
 import com.demo.roudykk.demoapp.HeaderBindingModel_
 import com.demo.roudykk.demoapp.MovieBindingModel_
@@ -12,6 +13,7 @@ import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.api.model.Movie
 import com.demo.roudykk.demoapp.api.model.MoviesResult
 import com.demo.roudykk.demoapp.controllers.helper.StartSnapHelper
+import com.demo.roudykk.demoapp.extensions.applyTheme
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL
 
@@ -47,10 +49,14 @@ class HomeController(val listener: Listener) : TypedEpoxyController<List<MoviesR
             moviesResult.results.forEach { movie ->
                 moviesModels.add(MovieBindingModel_()
                         .id(movie.id)
-                        .onClickListener {
-                            view ->  this.listener.onMovieClicked(movie, view.findViewById(R.id.movieIv))
+                        .movie(movie)
+                        .onBind { _, view, _ ->
+                            val ratingBar = view.dataBinding.root.findViewById<RatingBar>(R.id.movieRb)
+                            ratingBar.applyTheme()
                         }
-                        .movie(movie))
+                        .onClickListener { view ->
+                            this.listener.onMovieClicked(movie, view.findViewById(R.id.movieIv))
+                        })
             }
 
             moviesModels.add(MovieFooterBindingModel_()

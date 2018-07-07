@@ -110,10 +110,7 @@ class MovieActivity : BaseActivity() {
         fun launch(context: Context, movie: Movie, movieIv: ImageView) {
             val intent = Intent(context, MovieActivity::class.java)
             intent.putExtra(MOVIE, movie)
-
-            val options = ActivityOptionsCompat
-                    .makeSceneTransitionAnimation(context as Activity, movieIv, context.getString(R.string.movie_image))
-            context.startActivity(intent, options.toBundle())
+            context.startActivity(intent)
         }
     }
 }

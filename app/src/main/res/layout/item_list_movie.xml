@@ -81,7 +81,8 @@
             android:textSize="12sp"
             app:layout_constraintLeft_toRightOf="@+id/movieRb"
             app:layout_constraintTop_toBottomOf="@+id/movieNameTv"
-            tools:text="" />
+            tools:text="(12 reviews)"
+            android:layout_marginTop="2dp"/>
 
 
         <TextView

@@ -40,7 +40,7 @@ fun RecyclerView.withAppBar(appBarLayout: AppBarLayout) {
         override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
             if (canScrollVertically(-1)) {
-                appBarLayout.elevation = 6F
+                appBarLayout.elevation = 20F
             } else {
                 appBarLayout.elevation = 0F
             }

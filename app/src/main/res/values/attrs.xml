@@ -3,5 +3,6 @@
     <declare-styleable name="ActionButton">
         <attr name="android:text" format="string" />
         <attr name="android:textAllCaps" format="boolean" />
+        <attr name="android:textSize" format="dimension" />
     </declare-styleable>
 </resources>
