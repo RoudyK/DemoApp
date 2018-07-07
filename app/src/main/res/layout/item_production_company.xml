@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="company"
+            type="com.demo.roudykk.demoapp.api.model.ProductionCompany" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        tools:background="@color/colorDim">
+
+        <ImageView
+            android:id="@+id/companyIv"
+            imageUrl="@{company.getImageUrl()}"
+            placeHolder="@{@drawable/company_logo}"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/background_rounded_white"
+            android:padding="6dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/company_logo" />
+
+        <com.demo.roudykk.demoapp.ui.view.TightTextView
+            android:id="@+id/companyTv"
+            fontPath="fonts/AirbnbCereal-Medium.ttf"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:maxWidth="100dp"
+            android:maxLines="2"
+            android:text="@{company.name}"
+            android:textColor="@color/colorLight"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/companyIv"
+            tools:text="Pixar" />
+    </android.support.constraint.ConstraintLayout>
+</layout>

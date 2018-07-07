@@ -13,7 +13,7 @@ object GlideImageLoader : ImageLoader {
     override fun loadImage(context: Context, imageUrl: String, imageView: ImageView) {
         GlideApp.with(context)
                 .load(imageUrl)
-                .placeholder(R.drawable.background_placeholder)
+                .placeholder(R.drawable.background_post_image)
                 .transforms(CenterCrop(), RoundedCorners(10))
                 .into(imageView)
     }
