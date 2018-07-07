@@ -9,13 +9,19 @@ import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.ActivityOptionsCompat
+import android.support.v4.content.ContextCompat
+import android.support.v7.widget.DefaultItemAnimator
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.api.Api
 import com.demo.roudykk.demoapp.api.model.Movie
+import com.demo.roudykk.demoapp.controllers.MovieController
+import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.extensions.initThreads
+import com.demo.roudykk.demoapp.extensions.withAppBar
 import com.demo.roudykk.demoapp.images.AppImageLoader
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_movie.*
@@ -26,6 +32,7 @@ class MovieActivity : BaseActivity() {
     private lateinit var movie: Movie
     private var disposable: Disposable? = null
     private var snackbar: Snackbar? = null
+    private var movieController: MovieController? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,12 +41,22 @@ class MovieActivity : BaseActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         this.initWindow()
+        this.initRv()
 
         if (intent != null && intent.hasExtra(MOVIE)) {
             this.movie = intent.getParcelableExtra(MOVIE)
             this.populate(this.movie)
             this.loadMovieDetails(this.movie.id)
         }
+    }
+
+    private fun initRv() {
+        this.movieRv.layoutManager = LinearLayoutManager(this)
+        this.movieRv.itemAnimator = DefaultItemAnimator()
+        this.movieRv.addOverScroll()
+        this.movieRv.withAppBar(this.appBarLayout)
+        this.movieController = MovieController(this)
+        this.movieRv.setController(this.movieController!!)
     }
 
     private fun loadMovieDetails(id: Int?) {
@@ -50,6 +67,8 @@ class MovieActivity : BaseActivity() {
                 .subscribe({ movie ->
                     this.progressBar.visibility = View.GONE
                     this.movie = movie
+                    this.movieController?.setData(this.movie)
+                    Log.d("MOVIE", this.movie.toString())
                 }, {
                     this.progressBar.visibility = View.GONE
                     this.showSnackBar()
@@ -61,7 +80,7 @@ class MovieActivity : BaseActivity() {
         val stars = movieRb.progressDrawable as LayerDrawable
         stars.getDrawable(2).setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP)
         stars.getDrawable(1).setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP)
-        window.statusBarColor = Color.BLACK
+        window.statusBarColor = ContextCompat.getColor(this, R.color.colorDim)
     }
 
     private fun populate(movie: Movie) {
@@ -87,7 +106,6 @@ class MovieActivity : BaseActivity() {
 
     companion object {
         const val MOVIE = "MOVIE"
-        val TAG: String = MovieActivity::class.java.simpleName
 
         fun launch(context: Context, movie: Movie, movieIv: ImageView) {
             val intent = Intent(context, MovieActivity::class.java)

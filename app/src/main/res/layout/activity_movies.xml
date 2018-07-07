@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/colorDim">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/colorDim"
         android:elevation="0dp"
         app:elevation="0dp">
 
@@ -19,13 +19,12 @@
             style="@style/ToolBarStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
             android:theme="@style/ToolBarStyle" />
 
     </android.support.design.widget.AppBarLayout>
 
 
-    <com.airbnb.epoxy.EpoxyRecyclerView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/moviesRv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

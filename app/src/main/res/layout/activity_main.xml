@@ -4,21 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/colorDim"
     tools:context=".ui.activity.MainActivity">
 
     <android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/colorDim"
         app:elevation="0dp">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@color/colorDim"
             app:contentInsetLeft="0dp"
             app:contentInsetStart="0dp">
 
@@ -30,21 +30,23 @@
                 android:padding="10dp">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/logo" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_playlist_play"
+                    android:tint="@color/colorPrimary" />
 
                 <com.demo.roudykk.demoapp.ui.view.FancyTextView
+                    fontPath="fonts/Main.ttf"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:includeFontPadding="false"
                     android:lineSpacingExtra="0dp"
-                    fontPath="fonts/Main.ttf"
                     android:padding="0dp"
-                    android:text="Movies"
+                    android:text="@string/movies"
                     android:textColor="@color/colorPrimary"
                     android:textSize="30sp"
                     android:textStyle="bold" />

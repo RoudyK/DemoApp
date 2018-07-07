@@ -25,7 +25,8 @@ data class Movie(
         var budget: Float,
         var genre: ArrayList<Genre>? = null,
         var production_companies: ArrayList<ProductionCompany>? = null,
-        var production_countries: ArrayList<ProductionCountry>? = null
+        var production_countries: ArrayList<ProductionCountry>? = null,
+        var videos: VideoResult? = null
 ) : Parcelable {
     fun getImageUrl(): String {
         return "https://image.tmdb.org/t/p/w500$poster_path"
@@ -53,7 +54,8 @@ data class Movie(
             source.readFloat(),
             source.createTypedArrayList(Genre.CREATOR),
             source.createTypedArrayList(ProductionCompany.CREATOR),
-            source.createTypedArrayList(ProductionCountry.CREATOR)
+            source.createTypedArrayList(ProductionCountry.CREATOR),
+            source.readParcelable<VideoResult>(VideoResult::class.java.classLoader)
     )
 
     override fun describeContents() = 0
@@ -81,9 +83,9 @@ data class Movie(
         writeTypedList(genre)
         writeTypedList(production_companies)
         writeTypedList(production_countries)
+        writeParcelable(videos, 0)
     }
 
-    @Suppress("unused")
     companion object {
         fun createFromParcel(parcel: Parcel): Movie {
             return Movie(parcel)

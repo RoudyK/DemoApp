@@ -2,12 +2,13 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rootLayout"
+    android:background="@color/colorDim"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <include layout="@layout/header_movie" />
 
-    <android.support.v7.widget.RecyclerView
+    <com.airbnb.epoxy.EpoxyRecyclerView
         android:id="@+id/movieRv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

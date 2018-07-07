@@ -3,7 +3,7 @@ package com.demo.roudykk.demoapp.api.model
 import android.os.Parcel
 import android.os.Parcelable
 
-class ProductionCountry(
+data class ProductionCountry(
         var iso_3116_1: String?= null,
         var name: String?= null
 ) : Parcelable {

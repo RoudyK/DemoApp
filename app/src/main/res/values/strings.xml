@@ -1,7 +1,8 @@
 <resources>
 
-    //transitions
-    <string translatable="false" name="movie_image">movie_image</string>
+    //None-translatable
+    <string name="movie_image" translatable="false">movie_image</string>
+    <string name="youtube_key" translatable="false">AIzaSyB9cCd4xR6A19V3CrdzlLb3yCZP6Lrm7RI</string>
 
     //translatable
     <string name="app_name">DemoApp</string>
@@ -17,4 +18,5 @@
     <string name="x_reviews">(%1$s reviews)</string>
     <string name="failed_load_movie">Failed to load movie</string>
     <string name="retry">Retry</string>
+    <string name="movies">Movies</string>
 </resources>
