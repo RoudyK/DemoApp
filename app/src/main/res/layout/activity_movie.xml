@@ -12,6 +12,8 @@
         android:id="@+id/movieRv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="40dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <ProgressBar

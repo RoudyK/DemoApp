@@ -2,6 +2,7 @@ package com.demo.roudykk.demoapp.controllers
 
 import android.content.Context
 import android.graphics.Color
+import android.support.v4.content.ContextCompat
 import com.airbnb.epoxy.Carousel
 import com.airbnb.epoxy.CarouselModel_
 import com.airbnb.epoxy.OnModelBoundListener
@@ -25,6 +26,7 @@ class MovieController(private var context: Context) : TypedEpoxyController<Movie
         this.buildVideos(movie)
         this.buildProductionCompanies(movie)
         this.buildMetrics(movie)
+        this.buildCast(movie)
         this.buildReviews(movie)
     }
 
@@ -96,6 +98,30 @@ class MovieController(private var context: Context) : TypedEpoxyController<Movie
                 .title(context.getString(R.string.budget))
                 .value(budget)
                 .addTo(this)
+    }
+
+    private fun buildCast(movie: Movie?) {
+        val castModels = mutableListOf<CastBindingModel_>()
+
+        movie?.credits?.cast?.forEach { person ->
+            castModels.add(CastBindingModel_()
+                    .id(person.id)
+                    .person(person))
+        }
+
+        CarouselModel_()
+                .id("cast_carousel")
+                .models(castModels)
+                .padding(Carousel.Padding(0, 0))
+                .onBind { _, view, _ ->
+                    OverScrollDecoratorHelper.setUpOverScroll(view, OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL)
+                    view.setBackgroundColor(ContextCompat.getColor(context, R.color.colorDark))
+                }
+                .addIf(castModels.size > 0, this)
+
+        DividerBindingModel_()
+                .id("cast_divider")
+                .addIf(castModels.size > 0, this)
     }
 
     private fun buildReviews(movie: Movie?) {
