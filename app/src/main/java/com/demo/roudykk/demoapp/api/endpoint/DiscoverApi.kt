@@ -17,6 +17,6 @@ interface DiscoverApi {
     fun getMostPopularForKids(@Query("page") page: Int): Observable<MoviesResult>
 
     @GET("discover/movie?sort_by=vote_average.desc")
-    fun getMostPopularInYear(@Query("primary_release_year") year: Int,
-                             @Query("page") page: Int): Observable<MoviesResult>
+    fun getMostPopularInYear(@Query("page") page: Int,
+                             @Query("primary_release_year") year: Int): Observable<MoviesResult>
 }

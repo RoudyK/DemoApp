@@ -1,12 +1,11 @@
 package com.demo.roudykk.demoapp.ui.activity
 
+
 import android.os.Bundle
-
-
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.View
-import android.widget.ImageView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.demo.roudykk.demoapp.R
@@ -21,8 +20,9 @@ import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Function4
 import kotlinx.android.synthetic.main.activity_main.*
+
 class MainActivity : BaseActivity(), HomeController.Listener {
-    private val moviesResults: MutableList<MoviesResult> = mutableListOf()
+    private val moviesRequests: MutableList<MoviesRequest> = mutableListOf()
 
     private var homeController: HomeController? = null
     private var disposable: Disposable? = null
@@ -50,17 +50,18 @@ class MainActivity : BaseActivity(), HomeController.Listener {
         this.loadingView.visibility = View.VISIBLE
         this.errorView.visibility = View.GONE
         this.disposable = Observable.zip(
-                this.load(HighestRatedExecutor()),
-                this.load(MostPopularExecutor()),
-                this.load(MostPopularKidsExecutor()),
-                this.load(MostPopularYearExecutor()),
+                this.load(HighestRatedRequest()),
+                this.load(MostPopularRequest()),
+                this.load(MostPopularKidsRequest()),
+                this.load(MostPopularYearRequest()),
                 Function4 { _: MoviesResult, _: MoviesResult,
                             _: MoviesResult, _: MoviesResult ->
                 })
                 .initThreads()
                 .subscribe({
                     viewContent()
-                }, {
+                }, { throwable ->
+                    Log.d("ERROR-HOME", throwable.toString())
                     viewError()
                 })
     }
@@ -70,19 +71,18 @@ class MainActivity : BaseActivity(), HomeController.Listener {
         super.onDestroy()
     }
 
-    private fun load(apiExecutor: ApiExecutor): Observable<MoviesResult> {
-        return apiExecutor.getMovies(1)
+    private fun load(moviesRequest: MoviesRequest): Observable<MoviesResult> {
+        return moviesRequest.getMovies(1)
                 .initThreads()
                 .doOnNext { result ->
-                    result.title = apiExecutor.title()
-                    result.executor = apiExecutor
-                    this.moviesResults.add(result)
+                    moviesRequest.moviesResult = result
+                    this.moviesRequests.add(moviesRequest)
                 }
     }
 
     private fun viewContent() {
         this.loadingView.visibility = View.GONE
-        this.homeController?.setData(this.moviesResults)
+        this.homeController?.setData(this.moviesRequests)
     }
 
     private fun viewError() {
@@ -90,8 +90,9 @@ class MainActivity : BaseActivity(), HomeController.Listener {
         this.errorView.visibility = View.VISIBLE
     }
 
-    override fun onLoadMoreMovies(moviesResult: MoviesResult) {
-        MoviesActivity.launch(this, moviesResult)
+    override fun onLoadMoreMovies(executor: MoviesRequest) {
+        Log.d("EXECTUOR", executor.toString())
+        MoviesActivity.launch(this, executor)
     }
 
     override fun onMovieClicked(movie: Movie) {

@@ -105,7 +105,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@string/reload"
-            android:textAllCaps="true" />
+            android:textAllCaps="true"
+            android:textSize="14sp" />
 
     </LinearLayout>
 

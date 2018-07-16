@@ -9,18 +9,18 @@ import com.demo.roudykk.demoapp.HeaderBindingModel_
 import com.demo.roudykk.demoapp.MovieBindingModel_
 import com.demo.roudykk.demoapp.MovieFooterBindingModel_
 import com.demo.roudykk.demoapp.R
+import com.demo.roudykk.demoapp.api.executor.MoviesRequest
 import com.demo.roudykk.demoapp.api.model.Movie
-import com.demo.roudykk.demoapp.api.model.MoviesResult
 import com.demo.roudykk.demoapp.controllers.helper.StartSnapHelper
 import com.demo.roudykk.demoapp.extensions.applyTheme
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL
 
 
-class HomeController(val listener: Listener) : TypedEpoxyController<List<MoviesResult>>() {
+class HomeController(val listener: Listener) : TypedEpoxyController<List<MoviesRequest>>() {
 
     interface Listener {
-        fun onLoadMoreMovies(moviesResult: MoviesResult)
+        fun onLoadMoreMovies(executor: MoviesRequest)
 
         fun onMovieClicked(movie: Movie)
     }
@@ -37,15 +37,15 @@ class HomeController(val listener: Listener) : TypedEpoxyController<List<MoviesR
         })
     }
 
-    override fun buildModels(moviesResults: List<MoviesResult>?) {
-        moviesResults?.forEach { moviesResult ->
+    override fun buildModels(moviesRequests: List<MoviesRequest>?) {
+        moviesRequests?.forEach { executor ->
             HeaderBindingModel_()
-                    .id(moviesResult.title)
-                    .title(moviesResult.title)
+                    .id(executor.title)
+                    .title(executor.title)
                     .addTo(this)
 
             val moviesModels: MutableList<DataBindingEpoxyModel> = mutableListOf()
-            moviesResult.results.forEach { movie ->
+            executor.moviesResult.results.forEach { movie ->
                 moviesModels.add(MovieBindingModel_()
                         .id(movie.id)
                         .movie(movie)
@@ -59,11 +59,11 @@ class HomeController(val listener: Listener) : TypedEpoxyController<List<MoviesR
             }
 
             moviesModels.add(MovieFooterBindingModel_()
-                    .id(moviesResult.title + " footer")
-                    .onClickListener(View.OnClickListener { listener.onLoadMoreMovies(moviesResult) }))
+                    .id(executor.title + " footer")
+                    .onClickListener(View.OnClickListener { listener.onLoadMoreMovies(executor) }))
 
             CarouselModel_()
-                    .id(moviesResult.title + " carousel")
+                    .id(executor.title + " carousel")
                     .models(moviesModels)
                     .onBind(this.onModelBoundListener)
                     .addTo(this)

@@ -2,46 +2,35 @@ package com.demo.roudykk.demoapp.api.model
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.demo.roudykk.demoapp.api.executor.ApiExecutor
+import java.io.Serializable
 
 data class MoviesResult(
-        var executor: ApiExecutor,
-        var title: String,
         var page: Int,
         var total_results: Int,
         var total_pages: Int,
         var results: MutableList<Movie>
-) : Parcelable {
-    constructor(parcel: Parcel) : this(
-            parcel.readSerializable() as ApiExecutor,
-            parcel.readString(),
-            parcel.readInt(),
-            parcel.readInt(),
-            parcel.readInt(),
-            arrayListOf<Movie>().apply {
-                parcel.readList(this, Movie::class.java.classLoader)
-            })
+) : Parcelable, Serializable {
+    constructor(source: Parcel) : this(
+            source.readInt(),
+            source.readInt(),
+            source.readInt(),
+            source.createTypedArrayList(Movie.CREATOR)
+    )
 
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeSerializable(executor)
-        parcel.writeString(title)
-        parcel.writeInt(page)
-        parcel.writeInt(total_results)
-        parcel.writeInt(total_pages)
-        parcel.writeList(results)
+    override fun describeContents() = 0
+
+    override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
+        writeInt(page)
+        writeInt(total_results)
+        writeInt(total_pages)
+        writeTypedList(results)
     }
 
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<MoviesResult> {
-        override fun createFromParcel(parcel: Parcel): MoviesResult {
-            return MoviesResult(parcel)
-        }
-
-        override fun newArray(size: Int): Array<MoviesResult?> {
-            return arrayOfNulls(size)
+    companion object {
+        @JvmField
+        val CREATOR: Parcelable.Creator<MoviesResult> = object : Parcelable.Creator<MoviesResult> {
+            override fun createFromParcel(source: Parcel): MoviesResult = MoviesResult(source)
+            override fun newArray(size: Int): Array<MoviesResult?> = arrayOfNulls(size)
         }
     }
 }

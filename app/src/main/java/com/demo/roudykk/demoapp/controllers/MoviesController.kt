@@ -10,8 +10,8 @@ import com.demo.roudykk.demoapp.extensions.applyTheme
 
 class MoviesController(private val moviesListener: MoviesListener) : TypedEpoxyController<MutableList<Movie>>() {
 
-    override fun buildModels(movies: MutableList<Movie>) {
-        movies.forEach { movie ->
+    override fun buildModels(movies: MutableList<Movie>?) {
+        movies?.forEach { movie ->
             ListMovieBindingModel_()
                     .id(movie.id)
                     .movie(movie)

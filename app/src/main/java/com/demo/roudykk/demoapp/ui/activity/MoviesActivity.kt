@@ -5,11 +5,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.widget.Toast
 import butterknife.ButterKnife
 import com.demo.roudykk.demoapp.R
+import com.demo.roudykk.demoapp.api.executor.MoviesRequest
 import com.demo.roudykk.demoapp.api.model.Movie
-import com.demo.roudykk.demoapp.api.model.MoviesResult
 import com.demo.roudykk.demoapp.controllers.MoviesController
 import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.extensions.initThreads
@@ -20,7 +21,7 @@ import kotlinx.android.synthetic.main.activity_movies.*
 class MoviesActivity : BaseActivity(), MoviesController.MoviesListener {
 
     private var moviesController: MoviesController? = null
-    private var moviesResult: MoviesResult? = null
+    private var moviesRequest: MoviesRequest? = null
     private var hasMoreToLoad = true
     private var disposable: Disposable? = null
 
@@ -31,9 +32,10 @@ class MoviesActivity : BaseActivity(), MoviesController.MoviesListener {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        if (intent != null && intent.hasExtra(MOVIES_RESULT)) {
-            this.moviesResult = intent.getParcelableExtra(MOVIES_RESULT)
-            this.title = moviesResult?.title
+        if (intent != null && intent.hasExtra(API_EXECUTOR)) {
+            this.moviesRequest = intent.getParcelableExtra(API_EXECUTOR)
+            Log.d("API-EXECUTOR", this.moviesRequest.toString())
+            this.title = moviesRequest?.title
         }
 
         initRv()
@@ -46,7 +48,7 @@ class MoviesActivity : BaseActivity(), MoviesController.MoviesListener {
         this.moviesController = MoviesController(this)
         this.moviesRv.setController(this.moviesController!!)
         this.moviesRv.withAppBar(appBarLayout)
-        this.moviesController?.setData(this.moviesResult!!.results)
+        this.moviesController?.setData(this.moviesRequest?.moviesResult?.results)
     }
 
     override fun hasMoreToLoad(): Boolean {
@@ -54,16 +56,16 @@ class MoviesActivity : BaseActivity(), MoviesController.MoviesListener {
     }
 
     override fun fetchNextPage() {
-        this.moviesResult!!.page++
-        this.disposable = this.moviesResult?.executor?.getMovies(this.moviesResult!!.page)
+        this.moviesRequest!!.moviesResult.page++
+        this.disposable = this.moviesRequest?.getMovies(this.moviesRequest!!.moviesResult.page)
                 ?.initThreads()
                 ?.subscribe({
                     it.results.forEach { movie ->
-                        if (!this.moviesResult!!.results.contains(movie)) {
-                            this.moviesResult?.results?.add(movie)
+                        if (!this.moviesRequest!!.moviesResult.results.contains(movie)) {
+                            this.moviesRequest?.moviesResult?.results?.add(movie)
                         }
                     }
-                    this.moviesController?.setData(this.moviesResult!!.results)
+                    this.moviesController?.setData(this.moviesRequest?.moviesResult?.results)
                 }, {
                     Toast.makeText(this, "Failed to load", Toast.LENGTH_LONG).show()
                 })
@@ -79,11 +81,11 @@ class MoviesActivity : BaseActivity(), MoviesController.MoviesListener {
     }
 
     companion object {
-        private const val MOVIES_RESULT = "MOVIES_RESULT"
+        private const val API_EXECUTOR = "API_EXECUTOR"
 
-        fun launch(context: Context, moviesResult: MoviesResult) {
+        fun launch(context: Context, executor: MoviesRequest) {
             val intent = Intent(context, MoviesActivity::class.java)
-            intent.putExtra(MOVIES_RESULT, moviesResult)
+            intent.putExtra(API_EXECUTOR, executor)
             context.startActivity(intent)
         }
     }
