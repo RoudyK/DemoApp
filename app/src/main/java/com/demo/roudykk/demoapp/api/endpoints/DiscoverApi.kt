@@ -1,6 +1,6 @@
-package com.demo.roudykk.demoapp.api.endpoint
+package com.demo.roudykk.demoapp.api.endpoints
 
-import com.demo.roudykk.demoapp.api.model.MoviesResult
+import com.demo.roudykk.demoapp.api.models.MoviesResult
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query

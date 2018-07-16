@@ -1,7 +1,7 @@
 package com.demo.roudykk.demoapp.api
 
-import com.demo.roudykk.demoapp.api.endpoint.DiscoverApi
-import com.demo.roudykk.demoapp.api.endpoint.MovieApi
+import com.demo.roudykk.demoapp.api.endpoints.DiscoverApi
+import com.demo.roudykk.demoapp.api.endpoints.MovieApi
 import com.google.gson.Gson
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

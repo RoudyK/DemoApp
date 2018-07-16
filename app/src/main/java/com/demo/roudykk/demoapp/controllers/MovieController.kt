@@ -8,8 +8,8 @@ import com.airbnb.epoxy.CarouselModel_
 import com.airbnb.epoxy.OnModelBoundListener
 import com.airbnb.epoxy.TypedEpoxyController
 import com.demo.roudykk.demoapp.*
-import com.demo.roudykk.demoapp.api.model.Movie
-import com.demo.roudykk.demoapp.controllers.model.IndicatorCarouselModel_
+import com.demo.roudykk.demoapp.api.models.Movie
+import com.demo.roudykk.demoapp.controllers.models.IndicatorCarouselModel_
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayerView
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.AbstractYouTubePlayerListener
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper

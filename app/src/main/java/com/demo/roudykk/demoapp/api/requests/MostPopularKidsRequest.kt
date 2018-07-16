@@ -1,15 +1,13 @@
-package com.demo.roudykk.demoapp.api.executor
+package com.demo.roudykk.demoapp.api.requests
 
 import android.os.Parcel
 import android.os.Parcelable
 import com.demo.roudykk.demoapp.api.Api
-import com.demo.roudykk.demoapp.api.model.MoviesResult
-import com.demo.roudykk.demoapp.extensions.year
+import com.demo.roudykk.demoapp.api.models.MoviesResult
 import io.reactivex.Observable
-import java.util.*
 
-class MostPopularYearRequest() : MoviesRequest() {
-    override var title: String = "Most Popular (${Calendar.getInstance().year()})"
+class MostPopularKidsRequest() : MoviesRequest() {
+    override var title: String = "Most Popular (Kids)"
 
     override lateinit var moviesResult: MoviesResult
 
@@ -19,7 +17,7 @@ class MostPopularYearRequest() : MoviesRequest() {
     }
 
     override fun getMovies(page: Int): Observable<MoviesResult> {
-        return Api.discoverApi().getMostPopularInYear(page, Calendar.getInstance().year())
+        return Api.discoverApi().getMostPopularForKids(page)
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -31,12 +29,12 @@ class MostPopularYearRequest() : MoviesRequest() {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<MostPopularYearRequest> {
-        override fun createFromParcel(parcel: Parcel): MostPopularYearRequest {
-            return MostPopularYearRequest(parcel)
+    companion object CREATOR : Parcelable.Creator<MostPopularKidsRequest> {
+        override fun createFromParcel(parcel: Parcel): MostPopularKidsRequest {
+            return MostPopularKidsRequest(parcel)
         }
 
-        override fun newArray(size: Int): Array<MostPopularYearRequest?> {
+        override fun newArray(size: Int): Array<MostPopularKidsRequest?> {
             return arrayOfNulls(size)
         }
     }

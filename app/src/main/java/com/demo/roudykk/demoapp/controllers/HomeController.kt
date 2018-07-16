@@ -9,9 +9,9 @@ import com.demo.roudykk.demoapp.HeaderBindingModel_
 import com.demo.roudykk.demoapp.MovieBindingModel_
 import com.demo.roudykk.demoapp.MovieFooterBindingModel_
 import com.demo.roudykk.demoapp.R
-import com.demo.roudykk.demoapp.api.executor.MoviesRequest
-import com.demo.roudykk.demoapp.api.model.Movie
-import com.demo.roudykk.demoapp.controllers.helper.StartSnapHelper
+import com.demo.roudykk.demoapp.api.requests.MoviesRequest
+import com.demo.roudykk.demoapp.api.models.Movie
+import com.demo.roudykk.demoapp.controllers.helpers.StartSnapHelper
 import com.demo.roudykk.demoapp.extensions.applyTheme
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL

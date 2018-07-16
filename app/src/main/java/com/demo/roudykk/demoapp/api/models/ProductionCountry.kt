@@ -1,4 +1,4 @@
-package com.demo.roudykk.demoapp.api.model
+package com.demo.roudykk.demoapp.api.models
 
 import android.os.Parcel
 import android.os.Parcelable

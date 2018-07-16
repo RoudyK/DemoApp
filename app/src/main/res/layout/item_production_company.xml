@@ -7,7 +7,7 @@
 
         <variable
             name="company"
-            type="com.demo.roudykk.demoapp.api.model.ProductionCompany" />
+            type="com.demo.roudykk.demoapp.api.models.ProductionCompany" />
     </data>
 
     <android.support.constraint.ConstraintLayout

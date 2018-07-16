@@ -5,7 +5,7 @@ import com.airbnb.epoxy.TypedEpoxyController
 import com.demo.roudykk.demoapp.ListMovieBindingModel_
 import com.demo.roudykk.demoapp.LoaderBindingModel_
 import com.demo.roudykk.demoapp.R
-import com.demo.roudykk.demoapp.api.model.Movie
+import com.demo.roudykk.demoapp.api.models.Movie
 import com.demo.roudykk.demoapp.extensions.applyTheme
 
 class MoviesController(private val moviesListener: MoviesListener) : TypedEpoxyController<MutableList<Movie>>() {

@@ -1,7 +1,7 @@
-package com.demo.roudykk.demoapp.api.executor
+package com.demo.roudykk.demoapp.api.requests
 
 import android.os.Parcelable
-import com.demo.roudykk.demoapp.api.model.MoviesResult
+import com.demo.roudykk.demoapp.api.models.MoviesResult
 import io.reactivex.Observable
 
 abstract class MoviesRequest : Parcelable {

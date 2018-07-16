@@ -12,12 +12,11 @@ import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
-import android.widget.ImageView
 import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager
 import com.demo.roudykk.demoapp.GenreBindingModel_
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.api.Api
-import com.demo.roudykk.demoapp.api.model.Movie
+import com.demo.roudykk.demoapp.api.models.Movie
 import com.demo.roudykk.demoapp.controllers.MovieController
 import com.demo.roudykk.demoapp.extensions.initThreads
 import com.demo.roudykk.demoapp.extensions.withAppBar

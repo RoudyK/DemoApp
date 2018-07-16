@@ -7,7 +7,7 @@
 
         <variable
             name="movie"
-            type="com.demo.roudykk.demoapp.api.model.Movie" />
+            type="com.demo.roudykk.demoapp.api.models.Movie" />
 
         <variable
             name="onClickListener"

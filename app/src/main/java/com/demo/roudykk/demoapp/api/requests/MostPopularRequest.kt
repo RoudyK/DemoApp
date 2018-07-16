@@ -1,13 +1,13 @@
-package com.demo.roudykk.demoapp.api.executor
+package com.demo.roudykk.demoapp.api.requests
 
 import android.os.Parcel
 import android.os.Parcelable
 import com.demo.roudykk.demoapp.api.Api
-import com.demo.roudykk.demoapp.api.model.MoviesResult
+import com.demo.roudykk.demoapp.api.models.MoviesResult
 import io.reactivex.Observable
 
-class MostPopularKidsRequest() : MoviesRequest() {
-    override var title: String = "Most Popular (Kids)"
+class MostPopularRequest() : MoviesRequest() {
+    override var title: String = "Most Popular"
 
     override lateinit var moviesResult: MoviesResult
 
@@ -17,7 +17,7 @@ class MostPopularKidsRequest() : MoviesRequest() {
     }
 
     override fun getMovies(page: Int): Observable<MoviesResult> {
-        return Api.discoverApi().getMostPopularForKids(page)
+        return Api.discoverApi().getMostPopularMovies(page)
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -29,12 +29,12 @@ class MostPopularKidsRequest() : MoviesRequest() {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<MostPopularKidsRequest> {
-        override fun createFromParcel(parcel: Parcel): MostPopularKidsRequest {
-            return MostPopularKidsRequest(parcel)
+    companion object CREATOR : Parcelable.Creator<MostPopularRequest> {
+        override fun createFromParcel(parcel: Parcel): MostPopularRequest {
+            return MostPopularRequest(parcel)
         }
 
-        override fun newArray(size: Int): Array<MostPopularKidsRequest?> {
+        override fun newArray(size: Int): Array<MostPopularRequest?> {
             return arrayOfNulls(size)
         }
     }

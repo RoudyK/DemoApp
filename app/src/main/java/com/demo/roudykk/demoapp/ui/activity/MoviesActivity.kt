@@ -9,8 +9,8 @@ import android.util.Log
 import android.widget.Toast
 import butterknife.ButterKnife
 import com.demo.roudykk.demoapp.R
-import com.demo.roudykk.demoapp.api.executor.MoviesRequest
-import com.demo.roudykk.demoapp.api.model.Movie
+import com.demo.roudykk.demoapp.api.requests.MoviesRequest
+import com.demo.roudykk.demoapp.api.models.Movie
 import com.demo.roudykk.demoapp.controllers.MoviesController
 import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.extensions.initThreads
