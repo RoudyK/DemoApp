@@ -94,8 +94,8 @@ class MainActivity : BaseActivity(), HomeController.Listener {
         MoviesActivity.launch(this, moviesResult)
     }
 
-    override fun onMovieClicked(movie: Movie, movieIv: ImageView) {
-        MovieActivity.launch(this, movie, movieIv)
+    override fun onMovieClicked(movie: Movie) {
+        MovieActivity.launch(this, movie)
     }
 
 }

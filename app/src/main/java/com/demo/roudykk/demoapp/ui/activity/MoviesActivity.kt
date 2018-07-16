@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
-import android.widget.ImageView
 import android.widget.Toast
 import butterknife.ButterKnife
 import com.demo.roudykk.demoapp.R
@@ -75,8 +74,8 @@ class MoviesActivity : BaseActivity(), MoviesController.MoviesListener {
         super.onDestroy()
     }
 
-    override fun onMovieClicked(movie: Movie, movieIv: ImageView) {
-        MovieActivity.launch(this, movie, movieIv)
+    override fun onMovieClicked(movie: Movie) {
+        MovieActivity.launch(this, movie)
     }
 
     companion object {

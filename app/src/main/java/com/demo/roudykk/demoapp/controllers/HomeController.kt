@@ -3,7 +3,6 @@ package com.demo.roudykk.demoapp.controllers
 import android.content.Context
 import android.support.v7.widget.SnapHelper
 import android.view.View
-import android.widget.ImageView
 import android.widget.RatingBar
 import com.airbnb.epoxy.*
 import com.demo.roudykk.demoapp.HeaderBindingModel_
@@ -23,7 +22,7 @@ class HomeController(val listener: Listener) : TypedEpoxyController<List<MoviesR
     interface Listener {
         fun onLoadMoreMovies(moviesResult: MoviesResult)
 
-        fun onMovieClicked(movie: Movie, movieIv: ImageView)
+        fun onMovieClicked(movie: Movie)
     }
 
     private val onModelBoundListener =
@@ -54,8 +53,8 @@ class HomeController(val listener: Listener) : TypedEpoxyController<List<MoviesR
                             val ratingBar = view.dataBinding.root.findViewById<RatingBar>(R.id.movieRb)
                             ratingBar.applyTheme()
                         }
-                        .onClickListener { view ->
-                            this.listener.onMovieClicked(movie, view.findViewById(R.id.movieIv))
+                        .onClickListener { _ ->
+                            this.listener.onMovieClicked(movie)
                         })
             }
 

@@ -1,6 +1,5 @@
 package com.demo.roudykk.demoapp.controllers
 
-import android.widget.ImageView
 import android.widget.RatingBar
 import com.airbnb.epoxy.TypedEpoxyController
 import com.demo.roudykk.demoapp.ListMovieBindingModel_
@@ -20,8 +19,8 @@ class MoviesController(private val moviesListener: MoviesListener) : TypedEpoxyC
                         val ratingBar = view.dataBinding.root.findViewById<RatingBar>(R.id.movieRb)
                         ratingBar.applyTheme()
                     }
-                    .onClickListener { view ->
-                        this.moviesListener.onMovieClicked(movie, view.findViewById(R.id.movieIv))
+                    .onClickListener { _ ->
+                        this.moviesListener.onMovieClicked(movie)
                     }
                     .addTo(this)
         }
@@ -42,6 +41,6 @@ class MoviesController(private val moviesListener: MoviesListener) : TypedEpoxyC
 
         fun fetchNextPage()
 
-        fun onMovieClicked(movie: Movie, movieIv: ImageView)
+        fun onMovieClicked(movie: Movie)
     }
 }

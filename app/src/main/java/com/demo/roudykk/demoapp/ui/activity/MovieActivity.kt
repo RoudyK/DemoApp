@@ -19,7 +19,6 @@ import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.api.Api
 import com.demo.roudykk.demoapp.api.model.Movie
 import com.demo.roudykk.demoapp.controllers.MovieController
-import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.extensions.initThreads
 import com.demo.roudykk.demoapp.extensions.withAppBar
 import com.demo.roudykk.demoapp.extensions.withModels
@@ -128,7 +127,7 @@ class MovieActivity : BaseActivity() {
     companion object {
         const val MOVIE = "MOVIE"
 
-        fun launch(context: Context, movie: Movie, movieIv: ImageView) {
+        fun launch(context: Context, movie: Movie) {
             val intent = Intent(context, MovieActivity::class.java)
             intent.putExtra(MOVIE, movie)
             context.startActivity(intent)
