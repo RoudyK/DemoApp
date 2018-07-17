@@ -9,6 +9,8 @@ import android.util.Log
 import android.widget.Toast
 import butterknife.ButterKnife
 import com.demo.roudykk.demoapp.R
+import com.demo.roudykk.demoapp.analytics.Analytics
+import com.demo.roudykk.demoapp.analytics.consts.Source
 import com.demo.roudykk.demoapp.api.models.Movie
 import com.demo.roudykk.demoapp.api.requests.MoviesRequest
 import com.demo.roudykk.demoapp.controllers.MoviesController
@@ -79,15 +81,16 @@ class MoviesActivity : BaseActivity(), MoviesController.MoviesListener {
     }
 
     override fun onMovieClicked(movie: Movie) {
-        MovieActivity.launch(this, movie)
+        MovieActivity.launch(this, movie, Source.SOURCE_MORE_MOVIES)
     }
 
     companion object {
         private const val API_EXECUTOR = "API_EXECUTOR"
 
-        fun launch(context: Context, executor: MoviesRequest) {
+        fun launch(context: Context, moviesRequest: MoviesRequest) {
+            Analytics.getInstance(context)?.userOpenedMoreMovies(moviesRequest.title)
             val intent = Intent(context, MoviesActivity::class.java)
-            intent.putExtra(API_EXECUTOR, executor)
+            intent.putExtra(API_EXECUTOR, moviesRequest)
             context.startActivity(intent)
         }
     }

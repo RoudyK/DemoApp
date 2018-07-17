@@ -18,6 +18,8 @@ import android.widget.Toast
 import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager
 import com.demo.roudykk.demoapp.GenreBindingModel_
 import com.demo.roudykk.demoapp.R
+import com.demo.roudykk.demoapp.analytics.Analytics
+import com.demo.roudykk.demoapp.analytics.consts.Source
 import com.demo.roudykk.demoapp.api.Api
 import com.demo.roudykk.demoapp.api.models.Movie
 import com.demo.roudykk.demoapp.controllers.MovieController
@@ -55,6 +57,7 @@ class MovieActivity : BaseActivity() {
 
         this.readMore.setOnClickListener {
             this.appBarLayout.setExpanded(false, true)
+            Analytics.getInstance(this)?.userClickedMovieReadMore()
         }
 
         this.watchLater.setOnClickListener {
@@ -64,6 +67,7 @@ class MovieActivity : BaseActivity() {
                     .setPositiveButton(getString(R.string.ok).toUpperCase()) { _, _ ->
                         this.movieViewModel.insert(movie)
                         Toast.makeText(this, getString(R.string.movie_added), Toast.LENGTH_SHORT).show()
+                        Analytics.getInstance(this)?.userAddedMovieWatchList(movie.id)
                     }
                     .setNegativeButton(getString(R.string.cancel)) { _, _ ->
                         //DO NOTHING
@@ -150,7 +154,8 @@ class MovieActivity : BaseActivity() {
     companion object {
         const val MOVIE = "MOVIE"
 
-        fun launch(context: Context, movie: Movie) {
+        fun launch(context: Context, movie: Movie, source: Source) {
+            Analytics.getInstance(context)?.userOpenedMovie(movie.id, source)
             val intent = Intent(context, MovieActivity::class.java)
             intent.putExtra(MOVIE, movie)
             context.startActivity(intent)

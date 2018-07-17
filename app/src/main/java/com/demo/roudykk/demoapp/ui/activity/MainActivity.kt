@@ -4,11 +4,12 @@ package com.demo.roudykk.demoapp.ui.activity
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.View
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.demo.roudykk.demoapp.R
+import com.demo.roudykk.demoapp.analytics.Analytics
+import com.demo.roudykk.demoapp.analytics.consts.Source
 import com.demo.roudykk.demoapp.api.models.Movie
 import com.demo.roudykk.demoapp.api.models.MoviesResult
 import com.demo.roudykk.demoapp.api.requests.*
@@ -23,9 +24,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity(), HomeController.Listener {
     private val moviesRequests: MutableList<MoviesRequest> = mutableListOf()
-
     private var homeController: HomeController? = null
     private var disposable: Disposable? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -34,6 +35,8 @@ class MainActivity : BaseActivity(), HomeController.Listener {
 
         initRv()
         loadMovies()
+
+        Analytics.getInstance(this)?.userOpenedHome()
     }
 
     private fun initRv() {
@@ -70,8 +73,7 @@ class MainActivity : BaseActivity(), HomeController.Listener {
                 .initThreads()
                 .subscribe({
                     viewContent()
-                }, { throwable ->
-                    Log.d("ERROR-HOME", throwable.toString())
+                }, {
                     viewError()
                 })
     }
@@ -101,12 +103,11 @@ class MainActivity : BaseActivity(), HomeController.Listener {
     }
 
     override fun onLoadMoreMovies(executor: MoviesRequest) {
-        Log.d("EXECTUOR", executor.toString())
         MoviesActivity.launch(this, executor)
     }
 
     override fun onMovieClicked(movie: Movie) {
-        MovieActivity.launch(this, movie)
+        MovieActivity.launch(this, movie, Source.SOURCE_HOME)
     }
 
 }

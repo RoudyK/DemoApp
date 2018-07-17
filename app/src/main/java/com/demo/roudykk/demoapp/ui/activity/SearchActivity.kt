@@ -8,6 +8,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.widget.Toast
 import com.demo.roudykk.demoapp.R
+import com.demo.roudykk.demoapp.analytics.Analytics
+import com.demo.roudykk.demoapp.analytics.consts.Source
 import com.demo.roudykk.demoapp.api.Api
 import com.demo.roudykk.demoapp.api.models.Movie
 import com.demo.roudykk.demoapp.controllers.MoviesController
@@ -70,12 +72,13 @@ class SearchActivity : BaseActivity(), MoviesController.MoviesListener {
     }
 
     override fun onMovieClicked(movie: Movie) {
-        MovieActivity.launch(this, movie)
+        MovieActivity.launch(this, movie, Source.SOURCE_SEARCH)
     }
 
     companion object {
 
         fun launch(context: Context) {
+            Analytics.getInstance(context)?.userOpenedSearch()
             context.startActivity(Intent(context, SearchActivity::class.java))
         }
     }

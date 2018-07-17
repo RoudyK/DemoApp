@@ -8,11 +8,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.demo.roudykk.demoapp.R
+import com.demo.roudykk.demoapp.analytics.Analytics
+import com.demo.roudykk.demoapp.analytics.consts.Source
 import com.demo.roudykk.demoapp.api.models.Movie
 import com.demo.roudykk.demoapp.controllers.SavedMoviesController
 import com.demo.roudykk.demoapp.db.models.MovieViewModel
@@ -47,6 +48,10 @@ class WatchListActivity : BaseActivity(), SavedMoviesController.SavedMoviesListe
                         .setTitle(getString(R.string.delete_movies))
                         .setMessage(getString(R.string.delete_all_movies_confirmation))
                         .setPositiveButton(getString(R.string.ok).toUpperCase()) { _, _ ->
+                            if(this.savedMoviesController.currentData != null){
+                                Analytics.getInstance(this)
+                                        ?.userDeletedAllMoviesWatchList(this.savedMoviesController.currentData!!.size)
+                            }
                             this.movieViewModel.deleteAll()
                         }
                         .setNegativeButton(getString(R.string.cancel)) { _, _ ->
@@ -86,8 +91,7 @@ class WatchListActivity : BaseActivity(), SavedMoviesController.SavedMoviesListe
     }
 
     override fun onMovieClicked(movie: Movie) {
-        Log.d("OPENED-MOVIE", movie.toString())
-        MovieActivity.launch(this, movie)
+        MovieActivity.launch(this, movie, Source.SOURCE_WATCH_LIST)
     }
 
     override fun onDeleteMovieClicked(movie: Movie) {
@@ -96,6 +100,7 @@ class WatchListActivity : BaseActivity(), SavedMoviesController.SavedMoviesListe
                 .setMessage(getString(R.string.delete_movie_confirmation))
                 .setPositiveButton(getString(R.string.ok).toUpperCase()) { _, _ ->
                     this.movieViewModel.delete(movie.id)
+                    Analytics.getInstance(this)?.userDeletedMovieWatchList(movie.id)
                 }
                 .setNegativeButton(getString(R.string.cancel)) { _, _ ->
                     //DO NOTHING
@@ -107,6 +112,7 @@ class WatchListActivity : BaseActivity(), SavedMoviesController.SavedMoviesListe
     companion object {
 
         fun launch(context: Context) {
+            Analytics.getInstance(context)?.userOpenedWatchList()
             context.startActivity(Intent(context, WatchListActivity::class.java))
         }
     }
