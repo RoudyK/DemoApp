@@ -33,6 +33,7 @@
                     android:id="@+id/watchLaterIv"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:src="@drawable/ic_playlist_play"
                     android:tint="@color/colorPrimary" />
 
@@ -53,8 +54,11 @@
                     android:textStyle="bold" />
 
                 <ImageView
+                    android:padding="4dp"
+                    android:id="@+id/searchIv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:src="@drawable/ic_search"
                     android:tint="@color/colorAccent" />
             </LinearLayout>

@@ -105,7 +105,7 @@ class MovieController(private var context: Context) : TypedEpoxyController<Movie
 
         movie?.credits?.cast?.forEach { person ->
             castModels.add(CastBindingModel_()
-                    .id(person.id)
+                    .id("$person.id $person.cast_id")
                     .person(person))
         }
 
