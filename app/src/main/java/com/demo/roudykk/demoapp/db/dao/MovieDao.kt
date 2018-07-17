@@ -11,7 +11,7 @@ import com.demo.roudykk.demoapp.api.models.Movie
 interface MovieDao {
 
     @Query("select * from Movie")
-    fun getAll(): LiveData<ArrayList<Movie>>
+    fun getAll(): LiveData<List<Movie>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(vararg movies: Movie)

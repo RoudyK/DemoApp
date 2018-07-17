@@ -1,5 +1,7 @@
 package com.demo.roudykk.demoapp.ui.activity
 
+import android.app.AlertDialog
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -12,12 +14,14 @@ import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager
 import com.demo.roudykk.demoapp.GenreBindingModel_
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.api.Api
 import com.demo.roudykk.demoapp.api.models.Movie
 import com.demo.roudykk.demoapp.controllers.MovieController
+import com.demo.roudykk.demoapp.db.models.MovieViewModel
 import com.demo.roudykk.demoapp.extensions.initThreads
 import com.demo.roudykk.demoapp.extensions.withAppBar
 import com.demo.roudykk.demoapp.extensions.withModels
@@ -26,12 +30,12 @@ import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_movie.*
 import kotlinx.android.synthetic.main.header_movie.*
 
-
 class MovieActivity : BaseActivity() {
     private lateinit var movie: Movie
     private var disposable: Disposable? = null
     private var snackbar: Snackbar? = null
     private var movieController: MovieController? = null
+    private lateinit var movieViewModel: MovieViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +43,7 @@ class MovieActivity : BaseActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        this.initViewModel()
         this.initWindow()
         this.initRv()
 
@@ -51,6 +56,25 @@ class MovieActivity : BaseActivity() {
         this.readMore.setOnClickListener {
             this.appBarLayout.setExpanded(false, true)
         }
+
+        this.watchLater.setOnClickListener {
+            AlertDialog.Builder(this)
+                    .setTitle(getString(R.string.add_movie))
+                    .setMessage(getString(R.string.add_movie_confirmation))
+                    .setPositiveButton(getString(R.string.ok).toUpperCase()) { _, _ ->
+                        this.movieViewModel.insert(movie)
+                        Toast.makeText(this, getString(R.string.movie_added), Toast.LENGTH_SHORT).show()
+                    }
+                    .setNegativeButton(getString(R.string.cancel)) { _, _ ->
+                        //DO NOTHING
+                    }
+                    .create()
+                    .show()
+        }
+    }
+
+    private fun initViewModel() {
+        this.movieViewModel = ViewModelProviders.of(this).get(MovieViewModel::class.java)
     }
 
     private fun initRv() {

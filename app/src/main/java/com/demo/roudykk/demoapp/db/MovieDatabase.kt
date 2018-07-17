@@ -7,7 +7,7 @@ import android.content.Context
 import com.demo.roudykk.demoapp.api.models.Movie
 import com.demo.roudykk.demoapp.db.dao.MovieDao
 
-@Database(entities = [Movie::class], version = 1)
+@Database(entities = [Movie::class], version = 4)
 abstract class MovieDatabase : RoomDatabase() {
 
     abstract fun movieDao(): MovieDao
@@ -24,6 +24,7 @@ abstract class MovieDatabase : RoomDatabase() {
                             MovieDatabase::class.java,
                             DATABASE_NAME)
                             .fallbackToDestructiveMigration()
+                            .allowMainThreadQueries()
                             .build()
                 }
             }

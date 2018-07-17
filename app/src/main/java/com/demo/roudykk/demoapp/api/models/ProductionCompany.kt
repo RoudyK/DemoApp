@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class ProductionCompany(
-        var id: Int? = null,
+        var id: Int,
         var logo_path: String? = null,
         var name: String? = null,
         var origin_country: String? = null
@@ -15,7 +15,7 @@ data class ProductionCompany(
     }
 
     constructor(source: Parcel) : this(
-            source.readValue(Int::class.java.classLoader) as Int?,
+            source.readInt(),
             source.readString(),
             source.readString(),
             source.readString()
@@ -24,7 +24,7 @@ data class ProductionCompany(
     override fun describeContents() = 0
 
     override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
-        writeValue(id)
+        writeInt(id)
         writeString(logo_path)
         writeString(name)
         writeString(origin_country)

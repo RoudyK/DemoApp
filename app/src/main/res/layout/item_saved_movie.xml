@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="movie"
+            type="com.demo.roudykk.demoapp.api.models.Movie" />
+
+        <variable
+            name="onClickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onDeleteClickListener"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:onClickListener="@{onClickListener}"
+        tools:background="@color/colorDim">
+
+        <ImageView
+            android:id="@+id/movieIv"
+            imageUrl="@{movie.getImageUrl()}"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="10dp"
+            android:transitionName="@string/movie_image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/background_post_image" />
+
+
+        <TextView
+            android:id="@+id/movieNameTv"
+            fontPath="fonts/AirbnbCereal-Medium.ttf"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:ellipsize="end"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:text="@{movie.title}"
+            android:textColor="@color/colorLight"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@+id/movieIv"
+            app:layout_constraintRight_toLeftOf="@+id/deleteIv"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@sample/movies.json/data/title" />
+
+
+        <RatingBar
+            android:id="@+id/movieRb"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="10dp"
+            android:numStars="5"
+            android:rating="@{movie.vote_average/2}"
+            app:layout_constraintBottom_toBottomOf="@+id/movieReviewsTv"
+            app:layout_constraintLeft_toRightOf="@+id/movieIv"
+            app:layout_constraintTop_toBottomOf="@+id/movieNameTv"
+            tools:rating="@sample/movies.json/data/vote_average" />
+
+
+        <TextView
+            android:id="@+id/movieReviewsTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="2dp"
+            android:text="@{String.format(@string/x_reviews, String.valueOf(movie.vote_count))}"
+            android:textColor="@color/colorAccent"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toRightOf="@+id/movieRb"
+            app:layout_constraintTop_toBottomOf="@+id/movieNameTv"
+            tools:text="(12 reviews)" />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="10dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{movie.overview}"
+            android:textColor="@color/colorLight"
+            app:layout_constraintBottom_toBottomOf="@+id/movieIv"
+            app:layout_constraintLeft_toRightOf="@+id/movieIv"
+            app:layout_constraintRight_toLeftOf="@+id/deleteIv"
+            app:layout_constraintTop_toBottomOf="@+id/movieRb"
+            tools:text="@sample/movies.json/data/overview" />
+
+
+        <ImageView
+            android:id="@+id/deleteIv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="14dp"
+            android:onClickListener="@{onDeleteClickListener}"
+            android:padding="10dp"
+            android:src="@drawable/ic_delete"
+            android:tint="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+
+</layout>

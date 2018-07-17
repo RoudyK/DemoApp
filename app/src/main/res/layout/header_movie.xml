@@ -102,18 +102,19 @@
                         android:textSize="12sp" />
 
                     <TextView
+                        android:id="@+id/watchLater"
                         fontPath="fonts/AirbnbCereal-Medium.ttf"
-                        android:layout_marginStart="8dp"
-                        android:id="@+id/actionView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
                         android:background="@drawable/background_rounded_stroke_white"
                         android:foreground="?android:attr/selectableItemBackground"
                         android:padding="10dp"
+                        android:text="@string/add_to_watch_list"
                         android:textColor="@color/white"
                         android:textSize="12sp"
                         android:textStyle="bold"
-                        android:text="@string/add_to_watch_list" />
+                        tools:ignore="MissingPrefix" />
                 </LinearLayout>
             </LinearLayout>
         </android.support.constraint.ConstraintLayout>

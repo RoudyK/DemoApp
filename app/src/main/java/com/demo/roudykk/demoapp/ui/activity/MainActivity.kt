@@ -9,9 +9,9 @@ import android.view.View
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.demo.roudykk.demoapp.R
-import com.demo.roudykk.demoapp.api.requests.*
 import com.demo.roudykk.demoapp.api.models.Movie
 import com.demo.roudykk.demoapp.api.models.MoviesResult
+import com.demo.roudykk.demoapp.api.requests.*
 import com.demo.roudykk.demoapp.controllers.HomeController
 import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.extensions.initThreads
@@ -43,6 +43,11 @@ class MainActivity : BaseActivity(), HomeController.Listener {
         this.homeController = HomeController(this)
         this.homeRv.setController(homeController!!)
         this.homeRv.withAppBar(this.appBarLayout)
+    }
+
+    @OnClick(R.id.watchLaterIv)
+    fun openWatchLater() {
+        WatchListActivity.launch(this)
     }
 
     @OnClick(R.id.reload)
