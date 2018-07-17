@@ -45,6 +45,11 @@ class MainActivity : BaseActivity(), HomeController.Listener {
         this.homeRv.withAppBar(this.appBarLayout)
     }
 
+    @OnClick(R.id.searchIv)
+    fun openSearch() {
+        SearchActivity.launch(this)
+    }
+
     @OnClick(R.id.watchLaterIv)
     fun openWatchLater() {
         WatchListActivity.launch(this)

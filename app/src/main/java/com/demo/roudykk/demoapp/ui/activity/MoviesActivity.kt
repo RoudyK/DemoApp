@@ -9,8 +9,8 @@ import android.util.Log
 import android.widget.Toast
 import butterknife.ButterKnife
 import com.demo.roudykk.demoapp.R
-import com.demo.roudykk.demoapp.api.requests.MoviesRequest
 import com.demo.roudykk.demoapp.api.models.Movie
+import com.demo.roudykk.demoapp.api.requests.MoviesRequest
 import com.demo.roudykk.demoapp.controllers.MoviesController
 import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.extensions.initThreads
@@ -22,7 +22,6 @@ class MoviesActivity : BaseActivity(), MoviesController.MoviesListener {
 
     private var moviesController: MoviesController? = null
     private var moviesRequest: MoviesRequest? = null
-    private var hasMoreToLoad = true
     private var disposable: Disposable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,7 +51,8 @@ class MoviesActivity : BaseActivity(), MoviesController.MoviesListener {
     }
 
     override fun hasMoreToLoad(): Boolean {
-        return this.hasMoreToLoad
+        return this.moviesRequest != null &&
+                this.moviesRequest!!.moviesResult.page < this.moviesRequest!!.moviesResult.total_pages
     }
 
     override fun fetchNextPage() {
@@ -64,6 +64,8 @@ class MoviesActivity : BaseActivity(), MoviesController.MoviesListener {
                         if (!this.moviesRequest!!.moviesResult.results.contains(movie)) {
                             this.moviesRequest?.moviesResult?.results?.add(movie)
                         }
+                        this.moviesRequest?.moviesResult?.page = it.page
+                        this.moviesRequest?.moviesResult?.total_pages = it.total_pages
                     }
                     this.moviesController?.setData(this.moviesRequest?.moviesResult?.results)
                 }, {

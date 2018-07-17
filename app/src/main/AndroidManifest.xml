@@ -26,6 +26,7 @@
         <activity android:name=".ui.activity.MoviesActivity" />
         <activity android:name=".ui.activity.MovieActivity" />
         <activity android:name=".ui.activity.WatchListActivity" />
+        <activity android:name=".ui.activity.SearchActivity" />
 
     </application>
 
