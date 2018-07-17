@@ -15,8 +15,14 @@
 
 ### Used Dependencies
 - [Butterknife](https://github.com/JakeWharton/butterknife) - Bind views and click listeners
-- [Airbnb Epoxy](https://github.com/airbnb/epoxy) -Building complex layouts using RecyclerView
+- [Airbnb Epoxy](https://github.com/airbnb/epoxy) - Building complex layouts using RecyclerView
 - [Glide](https://github.com/bumptech/glide) - Displaying images aysnchronously
 - [Retrofit 2](https://github.com/square/retrofit) - Network calls and Rx
 - [RxBinding](https://github.com/JakeWharton/RxBinding) - Rx binding for android views
 - [Room](https://developer.android.com/topic/libraries/architecture/room) - Local Database Access
+- [Mixpanel](https://github.com/mixpanel/mixpanel-android) - User Analytics
+
+### TODO
+- Writing unit tests
+- Code documentation
+- Code refactoring XD
