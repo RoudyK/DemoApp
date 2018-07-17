@@ -38,4 +38,7 @@
     <string name="delete_movies">Delete Movies</string>
     <string name="delete_all_movies_confirmation">Are you sure you want to delete all the movies?</string>
     <string name="movie_added">Movie added to watch list</string>
+    <string name="popularity">Popularity</string>
+    <string name="revenue">Revenue ($):</string>
+    <string name="languages">Languages:</string>
 </resources>

@@ -9,6 +9,7 @@ import com.airbnb.epoxy.OnModelBoundListener
 import com.airbnb.epoxy.TypedEpoxyController
 import com.demo.roudykk.demoapp.*
 import com.demo.roudykk.demoapp.api.models.Movie
+import com.demo.roudykk.demoapp.api.models.SpokenLanguage
 import com.demo.roudykk.demoapp.controllers.models.IndicatorCarouselModel_
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayerView
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.AbstractYouTubePlayerListener
@@ -93,10 +94,34 @@ class MovieController(private var context: Context) : TypedEpoxyController<Movie
             DecimalFormat("#,###").format(movie?.budget)
         }
 
+        val revenue = if (movie?.revenue == 0f) {
+            context.getString(R.string.not_set)
+        } else {
+            DecimalFormat("#,###").format(movie?.revenue)
+        }
+
+        MetricBindingModel_()
+                .id("popularity")
+                .title(context.getString(R.string.popularity))
+                .value(movie?.popularity.toString())
+                .addTo(this)
+
+        MetricBindingModel_()
+                .id("languages")
+                .title(context.getString(R.string.languages))
+                .value(SpokenLanguage.toReadableString(movie?.spoken_languages))
+                .addTo(this)
+
         MetricBindingModel_()
                 .id("budget")
                 .title(context.getString(R.string.budget))
                 .value(budget)
+                .addTo(this)
+
+        MetricBindingModel_()
+                .id("revenue")
+                .title(context.getString(R.string.revenue))
+                .value(revenue)
                 .addTo(this)
     }
 

@@ -1,6 +1,5 @@
 package com.demo.roudykk.demoapp.api.models
 
-import android.arch.persistence.room.Embedded
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.Ignore
 import android.arch.persistence.room.PrimaryKey
@@ -49,7 +48,7 @@ data class Movie(
     }
 
     constructor() : this(0, null, null, null, null, 0f, null, null,
-             null, null, null, null, null, null, null, null, null, null, 0f,
+            null, null, null, null, null, null, null, null, null, null, 0f,
             null, null, null, null)
 
     constructor(source: Parcel) : this(
