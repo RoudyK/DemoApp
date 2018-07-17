@@ -32,7 +32,36 @@
         android:paddingBottom="20dp"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:itemCount="20"
+        tools:itemCount="30"
         tools:listitem="@layout/item_list_movie" />
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/emptyView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_gravity="center"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="animation-sad.json"
+            app:lottie_loop="true" />
+
+        <TextView
+            fontPath="fonts/AirbnbCereal-Medium.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/it_s_lonely_here"
+            android:textColor="@color/colorLight"
+            tools:ignore="MissingPrefix" />
+    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

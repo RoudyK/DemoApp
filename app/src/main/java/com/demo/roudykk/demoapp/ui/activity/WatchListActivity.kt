@@ -11,13 +11,14 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.api.models.Movie
 import com.demo.roudykk.demoapp.controllers.SavedMoviesController
 import com.demo.roudykk.demoapp.db.models.MovieViewModel
 import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.extensions.withAppBar
-import kotlinx.android.synthetic.main.activity_watch_later.*
+import kotlinx.android.synthetic.main.activity_watch_list.*
 
 class WatchListActivity : BaseActivity(), SavedMoviesController.SavedMoviesListener {
     private lateinit var savedMoviesController: SavedMoviesController
@@ -25,7 +26,7 @@ class WatchListActivity : BaseActivity(), SavedMoviesController.SavedMoviesListe
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_watch_later)
+        setContentView(R.layout.activity_watch_list)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         title = getString(R.string.watch_list)
@@ -71,6 +72,16 @@ class WatchListActivity : BaseActivity(), SavedMoviesController.SavedMoviesListe
 
         this.movieViewModel.getAll().observe(this, Observer<List<Movie>> { movies ->
             this.savedMoviesController.setData(movies)
+
+            if (movies != null) {
+                if (movies.isNotEmpty()) {
+                    emptyView.visibility = View.GONE
+                } else {
+                    emptyView.visibility = View.VISIBLE
+                }
+            } else {
+                emptyView.visibility = View.VISIBLE
+            }
         })
     }
 
