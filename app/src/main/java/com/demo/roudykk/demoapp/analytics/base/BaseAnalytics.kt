@@ -14,6 +14,8 @@ interface BaseAnalytics {
 
     fun userOpenedSearch()
 
+    fun userSearched(searchQuery: String)
+
     fun userAddedMovieWatchList(movieId: Int)
 
     fun userDeletedMovieWatchList(movieId: Int)

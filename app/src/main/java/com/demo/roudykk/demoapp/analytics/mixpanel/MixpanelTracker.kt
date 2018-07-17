@@ -10,6 +10,7 @@ class MixpanelTracker(private val context: Context) : Tracker {
 
     override fun track(event: Event, bundle: EventBundle) {
         Mixpanel.getInstance(context)?.track(event.value, bundle.toBundle().toJSONObject())
+        Mixpanel.getInstance(context)?.flush()
     }
 
 }

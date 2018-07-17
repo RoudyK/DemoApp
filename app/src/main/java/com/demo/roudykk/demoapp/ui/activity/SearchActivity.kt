@@ -50,6 +50,7 @@ class SearchActivity : BaseActivity(), MoviesController.MoviesListener {
                     if (query.toString().isEmpty()) {
                         this.moviesController.setData(ArrayList())
                     } else {
+                        Analytics.getInstance(this)?.userSearched(query.toString())
                         Api.searchApi().searchMovie(query.toString())
                                 .initThreads()
                                 .subscribe({ movieResult ->

@@ -47,6 +47,12 @@ class Analytics() : BaseAnalytics, Tracker {
         this.track(Event.EVENT_USER_OPENED_SEARCH, EventBundle())
     }
 
+    override fun userSearched(searchQuery: String) {
+        val bundle = EventBundle()
+        bundle.put(Param.PARAM_SEARCH_QUERY, searchQuery)
+        this.track(Event.EVENT_USER_SEARCHED, bundle)
+    }
+
     override fun userAddedMovieWatchList(movieId: Int) {
         val bundle = EventBundle()
         bundle.put(Param.PARAM_MOVIE_ID, movieId)
