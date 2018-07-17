@@ -1,9 +1,14 @@
 package com.demo.roudykk.demoapp.api.models
 
+import android.arch.persistence.room.Embedded
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 import android.os.Parcel
 import android.os.Parcelable
 
+@Entity
 data class Movie(
+        @PrimaryKey
         var id: Int? = null,
         var title: String? = null,
         var overview: String? = null,
@@ -26,8 +31,11 @@ data class Movie(
         var genres: ArrayList<Genre>? = null,
         var production_companies: ArrayList<ProductionCompany>? = null,
         var production_countries: ArrayList<ProductionCountry>? = null,
+        @Embedded(prefix = "videos_")
         var videos: VideoResult? = null,
+        @Embedded(prefix = "reviews_")
         var reviews: ReviewResult? = null,
+        @Embedded(prefix = "credits_")
         var credits: Credits? = null
 ) : Parcelable {
     fun getImageUrl(): String {
