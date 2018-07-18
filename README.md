@@ -33,3 +33,4 @@
 - Code documentation
 - Code refactoring XD
 - Add crashlytics
+- CD/CI
