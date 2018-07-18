@@ -35,3 +35,6 @@
 - Add crashlytics
 - CD/CI
 - Add product flavors for DEV and PROD
+
+
+*"This project is in constant development, any tips or recommendations are appreciated"*
