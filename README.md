@@ -34,3 +34,4 @@
 - Code refactoring XD
 - Add crashlytics
 - CD/CI
+- Add product flavors for DEV and PROD
