@@ -22,6 +22,12 @@
 - [Room](https://developer.android.com/topic/libraries/architecture/room) - Local Database Access
 - [Mixpanel](https://github.com/mixpanel/mixpanel-android) - User Analytics
 
+
+### Run the App
+- Clone the Repo
+- Open in Android Studio
+- Build
+
 ### TODO
 - Writing unit tests
 - Code documentation
