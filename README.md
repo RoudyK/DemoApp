@@ -35,6 +35,7 @@
 - Add crashlytics
 - CD/CI (Bitbucket pipeline + Hockeyapp)
 - Add product flavors for DEMO and FULL
+- Deeplinking
 
 
 *"This project is in constant development, any tips or recommendations are appreciated"*
