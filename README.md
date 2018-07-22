@@ -33,8 +33,9 @@
 - Code documentation
 - Code refactoring XD
 - Add crashlytics
-- CD/CI
-- Add product flavors for DEV and PROD
+- CD/CI (Bitbucket pipeline + Hockeyapp)
+- Add product flavors for DEMO and FULL
+- Deeplinking
 
 
 *"This project is in constant development, any tips or recommendations are appreciated"*
