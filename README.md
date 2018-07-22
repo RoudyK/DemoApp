@@ -32,7 +32,7 @@
 - Writing unit tests
 - Code documentation
 - Code refactoring XD
-- Add crashlytics
+- ~Add crashlytics~
 - CD/CI (Bitbucket pipeline + Hockeyapp)
 - Add product flavors for DEMO and FULL
 - Deeplinking
