@@ -29,10 +29,11 @@
 - Build
 
 ### TODO
+- ~Support Light and Dark themes~
+- ~Add crashlytics~
 - Writing unit tests
 - Code documentation
 - Code refactoring XD
-- ~Add crashlytics~
 - CD/CI (Bitbucket pipeline + Hockeyapp)
 - Add product flavors for DEMO and FULL
 - Deeplinking
