@@ -25,6 +25,7 @@ import com.demo.roudykk.demoapp.api.Api
 import com.demo.roudykk.demoapp.api.models.Movie
 import com.demo.roudykk.demoapp.controllers.MovieController
 import com.demo.roudykk.demoapp.db.models.MovieViewModel
+import com.demo.roudykk.demoapp.extensions.applyTheme
 import com.demo.roudykk.demoapp.extensions.initThreads
 import com.demo.roudykk.demoapp.extensions.withAppBar
 import com.demo.roudykk.demoapp.extensions.withModels
@@ -46,7 +47,6 @@ class MovieActivity : BaseActivity() {
         setContentView(R.layout.activity_movie)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        delegate.setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES)
 
         this.initViewModel()
         this.initWindow()
@@ -126,10 +126,7 @@ class MovieActivity : BaseActivity() {
     }
 
     private fun initWindow() {
-        collapsingLayout.isTitleEnabled = false
-        val stars = movieRb.progressDrawable as LayerDrawable
-        stars.getDrawable(2).setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP)
-        stars.getDrawable(1).setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP)
+        movieRb.applyTheme()
         val typedValue = TypedValue()
         theme.resolveAttribute(R.attr.backgroundColor, typedValue, true)
     }

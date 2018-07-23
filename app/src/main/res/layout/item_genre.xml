@@ -24,6 +24,7 @@
             android:padding="4dp"
             android:text="@{genre.name}"
             android:textColor="@color/white"
+            android:textSize="12sp"
             tools:text="Thriller" />
     </RelativeLayout>
 </layout>
