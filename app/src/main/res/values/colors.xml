@@ -18,5 +18,5 @@
     <color name="highlightColorLight">#ebebeb</color>
 
     <color name="white">#ffffff</color>
-    <color name="colorHint">#80FFFFFF</color>
+    <color name="colorHint">#bdbdbd</color>
 </resources>

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.analytics.Analytics
@@ -43,6 +44,7 @@ class SearchActivity : BaseActivity(), MoviesController.MoviesListener {
     }
 
     private fun initSearchEt() {
+        this.searchEt.imeOptions = EditorInfo.IME_ACTION_SEARCH
         RxTextView.textChanges(this.searchEt)
                 .skipInitialValue()
                 .debounce(200, TimeUnit.MILLISECONDS)
