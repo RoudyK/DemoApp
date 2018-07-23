@@ -7,6 +7,10 @@
         <variable
             name="review"
             type="com.demo.roudykk.demoapp.api.models.Review" />
+
+        <variable
+            name="onClickListener"
+            type="android.view.View.OnClickListener" />
     </data>
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -34,8 +38,8 @@
             android:layout_marginStart="14dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="14dp"
-            android:maxLines="4"
             android:ellipsize="end"
+            android:maxLines="4"
             android:text="@{String.format(@string/quoted, review.content)}"
             app:layout_constraintLeft_toRightOf="@+id/logoIv"
             app:layout_constraintRight_toRightOf="parent"
@@ -57,14 +61,30 @@
             app:layout_constraintTop_toBottomOf="@+id/reviewTv"
             tools:text="@tools:sample/full_names" />
 
+        <TextView
+            android:id="@+id/readFullReviewTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClickListener="@{onClickListener}"
+            android:paddingStart="14dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="14dp"
+            android:paddingBottom="10dp"
+            android:text="@string/read_full_review"
+            android:textAllCaps="true"
+            android:textColor="@color/colorAccent"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toRightOf="@+id/logoIv"
+            app:layout_constraintTop_toBottomOf="@+id/authorTv" />
+
         <View
             android:layout_width="0dp"
             android:layout_height="1dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="4dp"
             android:background="?dividerColor"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintLeft_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/authorTv" />
+            app:layout_constraintTop_toBottomOf="@+id/readFullReviewTv" />
     </android.support.constraint.ConstraintLayout>
 
 </layout>

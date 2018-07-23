@@ -2,6 +2,8 @@ package com.demo.roudykk.demoapp.controllers
 
 import android.content.Context
 import android.graphics.Color
+import android.net.Uri
+import android.support.customtabs.CustomTabsIntent
 import android.support.v4.content.ContextCompat
 import android.util.TypedValue
 import com.airbnb.epoxy.Carousel
@@ -15,6 +17,8 @@ import com.demo.roudykk.demoapp.controllers.models.IndicatorCarouselModel_
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayerView
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.AbstractYouTubePlayerListener
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
+import saschpe.android.customtabs.CustomTabsHelper
+import saschpe.android.customtabs.WebViewFallback
 import java.text.DecimalFormat
 
 
@@ -166,6 +170,19 @@ class MovieController(private var context: Context) : TypedEpoxyController<Movie
             ReviewBindingModel_()
                     .id(review.id)
                     .review(review)
+                    .onClickListener { _ ->
+                        val customTabsIntent = CustomTabsIntent.Builder()
+                                .addDefaultShareMenuItem()
+                                .setToolbarColor(ContextCompat.getColor(context, R.color.colorPrimary))
+                                .setShowTitle(true)
+                                .build()
+
+                        CustomTabsHelper.addKeepAliveExtra(context, customTabsIntent.intent)
+
+                        CustomTabsHelper.openCustomTab(context, customTabsIntent,
+                                Uri.parse(review.url),
+                                WebViewFallback())
+                    }
                     .addTo(this)
         }
     }
