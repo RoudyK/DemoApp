@@ -48,8 +48,9 @@ class MainActivity : BaseActivity(), HomeController.Listener {
             title = getString(R.string.movies)
         }
 
-        initRv()
-        loadMovies()
+        this.initDrawer()
+        this.initRv()
+        this.loadMovies()
 
         Analytics.getInstance(this)?.userOpenedHome()
     }
@@ -73,6 +74,18 @@ class MainActivity : BaseActivity(), HomeController.Listener {
                 true
             }
             else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun initDrawer() {
+        this.navigationView.setNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_watchlist -> {
+                    WatchListActivity.launch(this)
+                    true
+                }
+                else -> super.onOptionsItemSelected(item)
+            }
         }
     }
 
