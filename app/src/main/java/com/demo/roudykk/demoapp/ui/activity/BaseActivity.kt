@@ -18,7 +18,7 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         requestedOrientation = SCREEN_ORIENTATION_USER_PORTRAIT
         super.onCreate(savedInstanceState)
-        delegate.setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        delegate.setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         window.statusBarColor = ContextCompat.getColor(this, R.color.colorPrimaryDark)
     }
 
