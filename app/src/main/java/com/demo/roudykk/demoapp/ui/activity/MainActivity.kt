@@ -84,6 +84,10 @@ class MainActivity : BaseActivity(), HomeController.Listener {
                     WatchListActivity.launch(this)
                     true
                 }
+                R.id.nav_settings -> {
+                    SettingsActivity.launch(this)
+                    true
+                }
                 else -> super.onOptionsItemSelected(item)
             }
         }
