@@ -2,8 +2,6 @@ package com.demo.roudykk.demoapp.controllers
 
 import android.content.Context
 import android.graphics.Color
-import android.net.Uri
-import android.support.customtabs.CustomTabsIntent
 import android.support.v4.content.ContextCompat
 import android.util.TypedValue
 import com.airbnb.epoxy.Carousel
@@ -12,17 +10,18 @@ import com.airbnb.epoxy.OnModelBoundListener
 import com.airbnb.epoxy.TypedEpoxyController
 import com.demo.roudykk.demoapp.*
 import com.demo.roudykk.demoapp.api.models.Movie
+import com.demo.roudykk.demoapp.api.models.Person
+import com.demo.roudykk.demoapp.api.models.Review
 import com.demo.roudykk.demoapp.api.models.SpokenLanguage
 import com.demo.roudykk.demoapp.controllers.models.IndicatorCarouselModel_
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayerView
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.AbstractYouTubePlayerListener
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
-import saschpe.android.customtabs.CustomTabsHelper
-import saschpe.android.customtabs.WebViewFallback
 import java.text.DecimalFormat
 
 
-class MovieController(private var context: Context) : TypedEpoxyController<Movie>() {
+class MovieController(private var context: Context,
+                      private var listener: Listener) : TypedEpoxyController<Movie>() {
 
     private val onModelBoundListener =
             OnModelBoundListener<CarouselModel_, Carousel>
@@ -136,7 +135,10 @@ class MovieController(private var context: Context) : TypedEpoxyController<Movie
         movie?.credits?.cast?.forEach { person ->
             castModels.add(CastBindingModel_()
                     .id("$person.id $person.cast_id")
-                    .person(person))
+                    .person(person)
+                    .onClickListener { _ ->
+                        this.listener.onCastClicked(person)
+                    })
         }
 
         CarouselModel_()
@@ -171,20 +173,17 @@ class MovieController(private var context: Context) : TypedEpoxyController<Movie
                     .id(review.id)
                     .review(review)
                     .onClickListener { _ ->
-                        val customTabsIntent = CustomTabsIntent.Builder()
-                                .addDefaultShareMenuItem()
-                                .setToolbarColor(ContextCompat.getColor(context, R.color.colorPrimary))
-                                .setShowTitle(true)
-                                .build()
-
-                        CustomTabsHelper.addKeepAliveExtra(context, customTabsIntent.intent)
-
-                        CustomTabsHelper.openCustomTab(context, customTabsIntent,
-                                Uri.parse(review.url),
-                                WebViewFallback())
+                        this.listener.onReadFullReviewClicked(review)
                     }
                     .addTo(this)
         }
+    }
+
+    interface Listener {
+
+        fun onReadFullReviewClicked(review: Review)
+
+        fun onCastClicked(person: Person)
     }
 
 }

@@ -25,7 +25,7 @@ object GlideImageLoader : ImageLoader {
         GlideApp.with(context)
                 .load(imageUrl)
                 .placeholder(placeHolder)
-                .transforms(CircleCrop(), CenterCrop())
+                .transforms(CenterCrop())
                 .into(imageView)
     }
 

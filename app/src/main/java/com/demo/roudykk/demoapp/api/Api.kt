@@ -2,6 +2,7 @@ package com.demo.roudykk.demoapp.api
 
 import com.demo.roudykk.demoapp.api.endpoints.DiscoverApi
 import com.demo.roudykk.demoapp.api.endpoints.MovieApi
+import com.demo.roudykk.demoapp.api.endpoints.PersonApi
 import com.demo.roudykk.demoapp.api.endpoints.SearchApi
 import com.google.gson.Gson
 import okhttp3.OkHttpClient
@@ -57,5 +58,9 @@ object Api {
 
     fun searchApi(): SearchApi {
         return builder.build().create(SearchApi::class.java)
+    }
+
+    fun personApi(): PersonApi {
+        return builder.build().create(PersonApi::class.java)
     }
 }

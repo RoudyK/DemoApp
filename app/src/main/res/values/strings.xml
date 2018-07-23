@@ -47,4 +47,5 @@
     <string name="about">About</string>
     <string name="search">Search</string>
     <string name="read_full_review">Read Full Review</string>
+    <string name="failed_to_load_profile_click_to_reload">Failed to load profile. Click to reload</string>
 </resources>

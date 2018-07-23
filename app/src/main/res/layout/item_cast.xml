@@ -8,14 +8,19 @@
         <variable
             name="person"
             type="com.demo.roudykk.demoapp.api.models.Person" />
+
+        <variable
+            name="onClickListener"
+            type="android.view.View.OnClickListener" />
     </data>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:background="?highlightColor"
+        android:onClickListener="@{onClickListener}"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="10dp"
+        tools:background="?highlightColor">
 
         <ImageView
             android:id="@+id/personIv"

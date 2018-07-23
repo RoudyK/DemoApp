@@ -4,12 +4,11 @@ import android.app.AlertDialog
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.PorterDuff
-import android.graphics.drawable.LayerDrawable
+import android.net.Uri
 import android.os.Bundle
+import android.support.customtabs.CustomTabsIntent
 import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatDelegate
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
@@ -23,6 +22,8 @@ import com.demo.roudykk.demoapp.analytics.Analytics
 import com.demo.roudykk.demoapp.analytics.consts.Source
 import com.demo.roudykk.demoapp.api.Api
 import com.demo.roudykk.demoapp.api.models.Movie
+import com.demo.roudykk.demoapp.api.models.Person
+import com.demo.roudykk.demoapp.api.models.Review
 import com.demo.roudykk.demoapp.controllers.MovieController
 import com.demo.roudykk.demoapp.db.models.MovieViewModel
 import com.demo.roudykk.demoapp.extensions.applyTheme
@@ -30,18 +31,21 @@ import com.demo.roudykk.demoapp.extensions.initThreads
 import com.demo.roudykk.demoapp.extensions.withAppBar
 import com.demo.roudykk.demoapp.extensions.withModels
 import com.demo.roudykk.demoapp.images.AppImageLoader
+import com.demo.roudykk.demoapp.ui.fragment.PersonDetailsFragment
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_movie.*
 import kotlinx.android.synthetic.main.header_movie.*
+import saschpe.android.customtabs.CustomTabsHelper
+import saschpe.android.customtabs.WebViewFallback
 
 
-class MovieActivity : BaseActivity() {
+class MovieActivity : BaseActivity(), MovieController.Listener {
     private lateinit var movie: Movie
+
     private var disposable: Disposable? = null
     private var snackbar: Snackbar? = null
     private var movieController: MovieController? = null
     private lateinit var movieViewModel: MovieViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie)
@@ -88,7 +92,7 @@ class MovieActivity : BaseActivity() {
         this.movieRv.layoutManager = LinearLayoutManager(this)
         this.movieRv.itemAnimator = DefaultItemAnimator()
         this.movieRv.withAppBar(this.appBarLayout)
-        this.movieController = MovieController(this)
+        this.movieController = MovieController(this, this)
         this.movieRv.setController(this.movieController!!)
 
         val chipsLayoutManager = ChipsLayoutManager.newBuilder(this).build()
@@ -129,6 +133,25 @@ class MovieActivity : BaseActivity() {
         movieRb.applyTheme()
         val typedValue = TypedValue()
         theme.resolveAttribute(R.attr.backgroundColor, typedValue, true)
+    }
+
+    override fun onCastClicked(person: Person) {
+        val personFragment = PersonDetailsFragment.newInstance(person)
+        personFragment.show(supportFragmentManager, personFragment.tag)
+    }
+
+    override fun onReadFullReviewClicked(review: Review) {
+        val customTabsIntent = CustomTabsIntent.Builder()
+                .addDefaultShareMenuItem()
+                .setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                .setShowTitle(true)
+                .build()
+
+        CustomTabsHelper.addKeepAliveExtra(this, customTabsIntent.intent)
+
+        CustomTabsHelper.openCustomTab(this, customTabsIntent,
+                Uri.parse(review.url),
+                WebViewFallback())
     }
 
     private fun populate(movie: Movie) {
