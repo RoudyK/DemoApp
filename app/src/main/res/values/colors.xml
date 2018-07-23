@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#f70052</color>
+    <!-- Primary colors -->
+    <color name="colorPrimary">#FD003B</color>
     <color name="colorPrimaryDark">#b5003c</color>
-    <color name="colorAccent">#f70052</color>
-    <color name="colorPale">#c16e8d</color>
-    <color name="colorDark">#262626</color>
-    <color name="colorDivider">#393939</color>
+    <color name="colorAccent">#FD003B</color>
+    <color name="colorNavigation">#db5b79</color>
+
+    <color name="colorRating">#d6d6d6</color>
+
+    <color name="backgroundColorDark">#303030</color>
+    <color name="backgroundColorLight">#ffffff</color>
+
+    <color name="colorDividerDark">#393939</color>
+    <color name="colorDividerLight">#dedede</color>
+
+    <color name="highlightColorDark">#262626</color>
+    <color name="highlightColorLight">#ebebeb</color>
+
     <color name="white">#ffffff</color>
-    <color name="colorLight">#d6d6d6</color>
-    <color name="colorDim">#303030</color>
     <color name="colorHint">#80FFFFFF</color>
 </resources>

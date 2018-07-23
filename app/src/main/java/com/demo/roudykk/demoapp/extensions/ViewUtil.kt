@@ -9,7 +9,7 @@ import com.demo.roudykk.demoapp.R
 
 fun RatingBar.applyTheme() {
     val stars = progressDrawable as LayerDrawable
-    stars.getDrawable(0).setColorFilter(ContextCompat.getColor(context, R.color.colorLight), PorterDuff.Mode.SRC_ATOP)
+    stars.getDrawable(0).setColorFilter(ContextCompat.getColor(context, R.color.colorRating), PorterDuff.Mode.SRC_ATOP)
 }
 
 fun AppCompatActivity.applyPushAnimation() {

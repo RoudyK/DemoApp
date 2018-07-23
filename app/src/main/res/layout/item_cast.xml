@@ -13,7 +13,7 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:background="@color/colorDark"
+        tools:background="?highlightColor"
         android:orientation="vertical"
         android:padding="10dp">
 
@@ -25,7 +25,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/background_placeholder" />
+            tools:src="?placeHolder" />
 
         <com.demo.roudykk.demoapp.ui.view.TightTextView
             android:id="@+id/personTv"
@@ -37,7 +37,6 @@
             android:maxWidth="100dp"
             android:maxLines="2"
             android:text="@{person.name}"
-            android:textColor="@color/colorLight"
             android:textSize="12sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

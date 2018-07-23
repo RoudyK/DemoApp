@@ -3,6 +3,7 @@ package com.demo.roudykk.demoapp.controllers
 import android.content.Context
 import android.graphics.Color
 import android.support.v4.content.ContextCompat
+import android.util.TypedValue
 import com.airbnb.epoxy.Carousel
 import com.airbnb.epoxy.CarouselModel_
 import com.airbnb.epoxy.OnModelBoundListener
@@ -140,7 +141,9 @@ class MovieController(private var context: Context) : TypedEpoxyController<Movie
                 .padding(Carousel.Padding(0, 0))
                 .onBind { _, view, _ ->
                     OverScrollDecoratorHelper.setUpOverScroll(view, OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL)
-                    view.setBackgroundColor(ContextCompat.getColor(context, R.color.colorDark))
+                    val typedValue = TypedValue()
+                    context.theme.resolveAttribute(R.attr.highlightColor, typedValue, true)
+                    view.setBackgroundColor(ContextCompat.getColor(context, typedValue.resourceId))
                 }
                 .addIf(castModels.size > 0, this)
 

@@ -1,9 +1,14 @@
 package com.demo.roudykk.demoapp.ui.activity
 
 
+import android.graphics.PorterDuff
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
+import android.support.v4.view.GravityCompat
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import butterknife.ButterKnife
 import butterknife.OnClick
@@ -21,6 +26,8 @@ import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Function4
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
+
 
 class MainActivity : BaseActivity(), HomeController.Listener {
     private val moviesRequests: MutableList<MoviesRequest> = mutableListOf()
@@ -31,12 +38,42 @@ class MainActivity : BaseActivity(), HomeController.Listener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         ButterKnife.bind(this)
+
         setSupportActionBar(toolbar)
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            val menuDrawable = ContextCompat.getDrawable(this@MainActivity, R.drawable.ic_menu)
+            menuDrawable?.setTint(ContextCompat.getColor(this@MainActivity, R.color.colorAccent))
+            setHomeAsUpIndicator(R.drawable.ic_menu)
+            title = getString(R.string.movies)
+        }
 
         initRv()
         loadMovies()
 
         Analytics.getInstance(this)?.userOpenedHome()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_content_home, menu)
+        val drawable = menu?.findItem(R.id.nav_search)?.icon
+        drawable?.mutate()
+        drawable?.setColorFilter(ContextCompat.getColor(this, R.color.colorAccent), PorterDuff.Mode.SRC_ATOP)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when (item?.itemId) {
+            android.R.id.home -> {
+                drawerLayout.openDrawer(GravityCompat.START)
+                true
+            }
+            R.id.nav_search -> {
+                SearchActivity.launch(this)
+                true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
     }
 
     private fun initRv() {
@@ -46,16 +83,6 @@ class MainActivity : BaseActivity(), HomeController.Listener {
         this.homeController = HomeController(this)
         this.homeRv.setController(homeController!!)
         this.homeRv.withAppBar(this.appBarLayout)
-    }
-
-    @OnClick(R.id.searchIv)
-    fun openSearch() {
-        SearchActivity.launch(this)
-    }
-
-    @OnClick(R.id.watchLaterIv)
-    fun openWatchLater() {
-        WatchListActivity.launch(this)
     }
 
     @OnClick(R.id.reload)

@@ -22,7 +22,7 @@
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
         android:onClickListener="@{onClickListener}"
-        tools:background="@color/colorDim">
+        android:background="?attr/backgroundColor">
 
         <ImageView
             android:id="@+id/movieIv"
@@ -33,7 +33,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/background_placeholder" />
+            tools:src="?placeHolder" />
 
         <TextView
             fontPath="fonts/AirbnbCereal-Medium.ttf"
@@ -47,7 +47,6 @@
             android:maxLines="2"
             android:minLines="2"
             android:text="@{movie.title}"
-            android:textColor="@color/colorLight"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/movieIv"

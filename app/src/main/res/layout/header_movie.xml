@@ -11,12 +11,13 @@
         android:id="@+id/collapsingLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="?backgroundColor"
         android:fitsSystemWindows="true"
-        app:contentScrim="@color/colorDim"
         app:expandedTitleMarginEnd="64dp"
         app:expandedTitleMarginStart="48dp"
         app:layout_scrollFlags="scroll|exitUntilCollapsed"
         app:scrimAnimationDuration="100"
+        app:contentScrim="?backgroundColor"
         app:titleEnabled="false">
 
         <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -38,9 +39,9 @@
 
 
             <LinearLayout
+                android:background="?backgroundColor"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/background_movie_footer"
+                android:layout_height="wrap_content"
                 android:gravity="bottom"
                 android:orientation="vertical"
                 android:padding="16dp"
@@ -62,7 +63,6 @@
                     android:layout_marginStart="8dp"
                     android:ellipsize="end"
                     android:maxLines="5"
-                    android:textColor="@color/white"
                     android:textSize="14sp"
                     tools:text="'A botched robbery indicates a police informant, and the pressure mounts in the aftermath at a warehouse. Crime begets violence as the survivors -- veteran Mr. White, newcomer Mr. Orange, psychopathic parolee Mr. Blonde, bickering weasel Mr. Pink and Nice Guy Eddie '" />
 
@@ -82,7 +82,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="10dp"
-                    android:textColor="@color/white"
                     android:textSize="14sp"
                     tools:text="(19 reviews)" />
 
@@ -111,7 +110,7 @@
                         android:foreground="?android:attr/selectableItemBackground"
                         android:padding="10dp"
                         android:text="@string/add_to_watch_list"
-                        android:textColor="@color/white"
+                        android:textColor="@color/colorPrimary"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         tools:ignore="MissingPrefix" />
@@ -121,11 +120,12 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
+            style="@style/ToolBarStyle"
+            android:background="?backgroundColor"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@drawable/background_movie_header"
-            app:layout_collapseMode="pin"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+            android:layout_height="wrap_content"
+            android:theme="@style/ToolBarStyle"
+            app:layout_collapseMode="pin" />
 
     </android.support.design.widget.CollapsingToolbarLayout>
 

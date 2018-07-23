@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.app.AppCompatDelegate
 import android.view.MenuItem
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.extensions.applyPopAnimation
@@ -16,7 +17,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         requestedOrientation = SCREEN_ORIENTATION_USER_PORTRAIT
-        setTheme(R.style.AppTheme_NoActionBar)
+        delegate.setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         super.onCreate(savedInstanceState)
         window.statusBarColor = ContextCompat.getColor(this, R.color.colorPrimaryDark)
     }

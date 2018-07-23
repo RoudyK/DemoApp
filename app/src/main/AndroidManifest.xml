@@ -13,7 +13,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.Dark">
 
         <activity
             android:name=".ui.activity.MainActivity"
@@ -29,6 +29,7 @@
         <activity android:name=".ui.activity.MovieActivity" />
         <activity android:name=".ui.activity.WatchListActivity" />
         <activity android:name=".ui.activity.SearchActivity" />
+
         <meta-data android:name="io.fabric.ApiKey" android:value="975af90154c6c3fee25ed61593fd0fb361878407" />
     </application>
 

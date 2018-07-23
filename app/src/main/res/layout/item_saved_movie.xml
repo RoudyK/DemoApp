@@ -26,7 +26,7 @@
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
         android:onClickListener="@{onClickListener}"
-        tools:background="@color/colorDim">
+        android:background="?attr/backgroundColor">
 
         <ImageView
             android:id="@+id/movieIv"
@@ -38,7 +38,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/background_placeholder" />
+            tools:src="?placeHolder" />
 
 
         <TextView
@@ -53,7 +53,6 @@
             android:includeFontPadding="false"
             android:maxLines="1"
             android:text="@{movie.title}"
-            android:textColor="@color/colorLight"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintLeft_toRightOf="@+id/movieIv"
@@ -101,7 +100,6 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:text="@{movie.overview}"
-            android:textColor="@color/colorLight"
             app:layout_constraintBottom_toBottomOf="@+id/movieIv"
             app:layout_constraintLeft_toRightOf="@+id/movieIv"
             app:layout_constraintRight_toLeftOf="@+id/deleteIv"

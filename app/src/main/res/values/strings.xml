@@ -43,4 +43,7 @@
     <string name="languages">Languages:</string>
     <string name="it_s_lonely_here">It\'s lonely here..</string>
     <string name="search_movies">Search movies..</string>
+    <string name="settings">Settings</string>
+    <string name="about">About</string>
+    <string name="search">Search</string>
 </resources>

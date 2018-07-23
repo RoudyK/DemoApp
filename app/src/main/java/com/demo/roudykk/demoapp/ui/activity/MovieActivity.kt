@@ -9,10 +9,11 @@ import android.graphics.PorterDuff
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.support.v4.content.ContextCompat
+import android.support.v7.app.AppCompatDelegate
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.util.TypedValue
 import android.view.View
 import android.widget.Toast
 import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager
@@ -32,6 +33,7 @@ import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_movie.*
 import kotlinx.android.synthetic.main.header_movie.*
 
+
 class MovieActivity : BaseActivity() {
     private lateinit var movie: Movie
     private var disposable: Disposable? = null
@@ -44,6 +46,7 @@ class MovieActivity : BaseActivity() {
         setContentView(R.layout.activity_movie)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        delegate.setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES)
 
         this.initViewModel()
         this.initWindow()
@@ -127,7 +130,8 @@ class MovieActivity : BaseActivity() {
         val stars = movieRb.progressDrawable as LayerDrawable
         stars.getDrawable(2).setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP)
         stars.getDrawable(1).setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP)
-        window.statusBarColor = ContextCompat.getColor(this, R.color.colorDim)
+        val typedValue = TypedValue()
+        theme.resolveAttribute(R.attr.backgroundColor, typedValue, true)
     }
 
     private fun populate(movie: Movie) {
