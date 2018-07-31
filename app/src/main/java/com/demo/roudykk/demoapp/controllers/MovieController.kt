@@ -29,9 +29,9 @@ class MovieController(private var context: Context,
 
     override fun buildModels(movie: Movie?) {
         this.buildVideos(movie)
+        this.buildCast(movie)
         this.buildProductionCompanies(movie)
         this.buildMetrics(movie)
-        this.buildCast(movie)
         this.buildReviews(movie)
     }
 

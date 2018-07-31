@@ -13,9 +13,12 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="?attr/backgroundColor"
         android:orientation="vertical"
-        android:padding="10dp"
-        android:background="?attr/backgroundColor">
+        android:paddingLeft="14dp"
+        android:paddingTop="10dp"
+        android:paddingRight="14dp"
+        android:paddingBottom="10dp">
 
         <ImageView
             android:id="@+id/companyIv"

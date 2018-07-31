@@ -48,4 +48,11 @@
     <string name="search">Search</string>
     <string name="read_full_review">Read Full Review</string>
     <string name="failed_to_load_profile_click_to_reload">Failed to load profile. Click to reload</string>
+    <string name="gender">Gender:</string>
+    <string name="birthday">Birthday:</string>
+    <string name="date_of_death">Date of death:</string>
+    <string name="department">Department:</string>
+    <string name="known_as">Also known as:</string>
+    <string name="place_of_birth">Place of birth:</string>
+    <string name="biography">Biography:</string>
 </resources>

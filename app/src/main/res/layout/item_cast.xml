@@ -19,7 +19,11 @@
         android:layout_height="wrap_content"
         android:onClickListener="@{onClickListener}"
         android:orientation="vertical"
-        android:padding="10dp"
+
+        android:paddingLeft="14dp"
+        android:paddingTop="10dp"
+        android:paddingRight="14dp"
+        android:paddingBottom="10dp"
         tools:background="?highlightColor">
 
         <ImageView

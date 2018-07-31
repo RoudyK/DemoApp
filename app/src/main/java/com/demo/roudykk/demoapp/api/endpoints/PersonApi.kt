@@ -7,6 +7,7 @@ import retrofit2.http.Path
 
 interface PersonApi {
 
-    @GET("person/{personId}")
+    @GET("person/{personId}?append_to_response=credits")
     fun getPersonDetails(@Path("personId") personId: Int): Observable<Person>
+
 }

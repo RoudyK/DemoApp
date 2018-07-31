@@ -12,17 +12,27 @@ data class Person(
         var gender: Int,
         var order: Int,
         var profile_path: String? = null,
-        var birthday: String,
-        var deathday: String,
-        var known_for_department: String,
-        var biography: String,
+        var birthday: String? = null,
+        var deathday: String? = null,
+        var known_for_department: String? = null,
+        var biography: String? = null,
         var popularity: Float,
-        var place_of_birth: String,
+        var place_of_birth: String? = null,
         var adult: Boolean,
-        var also_known_as: ArrayList<String>
+        var also_known_as: ArrayList<String>,
+        var credits: Credits
 ) : Parcelable {
+
     fun getImageUrl(): String {
         return "https://image.tmdb.org/t/p/w500$profile_path"
+    }
+
+    fun getGender(): String {
+        return if (gender == 2) {
+            "Male"
+        } else {
+            "Female"
+        }
     }
 
     constructor(source: Parcel) : this(
@@ -41,7 +51,8 @@ data class Person(
             source.readFloat(),
             source.readString(),
             1 == source.readInt(),
-            source.createStringArrayList()
+            source.createStringArrayList(),
+            source.readParcelable<Credits>(Credits::class.java.classLoader)
     )
 
     override fun describeContents() = 0
@@ -63,6 +74,7 @@ data class Person(
         writeString(place_of_birth)
         writeInt((if (adult) 1 else 0))
         writeStringList(also_known_as)
+        writeParcelable(credits, 0)
     }
 
     companion object {

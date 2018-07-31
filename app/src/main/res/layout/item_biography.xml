@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="text"
+            type="String" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.borjabravo.readmoretextview.ReadMoreTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="14dp"
+            android:text="@{text}"
+            android:textSize="14sp"
+            app:showTrimExpandedText="false"
+            app:trimCollapsedText="@string/read_more"
+            app:trimLines="5"
+            app:trimMode="trimModeLine"
+            tools:text="@tools:sample/lorem/random" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?dividerColor" />
+    </LinearLayout>
+
+</layout>

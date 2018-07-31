@@ -15,7 +15,7 @@
     <color name="colorDividerLight">#dedede</color>
 
     <color name="highlightColorDark">#262626</color>
-    <color name="highlightColorLight">#ebebeb</color>
+    <color name="highlightColorLight">#f9f9f9</color>
 
     <color name="white">#ffffff</color>
     <color name="colorHint">#bdbdbd</color>

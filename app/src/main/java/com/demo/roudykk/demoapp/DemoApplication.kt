@@ -20,6 +20,8 @@ class DemoApplication : Application() {
                                 .build()))
                 .build())
 
-        Fabric.with(this, Crashlytics())
+        if (!BuildConfig.DEBUG) {
+            Fabric.with(this, Crashlytics())
+        }
     }
 }
