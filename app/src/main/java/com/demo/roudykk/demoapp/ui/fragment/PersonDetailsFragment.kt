@@ -71,6 +71,7 @@ class PersonDetailsFragment : BottomSheetDialogFragment() {
 
     private fun loadPerson(personId: Int) {
         this.progressbar.visibility = View.VISIBLE
+        this.reloadTv.visibility = View.GONE
         this.disposable = Api.personApi().getPersonDetails(personId)
                 .initThreads()
                 .subscribe({ person ->
