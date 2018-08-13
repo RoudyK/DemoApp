@@ -7,7 +7,7 @@ import io.reactivex.Observable
 
 interface MoviesRepository {
 
-    fun getMovieGroups(): Observable<MovieGroup>
+    fun getMovieGroups(): Observable<List<MovieGroup>>
 
     fun getMovieDetails(movieId: Int): Observable<Movie>
 

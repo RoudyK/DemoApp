@@ -2,11 +2,16 @@ apply plugin: 'kotlin'
 
 dependencies {
     def dependencies = rootProject.ext.domainDependencies
+    def testDependencies = rootProject.ext.domainTestDependencies
 
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     implementation dependencies.rxJava
     implementation dependencies.javaxAnnotation
     implementation dependencies.javaxInject
+
+    testImplementation testDependencies.mockito
+    testImplementation testDependencies.jUnit
+    testImplementation testDependencies.assertJ
 }
 
 sourceCompatibility = "8"

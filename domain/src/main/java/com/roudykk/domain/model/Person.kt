@@ -16,5 +16,4 @@ data class Person(
         var popularity: Float,
         var place_of_birth: String? = null,
         var adult: Boolean,
-        var also_known_as: ArrayList<String>,
-        var credits: Credits)
+        var also_known_as: ArrayList<String>)

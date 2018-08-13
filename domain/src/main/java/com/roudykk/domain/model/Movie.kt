@@ -23,7 +23,7 @@ data class Movie(
         var genres: ArrayList<Genre>? = null,
         var production_companies: ArrayList<ProductionCompany>? = null,
         var production_countries: ArrayList<ProductionCountry>? = null,
-        var videos: VideoResult? = null,
-        var reviews: ReviewResult? = null,
-        var credits: Credits? = null
-)
+        var videos: ArrayList<Video>? = null,
+        var reviews: ArrayList<Review>? = null,
+        var cast: ArrayList<Person>? = null,
+        val crew: ArrayList<Person>? = null)

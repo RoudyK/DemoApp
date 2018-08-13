@@ -10,9 +10,9 @@ import javax.inject.Inject
 class GetMoviesGroups @Inject constructor(
         postExecutionThread: PostExecutionThread,
         private val moviesRepository: MoviesRepository
-) : ObservableUseCase<MovieGroup, Nothing>(postExecutionThread) {
+) : ObservableUseCase<List<MovieGroup>, Nothing>(postExecutionThread) {
 
-    override fun buildUseCase(params: Nothing?): Observable<MovieGroup> {
+    override fun buildUseCase(params: Nothing?): Observable<List<MovieGroup>> {
         return this.moviesRepository.getMovieGroups()
     }
 
