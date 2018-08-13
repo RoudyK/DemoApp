@@ -1,0 +1,19 @@
+package com.roudykk.domain.repository
+
+import com.roudykk.domain.model.Movie
+import com.roudykk.domain.model.MovieGroup
+import io.reactivex.Completable
+import io.reactivex.Observable
+
+interface MoviesRepository {
+
+    fun getMovieGroups(): Observable<MovieGroup>
+
+    fun getMovieDetails(movieId: Int): Observable<Movie>
+
+    fun getMovies(index: String, page: Int): Observable<List<Movie>>
+
+    fun addMovieWatchList(movieId: Int): Completable
+
+    fun removeMovieWatchList(movieId: Int): Completable
+}

@@ -3,8 +3,10 @@ apply plugin: 'kotlin'
 dependencies {
     def dependencies = rootProject.ext.domainDependencies
 
-    implementation dependencies.rxJava
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation dependencies.rxJava
+    implementation dependencies.javaxAnnotation
+    implementation dependencies.javaxInject
 }
 
 sourceCompatibility = "8"

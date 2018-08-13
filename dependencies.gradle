@@ -1,8 +1,12 @@
 ext {
 
     def rxJavaVersion = "2.2.0"
+    def javaxAnnotationVersion = "1.0"
+    def javaxInjectVersion = "1"
 
     domainDependencies = [
-            rxJava: "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+            javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject    : "javax.inject:javax.inject:${javaxInjectVersion}",
+            rxJava         : "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
     ]
 }
