@@ -1,0 +1,8 @@
+ext {
+
+    def rxJavaVersion = "2.2.0"
+
+    domainDependencies = [
+            rxJava: "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+    ]
+}
