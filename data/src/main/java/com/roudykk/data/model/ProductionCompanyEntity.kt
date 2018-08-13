@@ -1,6 +1,6 @@
-package com.roudykk.domain.model
+package com.roudykk.data.model
 
-data class ProductionCompany(
+data class ProductionCompanyEntity(
         var id: Int,
         var logoPath: String? = null,
         var name: String? = null,

@@ -1,6 +1,8 @@
-package com.roudykk.domain.model
+package com.roudykk.data.model
 
-data class Person(
+import java.util.*
+
+data class PersonEntity(
         var id: Int,
         var name: String,
         var castId: String,

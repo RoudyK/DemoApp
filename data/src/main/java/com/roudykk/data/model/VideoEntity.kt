@@ -1,6 +1,6 @@
-package com.roudykk.domain.model
+package com.roudykk.data.model
 
-data class Video(
+data class VideoEntity(
         var id: String,
         var isoName: String,
         var key: String,

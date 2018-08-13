@@ -1,6 +1,8 @@
-package com.roudykk.domain.model
+package com.roudykk.data.model
 
-data class Movie(
+import java.util.*
+
+data class MovieEntity(
         var id: Int,
         var title: String? = null,
         var overview: String? = null,
@@ -16,14 +18,14 @@ data class Movie(
         var releaseDate: String? = null,
         var revenue: Float? = null,
         var runtime: Int? = null,
-        var spokenLanguages: List<SpokenLanguage>? = null,
+        var spokenLanguages: List<SpokenLanguageEntity>? = null,
         var status: String? = null,
         var tagLine: String? = null,
         var budget: Float,
-        var genres: List<Genre>? = null,
-        var productionCompanies: List<ProductionCompany>? = null,
-        var productionCountries: List<ProductionCountry>? = null,
-        var videos: List<Video>? = null,
-        var reviews: List<Review>? = null,
-        var cast: List<Person>? = null,
-        val crew: List<Person>? = null)
+        var genres: List<GenreEntity>? = null,
+        var productionCompanies: List<ProductionCompanyEntity>? = null,
+        var productionCountries: List<ProductionCountryEntity>? = null,
+        var videos: List<VideoEntity>? = null,
+        var reviews: List<ReviewEntity>? = null,
+        var cast: List<PersonEntity>? = null,
+        val crew: List<PersonEntity>? = null)

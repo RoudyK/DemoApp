@@ -1,5 +1,5 @@
-package com.roudykk.domain.model
+package com.roudykk.data.model
 
-data class ProductionCountry(
+data class SpokenLanguageEntity(
         var isoName: String? = null,
         var name: String? = null)
