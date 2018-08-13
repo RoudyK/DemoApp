@@ -16,4 +16,6 @@ interface MoviesRepository {
     fun addMovieWatchList(movieId: Int): Completable
 
     fun removeMovieWatchList(movieId: Int): Completable
+
+    fun getWatchListMovies(): Observable<List<Movie>>
 }
