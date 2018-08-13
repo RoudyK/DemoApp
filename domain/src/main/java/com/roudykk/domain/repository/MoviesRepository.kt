@@ -2,6 +2,7 @@ package com.roudykk.domain.repository
 
 import com.roudykk.domain.model.Movie
 import com.roudykk.domain.model.MovieGroup
+import com.roudykk.domain.model.Person
 import io.reactivex.Completable
 import io.reactivex.Observable
 
@@ -18,4 +19,6 @@ interface MoviesRepository {
     fun removeMovieWatchList(movieId: Int): Completable
 
     fun getWatchListMovies(): Observable<List<Movie>>
+
+    fun getPersonDetails(personId: Int): Observable<Person>
 }
