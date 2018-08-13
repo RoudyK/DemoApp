@@ -2,6 +2,7 @@ package com.roudykk.domain.interactor.watchlist
 
 import com.roudykk.domain.executor.PostExecutionThread
 import com.roudykk.domain.interactor.CompletableUseCase
+import com.roudykk.domain.model.Movie
 import com.roudykk.domain.repository.MoviesRepository
 import io.reactivex.Completable
 import javax.inject.Inject
@@ -13,8 +14,8 @@ class AddMovieWatchList @Inject constructor(
 
     override fun buildUseCase(params: AddMovieWatchList.Params?): Completable {
         if (params == null) throw IllegalArgumentException("Params cannot be null")
-        return this.moviesRepository.addMovieWatchList(params.movieId)
+        return this.moviesRepository.addMovieWatchList(params.movie)
     }
 
-    class Params(val movieId: Int)
+    class Params(val movie: Movie)
 }

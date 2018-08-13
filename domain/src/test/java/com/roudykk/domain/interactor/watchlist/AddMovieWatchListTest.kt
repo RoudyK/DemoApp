@@ -20,7 +20,7 @@ class AddMovieWatchListTest {
         this.stubAddMovieWatchList(Completable.complete())
 
         val observer = this.addMovieWatchList.buildUseCase(AddMovieWatchList.Params(
-                MoviesFactory.randomInt()
+                MoviesFactory.makeMovie()
         )).test()
 
         observer.assertComplete()
