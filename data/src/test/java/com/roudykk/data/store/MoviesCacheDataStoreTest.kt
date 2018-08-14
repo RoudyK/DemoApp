@@ -11,10 +11,10 @@ import io.reactivex.Completable
 import io.reactivex.Observable
 import org.junit.Test
 
-class ProjectsCacheDataStoreTest {
+class MoviesCacheDataStoreTest {
 
     private val cache = mock<MoviesCache>()
-    private val dataStore = MoviesCacheDataStore(cache)
+    private val dataStore = MoviesCacheDataStore(this.cache)
 
     @Test(expected = UnsupportedOperationException::class)
     fun getMovieGroupsThrowsException() {
