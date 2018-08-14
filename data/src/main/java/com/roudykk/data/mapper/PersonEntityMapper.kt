@@ -4,7 +4,7 @@ import com.roudykk.data.model.PersonEntity
 import com.roudykk.domain.model.Person
 import javax.inject.Inject
 
-class PersonEntityMapper @Inject constructor() : Mapper<PersonEntity, Person> {
+open class PersonEntityMapper @Inject constructor() : Mapper<PersonEntity, Person> {
 
     override fun mapFromEntity(entity: PersonEntity): Person {
         return Person(id = entity.id,

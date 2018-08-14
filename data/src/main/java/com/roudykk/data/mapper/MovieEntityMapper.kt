@@ -4,7 +4,7 @@ import com.roudykk.data.model.MovieEntity
 import com.roudykk.domain.model.Movie
 import javax.inject.Inject
 
-class MovieEntityMapper @Inject constructor(
+open class MovieEntityMapper @Inject constructor(
         private val spokenLanguageEntityMapper: SpokenLanguageEntityMapper,
         private val productionCompanyEntityMapper: ProductionCompanyEntityMapper,
         private val productionCountryEntityMapper: ProductionCountryEntityMapper,

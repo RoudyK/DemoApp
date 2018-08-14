@@ -4,7 +4,7 @@ import com.roudykk.data.model.MovieGroupEntity
 import com.roudykk.domain.model.MovieGroup
 import javax.inject.Inject
 
-class MovieGroupEntityMapper @Inject constructor(
+open class MovieGroupEntityMapper @Inject constructor(
         private val movieEntityMapper: MovieEntityMapper
 ): Mapper<MovieGroupEntity, MovieGroup> {
 
