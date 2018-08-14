@@ -16,8 +16,8 @@ ext {
     def mockitoVersion = "2.0.0-RC1"
     def assertJVersion = "3.8.0"
     def robolectricVersion = "3.8"
-    def androidSupportRunnerVersion = "1.0.0"
-    def androidSupportRulesVersion = "1.0.0"
+    def androidSupportRunnerVersion = "1.0.2-alpha1"
+    def androidSupportRulesVersion = "1.0.2-alpha1"
 
     domainDependencies = [
             javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
