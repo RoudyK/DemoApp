@@ -1,12 +1,23 @@
 ext {
 
+    androidBuildToolsVersion = "27.0.3"
+    androidMinSdkVersion = 21
+    androidTargetSdkVersion = 27
+    androidCompileSdkVersion = 27
+    kotlinVersion = "1.2.51"
+
     def rxJavaVersion = "2.2.0"
     def javaxAnnotationVersion = "1.0"
     def javaxInjectVersion = "1"
+    def roomVersion = "1.1.1"
+    def lifecycleVersion = "1.1.1"
 
     def jUnitVersion = "4.12"
     def mockitoVersion = "2.0.0-RC1"
     def assertJVersion = "3.8.0"
+    def robolectricVersion = "3.8"
+    def androidSupportRunnerVersion = "1.0.0"
+    def androidSupportRulesVersion = "1.0.0"
 
     domainDependencies = [
             javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
@@ -30,5 +41,26 @@ ext {
             jUnit  : "junit:junit:${jUnitVersion}",
             mockito: "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitoVersion}",
             assertJ: "org.assertj:assertj-core:${assertJVersion}"
+    ]
+
+    cacheDependencies = [
+            javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject    : "javax.inject:javax.inject:${javaxInjectVersion}",
+            rxJava         : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
+            room           : "android.arch.persistence.room:runtime:${roomVersion}",
+            roomCompiler   : "android.arch.persistence.room:compiler:${roomVersion}",
+            roomRxJava        : "android.arch.persistence.room:rxjava2:${roomVersion}",
+            kotlin         : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}"
+    ]
+
+    cacheTestDependencies = [
+            jUnit        : "junit:junit:${jUnitVersion}",
+            mockito      : "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitoVersion}",
+            assertJ      : "org.assertj:assertj-core:${assertJVersion}",
+            roomTesting  : "android.arch.persistence.room:testing:${roomVersion}",
+            archTesting  : "android.arch.core:core-testing:${lifecycleVersion}",
+            supportRunner: "com.android.support.test:runner:${androidSupportRunnerVersion}",
+            supportRules : "com.android.support.test:rules:${androidSupportRulesVersion}",
+            robolectric  : "org.robolectric:robolectric:${robolectricVersion}",
     ]
 }
