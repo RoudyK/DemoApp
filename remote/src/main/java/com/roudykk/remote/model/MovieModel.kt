@@ -1,0 +1,28 @@
+package com.roudykk.remote.model
+
+data class MovieModel(
+        var id: Int,
+        var title: String? = null,
+        var overview: String? = null,
+        var video: Boolean? = null,
+        var vote_count: Int? = null,
+        var vote_average: Float,
+        var popularity: Float? = null,
+        var poster_path: String? = null,
+        var original_language: String? = null,
+        var original_title: String? = null,
+        var genre_ids: List<Int>? = null,
+        var backdrop_path: String? = null,
+        var release_date: String? = null,
+        var revenue: Float? = null,
+        var runtime: Int? = null,
+        var spoken_languages: List<SpokenLanguageModel>? = null,
+        var status: String? = null,
+        var tagline: String? = null,
+        var budget: Float,
+        var genres: List<GenreModel>? = null,
+        var production_companies: List<ProductionCompanyModel>? = null,
+        var production_countries: List<ProductionCountryModel>? = null,
+        var videos: VideoResultModel? = null,
+        var reviews: ReviewResultModel? = null,
+        var credits: CreditsModel? = null)

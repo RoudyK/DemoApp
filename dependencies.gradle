@@ -11,6 +11,11 @@ ext {
     def javaxInjectVersion = "1"
     def roomVersion = "1.1.1"
     def lifecycleVersion = "1.1.1"
+    def retrofitVersion = "2.4.0"
+    def okHttpVersion = "3.10.0"
+    def gsonVersion = "2.8.5"
+    def androidAnnotationsVersion = "21.0.3"
+    def rxKotlinVersion = "2.3.0"
 
     def jUnitVersion = "4.12"
     def mockitoVersion = "2.0.0-RC1"
@@ -49,7 +54,7 @@ ext {
             rxJava         : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
             room           : "android.arch.persistence.room:runtime:${roomVersion}",
             roomCompiler   : "android.arch.persistence.room:compiler:${roomVersion}",
-            roomRxJava        : "android.arch.persistence.room:rxjava2:${roomVersion}",
+            roomRxJava     : "android.arch.persistence.room:rxjava2:${roomVersion}",
             kotlin         : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}"
     ]
 
@@ -62,5 +67,26 @@ ext {
             supportRunner: "com.android.support.test:runner:${androidSupportRunnerVersion}",
             supportRules : "com.android.support.test:rules:${androidSupportRulesVersion}",
             robolectric  : "org.robolectric:robolectric:${robolectricVersion}",
+    ]
+
+    remoteDependencies = [
+            gson              : "com.google.code.gson:gson:${gsonVersion}",
+            rxKotlin          : "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
+            kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}",
+            javaxAnnotation   : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject       : "javax.inject:javax.inject:${javaxInjectVersion}",
+            androidAnnotations: "com.android.support:support-annotations:${androidAnnotationsVersion}",
+            okHttp            : "com.squareup.okhttp3:okhttp:${okHttpVersion}",
+            okHttpLogger      : "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
+            retrofit          : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            retrofitConverter : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+            retrofitAdapter   : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
+    ]
+
+    remoteTestDependencies = [
+            junit      : "junit:junit:${jUnitVersion}",
+            kotlinJUnit: "org.jetbrains.kotlin:kotlin-test-junit:${kotlinVersion}",
+            assertj    : "org.assertj:assertj-core:${assertJVersion}",
+            mockito    : "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitoVersion}"
     ]
 }
