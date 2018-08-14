@@ -19,4 +19,16 @@ ext {
             mockito: "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitoVersion}",
             assertJ: "org.assertj:assertj-core:${assertJVersion}"
     ]
+
+    dataDependencies = [
+            javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject    : "javax.inject:javax.inject:${javaxInjectVersion}",
+            rxJava         : "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+    ]
+
+    dataTestDependencies = [
+            jUnit  : "junit:junit:${jUnitVersion}",
+            mockito: "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitoVersion}",
+            assertJ: "org.assertj:assertj-core:${assertJVersion}"
+    ]
 }

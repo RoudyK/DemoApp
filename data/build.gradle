@@ -2,8 +2,18 @@
 apply plugin: 'kotlin'
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+
+    def dependencies = rootProject.ext.domainDependencies
+    def testDependencies = rootProject.ext.domainTestDependencies
+
+    implementation dependencies.rxJava
+    implementation dependencies.javaxAnnotation
+    implementation dependencies.javaxInject
+
+    testImplementation testDependencies.mockito
+    testImplementation testDependencies.jUnit
+    testImplementation testDependencies.assertJ
 
     implementation project(":domain")
 }
