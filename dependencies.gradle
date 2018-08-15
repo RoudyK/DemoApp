@@ -16,6 +16,10 @@ ext {
     def gsonVersion = "2.8.5"
     def androidAnnotationsVersion = "21.0.3"
     def rxKotlinVersion = "2.3.0"
+    def mockitoInlineVersion = "2.13.0"
+    def archCompVersion = "1.1.1"
+    def daggerVersion = "2.13"
+    def rxAndroidVersion = "2.0.1"
 
     def jUnitVersion = "4.12"
     def mockitoVersion = "2.0.0-RC1"
@@ -88,5 +92,29 @@ ext {
             kotlinJUnit: "org.jetbrains.kotlin:kotlin-test-junit:${kotlinVersion}",
             assertj    : "org.assertj:assertj-core:${assertJVersion}",
             mockito    : "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitoVersion}"
+    ]
+
+    presentationDependencies = [
+            daggerCompiler    : "com.google.dagger:dagger-compiler:${daggerVersion}",
+            dagger            : "com.google.dagger:dagger:${daggerVersion}",
+            rxKotlin          : "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
+            kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}",
+            rxAndroid         : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            javaxAnnotation   : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject       : "javax.inject:javax.inject:${javaxInjectVersion}",
+            androidAnnotations: "com.android.support:support-annotations:${androidAnnotationsVersion}",
+            archRuntime       : "android.arch.lifecycle:runtime:${archCompVersion}",
+            archExtensions    : "android.arch.lifecycle:extensions:${archCompVersion}",
+            archCompiler      : "android.arch.lifecycle:compiler:${archCompVersion}",
+    ]
+
+    presentationTestDependencies = [
+            junit        : "junit:junit:${jUnitVersion}",
+            kotlinJUnit  : "org.jetbrains.kotlin:kotlin-test-junit:${kotlinVersion}",
+            assertj      : "org.assertj:assertj-core:${assertJVersion}",
+            mockito      : "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitoVersion}",
+            robolectric  : "org.robolectric:robolectric:${robolectricVersion}",
+            archTesting  : "android.arch.core:core-testing:${archCompVersion}",
+            mockitoinline: "org.mockito:mockito-inline:${mockitoInlineVersion}"
     ]
 }
