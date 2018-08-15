@@ -24,16 +24,20 @@ abstract class PresentationModule {
     @Binds
     @IntoMap
     @ViewModelKey(MovieViewModel::class)
-    abstract fun bindMovieViewModell(movieViewModel: MovieViewModel): ViewModel
+    abstract fun bindMovieViewModel(movieViewModel: MovieViewModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(PersonViewModel::class)
     abstract fun bindPersonViewModel(personViewModel: PersonViewModel): ViewModel
 
-
     @Binds
     @IntoMap
     @ViewModelKey(WatchListViewModel::class)
     abstract fun bindWatchListViewModel(watchListViewModel: WatchListViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SearchViewModel::class)
+    abstract fun bindSearchViewModel(searchViewModel: SearchViewModel): ViewModel
 }

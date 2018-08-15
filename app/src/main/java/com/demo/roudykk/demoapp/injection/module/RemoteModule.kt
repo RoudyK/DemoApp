@@ -6,6 +6,7 @@ import com.roudykk.remote.ServicesFactory
 import com.roudykk.remote.service.DiscoverApi
 import com.roudykk.remote.service.MovieApi
 import com.roudykk.remote.service.PersonApi
+import com.roudykk.remote.service.SearchApi
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -38,5 +39,10 @@ abstract class RemoteModule {
             return ServicesFactory.personApi()
         }
 
+        @Provides
+        @JvmStatic
+        fun provideSearchApi(): SearchApi {
+            return ServicesFactory.searchApi()
+        }
     }
 }
