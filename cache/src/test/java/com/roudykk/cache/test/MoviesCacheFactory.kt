@@ -145,7 +145,8 @@ object MoviesCacheFactory {
     fun makeMovieGroupEntity(): MovieGroupEntity {
         return MovieGroupEntity(
                 this.randomString(),
-                listOf(this.makeMovieEntity(), this.makeMovieEntity()))
+                listOf(this.makeMovieEntity(), this.makeMovieEntity()),
+                this.randomInt(), this.randomInt(), this.randomString())
     }
 
     fun makeCacheMovie(): CacheMovie {
