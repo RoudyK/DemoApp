@@ -57,7 +57,7 @@ ext {
     def androidSupportRulesVersion = "1.0.2-alpha1"
 
     domainDependencies = [
-            kotlin         : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}",
+            kotlin         : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
             javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             javaxInject    : "javax.inject:javax.inject:${javaxInjectVersion}",
             rxJava         : "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
@@ -70,7 +70,7 @@ ext {
     ]
 
     dataDependencies = [
-            kotlin         : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}",
+            kotlin         : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
             javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             javaxInject    : "javax.inject:javax.inject:${javaxInjectVersion}",
             rxJava         : "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
@@ -89,7 +89,7 @@ ext {
             room           : "android.arch.persistence.room:runtime:${roomVersion}",
             roomCompiler   : "android.arch.persistence.room:compiler:${roomVersion}",
             roomRxJava     : "android.arch.persistence.room:rxjava2:${roomVersion}",
-            kotlin         : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}"
+            kotlin         : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}"
     ]
 
     cacheTestDependencies = [
@@ -106,7 +106,7 @@ ext {
     remoteDependencies = [
             gson              : "com.google.code.gson:gson:${gsonVersion}",
             rxKotlin          : "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
-            kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}",
+            kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
             javaxAnnotation   : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             javaxInject       : "javax.inject:javax.inject:${javaxInjectVersion}",
             androidAnnotations: "com.android.support:support-annotations:${androidAnnotationsVersion}",
@@ -128,7 +128,7 @@ ext {
             daggerCompiler    : "com.google.dagger:dagger-compiler:${daggerVersion}",
             dagger            : "com.google.dagger:dagger:${daggerVersion}",
             rxKotlin          : "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
-            kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}",
+            kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
             rxAndroid         : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
             javaxAnnotation   : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             javaxInject       : "javax.inject:javax.inject:${javaxInjectVersion}",
@@ -149,7 +149,7 @@ ext {
     ]
 
     appDependencies = [
-            kotlin             : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}",
+            kotlin             : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
             epoxy              : "com.airbnb.android:epoxy:$epoxyVersion",
             epoxyProcessor     : "com.airbnb.android:epoxy-processor:$epoxyVersion",
             epoxyDatabinding   : "com.airbnb.android:epoxy-databinding:$epoxyVersion",
