@@ -14,4 +14,6 @@ interface MoviesRemote {
     fun getMovies(index: String, page: Int): Observable<List<MovieEntity>>
 
     fun getPersonDetails(personId: Int): Observable<PersonEntity>
+
+    fun searchMovies(searchQuery: String): Observable<List<MovieEntity>>
 }

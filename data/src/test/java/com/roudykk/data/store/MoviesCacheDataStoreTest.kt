@@ -36,6 +36,11 @@ class MoviesCacheDataStoreTest {
         this.dataStore.getPersonDetails(MoviesEntityFactory.randomInt())
     }
 
+    @Test(expected = UnsupportedOperationException::class)
+    fun searchMoviesThrowsException() {
+        this.dataStore.searchMovies(MoviesEntityFactory.randomString())
+    }
+
     @Test
     fun addMovieWatchListCompletes() {
         this.stubAddMovieWatchList(Completable.complete())

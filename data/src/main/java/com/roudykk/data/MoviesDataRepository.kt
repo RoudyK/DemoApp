@@ -18,7 +18,6 @@ class MoviesDataRepository @Inject constructor(
         private val personEntityMapper: PersonEntityMapper,
         private val factory: MoviesDataStoreFactory
 ) : MoviesRepository {
-
     override fun getMovieGroups(): Observable<List<MovieGroup>> {
         return this.factory.getRemoteDataStore().getMovieGroups()
                 .map {
@@ -73,4 +72,14 @@ class MoviesDataRepository @Inject constructor(
     override fun clearWatchListMovies(): Completable {
         return this.factory.getCacheDataStore().clearWatchListMovies()
     }
+
+    override fun searchMovies(searchQuery: String): Observable<List<Movie>> {
+        return this.factory.getRemoteDataStore().searchMovies(searchQuery)
+                .map {
+                    it.map {
+                        this.movieEntityMapper.mapFromEntity(it)
+                    }
+                }
+    }
+
 }

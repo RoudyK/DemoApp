@@ -28,7 +28,7 @@ class MoviesDataStoreRepositoryTest {
     private val factory = mock<MoviesDataStoreFactory>()
     private val store = mock<MoviesDataStore>()
 
-    private val moviesDataRepository = MoviesDataRepository(
+    private val repository = MoviesDataRepository(
             this.movieGroupEntityMapper,
             this.movieEntityMapper,
             this.personEntityMapper,
@@ -45,7 +45,7 @@ class MoviesDataStoreRepositoryTest {
         val movieGroups = MoviesEntityFactory.makeMovieGroupsEntity()
         this.stubGetMovieGroups(Observable.just(movieGroups))
 
-        val observer = this.moviesDataRepository.getMovieGroups().test()
+        val observer = this.repository.getMovieGroups().test()
 
         observer.assertComplete()
     }
@@ -57,7 +57,7 @@ class MoviesDataStoreRepositoryTest {
         this.stubGetMovieGroups(Observable.just(listOf(movieGroupEntity)))
         this.stubMovieGroupMapper(movieGroupEntity, movieGroup)
 
-        val observer = this.moviesDataRepository.getMovieGroups().test()
+        val observer = this.repository.getMovieGroups().test()
 
         observer.assertValue(listOf(movieGroup))
     }
@@ -69,7 +69,7 @@ class MoviesDataStoreRepositoryTest {
         this.stubGetMovieDetails(Observable.just(movieEntity))
         this.stubMovieMapper(movieEntity, movie)
 
-        val observer = this.moviesDataRepository.getMovieDetails(MoviesEntityFactory.randomInt())
+        val observer = this.repository.getMovieDetails(MoviesEntityFactory.randomInt())
                 .test()
 
         observer.assertComplete()
@@ -82,7 +82,7 @@ class MoviesDataStoreRepositoryTest {
         this.stubGetMovieDetails(Observable.just(movieEntity))
         this.stubMovieMapper(movieEntity, movie)
 
-        val observer = this.moviesDataRepository.getMovieDetails(MoviesEntityFactory.randomInt())
+        val observer = this.repository.getMovieDetails(MoviesEntityFactory.randomInt())
                 .test()
 
         observer.assertValue(movie)
@@ -95,7 +95,7 @@ class MoviesDataStoreRepositoryTest {
         this.stubGetMovies(Observable.just(listOf(movieEntity)))
         this.stubMovieMapper(movieEntity, movie)
 
-        val observer = this.moviesDataRepository.getMovies(MoviesEntityFactory.randomString(),
+        val observer = this.repository.getMovies(MoviesEntityFactory.randomString(),
                 MoviesEntityFactory.randomInt()).test()
 
         observer.assertComplete()
@@ -108,7 +108,7 @@ class MoviesDataStoreRepositoryTest {
         this.stubGetMovies(Observable.just(listOf(movieEntity)))
         this.stubMovieMapper(movieEntity, movie)
 
-        val observer = this.moviesDataRepository.getMovies(MoviesEntityFactory.randomString(),
+        val observer = this.repository.getMovies(MoviesEntityFactory.randomString(),
                 MoviesEntityFactory.randomInt()).test()
 
         observer.assertValue(listOf(movie))
@@ -121,7 +121,7 @@ class MoviesDataStoreRepositoryTest {
         this.stubAddMovieWatchList(Completable.complete())
         this.stubMovieToMapper(movieEntity, movie)
 
-        val observer = this.moviesDataRepository.addMovieWatchList(movie).test()
+        val observer = this.repository.addMovieWatchList(movie).test()
 
         observer.assertComplete()
     }
@@ -130,7 +130,7 @@ class MoviesDataStoreRepositoryTest {
     fun removeMovieWatchListCompletes() {
         this.stubRemoveMovieWatchList(Completable.complete())
 
-        val observer = this.moviesDataRepository.removeMovieWatchList(MoviesEntityFactory
+        val observer = this.repository.removeMovieWatchList(MoviesEntityFactory
                 .randomInt()).test()
 
         observer.assertComplete()
@@ -143,7 +143,7 @@ class MoviesDataStoreRepositoryTest {
         this.stubGetWatchListMovie(Observable.just(listOf(movieEntity)))
         this.stubMovieMapper(movieEntity, movie)
 
-        val observer = this.moviesDataRepository.getWatchListMovies().test()
+        val observer = this.repository.getWatchListMovies().test()
 
         observer.assertComplete()
     }
@@ -155,7 +155,7 @@ class MoviesDataStoreRepositoryTest {
         this.stubGetWatchListMovie(Observable.just(listOf(movieEntity)))
         this.stubMovieMapper(movieEntity, movie)
 
-        val observer = this.moviesDataRepository.getWatchListMovies().test()
+        val observer = this.repository.getWatchListMovies().test()
 
         observer.assertValue(listOf(movie))
     }
@@ -167,7 +167,7 @@ class MoviesDataStoreRepositoryTest {
         this.stubGetPersonDetails(Observable.just(personEntity))
         this.stubPersonMapper(personEntity, person)
 
-        val observer = this.moviesDataRepository.getPersonDetails(MoviesEntityFactory.randomInt())
+        val observer = this.repository.getPersonDetails(MoviesEntityFactory.randomInt())
                 .test()
 
         observer.assertComplete()
@@ -180,10 +180,33 @@ class MoviesDataStoreRepositoryTest {
         this.stubGetPersonDetails(Observable.just(personEntity))
         this.stubPersonMapper(personEntity, person)
 
-        val observer = this.moviesDataRepository.getPersonDetails(MoviesEntityFactory.randomInt())
+        val observer = this.repository.getPersonDetails(MoviesEntityFactory.randomInt())
                 .test()
 
         observer.assertValue(person)
+    }
+
+    @Test
+    fun searchMoviesCompletes() {
+        val movies = listOf(MoviesEntityFactory.makeMovieEntity())
+        this.stubSearchMovies(Observable.just(movies))
+
+        val observer = this.repository.searchMovies(MoviesEntityFactory.randomString()).test()
+
+        observer.assertComplete()
+    }
+
+    @Test
+    fun searchMoviesReturnsData() {
+        val movieEntities = listOf(MoviesEntityFactory.makeMovieEntity())
+        val movies = listOf(MoviesEntityFactory.makeMovie())
+
+        this.stubSearchMovies(Observable.just(movieEntities))
+        this.stubMovieMapper(movieEntities[0], movies[0])
+
+        val observer = this.repository.searchMovies(MoviesEntityFactory.randomString()).test()
+
+        observer.assertValue(listOf(movies[0]))
     }
 
     private fun stubMovieGroupMapper(movieGroupEntity: MovieGroupEntity, movieGroup: MovieGroup) {
@@ -248,6 +271,11 @@ class MoviesDataStoreRepositoryTest {
 
     private fun stubGetPersonDetails(observable: Observable<PersonEntity>) {
         whenever(this.store.getPersonDetails(any()))
+                .thenReturn(observable)
+    }
+
+    private fun stubSearchMovies(observable: Observable<List<MovieEntity>>) {
+        whenever(this.store.searchMovies(any()))
                 .thenReturn(observable)
     }
 }

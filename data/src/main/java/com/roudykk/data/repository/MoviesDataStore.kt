@@ -22,4 +22,6 @@ interface MoviesDataStore {
     fun getWatchListMovies(): Observable<List<MovieEntity>>
 
     fun clearWatchListMovies(): Completable
+
+    fun searchMovies(searchQuery: String): Observable<List<MovieEntity>>
 }

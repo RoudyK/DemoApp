@@ -13,6 +13,10 @@ class MoviesCacheDataStore @Inject constructor(
         private val moviesCache: MoviesCache
 ) : MoviesDataStore {
 
+    override fun searchMovies(searchQuery: String): Observable<List<MovieEntity>> {
+        throw UnsupportedOperationException("Search Movies not supported here")
+    }
+
     override fun getMovieGroups(): Observable<List<MovieGroupEntity>> {
         throw UnsupportedOperationException("Get Movies Groups not supported here")
     }

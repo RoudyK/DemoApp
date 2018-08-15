@@ -168,6 +168,37 @@ class MoviesRemoteDataStoreTest {
         verify(this.remote).getPersonDetails(personId)
     }
 
+    @Test
+    fun searchMoviesCompletes() {
+        val movies = listOf(MoviesEntityFactory.makeMovieEntity())
+        this.stubSearchMovies(Observable.just(movies))
+
+        val observer = this.dataStore.searchMovies(MoviesEntityFactory.randomString()).test()
+
+        observer.assertComplete()
+    }
+
+    @Test
+    fun searchMoviesReturnsData() {
+        val movies = listOf(MoviesEntityFactory.makeMovieEntity())
+        this.stubSearchMovies(Observable.just(movies))
+
+        val observer = this.dataStore.searchMovies(MoviesEntityFactory.randomString()).test()
+
+        observer.assertValue(movies)
+    }
+
+    @Test
+    fun searchMoviesCallsRemote() {
+        val movies = listOf(MoviesEntityFactory.makeMovieEntity())
+        this.stubSearchMovies(Observable.just(movies))
+        val searchQuery = MoviesEntityFactory.randomString()
+
+        this.dataStore.searchMovies(searchQuery).test()
+
+        verify(this.remote).searchMovies(searchQuery)
+    }
+
     private fun stubGetMovieGroups(observable: Observable<List<MovieGroupEntity>>) {
         whenever(this.remote.getMovieGroups())
                 .thenReturn(observable)
@@ -185,6 +216,11 @@ class MoviesRemoteDataStoreTest {
 
     private fun stubGetPersonDetails(observable: Observable<PersonEntity>) {
         whenever(this.remote.getPersonDetails(any()))
+                .thenReturn(observable)
+    }
+
+    private fun stubSearchMovies(observable: Observable<List<MovieEntity>>) {
+        whenever(this.remote.searchMovies(any()))
                 .thenReturn(observable)
     }
 }

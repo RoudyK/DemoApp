@@ -13,6 +13,10 @@ class MoviesRemoteDataStore @Inject constructor(
         private val moviesRemote: MoviesRemote
 ) : MoviesDataStore {
 
+    override fun searchMovies(searchQuery: String): Observable<List<MovieEntity>> {
+        return this.moviesRemote.searchMovies(searchQuery)
+    }
+
     override fun getMovieGroups(): Observable<List<MovieGroupEntity>> {
         return this.moviesRemote.getMovieGroups()
     }
