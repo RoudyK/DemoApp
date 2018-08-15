@@ -121,10 +121,12 @@ class MovieActivity : BaseActivity(), MovieController.Listener, Observer<Resourc
                 this.snackBar?.dismiss()
             }
             ResourceState.SUCCESS -> {
-                this.progressBar.visibility = View.GONE
-                this.movie = resource.data as MovieView
-                this.movieController.setData(this.movie)
-                this.populateGenres()
+                if (resource.data != null) {
+                    this.progressBar.visibility = View.GONE
+                    this.movie = resource.data!!
+                    this.movieController.setData(this.movie)
+                    this.populateGenres()
+                }
             }
             ResourceState.ERROR -> {
                 this.progressBar.visibility = View.GONE

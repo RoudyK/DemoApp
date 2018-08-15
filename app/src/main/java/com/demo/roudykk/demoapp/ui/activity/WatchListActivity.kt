@@ -14,6 +14,7 @@ import android.view.View
 import android.widget.Toast
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.analytics.Analytics
+import com.demo.roudykk.demoapp.analytics.consts.Source
 import com.demo.roudykk.demoapp.controllers.SavedMoviesController
 import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.extensions.withAppBar
@@ -118,7 +119,7 @@ class WatchListActivity : BaseActivity(), SavedMoviesController.SavedMoviesListe
     }
 
     override fun onMovieClicked(movie: MovieView) {
-//        MovieActivity.launch(this, movie, Source.SOURCE_WATCH_LIST)
+        MovieActivity.launch(this, movie, Source.SOURCE_WATCH_LIST)
     }
 
     override fun onDeleteMovieClicked(movie: MovieView) {
