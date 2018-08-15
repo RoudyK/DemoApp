@@ -26,6 +26,7 @@ import com.demo.roudykk.demoapp.extensions.withAppBar
 import com.demo.roudykk.demoapp.extensions.withModels
 import com.demo.roudykk.demoapp.images.AppImageLoader
 import com.demo.roudykk.demoapp.injection.ViewModelFactory
+import com.demo.roudykk.demoapp.ui.fragment.PersonDetailsFragment
 import com.roudykk.presentation.model.MovieView
 import com.roudykk.presentation.model.PersonView
 import com.roudykk.presentation.model.ReviewView
@@ -127,7 +128,7 @@ class MovieActivity : BaseActivity(), MovieController.Listener, Observer<Resourc
             }
             ResourceState.ERROR -> {
                 this.progressBar.visibility = View.GONE
-                Toast.makeText(this, resource.message , Toast.LENGTH_LONG).show()
+                Toast.makeText(this, resource.message, Toast.LENGTH_LONG).show()
                 this.showSnackBar()
             }
         }
@@ -151,8 +152,8 @@ class MovieActivity : BaseActivity(), MovieController.Listener, Observer<Resourc
     }
 
     override fun onCastClicked(person: PersonView) {
-//        val personFragment = PersonDetailsFragment.newInstance(person)
-//        personFragment.show(supportFragmentManager, personFragment.tag)
+        val personFragment = PersonDetailsFragment.newInstance(person)
+        personFragment.show(supportFragmentManager, personFragment.tag)
     }
 
     override fun onReadFullReviewClicked(review: ReviewView) {

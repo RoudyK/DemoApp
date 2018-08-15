@@ -25,6 +25,14 @@ data class PersonView(
         return "https://image.tmdb.org/t/p/w500$profilePath"
     }
 
+    fun getGender(): String {
+        return if (gender == 2) {
+            "Male"
+        } else {
+            "Female"
+        }
+    }
+
     constructor(source: Parcel) : this(
             source.readInt(),
             source.readString(),

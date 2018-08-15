@@ -5,17 +5,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.inputmethod.EditorInfo
-import android.widget.Toast
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.analytics.Analytics
-import com.demo.roudykk.demoapp.analytics.consts.Source
-import com.demo.roudykk.demoapp.api.Api
-import com.demo.roudykk.demoapp.api.models.Movie
 import com.demo.roudykk.demoapp.controllers.MoviesController
 import com.demo.roudykk.demoapp.extensions.addOverScroll
-import com.demo.roudykk.demoapp.extensions.initThreads
 import com.demo.roudykk.demoapp.extensions.withAppBar
 import com.demo.roudykk.demoapp.injection.ViewModelFactory
 import com.jakewharton.rxbinding2.widget.RxTextView
@@ -61,14 +55,14 @@ class SearchActivity : BaseActivity(), MoviesController.MoviesListener {
                         this.moviesController.setData(ArrayList())
                     } else {
                         Analytics.getInstance(this)?.userSearched(query.toString())
-                        Api.searchApi().searchMovie(query.toString())
-                                .initThreads()
-                                .subscribe({ movieResult ->
-//                                    this.moviesController.setData(movieResult.results)
-                                }, { throwable ->
-                                    Log.d("Search", throwable.toString())
-                                    Toast.makeText(this, getString(R.string.failed_load_movie), Toast.LENGTH_SHORT).show()
-                                })
+//                        Api.searchApi().searchMovie(query.toString())
+//                                .initThreads()
+//                                .subscribe({ movieResult ->
+////                                    this.moviesController.setData(movieResult.results)
+//                                }, { throwable ->
+//                                    Log.d("Search", throwable.toString())
+//                                    Toast.makeText(this, getString(R.string.failed_load_movie), Toast.LENGTH_SHORT).show()
+//                                })
                     }
                 }
                 .subscribe()

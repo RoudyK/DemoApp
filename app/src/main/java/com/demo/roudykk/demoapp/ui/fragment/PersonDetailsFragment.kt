@@ -1,5 +1,7 @@
 package com.demo.roudykk.demoapp.ui.fragment
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -13,24 +15,31 @@ import android.view.ViewGroup
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.demo.roudykk.demoapp.R
-import com.demo.roudykk.demoapp.api.Api
-import com.demo.roudykk.demoapp.api.models.Person
 import com.demo.roudykk.demoapp.controllers.ProfileController
 import com.demo.roudykk.demoapp.db.PreferenceRepo
-import com.demo.roudykk.demoapp.extensions.initThreads
 import com.demo.roudykk.demoapp.images.AppImageLoader
-import io.reactivex.disposables.Disposable
+import com.demo.roudykk.demoapp.injection.ViewModelFactory
+import com.roudykk.presentation.model.PersonView
+import com.roudykk.presentation.state.ResourceState
+import com.roudykk.presentation.viewmodel.PersonViewModel
+import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_person_details.*
+import javax.inject.Inject
 
 
 class PersonDetailsFragment : BottomSheetDialogFragment() {
-    private lateinit var person: Person
-    private lateinit var fContext: Context
-    private lateinit var profileController: ProfileController
-    private var disposable: Disposable? = null
 
-    override fun onAttach(context: Context) {
-        this.fContext = context
+    @Inject
+    lateinit var profileController: ProfileController
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private lateinit var person: PersonView
+    private lateinit var personViewModel: PersonViewModel
+
+    override fun onAttach(context: Context?) {
+        AndroidSupportInjection.inject(this)
         super.onAttach(context)
     }
 
@@ -51,53 +60,62 @@ class PersonDetailsFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         if (arguments != null && arguments!!.containsKey(PERSON)) {
             this.person = arguments!!.getParcelable(PERSON)
+
+            this.initViewModel()
             this.initRv()
-            this.populatePreview(person)
-            this.loadPerson(person.id)
+            this.populatePreview(this.person)
+            this.personViewModel.fetchPerson(this.person.id)
         }
     }
 
-    private fun initRv() {
-        this.personRv.layoutManager = LinearLayoutManager(fContext)
-        this.personRv.itemAnimator = DefaultItemAnimator()
-        this.profileController = ProfileController(fContext)
-        this.personRv.setController(this.profileController)
-    }
+    private fun initViewModel() {
+        this.personViewModel = ViewModelProviders
+                .of(this, this.viewModelFactory)
+                .get(PersonViewModel::class.java)
 
-    private fun populatePreview(person: Person) {
-        AppImageLoader.loadImage(this.fContext, person.getImageUrl(), R.drawable.ic_person_48dp, personIv)
-        this.personNameTv.text = person.name
-    }
+        this.personViewModel.getPerson().observe(this,
+                Observer { resource ->
+                    when (resource?.status) {
+                        ResourceState.LOADING -> {
+                            this.progressbar.visibility = View.VISIBLE
+                            this.reloadTv.visibility = View.GONE
+                        }
+                        ResourceState.SUCCESS -> {
+                            this.progressbar.visibility = View.GONE
+                            this.person = resource.data!!
+                            this.profileController.setData(this.person)
+                        }
+                        ResourceState.ERROR -> {
+                            this.reloadTv.visibility = View.VISIBLE
+                            this.progressbar.visibility = View.GONE
+                        }
+                    }
 
-    private fun loadPerson(personId: Int) {
-        this.progressbar.visibility = View.VISIBLE
-        this.reloadTv.visibility = View.GONE
-        this.disposable = Api.personApi().getPersonDetails(personId)
-                .initThreads()
-                .subscribe({ person ->
-                    this.progressbar.visibility = View.GONE
-                    this.person = person
-                    this.profileController.setData(this.person)
-                }, {
-                    this.reloadTv.visibility = View.VISIBLE
-                    this.progressbar.visibility = View.GONE
                 })
     }
 
-    override fun onDestroy() {
-        this.disposable?.dispose()
-        super.onDestroy()
+    private fun initRv() {
+        this.personRv.layoutManager = LinearLayoutManager(context)
+        this.personRv.itemAnimator = DefaultItemAnimator()
+        this.personRv.setController(this.profileController)
+    }
+
+    private fun populatePreview(person: PersonView) {
+        if (context != null) {
+            AppImageLoader.loadImage(context!!, person.getImageUrl(), R.drawable.ic_person_48dp, personIv)
+            this.personNameTv.text = person.name
+        }
     }
 
     @OnClick(R.id.reloadTv)
     fun reload() {
-        this.loadPerson(this.person.id)
+        this.personViewModel.fetchPerson(this.person.id)
     }
 
     companion object {
         private const val PERSON = "PERSON"
 
-        fun newInstance(person: Person): PersonDetailsFragment {
+        fun newInstance(person: PersonView): PersonDetailsFragment {
             val bundle = Bundle()
             bundle.putParcelable(PERSON, person)
             val fragment = PersonDetailsFragment()

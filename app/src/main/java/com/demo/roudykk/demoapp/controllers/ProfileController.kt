@@ -5,11 +5,12 @@ import com.airbnb.epoxy.TypedEpoxyController
 import com.demo.roudykk.demoapp.BiographyBindingModel_
 import com.demo.roudykk.demoapp.MetricBindingModel_
 import com.demo.roudykk.demoapp.R
-import com.demo.roudykk.demoapp.api.models.Person
+import com.roudykk.presentation.model.PersonView
+import javax.inject.Inject
 
-class ProfileController(private val context: Context) : TypedEpoxyController<Person>() {
+class ProfileController @Inject constructor(val context: Context) : TypedEpoxyController<PersonView>() {
 
-    override fun buildModels(person: Person?) {
+    override fun buildModels(person: PersonView?) {
         person?.apply {
 
             BiographyBindingModel_()
@@ -33,8 +34,8 @@ class ProfileController(private val context: Context) : TypedEpoxyController<Per
             MetricBindingModel_()
                     .id("place_of_birth")
                     .title(context.getString(R.string.place_of_birth))
-                    .value(person.place_of_birth)
-                    .addIf(person.place_of_birth != null, this@ProfileController)
+                    .value(person.placeOfBirth)
+                    .addIf(person.placeOfBirth != null, this@ProfileController)
 
             MetricBindingModel_()
                     .id("deathday")
@@ -45,16 +46,15 @@ class ProfileController(private val context: Context) : TypedEpoxyController<Per
             MetricBindingModel_()
                     .id("department")
                     .title(context.getString(R.string.department))
-                    .value(person.known_for_department)
-                    .addIf(person.known_for_department != null, this@ProfileController)
-            
+                    .value(person.knownFor)
+                    .addIf(person.knownFor != null, this@ProfileController)
+
             MetricBindingModel_()
                     .id("known_as")
                     .title(context.getString(R.string.known_as))
-                    .value(person.also_known_as.joinToString(", "))
-                    .addIf(!person.also_known_as.isEmpty(), this@ProfileController)
-
-
+                    .value(person.knownAs?.joinToString(", "))
+                    .addIf(person.knownAs != null && !person.knownAs!!.isEmpty(),
+                            this@ProfileController)
         }
     }
 
