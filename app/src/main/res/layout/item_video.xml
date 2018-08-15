@@ -6,7 +6,7 @@
 
         <variable
             name="video"
-            type="com.demo.roudykk.demoapp.api.models.Video" />
+            type="com.roudykk.presentation.model.VideoView" />
     </data>
 
     <LinearLayout

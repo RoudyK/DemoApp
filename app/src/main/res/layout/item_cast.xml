@@ -7,7 +7,7 @@
 
         <variable
             name="person"
-            type="com.demo.roudykk.demoapp.api.models.Person" />
+            type="com.roudykk.presentation.model.PersonView" />
 
         <variable
             name="onClickListener"

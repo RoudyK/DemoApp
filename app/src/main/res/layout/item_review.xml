@@ -6,7 +6,7 @@
 
         <variable
             name="review"
-            type="com.demo.roudykk.demoapp.api.models.Review" />
+            type="com.roudykk.presentation.model.ReviewView" />
 
         <variable
             name="onClickListener"

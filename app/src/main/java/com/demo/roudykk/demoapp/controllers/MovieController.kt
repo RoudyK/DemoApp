@@ -9,35 +9,39 @@ import com.airbnb.epoxy.CarouselModel_
 import com.airbnb.epoxy.OnModelBoundListener
 import com.airbnb.epoxy.TypedEpoxyController
 import com.demo.roudykk.demoapp.*
-import com.demo.roudykk.demoapp.api.models.Movie
-import com.demo.roudykk.demoapp.api.models.Person
-import com.demo.roudykk.demoapp.api.models.Review
-import com.demo.roudykk.demoapp.api.models.SpokenLanguage
 import com.demo.roudykk.demoapp.controllers.models.IndicatorCarouselModel_
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayerView
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.AbstractYouTubePlayerListener
+import com.roudykk.presentation.model.MovieView
+import com.roudykk.presentation.model.PersonView
+import com.roudykk.presentation.model.ReviewView
+import com.roudykk.presentation.model.SpokenLanguageView
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 import java.text.DecimalFormat
+import javax.inject.Inject
 
 
-class MovieController(private var context: Context,
-                      private var listener: Listener) : TypedEpoxyController<Movie>() {
+class MovieController @Inject constructor() : TypedEpoxyController<MovieView>() {
+    lateinit var context: Context
+    var listener: Listener? = null
 
     private val onModelBoundListener =
             OnModelBoundListener<CarouselModel_, Carousel>
             { _, view, _ -> OverScrollDecoratorHelper.setUpOverScroll(view, OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL) }
 
-    override fun buildModels(movie: Movie?) {
-        this.buildVideos(movie)
-        this.buildCast(movie)
-        this.buildProductionCompanies(movie)
-        this.buildMetrics(movie)
-        this.buildReviews(movie)
+    override fun buildModels(movie: MovieView?) {
+        movie?.let {
+            this.buildVideos(it)
+            this.buildCast(it)
+            this.buildProductionCompanies(it)
+            this.buildMetrics(it)
+            this.buildReviews(it)
+        }
     }
 
-    private fun buildProductionCompanies(movie: Movie?) {
+    private fun buildProductionCompanies(movie: MovieView) {
         val productionModels = mutableListOf<ProductionCompanyBindingModel_>()
-        movie?.production_companies?.forEach { company ->
+        movie.productionCompanies?.forEach { company ->
             productionModels.add(ProductionCompanyBindingModel_()
                     .id(company.id)
                     .company(company))
@@ -55,10 +59,10 @@ class MovieController(private var context: Context,
                 .addIf(productionModels.size > 0, this)
     }
 
-    private fun buildVideos(movie: Movie?) {
+    private fun buildVideos(movie: MovieView) {
         val videoItems = mutableListOf<VideoBindingModel_>()
 
-        movie?.videos?.results?.forEach { video ->
+        movie.videos?.forEach { video ->
             videoItems.add(VideoBindingModel_()
                     .id(video.id)
                     .video(video)
@@ -85,35 +89,35 @@ class MovieController(private var context: Context,
                 .addIf(videoItems.size > 0, this)
     }
 
-    private fun buildMetrics(movie: Movie?) {
+    private fun buildMetrics(movie: MovieView) {
         MetricBindingModel_()
                 .id("release_date")
                 .title(context.getString(R.string.release_date))
-                .value(movie?.release_date)
+                .value(movie.releaseDate)
                 .addTo(this)
 
-        val budget = if (movie?.budget == 0f) {
+        val budget = if (movie.budget == 0f) {
             context.getString(R.string.not_set)
         } else {
-            DecimalFormat("#,###").format(movie?.budget)
+            DecimalFormat("#,###").format(movie.budget)
         }
 
-        val revenue = if (movie?.revenue == 0f) {
+        val revenue = if (movie.revenue == 0f) {
             context.getString(R.string.not_set)
         } else {
-            DecimalFormat("#,###").format(movie?.revenue)
+            DecimalFormat("#,###").format(movie.revenue)
         }
 
         MetricBindingModel_()
                 .id("popularity")
                 .title(context.getString(R.string.popularity))
-                .value(movie?.popularity.toString())
+                .value(movie.popularity.toString())
                 .addTo(this)
 
         MetricBindingModel_()
                 .id("languages")
                 .title(context.getString(R.string.languages))
-                .value(SpokenLanguage.toReadableString(movie?.spoken_languages))
+                .value(SpokenLanguageView.toReadableString(movie.spokenLanguages))
                 .addTo(this)
 
         MetricBindingModel_()
@@ -129,15 +133,15 @@ class MovieController(private var context: Context,
                 .addTo(this)
     }
 
-    private fun buildCast(movie: Movie?) {
+    private fun buildCast(movie: MovieView) {
         val castModels = mutableListOf<CastBindingModel_>()
 
-        movie?.credits?.cast?.forEach { person ->
+        movie.cast?.forEach { person ->
             castModels.add(CastBindingModel_()
                     .id("$person.id $person.cast_id")
                     .person(person)
                     .onClickListener { _ ->
-                        this.listener.onCastClicked(person)
+                        this.listener?.onCastClicked(person)
                     })
         }
 
@@ -158,22 +162,21 @@ class MovieController(private var context: Context,
                 .addIf(castModels.size > 0, this)
     }
 
-    private fun buildReviews(movie: Movie?) {
+    private fun buildReviews(movie: MovieView) {
         TitleBindingModel_()
                 .id("reviews_title")
                 .title(context.getString(R.string.reviews))
                 .addIf({
-                    movie?.reviews != null
-                            && movie.reviews?.results != null
-                            && movie.reviews!!.results!!.size > 0
+                    movie.reviews != null
+                            && movie.reviews!!.isNotEmpty()
                 }, this)
 
-        movie?.reviews?.results?.forEach { review ->
+        movie.reviews?.forEach { review ->
             ReviewBindingModel_()
                     .id(review.id)
                     .review(review)
                     .onClickListener { _ ->
-                        this.listener.onReadFullReviewClicked(review)
+                        this.listener?.onReadFullReviewClicked(review)
                     }
                     .addTo(this)
         }
@@ -181,9 +184,9 @@ class MovieController(private var context: Context,
 
     interface Listener {
 
-        fun onReadFullReviewClicked(review: Review)
+        fun onReadFullReviewClicked(review: ReviewView)
 
-        fun onCastClicked(person: Person)
+        fun onCastClicked(person: PersonView)
     }
 
 }

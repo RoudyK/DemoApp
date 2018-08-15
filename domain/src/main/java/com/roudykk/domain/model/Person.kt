@@ -2,10 +2,10 @@ package com.roudykk.domain.model
 
 data class Person(
         var id: Int,
-        var name: String,
-        var castId: String,
-        var creditId: String,
-        var character: String,
+        var name: String? = null,
+        var castId: String? = null,
+        var creditId: String? = null,
+        var character: String? = null,
         var gender: Int,
         var order: Int,
         var profilePath: String? = null,
@@ -16,4 +16,4 @@ data class Person(
         var popularity: Float,
         var placeOfBirth: String? = null,
         var adult: Boolean,
-        var knownAs: ArrayList<String>)
+        var knownAs: ArrayList<String>? = null)

@@ -19,6 +19,21 @@ data class SpokenLanguageView(
     }
 
     companion object {
+        fun toReadableString(spoken_languages: List<SpokenLanguageView>?): String? {
+            val languages = mutableListOf<String>()
+            spoken_languages?.forEach { language ->
+                if (language.name != null) {
+                    languages.add(language.name!!)
+                }
+            }
+
+            return if (languages.size > 0) {
+                languages.joinToString(",")
+            } else {
+                "Not set"
+            }
+        }
+
         @JvmField
         val CREATOR: Parcelable.Creator<SpokenLanguageView> = object : Parcelable.Creator<SpokenLanguageView> {
             override fun createFromParcel(source: Parcel): SpokenLanguageView = SpokenLanguageView(source)

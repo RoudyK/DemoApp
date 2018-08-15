@@ -8,6 +8,11 @@ data class ProductionCompanyView(
         var logoPath: String? = null,
         var name: String? = null,
         var originCountry: String? = null) : Parcelable {
+
+    fun getImageUrl(): String {
+        return "https://image.tmdb.org/t/p/w500$logoPath"
+    }
+
     constructor(source: Parcel) : this(
             source.readInt(),
             source.readString(),

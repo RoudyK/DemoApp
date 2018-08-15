@@ -15,6 +15,7 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.analytics.Analytics
+import com.demo.roudykk.demoapp.analytics.consts.Source
 import com.demo.roudykk.demoapp.controllers.HomeController
 import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.extensions.withAppBar
@@ -150,7 +151,7 @@ class MainActivity : BaseActivity(), HomeController.Listener, Observer<Resource<
     }
 
     override fun onMovieClicked(movie: MovieView) {
-//        MovieActivity.launch(this, movie, Source.SOURCE_HOME)
+        MovieActivity.launch(this, movie, Source.SOURCE_HOME)
     }
 
 }
