@@ -26,4 +26,9 @@ data class MovieView(
         var videos: List<VideoView>? = null,
         var reviews: List<ReviewView>? = null,
         var cast: List<PersonView>? = null,
-        val crew: List<PersonView>? = null)
+        val crew: List<PersonView>? = null) {
+
+    fun getImageUrl(): String {
+        return "https://image.tmdb.org/t/p/w500$posterPath"
+    }
+}

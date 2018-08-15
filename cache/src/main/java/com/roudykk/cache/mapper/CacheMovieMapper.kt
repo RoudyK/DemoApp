@@ -2,8 +2,9 @@ package com.roudykk.cache.mapper
 
 import com.roudykk.cache.model.CacheMovie
 import com.roudykk.data.model.MovieEntity
+import javax.inject.Inject
 
-class CacheMovieMapper : CacheMapper<CacheMovie, MovieEntity> {
+class CacheMovieMapper @Inject constructor(): CacheMapper<CacheMovie, MovieEntity> {
 
     override fun mapFromCache(cache: CacheMovie): MovieEntity {
         return MovieEntity(id = cache.id,

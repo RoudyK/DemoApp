@@ -10,10 +10,10 @@ interface DiscoverApi {
     @GET("discover/movie?sort_by=popularity.desc")
     fun getMostPopularMovies(@Query("page") page: Int): Observable<MoviesResultModel>
 
-    @GET("discover/movie/?sort_by=vote_average.desc")
+    @GET("discover/movie?sort_by=vote_average.desc")
     fun getHighestRatedMovies(@Query("page") page: Int): Observable<MoviesResultModel>
 
-    @GET("discover/movie?=US&certification.lte=G&sort_by=popularity.desc")
+    @GET("discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc")
     fun getMostPopularForKids(@Query("page") page: Int): Observable<MoviesResultModel>
 
     @GET("discover/movie?sort_by=vote_average.desc")

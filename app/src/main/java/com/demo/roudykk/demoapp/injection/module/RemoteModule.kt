@@ -1,11 +1,11 @@
 package com.demo.roudykk.demoapp.injection.module
 
-import com.demo.roudykk.demoapp.api.Api
-import com.demo.roudykk.demoapp.api.endpoints.DiscoverApi
-import com.demo.roudykk.demoapp.api.endpoints.MovieApi
-import com.demo.roudykk.demoapp.api.endpoints.PersonApi
 import com.roudykk.data.repository.MoviesRemote
 import com.roudykk.remote.MoviesRemoteImpl
+import com.roudykk.remote.ServicesFactory
+import com.roudykk.remote.service.DiscoverApi
+import com.roudykk.remote.service.MovieApi
+import com.roudykk.remote.service.PersonApi
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -22,19 +22,19 @@ abstract class RemoteModule {
         @Provides
         @JvmStatic
         fun provideDiscoverApi(): DiscoverApi {
-            return Api.discoverApi()
+            return ServicesFactory.discoverApi()
         }
 
         @Provides
         @JvmStatic
         fun provideMovieApi(): MovieApi {
-            return Api.movieApi()
+            return ServicesFactory.movieApi()
         }
 
         @Provides
         @JvmStatic
         fun providePersonApi(): PersonApi {
-            return Api.personApi()
+            return ServicesFactory.personApi()
         }
 
     }

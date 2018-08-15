@@ -78,10 +78,10 @@ class MoviesRemoteImplTest {
 
         this.remote.getMovieGroups().test()
 
-        verify(this.discoverApi).getMostPopularMovies(0)
-        verify(this.discoverApi).getMostPopularForKids(0)
-        verify(this.discoverApi).getMostPopularInYear(0, Year.now().value)
-        verify(this.discoverApi).getHighestRatedMovies(0)
+        verify(this.discoverApi).getMostPopularMovies(1)
+        verify(this.discoverApi).getMostPopularForKids(1)
+        verify(this.discoverApi).getMostPopularInYear(1, Year.now().value)
+        verify(this.discoverApi).getHighestRatedMovies(1)
     }
 
     @Test

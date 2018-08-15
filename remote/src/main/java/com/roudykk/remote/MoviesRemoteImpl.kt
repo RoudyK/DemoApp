@@ -15,6 +15,7 @@ import com.roudykk.remote.service.PersonApi
 import io.reactivex.Observable
 import io.reactivex.functions.Function4
 import java.time.Year
+import java.util.*
 import javax.inject.Inject
 
 class MoviesRemoteImpl @Inject constructor(
@@ -29,19 +30,20 @@ class MoviesRemoteImpl @Inject constructor(
     override fun getMovieGroups(): Observable<List<MovieGroupEntity>> {
         return Observable.zip(
                 this.buildMovieGroupObservable(
-                        this.discoverApi.getMostPopularForKids(0),
+                        this.discoverApi.getMostPopularForKids(1),
                         "Most Popular (Kids)",
                         MovieIndex.MOST_POPULAR_KIDS),
                 this.buildMovieGroupObservable(
-                        this.discoverApi.getMostPopularInYear(0, Year.now().value),
+                        this.discoverApi.getMostPopularInYear(1,
+                                Calendar.getInstance().get(Calendar.YEAR)),
                         "Most Popular (2018)",
                         MovieIndex.MOST_POPULAR_YEAR),
                 this.buildMovieGroupObservable(
-                        this.discoverApi.getMostPopularMovies(0),
+                        this.discoverApi.getMostPopularMovies(1),
                         "Most Popular",
                         MovieIndex.MOST_POPULAR),
                 this.buildMovieGroupObservable(
-                        this.discoverApi.getHighestRatedMovies(0),
+                        this.discoverApi.getHighestRatedMovies(1),
                         "Highest Rated",
                         MovieIndex.HIGHEST_RATED),
                 Function4<MoviesResultModel,
@@ -78,7 +80,7 @@ class MoviesRemoteImpl @Inject constructor(
         val observable: Observable<MoviesResultModel> = when (index) {
             MovieIndex.HIGHEST_RATED -> this.discoverApi.getHighestRatedMovies(page)
             MovieIndex.MOST_POPULAR -> this.discoverApi.getMostPopularMovies(page)
-            MovieIndex.MOST_POPULAR_YEAR -> this.discoverApi.getMostPopularInYear(page, Year.now().value)
+            MovieIndex.MOST_POPULAR_YEAR -> this.discoverApi.getMostPopularInYear(page,   Calendar.getInstance().get(Calendar.YEAR))
             MovieIndex.MOST_POPULAR_KIDS -> this.discoverApi.getMostPopularForKids(page)
             else -> throw IllegalArgumentException("index must be one of the MoveIndex values")
         }

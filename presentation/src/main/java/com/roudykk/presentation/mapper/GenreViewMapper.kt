@@ -2,8 +2,9 @@ package com.roudykk.presentation.mapper
 
 import com.roudykk.domain.model.Genre
 import com.roudykk.presentation.model.GenreView
+import javax.inject.Inject
 
-class GenreViewMapper : ViewMapper<GenreView, Genre> {
+class GenreViewMapper @Inject constructor() : ViewMapper<GenreView, Genre> {
 
     override fun mapFromView(view: GenreView): Genre {
         return Genre(id = view.id,
