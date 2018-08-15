@@ -18,8 +18,30 @@ ext {
     def rxKotlinVersion = "2.3.0"
     def mockitoInlineVersion = "2.13.0"
     def archCompVersion = "1.1.1"
-    def daggerVersion = "2.13"
-    def rxAndroidVersion = "2.0.1"
+    def daggerVersion = "2.16"
+    def espressoVersion = "3.0.0"
+    def runnerVersion = "0.5"
+
+    def rxAndroidVersion = "2.0.2"
+    def epoxyVersion = "2.16.0"
+    def butterknifeVersion = "8.8.1"
+    def supportVersion = "27.1.1"
+    def glideVersion = "4.7.1"
+    def constraintVersion = "1.1.2"
+    def rxBindingVersion = "2.1.1"
+    def overscrollVersion = "1.0.4"
+    def viewPumpVersion = "1.0.0"
+    def lottieVersion = "2.5.4"
+    def crashlyticsVersion = "2.9.4@aar"
+    def mixpanelVersion = "5.4.1"
+    def chipsVersion = "0.3.7@aar"
+    def youtubeVersion = "8.0.1"
+    def indicatorVersion = "1.0.9"
+    def coordinatorVersion = "1.0.4"
+    def customTabsVersion = "1.1.2"
+    def readMoreVersion = "2.1.0"
+    def calligraphyVersion = "3.0.0"
+    def mockitoAndroidVersion = "2.18.3"
 
     def jUnitVersion = "4.12"
     def mockitoVersion = "2.0.0-RC1"
@@ -118,5 +140,57 @@ ext {
             robolectric  : "org.robolectric:robolectric:${robolectricVersion}",
             archTesting  : "android.arch.core:core-testing:${archCompVersion}",
             mockitoinline: "org.mockito:mockito-inline:${mockitoInlineVersion}"
+    ]
+
+    appDependencies = [
+            kotlin             : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}",
+            epoxy              : "com.airbnb.android:epoxy:$epoxyVersion",
+            epoxyProcessor     : "com.airbnb.android:epoxy-processor:$epoxyVersion",
+            epoxyDatabinding   : "com.airbnb.android:epoxy-databinding:$epoxyVersion",
+            butterknife        : "com.jakewharton:butterknife:${butterknifeVersion}",
+            butterknifeCompiler: "com.jakewharton:butterknife-compiler:${butterknifeVersion}",
+            androidAppCompat   : "com.android.support:appcompat-v7:${supportVersion}",
+            androidSupport     : "com.android.support:support-v4:${supportVersion}",
+            androidDesign      : "com.android.support:design:${supportVersion}",
+            androidCardView    : "com.android.support:cardview-v7:${supportVersion}",
+            glide              : "com.github.bumptech.glide:glide:${glideVersion}",
+            glideCompiler      : "com.github.bumptech.glide:compiler:${glideVersion}",
+            dagger             : "com.google.dagger:dagger:${daggerVersion}",
+            daggerCompiler     : "com.google.dagger:dagger-compiler:${daggerVersion}",
+            daggerSupport      : "com.google.dagger:dagger-android-support:${daggerVersion}",
+            daggerProcessor    : "com.google.dagger:dagger-android-processor:${daggerVersion}",
+            constraintLayout   : "com.android.support.constraint:constraint-layout:${constraintVersion}",
+            rxBinding          : "com.jakewharton.rxbinding2:rxbinding:${rxBindingVersion}",
+            rxBindingSupport   : "com.jakewharton.rxbinding2:rxbinding-support-v4:${rxBindingVersion}",
+            rxAndroid          : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            rxJava             : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            overscroll         : "me.everything:overscroll-decor-android:${overscrollVersion}",
+            viewpump           : "io.github.inflationx:viewpump:${viewPumpVersion}",
+            lottie             : "com.airbnb.android:lottie:${lottieVersion}",
+            crashlytics        : "com.crashlytics.sdk.android:crashlytics:${crashlyticsVersion}",
+            mixpanel           : "com.mixpanel.android:mixpanel-android:${mixpanelVersion}",
+            lifecycleExtensions: "android.arch.lifecycle:extensions:${lifecycleVersion}",
+            chipsLayoutManager : "com.beloo.widget:ChipsLayoutManager:${chipsVersion}",
+            youtuberPlayer     : "com.pierfrancescosoffritti.androidyoutubeplayer:core:${youtubeVersion}",
+            pagerIndicator     : "com.ryanjeffreybrooks:indefinitepagerindicator:${indicatorVersion}",
+            coordinatorLayout  : "com.otaliastudios:bottomsheetcoordinatorlayout:${coordinatorVersion}",
+            customTabs         : "saschpe.android:customtabs:${customTabsVersion}",
+            readmoretv         : "com.borjabravo:readmoretextview:${readMoreVersion}",
+            calligraphy        : "io.github.inflationx:calligraphy3:${calligraphyVersion}"
+    ]
+
+    appTestDependencies = [
+            junit          : "junit:junit:${jUnitVersion}",
+            kotlinJUnit    : "org.jetbrains.kotlin:kotlin-test-junit:${kotlin_version}",
+            assertj        : "org.assertj:assertj-core:${assertJVersion}",
+            mockito        : "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitoVersion}",
+            supportRunner  : "com.android.support.test:runner:${androidSupportRunnerVersion}",
+            supportRules   : "com.android.support.test:rules:${androidSupportRulesVersion}",
+            mockitoAndroid : "org.mockito:mockito-android:${mockitoAndroidVersion}",
+            espressoCore   : "com.android.support.test.espresso:espresso-core:${espressoVersion}",
+            espressoIntents: "com.android.support.test.espresso:espresso-intents:${espressoVersion}",
+            espressoContrib: "com.android.support.test.espresso:espresso-contrib:${espressoVersion}",
+            androidRunner  : "com.android.support.test:runner:${runnerVersion}",
+            androidRules   : "com.android.support.test:rules:${runnerVersion}"
     ]
 }

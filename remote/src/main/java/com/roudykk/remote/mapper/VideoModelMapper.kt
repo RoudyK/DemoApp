@@ -16,14 +16,14 @@ class VideoModelMapper @Inject constructor() : ModelMapper<VideoModel, VideoEnti
                 size = entity.size)
     }
 
-    override fun mapFromModel(domain: VideoModel): VideoEntity {
-        return VideoEntity(id = domain.id,
-                isoName = domain.iso_639_1,
-                name = domain.name,
-                key = domain.key,
-                type = domain.type,
-                site = domain.site,
-                size = domain.size)
+    override fun mapFromModel(model: VideoModel): VideoEntity {
+        return VideoEntity(id = model.id,
+                isoName = model.iso_639_1,
+                name = model.name,
+                key = model.key,
+                type = model.type,
+                site = model.site,
+                size = model.size)
     }
 
 }

@@ -12,9 +12,9 @@ class ProductionCountryModelMapper @Inject constructor()
                 name = entity.name)
     }
 
-    override fun mapFromModel(domain: ProductionCountryModel): ProductionCountryEntity {
-        return ProductionCountryEntity(isoName = domain.iso_3116_1,
-                name = domain.name)
+    override fun mapFromModel(model: ProductionCountryModel): ProductionCountryEntity {
+        return ProductionCountryEntity(isoName = model.iso_3116_1,
+                name = model.name)
     }
 
 }
