@@ -1,7 +1,6 @@
 package com.roudykk.remote.mapper
 
 import com.roudykk.data.model.ReviewEntity
-import com.roudykk.domain.model.Review
 import com.roudykk.remote.model.ReviewModel
 import javax.inject.Inject
 

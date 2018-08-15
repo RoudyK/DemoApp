@@ -1,12 +1,11 @@
-package com.roudykk.data.test
+package com.roudykk.remote.test
 
 import com.roudykk.data.model.*
-import com.roudykk.domain.model.*
+import com.roudykk.remote.model.*
 import java.util.*
 import java.util.concurrent.ThreadLocalRandom
 
-object MoviesEntityFactory {
-
+object MoviesRemoteFactory {
     fun randomString(): String = UUID.randomUUID().toString()
 
     fun randomInt(): Int = ThreadLocalRandom.current().nextInt(0, 1000 + 1)
@@ -122,53 +121,53 @@ object MoviesEntityFactory {
         return listOf(this.makeMovieGroupEntity(), this.makeMovieGroupEntity())
     }
 
-    fun makeSpokenLanguage(): SpokenLanguage {
-        return SpokenLanguage(
+    fun makeSpokenLanguageMode(): SpokenLanguageModel{
+        return SpokenLanguageModel(
                 this.randomString(),
                 this.randomString())
     }
 
-    fun makeGenre(): Genre {
-        return Genre(
+    fun makeGenreModel(): GenreModel {
+        return GenreModel(
                 this.randomInt(),
                 this.randomString())
     }
 
-    fun makeProductionCompany(): ProductionCompany {
-        return ProductionCompany(
+    fun makeProductionCompanyModel(): ProductionCompanyModel {
+        return ProductionCompanyModel(
                 this.randomInt(),
                 this.randomString(),
                 this.randomString(),
                 this.randomString())
     }
 
-    fun makeProductionCountry(): ProductionCountry {
-        return ProductionCountry(
+    fun makeProductionCountryModel(): ProductionCountryModel {
+        return ProductionCountryModel(
                 this.randomString(),
                 this.randomString())
     }
 
-    fun makeVideo(): Video {
-        return Video(
+    fun makeVideoModel(): VideoModel {
+        return VideoModel(
                 this.randomString(),
                 this.randomString(),
                 this.randomString(),
-                this.randomString(),
-                this.randomString(),
-                this.randomString(),
-                this.randomString())
-    }
-
-    fun makeReview(): Review {
-        return Review(
                 this.randomString(),
                 this.randomString(),
                 this.randomString(),
                 this.randomString())
     }
 
-    fun makePerson(): Person {
-        return Person(
+    fun makeReviewModel(): ReviewModel {
+        return ReviewModel(
+                this.randomString(),
+                this.randomString(),
+                this.randomString(),
+                this.randomString())
+    }
+
+    fun makePersonModel(): PersonModel {
+        return PersonModel(
                 this.randomInt(),
                 this.randomString(),
                 this.randomString(),
@@ -187,8 +186,8 @@ object MoviesEntityFactory {
                 arrayListOf(this.randomString(), this.randomString()))
     }
 
-    fun makeMovie(): Movie {
-        return Movie(
+    fun makeMovieModel(): MovieModel {
+        return MovieModel(
                 this.randomInt(),
                 this.randomString(),
                 this.randomString(),
@@ -204,26 +203,33 @@ object MoviesEntityFactory {
                 this.randomString(),
                 this.randomFloat(),
                 this.randomInt(),
-                arrayListOf(this.makeSpokenLanguage(), this.makeSpokenLanguage()),
+                listOf(this.makeSpokenLanguageMode(), this.makeSpokenLanguageMode()),
                 this.randomString(),
                 this.randomString(),
                 this.randomFloat(),
-                arrayListOf(this.makeGenre(), this.makeGenre()),
-                arrayListOf(this.makeProductionCompany(), this.makeProductionCompany()),
-                arrayListOf(this.makeProductionCountry(), this.makeProductionCountry()),
-                arrayListOf(this.makeVideo(), this.makeVideo()),
-                arrayListOf(this.makeReview(), this.makeReview()),
-                arrayListOf(this.makePerson(), this.makePerson()),
-                arrayListOf(this.makePerson(), this.makePerson()))
+                listOf(this.makeGenreModel(), this.makeGenreModel()),
+                listOf(this.makeProductionCompanyModel(), this.makeProductionCompanyModel()),
+                listOf(this.makeProductionCountryModel(), this.makeProductionCountryModel()),
+                VideoResultModel(listOf(this.makeVideoModel(), this.makeVideoModel())),
+                ReviewResultModel(
+                        this.randomInt(),
+                        listOf(this.makeReviewModel(), this.makeReviewModel()),
+                        this.randomInt(),
+                        this.randomInt()),
+                CreditsModel(
+                        cast = listOf(this.makePersonModel(), this.makePersonModel()),
+                        crew = listOf(this.makePersonModel(), this.makePersonModel())
+                ))
     }
 
-    fun makeMovieGroup(): MovieGroup {
-        return MovieGroup(
+    fun makeMoviesResultModel(): MoviesResultModel {
+        return MoviesResultModel(
                 this.randomString(),
-                listOf(this.makeMovie(), this.makeMovie()), this.randomString())
-    }
-
-    fun makeMovieGroups(): List<MovieGroup> {
-        return listOf(this.makeMovieGroup(), this.makeMovieGroup())
+                this.randomString(),
+                this.randomInt(),
+                this.randomInt(),
+                this.randomInt(),
+                listOf(this.makeMovieModel(), this.makeMovieModel())
+        )
     }
 }

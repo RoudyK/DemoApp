@@ -17,7 +17,7 @@ import io.reactivex.functions.Function4
 import java.time.Year
 import javax.inject.Inject
 
-class ProjectsRemoteImpl @Inject constructor(
+class MoviesRemoteImpl @Inject constructor(
         private val discoverApi: DiscoverApi,
         private val movieApi: MovieApi,
         private val personApi: PersonApi,

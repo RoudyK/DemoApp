@@ -1,7 +1,6 @@
 package com.roudykk.remote.mapper
 
 import com.roudykk.data.model.VideoEntity
-import com.roudykk.domain.model.Video
 import com.roudykk.remote.model.VideoModel
 import javax.inject.Inject
 

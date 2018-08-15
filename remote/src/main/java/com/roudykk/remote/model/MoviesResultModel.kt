@@ -1,8 +1,6 @@
 package com.roudykk.remote.model
 
 data class MoviesResultModel(
-        var certificationCountry: String? = null,
-        var certification: String? = null,
         var title: String,
         var index: String,
         var page: Int = 1,

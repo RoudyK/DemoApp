@@ -1,4 +1,4 @@
-apply plugin: 'java-library'
+apply plugin: 'kotlin'
 
 dependencies {
     def dependencies = rootProject.ext.remoteDependencies
@@ -18,10 +18,10 @@ dependencies {
     implementation dependencies.retrofitConverter
     implementation dependencies.retrofitAdapter
 
-    implementation testDependencies.junit
-    implementation testDependencies.kotlinJUnit
-    implementation testDependencies.mockito
-    implementation testDependencies.assertj
+    testImplementation testDependencies.junit
+    testImplementation testDependencies.kotlinJUnit
+    testImplementation testDependencies.mockito
+    testImplementation testDependencies.assertj
 }
 
 sourceCompatibility = "8"
