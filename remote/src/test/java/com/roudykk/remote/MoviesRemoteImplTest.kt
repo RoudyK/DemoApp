@@ -15,6 +15,7 @@ import com.roudykk.remote.model.MoviesResultModel
 import com.roudykk.remote.service.DiscoverApi
 import com.roudykk.remote.service.MovieApi
 import com.roudykk.remote.service.PersonApi
+import com.roudykk.remote.service.SearchApi
 import com.roudykk.remote.test.MoviesRemoteFactory
 import io.reactivex.Observable
 import org.junit.Test
@@ -25,13 +26,15 @@ class MoviesRemoteImplTest {
     private val discoverApi = mock<DiscoverApi>()
     private val movieApi = mock<MovieApi>()
     private val personApi = mock<PersonApi>()
+    private val searchApi = mock<SearchApi>()
+
     private val movieModelMapper = mock<MovieModelMapper>()
     private val personModelMapper = mock<PersonModelMapper>()
     private val movieGroupModelMapper = mock<MovieGroupModelMapper>()
 
     private val remote = MoviesRemoteImpl(this.discoverApi, this.movieApi,
-            this.personApi, this.movieModelMapper, this.personModelMapper,
-            this.movieGroupModelMapper)
+            this.personApi, this.searchApi, this.movieModelMapper,
+            this.personModelMapper, this.movieGroupModelMapper)
 
     @Test
     fun getMovieGroupsCompletes() {
@@ -285,6 +288,55 @@ class MoviesRemoteImplTest {
         verify(this.discoverApi).getMostPopularForKids(page)
     }
 
+    @Test
+    fun searchMoviesCompletes() {
+        val moviesResultModel = MoviesRemoteFactory.makeMoviesResultModel()
+        val movieGroupEntity = MoviesRemoteFactory.makeMovieGroupEntity()
+        val searchQuery = MoviesRemoteFactory.randomString()
+
+        moviesResultModel.results.forEachIndexed { index, _ ->
+            this.stubMovieModelMapper(moviesResultModel.results[index], movieGroupEntity.movies[index])
+        }
+
+        this.stubSearchMovies(Observable.just(moviesResultModel))
+
+        val observer = this.remote.searchMovies(searchQuery).test()
+        observer.assertComplete()
+    }
+
+    @Test
+    fun searchMoviesReturnsData() {
+        val moviesResultModel = MoviesRemoteFactory.makeMoviesResultModel()
+        val movieGroupEntity = MoviesRemoteFactory.makeMovieGroupEntity()
+        val searchQuery = MoviesRemoteFactory.randomString()
+
+        moviesResultModel.results.forEachIndexed { index, _ ->
+            this.stubMovieModelMapper(moviesResultModel.results[index], movieGroupEntity.movies[index])
+        }
+
+        this.stubSearchMovies(Observable.just(moviesResultModel))
+
+        val observer = this.remote.searchMovies(searchQuery).test()
+        observer.assertValue(movieGroupEntity.movies)
+    }
+
+
+    @Test
+    fun searchMoviesCallsServer() {
+        val moviesResultModel = MoviesRemoteFactory.makeMoviesResultModel()
+        val movieGroupEntity = MoviesRemoteFactory.makeMovieGroupEntity()
+        val searchQuery = MoviesRemoteFactory.randomString()
+
+        moviesResultModel.results.forEachIndexed { index, _ ->
+            this.stubMovieModelMapper(moviesResultModel.results[index], movieGroupEntity.movies[index])
+        }
+
+        this.stubSearchMovies(Observable.just(moviesResultModel))
+
+        this.remote.searchMovies(searchQuery).test()
+        verify(this.searchApi).searchMovie(searchQuery)
+    }
+
     private fun stubMovieGroupMapper(moviesResultModel: MoviesResultModel,
                                      movieGroupEntity: MovieGroupEntity) {
         whenever(this.movieGroupModelMapper.mapFromModel(moviesResultModel))
@@ -312,6 +364,11 @@ class MoviesRemoteImplTest {
                 .thenReturn(observable)
 
         whenever(this.discoverApi.getHighestRatedMovies(any()))
+                .thenReturn(observable)
+    }
+
+    private fun stubSearchMovies(observable: Observable<MoviesResultModel>) {
+        whenever(this.searchApi.searchMovie(any()))
                 .thenReturn(observable)
     }
 }

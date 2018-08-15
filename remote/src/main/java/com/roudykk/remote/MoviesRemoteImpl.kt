@@ -12,9 +12,9 @@ import com.roudykk.remote.model.MoviesResultModel
 import com.roudykk.remote.service.DiscoverApi
 import com.roudykk.remote.service.MovieApi
 import com.roudykk.remote.service.PersonApi
+import com.roudykk.remote.service.SearchApi
 import io.reactivex.Observable
 import io.reactivex.functions.Function4
-import java.time.Year
 import java.util.*
 import javax.inject.Inject
 
@@ -22,6 +22,7 @@ class MoviesRemoteImpl @Inject constructor(
         private val discoverApi: DiscoverApi,
         private val movieApi: MovieApi,
         private val personApi: PersonApi,
+        private val searchApi: SearchApi,
         private val movieModelMapper: MovieModelMapper,
         private val personModelMapper: PersonModelMapper,
         private val movieGroupModelMapper: MovieGroupModelMapper
@@ -80,7 +81,7 @@ class MoviesRemoteImpl @Inject constructor(
         val observable: Observable<MoviesResultModel> = when (index) {
             MovieIndex.HIGHEST_RATED -> this.discoverApi.getHighestRatedMovies(page)
             MovieIndex.MOST_POPULAR -> this.discoverApi.getMostPopularMovies(page)
-            MovieIndex.MOST_POPULAR_YEAR -> this.discoverApi.getMostPopularInYear(page,   Calendar.getInstance().get(Calendar.YEAR))
+            MovieIndex.MOST_POPULAR_YEAR -> this.discoverApi.getMostPopularInYear(page, Calendar.getInstance().get(Calendar.YEAR))
             MovieIndex.MOST_POPULAR_KIDS -> this.discoverApi.getMostPopularForKids(page)
             else -> throw IllegalArgumentException("index must be one of the MoveIndex values")
         }
@@ -99,4 +100,12 @@ class MoviesRemoteImpl @Inject constructor(
                 }
     }
 
+    override fun searchMovies(searchQuery: String): Observable<List<MovieEntity>> {
+        return this.searchApi.searchMovie(searchQuery)
+                .map {
+                    it.results.map {
+                        this.movieModelMapper.mapFromModel(it)
+                    }
+                }
+    }
 }
