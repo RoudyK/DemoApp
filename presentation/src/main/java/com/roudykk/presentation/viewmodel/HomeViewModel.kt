@@ -19,10 +19,6 @@ class HomeViewModel @Inject constructor(
 
     private val liveData = MutableLiveData<Resource<List<MovieGroupView>>>()
 
-    init {
-        this.fetchMovieGroups()
-    }
-
     override fun onCleared() {
         this.getMoviesGroups.dispose()
         super.onCleared()

@@ -12,7 +12,7 @@ import com.roudykk.presentation.state.ResourceState
 import io.reactivex.observers.DisposableObserver
 import javax.inject.Inject
 
-class CategoryMoviesViewModel @Inject constructor(
+class MoviesViewModel @Inject constructor(
         private val getMovies: GetMovies,
         private val movieViewMapper: MovieViewMapper
 ) : ViewModel() {

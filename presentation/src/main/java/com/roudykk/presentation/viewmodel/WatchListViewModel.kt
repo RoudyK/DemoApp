@@ -23,10 +23,6 @@ class WatchListViewModel @Inject constructor(
 
     private val liveData = MutableLiveData<Resource<List<MovieView>>>()
 
-    init {
-        this.fetchMovies()
-    }
-
     fun getMovies(): LiveData<Resource<List<MovieView>>> {
         return this.liveData
     }
