@@ -115,7 +115,8 @@ object MoviesViewFactory {
     fun makeMovieGroup(): MovieGroup {
         return MovieGroup(
                 randomString(),
-                listOf(makeMovie(), makeMovie()), randomString())
+                listOf(makeMovie(), makeMovie()),
+                this.randomInt(), this.randomInt(), randomString())
     }
 
     fun makeMovieGroups(): List<MovieGroup> {
@@ -221,7 +222,8 @@ object MoviesViewFactory {
     fun makeMovieGroupView(): MovieGroupView {
         return MovieGroupView(
                 randomString(),
-                listOf(makeMovieView(), makeMovieView()), randomString())
+                mutableListOf(makeMovieView(), makeMovieView()),
+                this.randomInt(), this.randomInt(), randomString())
     }
 
     fun makeMovieGroupsView(): List<MovieGroupView> {
