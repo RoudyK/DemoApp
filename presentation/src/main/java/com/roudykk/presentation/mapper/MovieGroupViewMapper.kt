@@ -12,14 +12,18 @@ open class MovieGroupViewMapper @Inject constructor(
         return MovieGroup(title = view.title,
                 movies = view.movies.map {
                     this.movieViewMapper.mapFromView(it)
-                }, index = view.index)
+                }.toMutableList(), index = view.index,
+                page = view.page,
+                totalPages = view.totalPages)
     }
 
     override fun mapToView(domain: MovieGroup): MovieGroupView {
         return MovieGroupView(title = domain.title,
                 movies = domain.movies.map {
                     this.movieViewMapper.mapToView(it)
-                }, index = domain.index)
+                }.toMutableList(), index = domain.index,
+                page = domain.page,
+                totalPages = domain.totalPages)
     }
 
 }

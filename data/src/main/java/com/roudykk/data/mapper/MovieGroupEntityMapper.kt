@@ -12,14 +12,18 @@ open class MovieGroupEntityMapper @Inject constructor(
         return MovieGroup(title = entity.title,
                 movies = entity.movies.map {
                     this.movieEntityMapper.mapFromEntity(it)
-                }, index = entity.index)
+                }, index = entity.index,
+                page = entity.page,
+                totalPages = entity.totalPages)
     }
 
     override fun mapToEntity(domain: MovieGroup): MovieGroupEntity {
         return MovieGroupEntity(title = domain.title,
                 movies = domain.movies.map {
                     this.movieEntityMapper.mapToEntity(it)
-                }, index = domain.index)
+                }, index = domain.index,
+                page = domain.page,
+                totalPages = domain.totalPages)
     }
 
 }

@@ -114,7 +114,8 @@ object MoviesFactory {
     fun makeMovieGroup(): MovieGroup {
         return MovieGroup(
                 this.randomString(),
-                listOf(this.makeMovie(), this.makeMovie()), this.randomString())
+                listOf(this.makeMovie(), this.makeMovie()),
+                this.randomInt(), this.randomInt(), this.randomString())
     }
 
     fun makeMovieGroups(): List<MovieGroup> {

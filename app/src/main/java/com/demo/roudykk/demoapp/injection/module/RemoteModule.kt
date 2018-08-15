@@ -11,6 +11,7 @@ import dagger.Module
 import dagger.Provides
 
 @Module
+@Suppress("unused")
 abstract class RemoteModule {
 
     @Binds

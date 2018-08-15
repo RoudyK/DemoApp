@@ -20,7 +20,9 @@ open class MovieGroupModelMapper @Inject constructor(
         return MovieGroupEntity(title = model.title,
                 movies = model.results.map {
                     this.movieMapper.mapFromModel(it)
-                }, index = model.index)
+                }, index = model.index,
+                page = model.page,
+                totalPages = model.total_pages)
     }
 
 }

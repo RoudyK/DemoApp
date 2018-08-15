@@ -1,96 +1,116 @@
 package com.demo.roudykk.demoapp.ui.activity
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.widget.Toast
 import butterknife.ButterKnife
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.analytics.Analytics
-import com.demo.roudykk.demoapp.analytics.consts.Source
-import com.demo.roudykk.demoapp.api.models.Movie
-import com.demo.roudykk.demoapp.api.requests.MoviesRequest
 import com.demo.roudykk.demoapp.controllers.MoviesController
 import com.demo.roudykk.demoapp.extensions.addOverScroll
-import com.demo.roudykk.demoapp.extensions.initThreads
 import com.demo.roudykk.demoapp.extensions.withAppBar
-import io.reactivex.disposables.Disposable
+import com.demo.roudykk.demoapp.injection.ViewModelFactory
+import com.roudykk.presentation.model.MovieGroupView
+import com.roudykk.presentation.model.MovieView
+import com.roudykk.presentation.state.Resource
+import com.roudykk.presentation.state.ResourceState
+import com.roudykk.presentation.viewmodel.MoviesViewModel
+import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_movies.*
+import javax.inject.Inject
 
-class MoviesActivity : BaseActivity(), MoviesController.MoviesListener {
+class MoviesActivity : BaseActivity(), MoviesController.MoviesListener, Observer<Resource<List<MovieView>>> {
 
-    private var moviesController: MoviesController? = null
-    private var moviesRequest: MoviesRequest? = null
-    private var disposable: Disposable? = null
+    @Inject
+    lateinit var moviesController: MoviesController
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private lateinit var moviesViewModel: MoviesViewModel
+    private lateinit var movieGroup: MovieGroupView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ButterKnife.bind(this)
+        AndroidInjection.inject(this)
+
         setContentView(R.layout.activity_movies)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        if (intent != null && intent.hasExtra(API_EXECUTOR)) {
-            this.moviesRequest = intent.getParcelableExtra(API_EXECUTOR)
-            Log.d("API-EXECUTOR", this.moviesRequest.toString())
-            this.title = moviesRequest?.title
+        this.initViewModel()
+
+        if (intent != null && intent.hasExtra(MOVIE_GROUP)) {
+            this.movieGroup = intent.getParcelableExtra(MOVIE_GROUP)
+            this.title = movieGroup.title
         }
 
         initRv()
+    }
+
+    private fun initViewModel() {
+        this.moviesViewModel = ViewModelProviders
+                .of(this, this.viewModelFactory)
+                .get(MoviesViewModel::class.java)
+
+        this.moviesViewModel.getMovies().observe(this, this)
     }
 
     private fun initRv() {
         this.moviesRv.layoutManager = LinearLayoutManager(this)
         this.moviesRv.addOverScroll()
         this.moviesRv.itemAnimator = DefaultItemAnimator()
-        this.moviesController = MoviesController(this)
-        this.moviesRv.setController(this.moviesController!!)
+        this.moviesController.moviesListener = this
+        this.moviesRv.setController(this.moviesController)
         this.moviesRv.withAppBar(appBarLayout)
-        this.moviesController?.setData(this.moviesRequest?.moviesResult?.results)
+        this.moviesController.setData(this.movieGroup.movies)
     }
 
     override fun hasMoreToLoad(): Boolean {
-        return this.moviesRequest != null &&
-                this.moviesRequest!!.moviesResult.page < this.moviesRequest!!.moviesResult.total_pages
+        return this.movieGroup.page < this.movieGroup.totalPages
     }
 
     override fun fetchNextPage() {
-        this.moviesRequest!!.moviesResult.page++
-        this.disposable = this.moviesRequest?.getMovies(this.moviesRequest!!.moviesResult.page)
-                ?.initThreads()
-                ?.subscribe({
-                    it.results.forEach { movie ->
-                        if (!this.moviesRequest!!.moviesResult.results.contains(movie)) {
-                            this.moviesRequest?.moviesResult?.results?.add(movie)
-                        }
-                        this.moviesRequest?.moviesResult?.page = it.page
-                        this.moviesRequest?.moviesResult?.total_pages = it.total_pages
+        this.moviesViewModel.fetchMovies(this.movieGroup.index, ++this.movieGroup.page)
+    }
+
+    override fun onChanged(resource: Resource<List<MovieView>>?) {
+        when (resource?.status) {
+            ResourceState.SUCCESS -> {
+                resource.data?.forEach { movie ->
+                    if (!this.movieGroup.movies.contains(movie)) {
+                        this.movieGroup.movies.add(movie)
                     }
-                    this.moviesController?.setData(this.moviesRequest?.moviesResult?.results)
-                }, {
-                    Toast.makeText(this, "Failed to load", Toast.LENGTH_LONG).show()
-                })
+                }
+                this.moviesController.setData(this.movieGroup.movies)
+            }
+            ResourceState.ERROR -> {
+                Toast.makeText(this, "Failed to load", Toast.LENGTH_LONG).show()
+            }
+            else -> {
+                //NOTHING
+            }
+        }
     }
 
-    override fun onDestroy() {
-        this.disposable?.dispose()
-        super.onDestroy()
-    }
 
-    override fun onMovieClicked(movie: Movie) {
-        MovieActivity.launch(this, movie, Source.SOURCE_MORE_MOVIES)
+    override fun onMovieClicked(movie: MovieView) {
+//        MovieActivity.launch(this, movie, Source.SOURCE_MORE_MOVIES)
     }
 
     companion object {
-        private const val API_EXECUTOR = "API_EXECUTOR"
+        private const val MOVIE_GROUP = "MOVIE_GROUP"
 
-        fun launch(context: Context, moviesRequest: MoviesRequest) {
-            Analytics.getInstance(context)?.userOpenedMoreMovies(moviesRequest.title)
+        fun launch(context: Context, movieGroup: MovieGroupView) {
+            Analytics.getInstance(context)?.userOpenedMoreMovies(movieGroup.title)
             val intent = Intent(context, MoviesActivity::class.java)
-            intent.putExtra(API_EXECUTOR, moviesRequest)
+            intent.putExtra(MOVIE_GROUP, movieGroup)
             context.startActivity(intent)
         }
     }

@@ -115,7 +115,8 @@ object MoviesEntityFactory {
     fun makeMovieGroupEntity(): MovieGroupEntity {
         return MovieGroupEntity(
                 this.randomString(),
-                listOf(this.makeMovieEntity(), this.makeMovieEntity()), this.randomString())
+                listOf(this.makeMovieEntity(), this.makeMovieEntity()),
+                this.randomInt(), this.randomInt(), this.randomString())
     }
 
     fun makeMovieGroupsEntity(): List<MovieGroupEntity> {
@@ -220,7 +221,8 @@ object MoviesEntityFactory {
     fun makeMovieGroup(): MovieGroup {
         return MovieGroup(
                 this.randomString(),
-                listOf(this.makeMovie(), this.makeMovie()), this.randomString())
+                listOf(this.makeMovie(), this.makeMovie()),
+                this.randomInt(), this.randomInt(), this.randomString())
     }
 
     fun makeMovieGroups(): List<MovieGroup> {

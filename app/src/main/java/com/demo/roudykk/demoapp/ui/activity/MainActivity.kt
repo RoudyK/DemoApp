@@ -146,7 +146,7 @@ class MainActivity : BaseActivity(), HomeController.Listener, Observer<Resource<
     }
 
     override fun onLoadMoreMovies(movieGroup: MovieGroupView) {
-//        MoviesActivity.launch(this, movieGroup)
+        MoviesActivity.launch(this, movieGroup)
     }
 
     override fun onMovieClicked(movie: MovieView) {

@@ -114,7 +114,8 @@ object MoviesRemoteFactory {
     fun makeMovieGroupEntity(): MovieGroupEntity {
         return MovieGroupEntity(
                 this.randomString(),
-                listOf(this.makeMovieEntity(), this.makeMovieEntity()), this.randomString())
+                listOf(this.makeMovieEntity(), this.makeMovieEntity()),
+                this.randomInt(), this.randomInt(), this.randomString())
     }
 
     fun makeMovieGroupsEntity(): List<MovieGroupEntity> {

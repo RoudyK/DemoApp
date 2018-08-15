@@ -17,12 +17,20 @@ import com.demo.roudykk.demoapp.controllers.MoviesController
 import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.extensions.initThreads
 import com.demo.roudykk.demoapp.extensions.withAppBar
+import com.demo.roudykk.demoapp.injection.ViewModelFactory
 import com.jakewharton.rxbinding2.widget.RxTextView
+import com.roudykk.presentation.model.MovieView
 import kotlinx.android.synthetic.main.activity_search.*
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 class SearchActivity : BaseActivity(), MoviesController.MoviesListener {
-    private lateinit var moviesController: MoviesController
+
+    @Inject
+    lateinit var moviesController: MoviesController
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +46,7 @@ class SearchActivity : BaseActivity(), MoviesController.MoviesListener {
         this.moviesRv.layoutManager = LinearLayoutManager(this)
         this.moviesRv.addOverScroll()
         this.moviesRv.itemAnimator = DefaultItemAnimator()
-        this.moviesController = MoviesController(this)
+//        this.moviesController = MoviesController(this)
         this.moviesRv.setController(this.moviesController)
         this.moviesRv.withAppBar(appBarLayout)
     }
@@ -56,7 +64,7 @@ class SearchActivity : BaseActivity(), MoviesController.MoviesListener {
                         Api.searchApi().searchMovie(query.toString())
                                 .initThreads()
                                 .subscribe({ movieResult ->
-                                    this.moviesController.setData(movieResult.results)
+//                                    this.moviesController.setData(movieResult.results)
                                 }, { throwable ->
                                     Log.d("Search", throwable.toString())
                                     Toast.makeText(this, getString(R.string.failed_load_movie), Toast.LENGTH_SHORT).show()
@@ -74,8 +82,8 @@ class SearchActivity : BaseActivity(), MoviesController.MoviesListener {
         //DO NOTHING
     }
 
-    override fun onMovieClicked(movie: Movie) {
-        MovieActivity.launch(this, movie, Source.SOURCE_SEARCH)
+    override fun onMovieClicked(movie: MovieView) {
+//        MovieActivity.launch(this, movie, Source.SOURCE_SEARCH)
     }
 
     companion object {
