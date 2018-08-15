@@ -7,6 +7,14 @@ import javax.inject.Inject
 class ProductionCompanyEntityMapper @Inject constructor()
     : ViewMapper<ProductionCompanyView, ProductionCompany> {
 
+    override fun mapFromView(view: ProductionCompanyView): ProductionCompany {
+        return ProductionCompany(
+                id = view.id,
+                logoPath = view.logoPath,
+                name = view.name,
+                originCountry = view.originCountry)
+    }
+
     override fun mapToView(domain: ProductionCompany): ProductionCompanyView {
         return ProductionCompanyView(
                 id = domain.id,

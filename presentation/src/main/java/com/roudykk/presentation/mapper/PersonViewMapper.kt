@@ -6,6 +6,25 @@ import javax.inject.Inject
 
 open class PersonViewMapper @Inject constructor() : ViewMapper<PersonView, Person> {
 
+    override fun mapFromView(view: PersonView): Person {
+        return Person(id = view.id,
+                name = view.name,
+                castId = view.castId,
+                creditId = view.creditId,
+                profilePath = view.profilePath,
+                character = view.character,
+                gender = view.gender,
+                order = view.order,
+                birthday = view.birthday,
+                deathday = view.deathday,
+                placeOfBirth = view.placeOfBirth,
+                biography = view.biography,
+                adult = view.adult,
+                knownAs = view.knownAs,
+                knownFor = view.knownFor,
+                popularity = view.popularity)
+    }
+
     override fun mapToView(domain: Person): PersonView {
         return PersonView(id = domain.id,
                 name = domain.name,

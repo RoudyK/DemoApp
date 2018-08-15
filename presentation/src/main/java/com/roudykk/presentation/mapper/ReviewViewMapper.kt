@@ -6,6 +6,13 @@ import javax.inject.Inject
 
 class ReviewViewMapper @Inject constructor() : ViewMapper<ReviewView, Review> {
 
+    override fun mapFromView(view: ReviewView): Review {
+        return Review(id = view.id,
+                author = view.author,
+                content = view.content,
+                url = view.url)
+    }
+
     override fun mapToView(domain: Review): ReviewView {
         return ReviewView(id = domain.id,
                 author = domain.author,

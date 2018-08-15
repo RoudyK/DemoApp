@@ -4,7 +4,7 @@ import com.roudykk.domain.model.Movie
 import com.roudykk.presentation.model.MovieView
 import javax.inject.Inject
 
-open class MovieEntityMapper @Inject constructor(
+open class MovieViewMapper @Inject constructor(
         private val spokenLanguageViewMapper: SpokenLanguageViewMapper,
         private val productionCompanyEntityMapper: ProductionCompanyEntityMapper,
         private val productionCountryViewMapper: ProductionCountryViewMapper,
@@ -13,6 +13,51 @@ open class MovieEntityMapper @Inject constructor(
         private val reviewViewMapper: ReviewViewMapper,
         private val personViewMapper: PersonViewMapper
 ) : ViewMapper<MovieView, Movie> {
+
+    override fun mapFromView(view: MovieView): Movie {
+        return Movie(id = view.id,
+                title = view.title,
+                overview = view.overview,
+                video = view.video,
+                voteAverage = view.voteAverage,
+                voteCount = view.voteCount,
+                popularity = view.popularity,
+                posterPath = view.posterPath,
+                originalLanguage = view.originalLanguage,
+                originalTitle = view.originalTitle,
+                genreIds = view.genreIds,
+                backdropPath = view.backdropPath,
+                releaseDate = view.releaseDate,
+                revenue = view.revenue,
+                runtime = view.runtime,
+                status = view.status,
+                tagLine = view.tagLine,
+                budget = view.budget,
+                genres = view.genres?.map {
+                    this.genreEntityMapper.mapFromView(it)
+                },
+                spokenLanguages = view.spokenLanguages?.map {
+                    this.spokenLanguageViewMapper.mapFromView(it)
+                },
+                productionCompanies = view.productionCompanies?.map {
+                    this.productionCompanyEntityMapper.mapFromView(it)
+                },
+                productionCountries = view.productionCountries?.map {
+                    this.productionCountryViewMapper.mapFromView(it)
+                },
+                videos = view.videos?.map {
+                    this.videoViewMapper.mapFromView(it)
+                },
+                reviews = view.reviews?.map {
+                    this.reviewViewMapper.mapFromView(it)
+                },
+                cast = view.cast?.map {
+                    this.personViewMapper.mapFromView(it)
+                },
+                crew = view.crew?.map {
+                    this.personViewMapper.mapFromView(it)
+                })
+    }
 
     override fun mapToView(domain: Movie): MovieView {
         return MovieView(id = domain.id,
