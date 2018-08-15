@@ -3,6 +3,7 @@ package com.roudykk.presentation.viewmodel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import com.roudykk.domain.interactor.watchlist.ClearWatchListMovies
 import com.roudykk.domain.interactor.watchlist.GetWatchListMovies
 import com.roudykk.domain.interactor.watchlist.RemoveMovieWatchList
 import com.roudykk.domain.model.Movie
@@ -17,7 +18,7 @@ import javax.inject.Inject
 class WatchListViewModel @Inject constructor(
         private val getWatchListMovies: GetWatchListMovies,
         private val removeMovieWatchList: RemoveMovieWatchList,
-        private val clearMovieWatchList: RemoveMovieWatchList,
+        private val clearMovieWatchList: ClearWatchListMovies,
         private val movieViewMapper: MovieViewMapper
 ) : ViewModel() {
 

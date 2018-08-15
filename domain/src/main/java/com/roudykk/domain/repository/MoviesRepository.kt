@@ -21,4 +21,6 @@ interface MoviesRepository {
     fun getWatchListMovies(): Observable<List<Movie>>
 
     fun getPersonDetails(personId: Int): Observable<Person>
+
+    fun clearWatchListMovies(): Completable
 }

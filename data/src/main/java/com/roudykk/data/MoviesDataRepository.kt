@@ -70,4 +70,7 @@ class MoviesDataRepository @Inject constructor(
                 }
     }
 
+    override fun clearWatchListMovies(): Completable {
+        return this.factory.getCacheDataStore().clearWatchListMovies()
+    }
 }
