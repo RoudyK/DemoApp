@@ -1,12 +1,10 @@
-
 apply plugin: 'kotlin'
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-
     def dependencies = rootProject.ext.domainDependencies
     def testDependencies = rootProject.ext.domainTestDependencies
 
+    implementation dependencies.kotlin
     implementation dependencies.rxJava
     implementation dependencies.javaxAnnotation
     implementation dependencies.javaxInject

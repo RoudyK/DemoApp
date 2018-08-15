@@ -4,7 +4,7 @@ ext {
     androidMinSdkVersion = 21
     androidTargetSdkVersion = 27
     androidCompileSdkVersion = 27
-    kotlinVersion = "1.2.51"
+    kotlinVersion = "1.2.60"
 
     def rxJavaVersion = "2.2.0"
     def javaxAnnotationVersion = "1.0"
@@ -29,6 +29,7 @@ ext {
     def androidSupportRulesVersion = "1.0.2-alpha1"
 
     domainDependencies = [
+            kotlin         : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}",
             javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             javaxInject    : "javax.inject:javax.inject:${javaxInjectVersion}",
             rxJava         : "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
@@ -41,6 +42,7 @@ ext {
     ]
 
     dataDependencies = [
+            kotlin         : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}",
             javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             javaxInject    : "javax.inject:javax.inject:${javaxInjectVersion}",
             rxJava         : "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
