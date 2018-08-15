@@ -22,7 +22,11 @@
 - [RxBinding](https://github.com/JakeWharton/RxBinding) - Rx binding for android views
 - [Room](https://developer.android.com/topic/libraries/architecture/room) - Local Database Access
 - [Mixpanel](https://github.com/mixpanel/mixpanel-android) - User Analytics
+- [Dagger2](https://github.com/google/dagger) - Dependency Injections
 
+### Software Structure
+- Clean Architecture
+- MVVM software architectural pattern
 
 ### Run the App
 - Clone the Repo
@@ -32,12 +36,12 @@
 ### TODO
 - ~Support Light and Dark themes~
 - ~Add crashlytics~
-- Writing unit tests
+- ~Writing unit tests~
+- Writing UI tests
 - Code documentation
 - Code refactoring XD
 - CD/CI (Bitbucket pipeline + Hockeyapp)
 - Add product flavors for DEMO and FULL
 - Deeplinking
-
 
 *"This project is in constant development, any tips or recommendations are appreciated"*
