@@ -1,7 +1,6 @@
 package com.roudykk.remote.mapper
 
 import com.roudykk.data.model.MovieGroupEntity
-import com.roudykk.remote.model.MovieGroupModel
 import com.roudykk.remote.model.MoviesResultModel
 import javax.inject.Inject
 
