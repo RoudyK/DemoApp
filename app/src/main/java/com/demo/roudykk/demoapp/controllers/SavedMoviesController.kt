@@ -2,28 +2,31 @@ package com.demo.roudykk.demoapp.controllers
 
 import com.airbnb.epoxy.TypedEpoxyController
 import com.demo.roudykk.demoapp.SavedMovieBindingModel_
-import com.demo.roudykk.demoapp.api.models.Movie
+import com.roudykk.presentation.model.MovieView
+import javax.inject.Inject
 
-class SavedMoviesController(private val savedMoviesListener: SavedMoviesListener) : TypedEpoxyController<List<Movie>>() {
+class SavedMoviesController @Inject constructor() : TypedEpoxyController<List<MovieView>>() {
 
-    override fun buildModels(movies: List<Movie>?) {
+    var savedMoviesListener: SavedMoviesListener? = null
+
+    override fun buildModels(movies: List<MovieView>?) {
         movies?.forEach { movie ->
             SavedMovieBindingModel_()
                     .id(movie.id)
                     .movie(movie)
                     .onClickListener { _ ->
-                        this.savedMoviesListener.onMovieClicked(movie)
+                        this.savedMoviesListener?.onMovieClicked(movie)
                     }
                     .onDeleteClickListener { _ ->
-                        this.savedMoviesListener.onDeleteMovieClicked(movie)
+                        this.savedMoviesListener?.onDeleteMovieClicked(movie)
                     }
                     .addTo(this)
         }
     }
 
     interface SavedMoviesListener {
-        fun onMovieClicked(movie: Movie)
+        fun onMovieClicked(movie: MovieView)
 
-        fun onDeleteMovieClicked(movie: Movie)
+        fun onDeleteMovieClicked(movie: MovieView)
     }
 }

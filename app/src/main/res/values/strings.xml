@@ -55,4 +55,5 @@
     <string name="known_as">Also known as:</string>
     <string name="place_of_birth">Place of birth:</string>
     <string name="biography">Biography:</string>
+    <string name="failed_update_watchlist">Failed to update watchlist</string>
 </resources>

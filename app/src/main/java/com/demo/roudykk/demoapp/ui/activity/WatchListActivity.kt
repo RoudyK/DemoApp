@@ -11,27 +11,40 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.analytics.Analytics
-import com.demo.roudykk.demoapp.analytics.consts.Source
-import com.demo.roudykk.demoapp.api.models.Movie
 import com.demo.roudykk.demoapp.controllers.SavedMoviesController
-import com.demo.roudykk.demoapp.db.models.MovieViewModel
 import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.extensions.withAppBar
+import com.demo.roudykk.demoapp.injection.ViewModelFactory
+import com.roudykk.presentation.model.MovieView
+import com.roudykk.presentation.state.ResourceState
+import com.roudykk.presentation.viewmodel.WatchListViewModel
+import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_watch_list.*
+import javax.inject.Inject
 
 class WatchListActivity : BaseActivity(), SavedMoviesController.SavedMoviesListener {
-    private lateinit var savedMoviesController: SavedMoviesController
-    private lateinit var movieViewModel: MovieViewModel
+
+    @Inject
+    lateinit var savedMoviesController: SavedMoviesController
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private lateinit var watchListViewModel: WatchListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_watch_list)
+        AndroidInjection.inject(this)
+
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         title = getString(R.string.watch_list)
 
+        this.initViewModel()
         this.initRv()
         this.initViewModel()
     }
@@ -48,11 +61,11 @@ class WatchListActivity : BaseActivity(), SavedMoviesController.SavedMoviesListe
                         .setTitle(getString(R.string.delete_movies))
                         .setMessage(getString(R.string.delete_all_movies_confirmation))
                         .setPositiveButton(getString(R.string.ok).toUpperCase()) { _, _ ->
-                            if(this.savedMoviesController.currentData != null){
+                            if (this.savedMoviesController.currentData != null) {
                                 Analytics.getInstance(this)
                                         ?.userDeletedAllMoviesWatchList(this.savedMoviesController.currentData!!.size)
                             }
-                            this.movieViewModel.deleteAll()
+                            this.watchListViewModel.clearMovieWatchList()
                         }
                         .setNegativeButton(getString(R.string.cancel)) { _, _ ->
                             //DO NOTHING
@@ -64,42 +77,56 @@ class WatchListActivity : BaseActivity(), SavedMoviesController.SavedMoviesListe
     }
 
     private fun initRv() {
-        moviesRv.layoutManager = LinearLayoutManager(this)
-        moviesRv.itemAnimator = DefaultItemAnimator()
-        moviesRv.addOverScroll()
-        moviesRv.withAppBar(appBarLayout)
-        this.savedMoviesController = SavedMoviesController(this)
-        moviesRv.setController(this.savedMoviesController)
+        this.moviesRv.layoutManager = LinearLayoutManager(this)
+        this.moviesRv.itemAnimator = DefaultItemAnimator()
+        this.moviesRv.addOverScroll()
+        this.moviesRv.withAppBar(appBarLayout)
+        this.savedMoviesController.savedMoviesListener = this
+        this.moviesRv.setController(this.savedMoviesController)
     }
 
     private fun initViewModel() {
-        this.movieViewModel = ViewModelProviders.of(this).get(MovieViewModel::class.java)
+        this.watchListViewModel = ViewModelProviders
+                .of(this, viewModelFactory)
+                .get(WatchListViewModel::class.java)
 
-        this.movieViewModel.getAll().observe(this, Observer<List<Movie>> { movies ->
-            this.savedMoviesController.setData(movies)
-
-            if (movies != null) {
-                if (movies.isNotEmpty()) {
-                    emptyView.visibility = View.GONE
-                } else {
-                    emptyView.visibility = View.VISIBLE
+        this.watchListViewModel.getMovies().observe(this, Observer { resource ->
+            when (resource?.status) {
+                ResourceState.SUCCESS -> {
+                    val movies = resource.data
+                    if (movies != null) {
+                        if (movies.isNotEmpty()) {
+                            emptyView.visibility = View.GONE
+                        } else {
+                            emptyView.visibility = View.VISIBLE
+                        }
+                    } else {
+                        emptyView.visibility = View.VISIBLE
+                    }
+                    this.savedMoviesController.setData(movies)
                 }
-            } else {
-                emptyView.visibility = View.VISIBLE
+                ResourceState.ERROR -> {
+                    Toast.makeText(this, getString(R.string.failed_update_watchlist),
+                            Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    //DO NOTHING
+                }
             }
         })
+        this.watchListViewModel.fetchMovies()
     }
 
-    override fun onMovieClicked(movie: Movie) {
-        MovieActivity.launch(this, movie, Source.SOURCE_WATCH_LIST)
+    override fun onMovieClicked(movie: MovieView) {
+//        MovieActivity.launch(this, movie, Source.SOURCE_WATCH_LIST)
     }
 
-    override fun onDeleteMovieClicked(movie: Movie) {
+    override fun onDeleteMovieClicked(movie: MovieView) {
         AlertDialog.Builder(this)
                 .setTitle(getString(R.string.delete_movie))
                 .setMessage(getString(R.string.delete_movie_confirmation))
                 .setPositiveButton(getString(R.string.ok).toUpperCase()) { _, _ ->
-                    this.movieViewModel.delete(movie.id)
+                    this.watchListViewModel.removeMovieWatchList(movie.id)
                     Analytics.getInstance(this)?.userDeletedMovieWatchList(movie.id)
                 }
                 .setNegativeButton(getString(R.string.cancel)) { _, _ ->

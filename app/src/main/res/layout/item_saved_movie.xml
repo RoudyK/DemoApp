@@ -7,7 +7,7 @@
 
         <variable
             name="movie"
-            type="com.demo.roudykk.demoapp.api.models.Movie" />
+            type="com.roudykk.presentation.model.MovieView" />
 
         <variable
             name="onClickListener"
@@ -70,7 +70,7 @@
             android:layout_marginTop="2dp"
             android:layout_marginEnd="10dp"
             android:numStars="5"
-            android:rating="@{movie.vote_average/2}"
+            android:rating="@{movie.voteAverage/2}"
             app:layout_constraintBottom_toBottomOf="@+id/movieReviewsTv"
             app:layout_constraintLeft_toRightOf="@+id/movieIv"
             app:layout_constraintTop_toBottomOf="@+id/movieNameTv"
@@ -83,7 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="2dp"
-            android:text="@{String.format(@string/x_reviews, String.valueOf(movie.vote_count))}"
+            android:text="@{String.format(@string/x_reviews, String.valueOf(movie.voteCount))}"
             android:textColor="@color/colorAccent"
             android:textSize="12sp"
             app:layout_constraintLeft_toRightOf="@+id/movieRb"
