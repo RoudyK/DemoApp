@@ -18,8 +18,8 @@ android {
         applicationId "com.demo.roudykk.demoapp"
         minSdkVersion globalConfig["androidMinSdkVersion"]
         targetSdkVersion globalConfig["androidTargetSdkVersion"]
-        versionCode 1
-        versionName "1.0"
+        versionCode globalConfig["androidVersionCode"]
+        versionName globalConfig["androidVersionName"]
     }
 
     buildTypes {

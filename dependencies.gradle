@@ -1,11 +1,15 @@
 ext {
 
+    //Android Config
     androidBuildToolsVersion = "27.0.3"
     androidMinSdkVersion = 21
     androidTargetSdkVersion = 27
     androidCompileSdkVersion = 27
     kotlinVersion = "1.2.60"
+    androidVersionCode = 1
+    androidVersionName = "1.0"
 
+    //Libraries
     def rxJavaVersion = "2.2.0"
     def javaxAnnotationVersion = "1.0"
     def javaxInjectVersion = "1"
@@ -22,6 +26,7 @@ ext {
     def espressoVersion = "3.0.0"
     def runnerVersion = "0.5"
 
+    //Android Libraries + Test
     def rxAndroidVersion = "2.0.2"
     def epoxyVersion = "2.16.0"
     def butterknifeVersion = "8.8.1"
@@ -43,6 +48,7 @@ ext {
     def calligraphyVersion = "3.0.0"
     def mockitoAndroidVersion = "2.18.3"
 
+    //Test Libraries
     def jUnitVersion = "4.12"
     def mockitoVersion = "2.0.0-RC1"
     def assertJVersion = "3.8.0"
