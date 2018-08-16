@@ -16,13 +16,15 @@
 
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="?attr/backgroundColor"
         android:clickable="true"
+        android:contentDescription="movieContainer"
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
-        android:onClickListener="@{onClickListener}"
-        android:background="?attr/backgroundColor">
+        android:onClickListener="@{onClickListener}">
 
         <ImageView
             android:id="@+id/movieIv"
@@ -36,8 +38,8 @@
             tools:src="?placeHolder" />
 
         <TextView
-            fontPath="fonts/AirbnbCereal-Medium.ttf"
             android:id="@+id/movieTitleTv"
+            fontPath="fonts/AirbnbCereal-Medium.ttf"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
