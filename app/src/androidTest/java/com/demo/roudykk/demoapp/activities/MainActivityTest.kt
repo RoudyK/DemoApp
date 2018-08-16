@@ -154,4 +154,5 @@ class MainActivityTest {
         whenever(TestApplication.appComponent().moviesRepository().getWatchListMovies())
                 .thenReturn(observable)
     }
+
 }
