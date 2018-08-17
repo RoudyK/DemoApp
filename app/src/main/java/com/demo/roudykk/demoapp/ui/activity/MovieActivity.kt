@@ -73,7 +73,7 @@ class MovieActivity : BaseActivity(), MovieController.Listener, Observer<Resourc
 
         this.readMore.setOnClickListener {
             this.appBarLayout.setExpanded(false, true)
-            Analytics.getInstance(this)?.userClickedMovieReadMore()
+            Analytics.getInstance(this).userClickedMovieReadMore()
         }
 
         this.watchLater.setOnClickListener {
@@ -83,7 +83,7 @@ class MovieActivity : BaseActivity(), MovieController.Listener, Observer<Resourc
                     .setPositiveButton(getString(R.string.ok).toUpperCase()) { _, _ ->
                         this.movieViewModel.addMovieWatchList(this.movie)
                         Toast.makeText(this, getString(R.string.movie_added), Toast.LENGTH_SHORT).show()
-                        Analytics.getInstance(this)?.userAddedMovieWatchList(movie.id)
+                        Analytics.getInstance(this).userAddedMovieWatchList(movie.id)
                     }
                     .setNegativeButton(getString(R.string.cancel)) { _, _ ->
                         //DO NOTHING

@@ -78,11 +78,11 @@ class Analytics() : BaseAnalytics, Tracker {
     companion object {
         private var INSTANCE: Analytics? = null
 
-        fun getInstance(context: Context): Analytics? {
+        fun getInstance(context: Context): Analytics {
             if (INSTANCE == null) {
                 INSTANCE = Analytics(context)
             }
-            return INSTANCE
+            return INSTANCE as Analytics
         }
     }
 

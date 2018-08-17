@@ -52,7 +52,7 @@ class MainActivity : BaseActivity(), HomeController.Listener, Observer<Resource<
         this.initRv()
         this.loadMovies()
 
-        Analytics.getInstance(this)?.userOpenedHome()
+        Analytics.getInstance(this).userOpenedHome()
     }
 
     private fun initViewModel() {

@@ -128,7 +128,7 @@ class WatchListActivity : BaseActivity(), SavedMoviesController.SavedMoviesListe
                 .setMessage(getString(R.string.delete_movie_confirmation))
                 .setPositiveButton(getString(R.string.ok).toUpperCase()) { _, _ ->
                     this.watchListViewModel.removeMovieWatchList(movie.id)
-                    Analytics.getInstance(this)?.userDeletedMovieWatchList(movie.id)
+                    Analytics.getInstance(this).userDeletedMovieWatchList(movie.id)
                 }
                 .setNegativeButton(getString(R.string.cancel)) { _, _ ->
                     //DO NOTHING

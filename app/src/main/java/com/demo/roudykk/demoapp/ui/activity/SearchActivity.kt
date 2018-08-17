@@ -87,7 +87,7 @@ class SearchActivity : BaseActivity(), MoviesController.MoviesListener {
                     if (query.toString().isEmpty()) {
                         this.moviesController.setData(ArrayList())
                     } else {
-                        Analytics.getInstance(this)?.userSearched(query.toString())
+                        Analytics.getInstance(this).userSearched(query.toString())
                         this.searchViewModel.fetchMovies(query.toString())
                     }
                 }
