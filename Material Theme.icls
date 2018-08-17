@@ -1,11 +1,11 @@
-<scheme name="Material Palenight copy" version="142" parent_scheme="Darcula">
+<scheme name="Material Palenight copy3" version="142" parent_scheme="Darcula">
   <option name="FONT_SCALE" value="1.25" />
   <metaInfo>
-    <property name="created">2018-07-18T20:02:52</property>
+    <property name="created">2018-08-18T00:10:40</property>
     <property name="ide">AndroidStudio</property>
-    <property name="ideVersion">3.3.0.2</property>
-    <property name="modified">2018-07-18T20:03:09</property>
-    <property name="originalScheme">Material Palenight copy</property>
+    <property name="ideVersion">3.3.0.5</property>
+    <property name="modified">2018-08-18T00:10:49</property>
+    <property name="originalScheme">Material Palenight copy3</property>
   </metaInfo>
   <option name="LINE_SPACING" value="1.0" />
   <option name="EDITOR_FONT_SIZE" value="20" />
@@ -40,10 +40,10 @@
     <option name="FILESTATUS_UNKNOWN" value="f77669" />
     <option name="FILESTATUS_addedOutside" value="c3e88d" />
     <option name="FILESTATUS_modifiedOutside" value="82aaff" />
-    <option name="GUTTER_BACKGROUND" value="292d3e" />
+    <option name="GUTTER_BACKGROUND" value="282c34" />
     <option name="INDENT_GUIDE" value="4e5579" />
     <option name="INFORMATION_HINT" value="292d3e" />
-    <option name="LINE_NUMBERS_COLOR" value="3a3f58" />
+    <option name="LINE_NUMBERS_COLOR" value="7681b3" />
     <option name="METHOD_SEPARATORS_COLOR" value="828ed5" />
     <option name="MODIFIED_LINES_COLOR" value="ffcb6b" />
     <option name="MT_IGNORE.PROJECT_VIEW.IGNORED" value="ab7967" />
