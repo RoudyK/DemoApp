@@ -1,10 +1,10 @@
 <scheme name="Material Palenight copy3" version="142" parent_scheme="Darcula">
   <option name="FONT_SCALE" value="1.25" />
   <metaInfo>
-    <property name="created">2018-08-18T00:10:40</property>
+    <property name="created">2018-08-18T00:15:38</property>
     <property name="ide">AndroidStudio</property>
     <property name="ideVersion">3.3.0.5</property>
-    <property name="modified">2018-08-18T00:10:49</property>
+    <property name="modified">2018-08-18T00:15:51</property>
     <property name="originalScheme">Material Palenight copy3</property>
   </metaInfo>
   <option name="LINE_SPACING" value="1.0" />
@@ -1273,7 +1273,7 @@
     </option>
     <option name="KOTLIN_ANNOTATION">
       <value>
-        <option name="FOREGROUND" value="c792ea" />
+        <option name="FOREGROUND" value="ea87e8" />
       </value>
     </option>
     <option name="KOTLIN_BACKING_FIELD_VARIABLE">
@@ -1304,6 +1304,11 @@
       <value />
     </option>
     <option name="KOTLIN_LABEL" baseAttributes="DEFAULT_LABEL" />
+    <option name="KOTLIN_LOCAL_VARIABLE">
+      <value>
+        <option name="FOREGROUND" value="99a0cf" />
+      </value>
+    </option>
     <option name="KOTLIN_NAMED_ARGUMENT">
       <value>
         <option name="FOREGROUND" value="f77669" />
