@@ -2,8 +2,12 @@ package com.demo.roudykk.demoapp
 
 import android.app.Activity
 import android.app.Application
+import android.content.Context
 import android.support.v4.app.Fragment
+import android.support.v7.widget.SnapHelper
+import com.airbnb.epoxy.Carousel
 import com.crashlytics.android.Crashlytics
+import com.demo.roudykk.demoapp.controllers.helpers.StartSnapHelper
 import com.demo.roudykk.demoapp.injection.DaggerApplicationComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -51,5 +55,11 @@ class DemoApplication : Application(), HasActivityInjector, HasSupportFragmentIn
         if (!BuildConfig.DEBUG) {
             Fabric.with(this, Crashlytics())
         }
+
+        Carousel.setDefaultGlobalSnapHelperFactory(object : Carousel.SnapHelperFactory() {
+            override fun buildSnapHelper(context: Context?): SnapHelper {
+                return StartSnapHelper()
+            }
+        })
     }
 }

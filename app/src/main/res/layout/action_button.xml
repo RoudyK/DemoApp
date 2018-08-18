@@ -3,11 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     fontPath="fonts/AirbnbCereal-Medium.ttf"
     android:id="@+id/actionView"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/background_action"
     android:foreground="?android:attr/selectableItemBackground"
     android:padding="10dp"
+    android:gravity="center"
     android:textColor="@color/white"
     android:textStyle="bold"
-    tools:text="Action" />
+    tools:text="Action"
+    tools:ignore="MissingPrefix" />

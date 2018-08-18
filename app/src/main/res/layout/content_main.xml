@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     android:background="?attr/backgroundColor"
     tools:context=".ui.activity.MainActivity">
 
@@ -11,26 +12,32 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/backgroundColor"
-        app:elevation="0dp">
+        android:background="?attr/backgroundColor">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             style="@style/ToolBarStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/ToolBarStyle" />
+            android:theme="@style/ToolBarStyle"
+            app:layout_scrollFlags="scroll|enterAlways" />
+
+        <android.support.design.widget.TabLayout
+            android:visibility="gone"
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/colorPrimary"
+            app:tabTextColor="@color/colorPrimaryPale" />
     </android.support.design.widget.AppBarLayout>
 
-    <com.airbnb.epoxy.EpoxyRecyclerView
-        android:id="@+id/homeRv"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingBottom="20dp"
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/loadingView"
@@ -40,7 +47,6 @@
         app:lottie_autoPlay="true"
         app:lottie_fileName="loading-animation.json"
         app:lottie_loop="true" />
-
 
     <LinearLayout
         android:id="@+id/errorView"

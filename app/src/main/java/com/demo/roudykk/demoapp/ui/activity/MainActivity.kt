@@ -4,10 +4,11 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.graphics.PorterDuff
 import android.os.Bundle
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.GravityCompat
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -17,9 +18,8 @@ import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.analytics.Analytics
 import com.demo.roudykk.demoapp.analytics.consts.Source
 import com.demo.roudykk.demoapp.controllers.HomeController
-import com.demo.roudykk.demoapp.extensions.addOverScroll
-import com.demo.roudykk.demoapp.extensions.withAppBar
 import com.demo.roudykk.demoapp.injection.ViewModelFactory
+import com.demo.roudykk.demoapp.ui.fragment.MovieGroupFragment
 import com.roudykk.presentation.model.MovieGroupView
 import com.roudykk.presentation.model.MovieView
 import com.roudykk.presentation.state.Resource
@@ -33,12 +33,10 @@ import javax.inject.Inject
 class MainActivity : BaseActivity(), HomeController.Listener, Observer<Resource<List<MovieGroupView>>> {
 
     @Inject
-    lateinit var homeController: HomeController
-
-    @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
     private lateinit var homeViewModel: HomeViewModel
+    private lateinit var moviesPagerAdapter: MoviesPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +47,7 @@ class MainActivity : BaseActivity(), HomeController.Listener, Observer<Resource<
         this.initViewModel()
         this.initToolbar()
         this.initDrawer()
-        this.initRv()
+        this.initViewPager()
         this.loadMovies()
 
         Analytics.getInstance(this).userOpenedHome()
@@ -112,31 +110,31 @@ class MainActivity : BaseActivity(), HomeController.Listener, Observer<Resource<
         }
     }
 
-    private fun initRv() {
-        this.homeRv.layoutManager = LinearLayoutManager(this)
-        this.homeRv.addOverScroll()
-        this.homeRv.itemAnimator = DefaultItemAnimator()
-        this.homeController.listener = this
-        this.homeRv.setController(homeController)
-        this.homeRv.withAppBar(this.appBarLayout)
+    private fun initViewPager() {
+        this.moviesPagerAdapter = MoviesPagerAdapter(this.supportFragmentManager)
+        this.viewPager.adapter = this.moviesPagerAdapter
+        this.tabLayout.setupWithViewPager(this.viewPager)
     }
 
     override fun onChanged(resource: Resource<List<MovieGroupView>>?) {
         when (resource?.status) {
             ResourceState.LOADING -> {
+                this.tabLayout.visibility = View.GONE
                 this.loadingView.visibility = View.VISIBLE
                 this.errorView.visibility = View.GONE
-                this.homeController.setData(listOf())
+                this.moviesPagerAdapter.updateMovies(listOf())
             }
             ResourceState.SUCCESS -> {
+                this.tabLayout.visibility = View.VISIBLE
                 this.loadingView.visibility = View.GONE
                 this.errorView.visibility = View.GONE
-                this.homeController.setData(resource.data)
+                this.moviesPagerAdapter.updateMovies(resource.data)
             }
             ResourceState.ERROR -> {
+                this.tabLayout.visibility = View.GONE
                 this.loadingView.visibility = View.GONE
                 this.errorView.visibility = View.VISIBLE
-                this.homeController.setData(listOf())
+                this.moviesPagerAdapter.updateMovies(listOf())
             }
         }
     }
@@ -152,6 +150,36 @@ class MainActivity : BaseActivity(), HomeController.Listener, Observer<Resource<
 
     override fun onMovieClicked(movie: MovieView) {
         MovieActivity.launch(this, movie, Source.SOURCE_HOME)
+    }
+
+    inner class MoviesPagerAdapter(fragmentManager: FragmentManager)
+        : FragmentPagerAdapter(fragmentManager) {
+
+        private var movieGroups = mutableListOf<MovieGroupView>()
+        private val movieGroupFragments = mutableListOf<MovieGroupFragment>()
+
+        fun updateMovies(movieGroups: List<MovieGroupView>?) {
+            movieGroups?.let {
+                this.movieGroupFragments.clear()
+                this.movieGroups = movieGroups.toMutableList()
+                this.movieGroups.forEach { movieGroup ->
+                    this.movieGroupFragments.add(MovieGroupFragment.newInstance(movieGroup))
+                }
+                this.notifyDataSetChanged()
+            }
+        }
+
+        override fun getItem(position: Int): Fragment {
+            return this.movieGroupFragments[position]
+        }
+
+        override fun getCount(): Int {
+            return this.movieGroupFragments.size
+        }
+
+        override fun getPageTitle(position: Int): CharSequence? {
+            return this.movieGroups[position].title
+        }
     }
 
 }

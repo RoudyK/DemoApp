@@ -2,6 +2,7 @@
 <resources>
     <!-- Primary colors -->
     <color name="colorPrimary">#FD003B</color>
+    <color name="colorPrimaryPale">#83fd003b</color>
     <color name="colorPrimaryDark">#b5003c</color>
     <color name="colorAccent">#FD003B</color>
     <color name="colorNavigation">#db5b79</color>
