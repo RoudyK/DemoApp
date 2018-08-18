@@ -9,6 +9,7 @@ import com.airbnb.epoxy.Carousel
 import com.crashlytics.android.Crashlytics
 import com.demo.roudykk.demoapp.controllers.helpers.StartSnapHelper
 import com.demo.roudykk.demoapp.injection.DaggerApplicationComponent
+import com.google.android.gms.ads.MobileAds
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
@@ -61,5 +62,7 @@ class DemoApplication : Application(), HasActivityInjector, HasSupportFragmentIn
                 return StartSnapHelper()
             }
         })
+
+        MobileAds.initialize(this, getString(R.string.ad_app_id))
     }
 }

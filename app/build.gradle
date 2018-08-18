@@ -75,6 +75,7 @@ dependencies {
     implementation dependencies.overscroll
     implementation dependencies.viewpump
     implementation dependencies.lottie
+    implementation dependencies.googleAds
     implementation(dependencies.crashlytics) {
         transitive = true
     }

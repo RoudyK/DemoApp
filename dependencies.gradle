@@ -47,6 +47,7 @@ ext {
     def readMoreVersion = "2.1.0"
     def calligraphyVersion = "3.0.0"
     def mockitoAndroidVersion = "2.18.3"
+    def playServicesVersion = "15.0.1"
 
     //Test Libraries
     def jUnitVersion = "4.12"
@@ -182,7 +183,8 @@ ext {
             coordinatorLayout  : "com.otaliastudios:bottomsheetcoordinatorlayout:${coordinatorVersion}",
             customTabs         : "saschpe.android:customtabs:${customTabsVersion}",
             readmoretv         : "com.borjabravo:readmoretextview:${readMoreVersion}",
-            calligraphy        : "io.github.inflationx:calligraphy3:${calligraphyVersion}"
+            calligraphy        : "io.github.inflationx:calligraphy3:${calligraphyVersion}",
+            googleAds          : "com.google.android.gms:play-services-ads:${playServicesVersion}"
     ]
 
     appTestDependencies = [

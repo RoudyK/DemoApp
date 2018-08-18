@@ -3,6 +3,9 @@
     //None-translatable
     <string name="movie_image" translatable="false">movie_image</string>
     <string name="youtube_key" translatable="false">AIzaSyB9cCd4xR6A19V3CrdzlLb3yCZP6Lrm7RI</string>
+    <string name="ad_id">ca-app-pub-4877236743803994/3264828293</string>
+    <string name="test_ad_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="ad_app_id">ca-app-pub-4877236743803994~9992112073</string>
 
     //translatable
     <string name="app_name">DemoApp</string>
@@ -13,7 +16,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="highest_rated">Highest Rated</string>
-    <string name="view_more">View More</string>
+    <string name="view_more">View More Movies</string>
     <string name="reload">reload</string>
     <string name="x_reviews">(%1$s reviews)</string>
     <string name="failed_load_movie">Failed to load movie</string>
