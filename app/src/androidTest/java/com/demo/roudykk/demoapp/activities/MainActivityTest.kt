@@ -1,6 +1,7 @@
 package com.demo.roudykk.demoapp.activities
 
 import android.support.test.espresso.Espresso.onView
+import android.support.test.espresso.Espresso.pressBack
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.action.ViewActions.swipeLeft
 import android.support.test.espresso.assertion.ViewAssertions.matches
@@ -23,6 +24,8 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import android.support.test.espresso.intent.Intents.times
+
 
 class MainActivityTest {
 
@@ -60,6 +63,9 @@ class MainActivityTest {
                 onView(withText(movie.title))
                         .check(matches(isDisplayed()))
             }
+
+            onView(allOf(withText(R.string.view_more), isCompletelyDisplayed()))
+                    .check(matches(isDisplayed()))
 
             onView(withId(R.id.viewPager))
                     .perform(swipeLeft())
@@ -147,6 +153,27 @@ class MainActivityTest {
         intended(hasComponent(SettingsActivity::class.java.name))
     }
 
+    @Test
+    fun viewMoreOpensMoreMovies() {
+        val movieGroups = MoviesFactory.makeMovieGroups()
+        this.stubGetMovieGroups(Observable.just(movieGroups))
+        this.stubGetMovies(Observable.just(movieGroups[0].movies))
+
+        this.activity.launchActivity(null)
+
+        movieGroups.forEach {
+            onView(allOf(withText(R.string.view_more), isCompletelyDisplayed()))
+                    .perform(click())
+
+            pressBack()
+
+            onView(withId(R.id.viewPager))
+                    .perform(swipeLeft())
+        }
+
+        intended(hasComponent(MoviesActivity::class.java.name), times(movieGroups.size))
+    }
+
     private fun stubGetMovieGroups(observable: Observable<List<MovieGroup>>) {
         whenever(TestApplication.appComponent().moviesRepository().getMovieGroups())
                 .thenReturn(observable)
@@ -159,6 +186,11 @@ class MainActivityTest {
 
     private fun stubGetWatchListMovies(observable: Observable<List<Movie>>) {
         whenever(TestApplication.appComponent().moviesRepository().getWatchListMovies())
+                .thenReturn(observable)
+    }
+
+    private fun stubGetMovies(observable: Observable<List<Movie>>) {
+        whenever(TestApplication.appComponent().moviesRepository().getMovies(any(), any()))
                 .thenReturn(observable)
     }
 
