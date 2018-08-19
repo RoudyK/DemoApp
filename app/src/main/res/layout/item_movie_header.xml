@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:clickable="true"
+        android:contentDescription="@string/movie_container"
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
         android:onClickListener="@{onClickListener}">

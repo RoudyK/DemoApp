@@ -2,6 +2,7 @@ package com.demo.roudykk.demoapp.activities
 
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions.click
+import android.support.test.espresso.action.ViewActions.swipeLeft
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.intent.Intents
 import android.support.test.espresso.intent.Intents.intended
@@ -52,10 +53,16 @@ class MainActivityTest {
         this.activity.launchActivity(null)
 
         movieGroups.forEach { movieGroup ->
+            onView(withText(movieGroup.title))
+                    .check(matches(isDisplayed()))
+
             movieGroup.movies.forEach { movie ->
-                onView(withId(R.id.homeRv))
-                        .check(matches(hasDescendant(withText(movie.title))))
+                onView(withText(movie.title))
+                        .check(matches(isDisplayed()))
             }
+
+            onView(withId(R.id.viewPager))
+                    .perform(swipeLeft())
         }
     }
 
