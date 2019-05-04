@@ -1,11 +1,11 @@
 ext {
 
     //Android Config
-    androidBuildToolsVersion = "27.0.3"
+    androidBuildToolsVersion = "28.0.3"
     androidMinSdkVersion = 21
-    androidTargetSdkVersion = 27
-    androidCompileSdkVersion = 27
-    kotlinVersion = "1.2.60"
+    androidTargetSdkVersion = 28
+    androidCompileSdkVersion = 28
+    kotlinVersion = "1.3.31"
     androidVersionCode = 1
     androidVersionName = "1.0"
 
@@ -13,28 +13,27 @@ ext {
     def rxJavaVersion = "2.2.0"
     def javaxAnnotationVersion = "1.0"
     def javaxInjectVersion = "1"
-    def roomVersion = "1.1.1"
-    def lifecycleVersion = "1.1.1"
+    def roomVersion = "2.0.0"
+    def lifeCycleVersion = "2.0.0"
     def retrofitVersion = "2.4.0"
     def okHttpVersion = "3.10.0"
     def gsonVersion = "2.8.5"
     def androidAnnotationsVersion = "21.0.3"
     def rxKotlinVersion = "2.3.0"
     def mockitoInlineVersion = "2.13.0"
-    def archCompVersion = "1.1.1"
-    def daggerVersion = "2.16"
-    def espressoVersion = "3.0.0"
-    def runnerVersion = "0.5"
+    def archCompVersion = "2.0.0"
+    def daggerVersion = "2.22.1"
+    def espressoVersion = "3.1.0"
+    def runnerVersion = "1.1.0"
 
     //Android Libraries + Test
-    def rxAndroidVersion = "2.0.2"
-    def epoxyVersion = "2.16.0"
-    def butterknifeVersion = "8.8.1"
-    def supportVersion = "27.1.1"
-    def glideVersion = "4.7.1"
-    def constraintVersion = "1.1.2"
+    def rxAndroidVersion = "2.1.1"
+    def epoxyVersion = "3.4.2"
+    def butterKnifeVersion = "10.1.0"
+    def glideVersion = "4.9.0"
+    def constraintVersion = "1.1.3"
     def rxBindingVersion = "2.1.1"
-    def overscrollVersion = "1.0.4"
+    def overScrollVersion = "1.0.4"
     def viewPumpVersion = "1.0.0"
     def lottieVersion = "2.5.4"
     def crashlyticsVersion = "2.9.4@aar"
@@ -48,6 +47,7 @@ ext {
     def calligraphyVersion = "3.0.0"
     def mockitoAndroidVersion = "2.18.3"
     def playServicesVersion = "15.0.1"
+    def preferencesVersion = "1.0.0"
 
     //Test Libraries
     def jUnitVersion = "4.12"
@@ -87,9 +87,9 @@ ext {
             javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             javaxInject    : "javax.inject:javax.inject:${javaxInjectVersion}",
             rxJava         : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
-            room           : "android.arch.persistence.room:runtime:${roomVersion}",
-            roomCompiler   : "android.arch.persistence.room:compiler:${roomVersion}",
-            roomRxJava     : "android.arch.persistence.room:rxjava2:${roomVersion}",
+            room           : "androidx.room:room-runtime:${roomVersion}",
+            roomCompiler   : "androidx.room:room-compiler:${roomVersion}",
+            roomRxJava     : "androidx.room:room-rxjava2:${roomVersion}",
             kotlin         : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}"
     ]
 
@@ -97,10 +97,10 @@ ext {
             jUnit        : "junit:junit:${jUnitVersion}",
             mockito      : "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitoVersion}",
             assertJ      : "org.assertj:assertj-core:${assertJVersion}",
-            roomTesting  : "android.arch.persistence.room:testing:${roomVersion}",
-            archTesting  : "android.arch.core:core-testing:${lifecycleVersion}",
-            supportRunner: "com.android.support.test:runner:${androidSupportRunnerVersion}",
-            supportRules : "com.android.support.test:rules:${androidSupportRulesVersion}",
+            roomTesting  : "androidx.room:room-testing:${roomVersion}",
+            archTesting  : "androidx.arch.core:core-testing:${archCompVersion}",
+            supportRunner: "androidx.test:runner:1.1.0",
+            supportRules : "androidx.test:rules:1.1.0",
             robolectric  : "org.robolectric:robolectric:${robolectricVersion}",
     ]
 
@@ -110,7 +110,7 @@ ext {
             kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
             javaxAnnotation   : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             javaxInject       : "javax.inject:javax.inject:${javaxInjectVersion}",
-            androidAnnotations: "com.android.support:support-annotations:${androidAnnotationsVersion}",
+            androidAnnotations: "androidx.annotation:annotation:1.0.0",
             okHttp            : "com.squareup.okhttp3:okhttp:${okHttpVersion}",
             okHttpLogger      : "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
             retrofit          : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
@@ -134,9 +134,9 @@ ext {
             javaxAnnotation   : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             javaxInject       : "javax.inject:javax.inject:${javaxInjectVersion}",
             androidAnnotations: "com.android.support:support-annotations:${androidAnnotationsVersion}",
-            archRuntime       : "android.arch.lifecycle:runtime:${archCompVersion}",
-            archExtensions    : "android.arch.lifecycle:extensions:${archCompVersion}",
-            archCompiler      : "android.arch.lifecycle:compiler:${archCompVersion}",
+            archRuntime       : "androidx.lifecycle:lifecycle-runtime:${archCompVersion}",
+            archExtensions    : "androidx.lifecycle:lifecycle-extensions:${archCompVersion}",
+            archCompiler      : "androidx.lifecycle:lifecycle-compiler:${archCompVersion}",
     ]
 
     presentationTestDependencies = [
@@ -145,7 +145,7 @@ ext {
             assertj      : "org.assertj:assertj-core:${assertJVersion}",
             mockito      : "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitoVersion}",
             robolectric  : "org.robolectric:robolectric:${robolectricVersion}",
-            archTesting  : "android.arch.core:core-testing:${archCompVersion}",
+            archTesting  : "androidx.arch.core:core-testing:${archCompVersion}",
             mockitoinline: "org.mockito:mockito-inline:${mockitoInlineVersion}"
     ]
 
@@ -154,29 +154,29 @@ ext {
             epoxy              : "com.airbnb.android:epoxy:$epoxyVersion",
             epoxyProcessor     : "com.airbnb.android:epoxy-processor:$epoxyVersion",
             epoxyDatabinding   : "com.airbnb.android:epoxy-databinding:$epoxyVersion",
-            butterknife        : "com.jakewharton:butterknife:${butterknifeVersion}",
-            butterknifeCompiler: "com.jakewharton:butterknife-compiler:${butterknifeVersion}",
-            androidAppCompat   : "com.android.support:appcompat-v7:${supportVersion}",
-            androidSupport     : "com.android.support:support-v4:${supportVersion}",
-            androidDesign      : "com.android.support:design:${supportVersion}",
-            androidCardView    : "com.android.support:cardview-v7:${supportVersion}",
+            butterknife        : "com.jakewharton:butterknife:${butterKnifeVersion}",
+            butterknifeCompiler: "com.jakewharton:butterknife-compiler:${butterKnifeVersion}",
+            androidAppCompat   : "androidx.appcompat:appcompat:1.0.0",
+            androidSupport     : "androidx.legacy:legacy-support-v4:1.0.0",
+            androidDesign      : "com.google.android.material:material:1.0.0",
+            androidCardView    : "androidx.cardview:cardview:1.0.0",
             glide              : "com.github.bumptech.glide:glide:${glideVersion}",
             glideCompiler      : "com.github.bumptech.glide:compiler:${glideVersion}",
             dagger             : "com.google.dagger:dagger:${daggerVersion}",
             daggerCompiler     : "com.google.dagger:dagger-compiler:${daggerVersion}",
             daggerSupport      : "com.google.dagger:dagger-android-support:${daggerVersion}",
             daggerProcessor    : "com.google.dagger:dagger-android-processor:${daggerVersion}",
-            constraintLayout   : "com.android.support.constraint:constraint-layout:${constraintVersion}",
+            constraintLayout   : "androidx.constraintlayout:constraintlayout:${constraintVersion}",
             rxBinding          : "com.jakewharton.rxbinding2:rxbinding:${rxBindingVersion}",
             rxBindingSupport   : "com.jakewharton.rxbinding2:rxbinding-support-v4:${rxBindingVersion}",
             rxAndroid          : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
             rxJava             : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
-            overscroll         : "me.everything:overscroll-decor-android:${overscrollVersion}",
+            overscroll         : "me.everything:overscroll-decor-android:${overScrollVersion}",
             viewpump           : "io.github.inflationx:viewpump:${viewPumpVersion}",
             lottie             : "com.airbnb.android:lottie:${lottieVersion}",
             crashlytics        : "com.crashlytics.sdk.android:crashlytics:${crashlyticsVersion}",
             mixpanel           : "com.mixpanel.android:mixpanel-android:${mixpanelVersion}",
-            lifecycleExtensions: "android.arch.lifecycle:extensions:${lifecycleVersion}",
+            lifecycleExtensions: "androidx.lifecycle:lifecycle-extensions:${lifeCycleVersion}",
             chipsLayoutManager : "com.beloo.widget:ChipsLayoutManager:${chipsVersion}",
             youtuberPlayer     : "com.pierfrancescosoffritti.androidyoutubeplayer:core:${youtubeVersion}",
             pagerIndicator     : "com.ryanjeffreybrooks:indefinitepagerindicator:${indicatorVersion}",
@@ -184,7 +184,8 @@ ext {
             customTabs         : "saschpe.android:customtabs:${customTabsVersion}",
             readmoretv         : "com.borjabravo:readmoretextview:${readMoreVersion}",
             calligraphy        : "io.github.inflationx:calligraphy3:${calligraphyVersion}",
-            googleAds          : "com.google.android.gms:play-services-ads:${playServicesVersion}"
+            googleAds          : "com.google.android.gms:play-services-ads:${playServicesVersion}",
+            preferences         : "androidx.preference:preference:${preferencesVersion}"
     ]
 
     appTestDependencies = [
@@ -195,10 +196,10 @@ ext {
             supportRunner  : "com.android.support.test:runner:${androidSupportRunnerVersion}",
             supportRules   : "com.android.support.test:rules:${androidSupportRulesVersion}",
             mockitoAndroid : "org.mockito:mockito-android:${mockitoAndroidVersion}",
-            espressoCore   : "com.android.support.test.espresso:espresso-core:${espressoVersion}",
-            espressoIntents: "com.android.support.test.espresso:espresso-intents:${espressoVersion}",
-            espressoContrib: "com.android.support.test.espresso:espresso-contrib:${espressoVersion}",
-            androidRunner  : "com.android.support.test:runner:${runnerVersion}",
-            androidRules   : "com.android.support.test:rules:${runnerVersion}"
+            espressoCore   : "androidx.test.espresso:espresso-core:${espressoVersion}",
+            espressoIntents: "androidx.test.espresso:espresso-intents:${espressoVersion}",
+            espressoContrib: "androidx.test.espresso:espresso-contrib:${espressoVersion}",
+            androidRunner  : "androidx.test:runner:${runnerVersion}",
+            androidRules   : "androidx.test:rules:${runnerVersion}"
     ]
 }

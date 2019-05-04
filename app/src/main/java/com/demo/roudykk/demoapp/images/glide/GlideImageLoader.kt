@@ -5,7 +5,6 @@ import android.graphics.drawable.Drawable
 import android.util.TypedValue
 import android.widget.ImageView
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.images.base.ImageLoader

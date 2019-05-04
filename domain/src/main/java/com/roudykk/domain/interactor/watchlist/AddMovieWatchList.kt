@@ -12,10 +12,10 @@ class AddMovieWatchList @Inject constructor(
         private val moviesRepository: MoviesRepository
 ) : CompletableUseCase<AddMovieWatchList.Params>(postExecutionThread) {
 
-    override fun buildUseCase(params: AddMovieWatchList.Params?): Completable {
+    override fun buildUseCase(params: Params?): Completable {
         if (params == null) throw IllegalArgumentException("Params cannot be null")
         return this.moviesRepository.addMovieWatchList(params.movie)
     }
 
-    class Params(val movie: Movie)
+    data class Params(val movie: Movie)
 }

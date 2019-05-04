@@ -12,7 +12,6 @@ android {
     def globalConfig = rootProject.extensions.getByName("ext")
 
     compileSdkVersion globalConfig["androidCompileSdkVersion"]
-    buildToolsVersion globalConfig["androidBuildToolsVersion"]
 
     defaultConfig {
         applicationId "com.demo.roudykk.demoapp"
@@ -36,6 +35,11 @@ android {
 
     kapt {
         correctErrorTypes = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -87,6 +91,7 @@ dependencies {
     implementation dependencies.coordinatorLayout
     implementation dependencies.customTabs
     implementation dependencies.readmoretv
+    implementation dependencies.preferences
 
     testImplementation testDependencies.kotlinJUnit
     androidTestImplementation testDependencies.junit

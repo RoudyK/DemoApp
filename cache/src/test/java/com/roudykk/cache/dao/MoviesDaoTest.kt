@@ -1,7 +1,7 @@
 package com.roudykk.cache.dao
 
-import android.arch.core.executor.testing.InstantTaskExecutorRule
-import android.arch.persistence.room.Room
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.room.Room
 import com.roudykk.cache.db.MoviesDatabase
 import com.roudykk.cache.test.MoviesCacheFactory
 import org.junit.After
@@ -12,10 +12,10 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 
 @RunWith(RobolectricTestRunner::class)
-class MoviesDaoTest {
+class MoviesDaoTest(instantTaskExecutorRule1: InstantTaskExecutorRule) {
     @Rule
     @JvmField
-    var instantTaskExecutorRule = InstantTaskExecutorRule()
+    var instantTaskExecutorRule = instantTaskExecutorRule1
 
     private val database = Room.inMemoryDatabaseBuilder(
             RuntimeEnvironment.application.applicationContext,

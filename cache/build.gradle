@@ -30,7 +30,7 @@ dependencies {
     implementation dependencies.rxJava
     implementation dependencies.javaxAnnotation
     implementation dependencies.javaxInject
-    implementation dependencies.room
+    api dependencies.room
     implementation dependencies.roomRxJava
     kapt dependencies.roomCompiler
 

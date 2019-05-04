@@ -3,6 +3,7 @@ package com.demo.roudykk.demoapp.ui.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.ui.fragment.SettingsFragment
 import kotlinx.android.synthetic.main.activity_settings.*
@@ -16,7 +17,7 @@ class SettingsActivity : BaseActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         title = getString(R.string.settings)
 
-        fragmentManager
+        supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.container, SettingsFragment())
                 .commitAllowingStateLoss()

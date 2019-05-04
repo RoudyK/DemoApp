@@ -1,6 +1,6 @@
 package com.demo.roudykk.demoapp.injection.module
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 import com.demo.roudykk.demoapp.injection.ViewModelKey
 import com.roudykk.presentation.viewmodel.*
 import dagger.Binds

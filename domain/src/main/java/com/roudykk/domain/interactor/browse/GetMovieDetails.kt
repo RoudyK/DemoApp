@@ -12,7 +12,7 @@ class GetMovieDetails @Inject constructor(
         private val moviesRepository: MoviesRepository
 ) : ObservableUseCase<Movie, GetMovieDetails.Params>(postExecutionThread) {
 
-    override fun buildUseCase(params: GetMovieDetails.Params?): Observable<Movie> {
+    override fun buildUseCase(params: Params?): Observable<Movie> {
         if (params == null) throw IllegalArgumentException("Params cannot be null")
         return this.moviesRepository.getMovieDetails(params.movieId)
     }

@@ -1,9 +1,9 @@
 package com.demo.roudykk.demoapp.extensions
 
-import android.support.design.widget.AppBarLayout
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.epoxy.EpoxyController
 import com.airbnb.epoxy.EpoxyRecyclerView
+import com.google.android.material.appbar.AppBarLayout
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 
 /**
@@ -37,7 +37,7 @@ fun EpoxyRecyclerView.withModels(modelsBuilder: ModelsBuilder) {
 
 fun RecyclerView.withAppBar(appBarLayout: AppBarLayout) {
     addOnScrollListener(object : RecyclerView.OnScrollListener() {
-        override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
             if (canScrollVertically(-1)) {
                 appBarLayout.elevation = 20F

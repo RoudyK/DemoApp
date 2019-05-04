@@ -10,10 +10,9 @@ import javax.inject.Inject
 class GetWatchListMovies @Inject constructor(
         postExecutionThread: PostExecutionThread,
         private val moviesRepository: MoviesRepository
-): ObservableUseCase<List<Movie>, Nothing>(postExecutionThread){
+) : ObservableUseCase<List<Movie>, Nothing>(postExecutionThread) {
 
     override fun buildUseCase(params: Nothing?): Observable<List<Movie>> {
         return this.moviesRepository.getWatchListMovies()
     }
-
 }

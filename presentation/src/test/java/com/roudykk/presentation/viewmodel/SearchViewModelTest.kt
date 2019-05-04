@@ -1,6 +1,6 @@
 package com.roudykk.presentation.viewmodel
 
-import android.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.nhaarman.mockitokotlin2.*
 import com.roudykk.domain.interactor.search.SearchMovies
 import com.roudykk.domain.model.Movie

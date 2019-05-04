@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowContentTransitions">true</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="backgroundColor">@color/backgroundColorLight</item>
+        <item name="dividerColor">@color/colorDividerLight</item>
+        <item name="highlightColor">@color/highlightColorLight</item>
+        <item name="placeHolder">@drawable/background_placeholder</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="AppTheme.Dark" parent="ThemeOverlay.MaterialComponents.Dark">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="backgroundColor">@color/backgroundColorDark</item>
+        <item name="dividerColor">@color/colorDividerDark</item>
+        <item name="highlightColor">@color/highlightColorDark</item>
+        <item name="placeHolder">@drawable/background_placeholder_dark</item>
+        <item name="android:statusBarColor">@color/backgroundColorDark</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>

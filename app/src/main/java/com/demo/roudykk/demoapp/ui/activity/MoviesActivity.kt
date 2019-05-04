@@ -1,13 +1,13 @@
 package com.demo.roudykk.demoapp.ui.activity
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import butterknife.ButterKnife
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.analytics.Analytics
@@ -109,7 +109,7 @@ class MoviesActivity : BaseActivity(), MoviesController.MoviesListener, Observer
         private const val MOVIE_GROUP = "MOVIE_GROUP"
 
         fun launch(context: Context, movieGroup: MovieGroupView) {
-            Analytics.getInstance(context)?.userOpenedMoreMovies(movieGroup.title)
+            Analytics.getInstance(context).userOpenedMoreMovies(movieGroup.title)
             val intent = Intent(context, MoviesActivity::class.java)
             intent.putExtra(MOVIE_GROUP, movieGroup)
             context.startActivity(intent)

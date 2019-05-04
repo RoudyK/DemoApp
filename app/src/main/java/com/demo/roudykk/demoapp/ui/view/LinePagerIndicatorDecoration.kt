@@ -4,10 +4,10 @@ import android.content.res.Resources
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Rect
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 
 class LinePagerIndicatorDecoration : RecyclerView.ItemDecoration() {
@@ -51,7 +51,7 @@ class LinePagerIndicatorDecoration : RecyclerView.ItemDecoration() {
     override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDrawOver(c, parent, state)
 
-        val itemCount = parent.adapter.itemCount
+        val itemCount = parent.adapter?.itemCount ?: 0
 
         // center horizontally, calculate width and subtract half from center
         val totalLength = mIndicatorItemLength * itemCount
@@ -74,8 +74,8 @@ class LinePagerIndicatorDecoration : RecyclerView.ItemDecoration() {
 
         // find offset of active page (if the user is scrolling)
         val activeChild = layoutManager.findViewByPosition(activePosition)
-        val left = activeChild.left
-        val width = activeChild.width
+        val left = activeChild?.left ?: 0
+        val width = activeChild?.width ?: 0
 
         // on swipe the active item will be positioned from [-width, 0]
         // interpolate offset for smooth animation

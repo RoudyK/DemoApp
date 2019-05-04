@@ -1,7 +1,7 @@
 package com.demo.roudykk.demoapp.injection
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton
@@ -26,6 +26,7 @@ open class ViewModelFactory @Inject constructor(private val creators: Map<Class<
         }
 
         try {
+            @Suppress("UNCHECKED_CAST")
             return creator.get() as T
         } catch (e: Exception) {
             throw RuntimeException(e)

@@ -1,32 +1,35 @@
 package com.demo.roudykk.demoapp.ui.activity
 
-import android.app.AlertDialog
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.support.customtabs.CustomTabsIntent
-import android.support.design.widget.Snackbar
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
+import android.preference.PreferenceManager
 import android.util.TypedValue
+import android.view.ContextThemeWrapper
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager
 import com.demo.roudykk.demoapp.GenreBindingModel_
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.analytics.Analytics
 import com.demo.roudykk.demoapp.analytics.consts.Source
 import com.demo.roudykk.demoapp.controllers.MovieController
+import com.demo.roudykk.demoapp.db.PreferenceRepo
 import com.demo.roudykk.demoapp.extensions.applyTheme
 import com.demo.roudykk.demoapp.extensions.withAppBar
 import com.demo.roudykk.demoapp.extensions.withModels
 import com.demo.roudykk.demoapp.images.AppImageLoader
 import com.demo.roudykk.demoapp.injection.ViewModelFactory
 import com.demo.roudykk.demoapp.ui.fragment.PersonDetailsFragment
+import com.google.android.material.snackbar.Snackbar
 import com.roudykk.presentation.model.MovieView
 import com.roudykk.presentation.model.PersonView
 import com.roudykk.presentation.model.ReviewView
@@ -77,7 +80,12 @@ class MovieActivity : BaseActivity(), MovieController.Listener, Observer<Resourc
         }
 
         this.watchLater.setOnClickListener {
-            AlertDialog.Builder(this)
+            AlertDialog.Builder(if (PreferenceManager.getDefaultSharedPreferences(this)
+                            .getBoolean(PreferenceRepo.PREFERENCE_DARK_THEME, false)) {
+                ContextThemeWrapper(this@MovieActivity, R.style.AppTheme_Dark)
+            } else {
+                ContextThemeWrapper(this@MovieActivity, R.style.AppTheme)
+            })
                     .setTitle(getString(R.string.add_movie))
                     .setMessage(getString(R.string.add_movie_confirmation))
                     .setPositiveButton(getString(R.string.ok).toUpperCase()) { _, _ ->
@@ -192,7 +200,7 @@ class MovieActivity : BaseActivity(), MovieController.Listener, Observer<Resourc
         const val MOVIE = "MOVIE"
 
         fun launch(context: Context, movie: MovieView, source: Source) {
-            Analytics.getInstance(context)?.userOpenedMovie(movie.id, source)
+            Analytics.getInstance(context).userOpenedMovie(movie.id, source)
             val intent = Intent(context, MovieActivity::class.java)
             intent.putExtra(MOVIE, movie)
             context.startActivity(intent)

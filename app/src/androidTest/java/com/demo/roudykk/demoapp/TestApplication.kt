@@ -2,8 +2,8 @@ package com.demo.roudykk.demoapp
 
 import android.app.Activity
 import android.app.Application
-import android.support.test.InstrumentationRegistry
-import android.support.v4.app.Fragment
+import androidx.test.InstrumentationRegistry
+import androidx.core.app.Fragment
 import com.demo.roudykk.demoapp.injection.DaggerTestApplicationComponent
 import com.demo.roudykk.demoapp.injection.TestApplicationComponent
 import dagger.android.AndroidInjector

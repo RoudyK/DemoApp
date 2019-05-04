@@ -2,7 +2,7 @@ package com.demo.roudykk.demoapp.controllers
 
 import android.content.Context
 import android.graphics.Color
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import android.util.TypedValue
 import com.airbnb.epoxy.Carousel
 import com.airbnb.epoxy.CarouselModel_

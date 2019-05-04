@@ -1,7 +1,7 @@
 package com.roudykk.cache
 
-import android.arch.core.executor.testing.InstantTaskExecutorRule
-import android.arch.persistence.room.Room
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.room.Room
 import com.roudykk.cache.db.MoviesDatabase
 import com.roudykk.cache.mapper.CacheMovieMapper
 import com.roudykk.cache.test.MoviesCacheFactory

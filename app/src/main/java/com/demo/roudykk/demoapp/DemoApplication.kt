@@ -3,8 +3,8 @@ package com.demo.roudykk.demoapp
 import android.app.Activity
 import android.app.Application
 import android.content.Context
-import android.support.v4.app.Fragment
-import android.support.v7.widget.SnapHelper
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.SnapHelper
 import com.airbnb.epoxy.Carousel
 import com.crashlytics.android.Crashlytics
 import com.demo.roudykk.demoapp.controllers.helpers.StartSnapHelper

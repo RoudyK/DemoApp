@@ -5,10 +5,10 @@ import android.content.Intent
 import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.app.AppCompatDelegate
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.db.PreferenceRepo
 import com.demo.roudykk.demoapp.extensions.applyPopAnimation
@@ -27,7 +27,6 @@ abstract class BaseActivity : AppCompatActivity() {
             delegate.setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
         super.onCreate(savedInstanceState)
-        window.statusBarColor = ContextCompat.getColor(this, R.color.colorPrimaryDark)
     }
 
     override fun attachBaseContext(newBase: Context?) {

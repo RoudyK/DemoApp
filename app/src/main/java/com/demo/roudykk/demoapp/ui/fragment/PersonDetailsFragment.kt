@@ -1,17 +1,16 @@
 package com.demo.roudykk.demoapp.ui.fragment
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.support.design.widget.BottomSheetDialogFragment
-import android.support.v7.view.ContextThemeWrapper
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
+import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.demo.roudykk.demoapp.R
@@ -19,6 +18,7 @@ import com.demo.roudykk.demoapp.controllers.ProfileController
 import com.demo.roudykk.demoapp.db.PreferenceRepo
 import com.demo.roudykk.demoapp.images.AppImageLoader
 import com.demo.roudykk.demoapp.injection.ViewModelFactory
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.roudykk.presentation.model.PersonView
 import com.roudykk.presentation.state.ResourceState
 import com.roudykk.presentation.viewmodel.PersonViewModel

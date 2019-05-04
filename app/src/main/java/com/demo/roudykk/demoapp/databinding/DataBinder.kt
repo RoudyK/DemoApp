@@ -1,8 +1,8 @@
 package com.demo.roudykk.demoapp.databinding
 
-import android.databinding.BindingAdapter
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import com.demo.roudykk.demoapp.images.AppImageLoader
 
 /**

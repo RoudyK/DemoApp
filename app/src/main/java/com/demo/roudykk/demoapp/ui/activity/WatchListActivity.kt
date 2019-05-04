@@ -1,17 +1,17 @@
 package com.demo.roudykk.demoapp.ui.activity
 
 import android.app.AlertDialog
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.analytics.Analytics
 import com.demo.roudykk.demoapp.analytics.consts.Source
@@ -63,8 +63,7 @@ class WatchListActivity : BaseActivity(), SavedMoviesController.SavedMoviesListe
                         .setMessage(getString(R.string.delete_all_movies_confirmation))
                         .setPositiveButton(getString(R.string.ok).toUpperCase()) { _, _ ->
                             if (this.savedMoviesController.currentData != null) {
-                                Analytics.getInstance(this)
-                                        ?.userDeletedAllMoviesWatchList(this.savedMoviesController.currentData!!.size)
+                                Analytics.getInstance(this).userDeletedAllMoviesWatchList(this.savedMoviesController.currentData!!.size)
                             }
                             this.watchListViewModel.clearMovieWatchList()
                         }
@@ -140,7 +139,7 @@ class WatchListActivity : BaseActivity(), SavedMoviesController.SavedMoviesListe
     companion object {
 
         fun launch(context: Context) {
-            Analytics.getInstance(context)?.userOpenedWatchList()
+            Analytics.getInstance(context).userOpenedWatchList()
             context.startActivity(Intent(context, WatchListActivity::class.java))
         }
     }
