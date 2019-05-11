@@ -41,9 +41,11 @@ class HomeViewModel @Inject constructor(
         override fun onComplete() {}
 
         override fun onNext(data: List<MovieGroup>) {
-            liveData.postValue(Resource(ResourceState.SUCCESS, data.map {
-                movieGroupViewMapper.mapToView(it)
-            }, null))
+            if (liveData.value == null || liveData.value!!.data != data) {
+                liveData.postValue(Resource(ResourceState.SUCCESS, data.map {
+                    movieGroupViewMapper.mapToView(it)
+                }, null))
+            }
         }
 
         override fun onError(e: Throwable) {
