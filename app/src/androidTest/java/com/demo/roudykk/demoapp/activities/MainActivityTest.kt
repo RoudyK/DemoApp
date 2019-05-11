@@ -27,6 +27,7 @@ import org.junit.Test
 import androidx.test.espresso.intent.Intents.times
 import com.demo.roudykk.demoapp.ui.fragment.MainActivity
 import com.demo.roudykk.demoapp.ui.fragment.SearchFragment
+import com.demo.roudykk.demoapp.ui.fragment.WatchListFragment
 
 
 class MainActivityTest {
@@ -137,7 +138,7 @@ class MainActivityTest {
         onView(withText(R.string.watch_list))
                 .perform(click())
 
-        intended(hasComponent(WatchListActivity::class.java.name))
+        intended(hasComponent(WatchListFragment::class.java.name))
     }
 
     @Test

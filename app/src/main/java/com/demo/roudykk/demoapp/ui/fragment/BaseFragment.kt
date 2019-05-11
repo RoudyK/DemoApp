@@ -7,4 +7,5 @@ abstract class BaseFragment : Fragment() {
     open val supportsFabAction: Boolean = false
     open val fabAlignmentMode: Int = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
     open val fabAction: () -> Unit = {}
+    open val fabIconRes: Int? = null
 }

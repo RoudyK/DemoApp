@@ -29,16 +29,16 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
 
 class HomeFragment : BaseFragment(), HomeController.Listener, Observer<Resource<List<MovieGroupView>>> {
+    override val fabIconRes: Int? = R.drawable.ic_search
+    override val supportsFabAction: Boolean = true
+    override val fabAction: () -> Unit = { findNavController().navigate(R.id.action_search) }
+    override val fabAlignmentMode: Int = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
     private var homeViewModel: HomeViewModel? = null
     private lateinit var moviesPagerAdapter: MoviesPagerAdapter
-
-    override val supportsFabAction: Boolean = true
-    override val fabAction: () -> Unit = { findNavController().navigate(R.id.action_search) }
-    override val fabAlignmentMode: Int = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
 
     override fun onAttach(context: Context?) {
         AndroidSupportInjection.inject(this)

@@ -6,23 +6,6 @@
     android:layout_height="match_parent"
     android:background="?attr/backgroundColor">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/backgroundColor"
-        android:elevation="0dp"
-        app:elevation="0dp">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            style="@style/ToolBarStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/ToolBarStyle" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
     <com.airbnb.epoxy.EpoxyRecyclerView
         android:id="@+id/moviesRv"
         android:layout_width="match_parent"
@@ -34,14 +17,14 @@
         tools:listitem="@layout/item_list_movie" />
 
     <LinearLayout
-        android:visibility="gone"
         android:id="@+id/emptyView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
         android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <com.airbnb.lottie.LottieAnimationView
             android:layout_width="wrap_content"
