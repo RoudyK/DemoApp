@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:animateLayoutChanges="true"
             android:theme="@style/ToolBarStyle"
-            app:layout_scrollFlags="scroll|enterAlways"
+            app:layout_scrollFlags="scroll"
             app:title="@string/movies" />
 
     </com.google.android.material.appbar.AppBarLayout>
