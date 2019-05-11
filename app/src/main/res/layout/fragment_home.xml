@@ -15,14 +15,13 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
-            style="@style/Widget.MaterialComponents.TabLayout"
+            style="@style/TabLayoutDark"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@android:color/transparent"
             android:visibility="gone"
             app:tabMode="scrollable"
             app:tabSelectedTextColor="@color/colorPrimary"
-            app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
             tools:visibility="visible" />
     </com.google.android.material.appbar.AppBarLayout>
 

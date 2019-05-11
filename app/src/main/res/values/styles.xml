@@ -10,6 +10,7 @@
         <item name="highlightColor">@color/highlightColorLight</item>
         <item name="placeHolder">@drawable/background_placeholder</item>
         <item name="android:statusBarColor">@color/white</item>
+        <item name="tabStyle">@style/Widget.MaterialComponents.TabLayout</item>
     </style>
 
     <style name="AppTheme.Dark" parent="ThemeOverlay.MaterialComponents.Dark">
@@ -21,6 +22,12 @@
         <item name="highlightColor">@color/highlightColorDark</item>
         <item name="placeHolder">@drawable/background_placeholder_dark</item>
         <item name="android:statusBarColor">@color/backgroundColorDark</item>
+        <item name="tabStyle">@style/TabLayoutDark</item>
+    </style>
+
+    <style name="TabLayoutDark" parent="@style/Widget.MaterialComponents.TabLayout">
+        <item name="tabTextColor">?android:textColorPrimary</item>
+        <item name="tabSelectedTextColor">@color/colorPrimary</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
