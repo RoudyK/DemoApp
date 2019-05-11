@@ -4,22 +4,26 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.demo.roudykk.demoapp.R
+import com.demo.roudykk.demoapp.analytics.Analytics
 import com.demo.roudykk.demoapp.analytics.consts.Source
 import com.demo.roudykk.demoapp.controllers.MoviesController
 import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.injection.ViewModelFactory
 import com.demo.roudykk.demoapp.ui.activity.MovieActivity
+import com.jakewharton.rxbinding2.widget.RxTextView
 import com.roudykk.presentation.model.MovieView
 import com.roudykk.presentation.state.ResourceState
 import com.roudykk.presentation.viewmodel.SearchViewModel
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_search.*
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class SearchFragment : BaseFragment(), MoviesController.MoviesListener {
@@ -79,19 +83,19 @@ class SearchFragment : BaseFragment(), MoviesController.MoviesListener {
     }
 
     private fun initSearchEt() {
-//        this.searchEt.imeOptions = EditorInfo.IME_ACTION_SEARCH
-//        RxTextView.textChanges(this.searchEt)
-//                .skipInitialValue()
-//                .debounce(200, TimeUnit.MILLISECONDS)
-//                .map { query ->
-//                    if (query.toString().isEmpty()) {
-//                        this.moviesController.setData(ArrayList())
-//                    } else {
-//                        Analytics.getInstance(context!!).userSearched(query.toString())
-//                        this.searchViewModel.fetchMovies(query.toString())
-//                    }
-//                }
-//                .subscribe()
+        this.searchEt.imeOptions = EditorInfo.IME_ACTION_SEARCH
+        RxTextView.textChanges(this.searchEt)
+                .skipInitialValue()
+                .debounce(200, TimeUnit.MILLISECONDS)
+                .map { query ->
+                    if (query.toString().isEmpty()) {
+                        this.moviesController.setData(ArrayList())
+                    } else {
+                        Analytics.getInstance(context!!).userSearched(query.toString())
+                        this.searchViewModel.fetchMovies(query.toString())
+                    }
+                }
+                .subscribe()
     }
 
     override fun hasMoreToLoad(): Boolean {
