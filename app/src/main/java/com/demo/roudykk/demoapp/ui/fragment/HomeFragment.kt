@@ -70,7 +70,9 @@ class HomeFragment : BaseFragment(), HomeController.Listener, Observer<Resource<
     }
 
     private fun initViewPager() {
-        this.moviesPagerAdapter = MoviesPagerAdapter(this.childFragmentManager)
+        if (!this::moviesPagerAdapter.isInitialized) {
+            this.moviesPagerAdapter = MoviesPagerAdapter(this.childFragmentManager)
+        }
         this.viewPager.adapter = this.moviesPagerAdapter
         this.tabLayout.setupWithViewPager(this.viewPager)
     }
