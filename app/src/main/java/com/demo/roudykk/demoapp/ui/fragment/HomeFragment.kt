@@ -1,17 +1,16 @@
 package com.demo.roudykk.demoapp.ui.fragment
 
-import android.app.AppComponentFactory
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.analytics.Analytics
 import com.demo.roudykk.demoapp.analytics.consts.Source
@@ -19,6 +18,7 @@ import com.demo.roudykk.demoapp.controllers.HomeController
 import com.demo.roudykk.demoapp.injection.ViewModelFactory
 import com.demo.roudykk.demoapp.ui.activity.MovieActivity
 import com.demo.roudykk.demoapp.ui.activity.MoviesActivity
+import com.google.android.material.bottomappbar.BottomAppBar
 import com.roudykk.presentation.model.MovieGroupView
 import com.roudykk.presentation.model.MovieView
 import com.roudykk.presentation.state.Resource
@@ -28,13 +28,17 @@ import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
 
-class HomeFragment : Fragment(), HomeController.Listener, Observer<Resource<List<MovieGroupView>>> {
+class HomeFragment : BaseFragment(), HomeController.Listener, Observer<Resource<List<MovieGroupView>>> {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private lateinit var homeViewModel: HomeViewModel
+    private var homeViewModel: HomeViewModel? = null
     private lateinit var moviesPagerAdapter: MoviesPagerAdapter
+
+    override val supportsFabAction: Boolean = true
+    override val fabAction: () -> Unit = { findNavController().navigate(R.id.action_search) }
+    override val fabAlignmentMode: Int = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
 
     override fun onAttach(context: Context?) {
         AndroidSupportInjection.inject(this)
@@ -49,9 +53,8 @@ class HomeFragment : Fragment(), HomeController.Listener, Observer<Resource<List
         super.onActivityCreated(savedInstanceState)
         this.initViewModel()
         this.initViewPager()
-        this.loadMovies()
 
-        reload.setOnClickListener { loadMovies() }
+        reload.setOnClickListener { this.homeViewModel?.fetchMovieGroups() }
 
         Analytics.getInstance(context!!).userOpenedHome()
     }
@@ -61,7 +64,8 @@ class HomeFragment : Fragment(), HomeController.Listener, Observer<Resource<List
                 .of(this, viewModelFactory)
                 .get(HomeViewModel::class.java)
 
-        this.homeViewModel.getMovieGroups().observe(this, this)
+        this.homeViewModel?.getMovieGroups()?.observe(this, this)
+        this.homeViewModel?.fetchMovieGroups()
     }
 
     private fun initViewPager() {
@@ -93,10 +97,6 @@ class HomeFragment : Fragment(), HomeController.Listener, Observer<Resource<List
         }
     }
 
-    private fun loadMovies() {
-        this.homeViewModel.fetchMovieGroups()
-    }
-
     override fun onLoadMoreMovies(movieGroup: MovieGroupView) {
         MoviesActivity.launch(context!!, movieGroup)
     }
@@ -106,7 +106,7 @@ class HomeFragment : Fragment(), HomeController.Listener, Observer<Resource<List
     }
 
     inner class MoviesPagerAdapter(fragmentManager: FragmentManager)
-        : FragmentPagerAdapter(fragmentManager) {
+        : FragmentStatePagerAdapter(fragmentManager) {
 
         private var movieGroups = mutableListOf<MovieGroupView>()
         private val movieGroupFragments = mutableListOf<MovieGroupFragment>()

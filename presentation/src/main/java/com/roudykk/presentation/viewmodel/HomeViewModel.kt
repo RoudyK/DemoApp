@@ -29,7 +29,11 @@ class HomeViewModel @Inject constructor(
     }
 
     fun fetchMovieGroups() {
-        this.liveData.postValue(Resource(ResourceState.LOADING, null, null))
+        if (this.liveData.value == null || this.liveData.value!!.data.isNullOrEmpty()) {
+            this.liveData.postValue(Resource(ResourceState.LOADING, null, null))
+        } else {
+            this.liveData.postValue(Resource(ResourceState.SUCCESS, this.liveData.value?.data, null))
+        }
         this.getMoviesGroups.execute(MovieGroupsObserver())
     }
 

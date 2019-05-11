@@ -56,3 +56,11 @@ fun wrap(o: Any?): Any? {
 
     return null
 }
+
+inline fun trySafe(predicate: () -> Unit) {
+    try {
+        predicate()
+    } catch (exception: Exception) {
+        Log.d("Logger", "$exception")
+    }
+}

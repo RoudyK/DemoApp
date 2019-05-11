@@ -26,6 +26,7 @@ import org.junit.Rule
 import org.junit.Test
 import androidx.test.espresso.intent.Intents.times
 import com.demo.roudykk.demoapp.ui.fragment.MainActivity
+import com.demo.roudykk.demoapp.ui.fragment.SearchFragment
 
 
 class MainActivityTest {
@@ -106,7 +107,7 @@ class MainActivityTest {
         onView(withId(R.id.nav_search))
                 .perform(click())
 
-        intended(hasComponent(SearchActivity::class.java.name))
+        intended(hasComponent(SearchFragment::class.java.name))
     }
 
     @Test

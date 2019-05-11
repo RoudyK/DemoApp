@@ -16,7 +16,7 @@ import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.TestApplication
 import com.demo.roudykk.demoapp.test.MoviesFactory
 import com.demo.roudykk.demoapp.ui.activity.MovieActivity
-import com.demo.roudykk.demoapp.ui.activity.SearchActivity
+import com.demo.roudykk.demoapp.ui.fragment.SearchFragment
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.whenever
 import com.roudykk.domain.model.Movie
@@ -27,11 +27,11 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-class SearchActivityTest {
+class SearchFragmentTest {
 
     @Rule
     @JvmField
-    var activity = ActivityTestRule<SearchActivity>(SearchActivity::class.java, false, false)
+    var activity = ActivityTestRule<SearchFragment>(SearchFragment::class.java, false, false)
 
     @Before
     fun setup() {

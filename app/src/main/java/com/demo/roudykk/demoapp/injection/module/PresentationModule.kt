@@ -6,6 +6,7 @@ import com.roudykk.presentation.viewmodel.*
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
+import javax.inject.Singleton
 
 @Module
 @Suppress("unused")
@@ -13,6 +14,7 @@ abstract class PresentationModule {
 
     @Binds
     @IntoMap
+    @Singleton
     @ViewModelKey(HomeViewModel::class)
     abstract fun bindHomeViewModel(homeViewModel: HomeViewModel): ViewModel
 
