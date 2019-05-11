@@ -16,17 +16,20 @@
         android:clickable="true"
         android:focusable="true">
 
-        <TextView
-            android:layout_margin="10dp"
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            fontPath="fonts/AirbnbCereal-Medium.ttf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            fontPath="fonts/AirbnbCereal-Medium.ttf"
-            android:background="#ae2626"
+            android:layout_margin="10dp"
+            android:background="?attr/colorPrimary"
             android:gravity="center"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
             android:onClickListener="@{onClickListener}"
             android:padding="10dp"
             android:text="@string/view_more"
+            android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

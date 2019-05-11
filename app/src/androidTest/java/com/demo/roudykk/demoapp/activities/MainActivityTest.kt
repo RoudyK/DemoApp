@@ -25,6 +25,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import androidx.test.espresso.intent.Intents.times
+import com.demo.roudykk.demoapp.ui.fragment.MainActivity
 
 
 class MainActivityTest {

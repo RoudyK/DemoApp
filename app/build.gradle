@@ -92,6 +92,8 @@ dependencies {
     implementation dependencies.customTabs
     implementation dependencies.readmoretv
     implementation dependencies.preferences
+    implementation dependencies.androidNavigation
+    implementation dependencies.androidNavigationUi
 
     testImplementation testDependencies.kotlinJUnit
     androidTestImplementation testDependencies.junit

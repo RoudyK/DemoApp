@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
-    android:background="?attr/backgroundColor"
-    tools:context=".ui.activity.MainActivity">
+    android:background="?attr/backgroundColor">
 
-    <com.google.android.material.appbar.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/backgroundColor">
+        android:background="?attr/backgroundColor"
+        app:elevation="0dp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -20,62 +20,38 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:theme="@style/ToolBarStyle"
-            app:layout_scrollFlags="scroll|enterAlways" />
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:title="@string/movies" />
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:minHeight="?attr/actionBarSize"
-            android:visibility="gone"
-            app:tabMode="scrollable"
-            app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
-            app:tabSelectedTextColor="@color/colorPrimary"
-            app:tabTextColor="@color/colorPrimaryPale" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager"
+    <fragment
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:defaultNavHost="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:navGraph="@navigation/nav_graph" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/loadingView"
-        android:layout_width="100dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        app:lottie_autoPlay="true"
-        app:lottie_fileName="loading-animation.json"
-        app:lottie_loop="true" />
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:backgroundTint="?attr/backgroundColor"
+        app:fabCradleMargin="@dimen/bottom_app_bar_fab_margin"
+        app:hideOnScroll="true"
+        app:navigationIcon="@drawable/ic_menu_black_24dp"
+        tools:backgroundTint="@color/colorPrimary" />
 
-    <LinearLayout
-        android:id="@+id/errorView"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/bottomFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_gravity="center"
-            app:lottie_autoPlay="true"
-            app:lottie_fileName="error-message.json"
-            app:lottie_loop="true" />
-
-        <com.demo.roudykk.demoapp.ui.view.ActionButton
-            android:id="@+id/reload"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/reload"
-            android:textAllCaps="true"
-            android:textSize="14sp" />
-
-    </LinearLayout>
+        android:backgroundTint="@color/colorPrimary"
+        android:src="@drawable/ic_search"
+        app:layout_anchor="@id/bottomAppBar"
+        app:tint="@color/white" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

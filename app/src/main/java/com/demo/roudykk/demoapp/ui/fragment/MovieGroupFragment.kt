@@ -47,7 +47,6 @@ class MovieGroupFragment : Fragment(), HomeController.Listener {
     private fun initRV() {
         this.moviesRv.layoutManager = LinearLayoutManager(context)
         this.moviesRv.itemAnimator = DefaultItemAnimator()
-        this.moviesRv.addOverScroll()
         this.homeController.listener = this
         this.moviesRv.setController(this.homeController)
     }
