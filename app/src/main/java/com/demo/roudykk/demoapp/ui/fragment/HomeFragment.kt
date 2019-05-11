@@ -16,6 +16,7 @@ import com.demo.roudykk.demoapp.analytics.Analytics
 import com.demo.roudykk.demoapp.analytics.consts.Source
 import com.demo.roudykk.demoapp.controllers.HomeController
 import com.demo.roudykk.demoapp.injection.ViewModelFactory
+import com.demo.roudykk.demoapp.ui.activity.MainActivity
 import com.demo.roudykk.demoapp.ui.activity.MovieActivity
 import com.demo.roudykk.demoapp.ui.activity.MoviesActivity
 import com.google.android.material.bottomappbar.BottomAppBar
