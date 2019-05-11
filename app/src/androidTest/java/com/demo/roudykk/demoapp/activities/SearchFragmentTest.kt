@@ -15,7 +15,7 @@ import androidx.test.rule.ActivityTestRule
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.TestApplication
 import com.demo.roudykk.demoapp.test.MoviesFactory
-import com.demo.roudykk.demoapp.ui.activity.MovieActivity
+import com.demo.roudykk.demoapp.ui.fragment.MovieFragment
 import com.demo.roudykk.demoapp.ui.fragment.SearchFragment
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.whenever
@@ -100,7 +100,7 @@ class SearchFragmentTest {
                 withContentDescription(R.string.movie_container)))
                 .perform(click())
 
-        intended(hasComponent(MovieActivity::class.java.name))
+        intended(hasComponent(MovieFragment::class.java.name))
 
 
     }

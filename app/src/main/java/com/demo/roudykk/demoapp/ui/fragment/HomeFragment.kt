@@ -4,20 +4,20 @@ import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewConfiguration
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.analytics.Analytics
-import com.demo.roudykk.demoapp.analytics.consts.Source
 import com.demo.roudykk.demoapp.controllers.HomeController
 import com.demo.roudykk.demoapp.injection.ViewModelFactory
-import com.demo.roudykk.demoapp.ui.activity.MainActivity
-import com.demo.roudykk.demoapp.ui.activity.MovieActivity
 import com.demo.roudykk.demoapp.ui.activity.MoviesActivity
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.roudykk.presentation.model.MovieGroupView
@@ -102,8 +102,11 @@ class HomeFragment : BaseFragment(), HomeController.Listener, Observer<Resource<
         MoviesActivity.launch(context!!, movieGroup)
     }
 
-    override fun onMovieClicked(movie: MovieView) {
-        MovieActivity.launch(context!!, movie, Source.SOURCE_HOME)
+    override fun onMovieClicked(movie: MovieView, view: View) {
+        val name = ViewCompat.getTransitionName(view)!!
+        findNavController().navigate(MovieFragmentDirections.actionMovie(movie), FragmentNavigatorExtras(
+                view to name
+        ))
     }
 
     inner class MoviesPagerAdapter(fragmentManager: FragmentManager)

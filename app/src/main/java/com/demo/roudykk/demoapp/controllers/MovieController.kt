@@ -2,12 +2,11 @@ package com.demo.roudykk.demoapp.controllers
 
 import android.content.Context
 import android.graphics.Color
-import androidx.core.content.ContextCompat
 import android.util.TypedValue
-import com.airbnb.epoxy.Carousel
-import com.airbnb.epoxy.CarouselModel_
-import com.airbnb.epoxy.OnModelBoundListener
-import com.airbnb.epoxy.TypedEpoxyController
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DefaultItemAnimator
+import com.airbnb.epoxy.*
+import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager
 import com.demo.roudykk.demoapp.*
 import com.demo.roudykk.demoapp.controllers.models.IndicatorCarouselModel_
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayerView
@@ -21,7 +20,7 @@ import java.text.DecimalFormat
 import javax.inject.Inject
 
 
-class MovieController @Inject constructor() : TypedEpoxyController<MovieView>() {
+class MovieController @Inject constructor() : Typed2EpoxyController<MovieView, Boolean>() {
     lateinit var context: Context
     var listener: Listener? = null
 
@@ -29,14 +28,42 @@ class MovieController @Inject constructor() : TypedEpoxyController<MovieView>() 
             OnModelBoundListener<CarouselModel_, Carousel>
             { _, view, _ -> OverScrollDecoratorHelper.setUpOverScroll(view, OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL) }
 
-    override fun buildModels(movie: MovieView?) {
+    override fun buildModels(movie: MovieView?, fullDetails: Boolean) {
         movie?.let {
-            this.buildVideos(it)
-            this.buildCast(it)
-            this.buildProductionCompanies(it)
-            this.buildMetrics(it)
-            this.buildReviews(it)
+            this.buildHeader(it, fullDetails)
+            if (fullDetails) {
+                this.buildVideos(it)
+                this.buildCast(it)
+                this.buildProductionCompanies(it)
+                this.buildMetrics(it)
+                this.buildReviews(it)
+            }
         }
+    }
+
+    private fun buildHeader(movie: MovieView, fullDetails: Boolean) {
+        HeaderMovieBindingModel_()
+                .id("header")
+                .movie(movie)
+                .onBind { _, view, _ ->
+                    listener?.onHeaderBound()
+                    val genresRv = view.dataBinding.root.findViewById<EpoxyRecyclerView>(R.id.genresRv)
+                    genresRv.itemAnimator = DefaultItemAnimator()
+                    if (fullDetails) {
+                        genresRv.layoutManager = ChipsLayoutManager.newBuilder(context).build()
+                        genresRv.buildModelsWith { controller ->
+                            movie.genres?.forEach {
+                                GenreBindingModel_()
+                                        .id(it.id)
+                                        .genre(it)
+                                        .addTo(controller)
+                            }
+                        }
+                    } else {
+                        genresRv.clear()
+                    }
+                }
+                .addTo(this)
     }
 
     private fun buildProductionCompanies(movie: MovieView) {
@@ -183,10 +210,8 @@ class MovieController @Inject constructor() : TypedEpoxyController<MovieView>() 
     }
 
     interface Listener {
-
         fun onReadFullReviewClicked(review: ReviewView)
-
         fun onCastClicked(person: PersonView)
+        fun onHeaderBound()
     }
-
 }

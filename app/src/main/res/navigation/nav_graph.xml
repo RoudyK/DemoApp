@@ -23,6 +23,15 @@
         android:label="@string/watch_list"
         tools:layout="@layout/fragment_watch_list" />
 
+    <fragment
+        android:id="@+id/movie"
+        android:name="com.demo.roudykk.demoapp.ui.fragment.MovieFragment"
+        tools:layout="@layout/fragment_movie">
+        <argument
+            android:name="movie"
+            app:argType="com.roudykk.presentation.model.MovieView" />
+    </fragment>
+
     <action
         android:id="@+id/action_search"
         app:destination="@id/search"
@@ -38,4 +47,16 @@
         app:exitAnim="@anim/nav_default_exit_anim"
         app:popEnterAnim="@anim/nav_default_pop_enter_anim"
         app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+    <action
+        android:id="@+id/action_movie"
+        app:destination="@id/movie"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim">
+        <argument
+            android:name="movie"
+            app:argType="com.roudykk.presentation.model.MovieView" />
+    </action>
 </navigation>

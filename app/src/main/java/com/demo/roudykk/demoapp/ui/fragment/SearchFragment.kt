@@ -8,6 +8,7 @@ import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.demo.roudykk.demoapp.R
@@ -16,7 +17,6 @@ import com.demo.roudykk.demoapp.analytics.consts.Source
 import com.demo.roudykk.demoapp.controllers.MoviesController
 import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.injection.ViewModelFactory
-import com.demo.roudykk.demoapp.ui.activity.MovieActivity
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.roudykk.presentation.model.MovieView
 import com.roudykk.presentation.state.ResourceState
@@ -107,6 +107,6 @@ class SearchFragment : BaseFragment(), MoviesController.MoviesListener {
     }
 
     override fun onMovieClicked(movie: MovieView) {
-        MovieActivity.launch(context!!, movie, Source.SOURCE_SEARCH)
+        findNavController().navigate(MovieFragmentDirections.actionMovie(movie))
     }
 }

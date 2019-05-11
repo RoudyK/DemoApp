@@ -1,5 +1,6 @@
 package com.demo.roudykk.demoapp.controllers
 
+import android.view.View
 import android.widget.RatingBar
 import com.airbnb.epoxy.TypedEpoxyController
 import com.demo.roudykk.demoapp.*
@@ -17,7 +18,7 @@ class HomeController @Inject constructor() : TypedEpoxyController<MovieGroupView
     interface Listener {
         fun onLoadMoreMovies(movieGroup: MovieGroupView)
 
-        fun onMovieClicked(movie: MovieView)
+        fun onMovieClicked(movie: MovieView, view: View)
     }
 
     override fun buildModels(movieGroup: MovieGroupView?) {
@@ -27,8 +28,8 @@ class HomeController @Inject constructor() : TypedEpoxyController<MovieGroupView
                     MovieHeaderBindingModel_()
                             .id(movie.id)
                             .movie(movie)
-                            .onClickListener { _ ->
-                                this.listener?.onMovieClicked(movie)
+                            .onClickListener { view ->
+                                this.listener?.onMovieClicked(movie, view.findViewById(R.id.movieIv))
                             }
                             .onBind { _, view, _ ->
                                 val ratingBar = view.dataBinding.root.findViewById<RatingBar>(R.id.movieRb)
@@ -39,8 +40,8 @@ class HomeController @Inject constructor() : TypedEpoxyController<MovieGroupView
                     ListMovieBindingModel_()
                             .id(movie.id)
                             .movie(movie)
-                            .onClickListener { _ ->
-                                this.listener?.onMovieClicked(movie)
+                            .onClickListener { view ->
+                                this.listener?.onMovieClicked(movie, view.findViewById(R.id.movieIv))
                             }
                             .onBind { _, view, _ ->
                                 val ratingBar = view.dataBinding.root.findViewById<RatingBar>(R.id.movieRb)

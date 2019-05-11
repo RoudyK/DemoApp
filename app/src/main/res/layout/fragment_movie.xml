@@ -6,22 +6,12 @@
     android:layout_height="match_parent"
     android:background="?attr/backgroundColor">
 
-    <include layout="@layout/header_movie" />
-
     <com.airbnb.epoxy.EpoxyRecyclerView
         android:id="@+id/movieRv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:nestedScrollingEnabled="false"
-        android:paddingBottom="40dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:paddingBottom="@dimen/recycler_view_extra_spacing"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

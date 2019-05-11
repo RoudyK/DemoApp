@@ -23,7 +23,7 @@ abstract class AppModule {
     abstract fun contributeMoviesActivity(): MoviesActivity
 
     @ContributesAndroidInjector
-    abstract fun contributeMovieActivity(): MovieActivity
+    abstract fun contributeMovieActivity(): MovieFragment
 
     @ContributesAndroidInjector
     abstract fun contributeWatchListActivity(): WatchListFragment

@@ -5,14 +5,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.demo.roudykk.demoapp.R
-import com.demo.roudykk.demoapp.analytics.consts.Source
 import com.demo.roudykk.demoapp.controllers.HomeController
-import com.demo.roudykk.demoapp.extensions.addOverScroll
-import com.demo.roudykk.demoapp.ui.activity.MovieActivity
 import com.demo.roudykk.demoapp.ui.activity.MoviesActivity
 import com.roudykk.presentation.model.MovieGroupView
 import com.roudykk.presentation.model.MovieView
@@ -55,8 +55,10 @@ class MovieGroupFragment : Fragment(), HomeController.Listener {
         activity?.let { MoviesActivity.launch(it, movieGroup) }
     }
 
-    override fun onMovieClicked(movie: MovieView) {
-        activity?.let { MovieActivity.launch(it, movie, Source.SOURCE_HOME) }
+    override fun onMovieClicked(movie: MovieView, view: View) {
+        findNavController().navigate(MovieFragmentDirections.actionMovie(movie), FragmentNavigatorExtras(
+                view to ViewCompat.getTransitionName(view)!!
+        ))
     }
 
     companion object {

@@ -3,8 +3,6 @@ package com.demo.roudykk.demoapp.ui.activity
 import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
-import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
@@ -14,7 +12,7 @@ import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.extensions.trySafe
 import com.demo.roudykk.demoapp.ui.fragment.BaseFragment
-import com.demo.roudykk.demoapp.ui.fragment.HomeFragment
+import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -27,7 +25,8 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        findNavController(R.id.nav_host_fragment).addOnNavigatedListener { _, _ ->
+        findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener { _, _, _ ->
+            (bottomAppBar.behavior as BottomAppBar.Behavior).slideUp(bottomAppBar)
             toolbar.post {
                 trySafe {
                     /**
@@ -95,7 +94,7 @@ class MainActivity : BaseActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return navigateUp(drawerLayout, findNavController(R.id.nav_host_fragment))
+        return navigateUp(findNavController(R.id.nav_host_fragment), drawerLayout)
     }
 
     override fun onBackPressed() {

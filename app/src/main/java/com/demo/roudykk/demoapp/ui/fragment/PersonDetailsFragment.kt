@@ -59,7 +59,7 @@ class PersonDetailsFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (arguments != null && arguments!!.containsKey(PERSON)) {
-            this.person = arguments!!.getParcelable(PERSON)
+            this.person = arguments!!.getParcelable(PERSON)!!
 
             this.initViewModel()
             this.initRv()

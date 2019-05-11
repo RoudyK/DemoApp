@@ -26,6 +26,7 @@ import org.junit.Rule
 import org.junit.Test
 import androidx.test.espresso.intent.Intents.times
 import com.demo.roudykk.demoapp.ui.fragment.MainActivity
+import com.demo.roudykk.demoapp.ui.fragment.MovieFragment
 import com.demo.roudykk.demoapp.ui.fragment.SearchFragment
 import com.demo.roudykk.demoapp.ui.fragment.WatchListFragment
 
@@ -96,7 +97,7 @@ class MainActivityTest {
                 withContentDescription("movieContainer")))
                 .perform(click())
 
-        intended(hasComponent(MovieActivity::class.java.name))
+        intended(hasComponent(MovieFragment::class.java.name))
     }
 
     @Test

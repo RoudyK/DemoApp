@@ -25,9 +25,11 @@
         android:onClickListener="@{onClickListener}">
 
         <ImageView
+            android:id="@+id/movieIv"
             android:layout_width="0dp"
             android:layout_height="240dp"
             android:scaleType="centerCrop"
+            android:transitionName="@string/movie_image"
             app:imageUrl="@{movie.getImageUrl()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

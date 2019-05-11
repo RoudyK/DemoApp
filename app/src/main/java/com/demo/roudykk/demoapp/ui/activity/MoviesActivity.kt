@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import butterknife.ButterKnife
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.analytics.Analytics
-import com.demo.roudykk.demoapp.analytics.consts.Source
 import com.demo.roudykk.demoapp.controllers.MoviesController
 import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.extensions.withAppBar
@@ -102,7 +101,7 @@ class MoviesActivity : BaseActivity(), MoviesController.MoviesListener, Observer
 
 
     override fun onMovieClicked(movie: MovieView) {
-        MovieActivity.launch(this, movie, Source.SOURCE_MORE_MOVIES)
+
     }
 
     companion object {

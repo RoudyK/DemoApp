@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog.Builder
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.demo.roudykk.demoapp.R
@@ -114,7 +115,7 @@ class WatchListFragment : BaseFragment(), SavedMoviesController.SavedMoviesListe
     }
 
     override fun onMovieClicked(movie: MovieView) {
-
+        findNavController().navigate(MovieFragmentDirections.actionMovie(movie))
     }
 
     override fun onDeleteMovieClicked(movie: MovieView) {
