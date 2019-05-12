@@ -10,5 +10,6 @@
     <attr name="dividerColor" format="reference" />
     <attr name="highlightColor" format="reference" />
     <attr name="placeHolder" format="reference" />
+    <attr name="navBackgroundColor" format="reference" />
 
 </resources>

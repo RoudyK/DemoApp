@@ -11,6 +11,7 @@
         <item name="highlightColor">@color/highlightColorLight</item>
         <item name="placeHolder">@drawable/background_placeholder</item>
         <item name="android:statusBarColor">@color/white</item>
+        <item name="navBackgroundColor">@color/navBackgroundColorLight</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
@@ -23,6 +24,7 @@
         <item name="highlightColor">@color/highlightColorDark</item>
         <item name="placeHolder">@drawable/background_placeholder_dark</item>
         <item name="android:statusBarColor">@color/backgroundColorDark</item>
+        <item name="navBackgroundColor">@color/navBackgroundColorDark</item>
         <item name="android:windowLightStatusBar">false</item>
     </style>
 </resources>

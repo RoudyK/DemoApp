@@ -49,9 +49,9 @@ class HomeFragment : BaseFragment(), HomeController.Listener, Observer<Resource<
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        movieRv.layoutManager = LinearLayoutManager(context)
+        movieHomeRv.layoutManager = LinearLayoutManager(context)
         homeController.listener = this
-        movieRv.setController(homeController)
+        movieHomeRv.setController(homeController)
 
         this.initViewModel()
 

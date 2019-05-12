@@ -39,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:backgroundTint="?attr/backgroundColor"
+        android:backgroundTint="?navBackgroundColor"
         app:fabCradleMargin="@dimen/bottom_app_bar_fab_margin"
         app:hideOnScroll="true"
         app:navigationIcon="@drawable/ic_menu_black_24dp"

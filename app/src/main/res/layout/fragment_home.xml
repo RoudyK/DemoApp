@@ -17,7 +17,7 @@
         app:lottie_loop="true" />
 
     <com.airbnb.epoxy.EpoxyRecyclerView
-        android:id="@+id/movieRv"
+        android:id="@+id/movieHomeRv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
