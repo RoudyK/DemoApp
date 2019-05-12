@@ -62,14 +62,6 @@ class MovieFragment : BaseFragment(), MovieController.Listener, Observer<Resourc
         AndroidSupportInjection.inject(this)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val transition = TransitionInflater.from(context).inflateTransition(android.R.transition.slide_bottom)
-        sharedElementEnterTransition = ChangeBounds().apply {
-            enterTransition = transition
-        }
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_movie, container, false)
     }

@@ -5,7 +5,10 @@ import android.graphics.Color
 import android.util.TypedValue
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DefaultItemAnimator
-import com.airbnb.epoxy.*
+import com.airbnb.epoxy.Carousel
+import com.airbnb.epoxy.CarouselModel_
+import com.airbnb.epoxy.EpoxyRecyclerView
+import com.airbnb.epoxy.Typed2EpoxyController
 import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager
 import com.demo.roudykk.demoapp.*
 import com.demo.roudykk.demoapp.controllers.models.IndicatorCarouselModel_
@@ -15,7 +18,6 @@ import com.roudykk.presentation.model.MovieView
 import com.roudykk.presentation.model.PersonView
 import com.roudykk.presentation.model.ReviewView
 import com.roudykk.presentation.model.SpokenLanguageView
-import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 import java.text.DecimalFormat
 import javax.inject.Inject
 
@@ -23,10 +25,6 @@ import javax.inject.Inject
 class MovieController @Inject constructor() : Typed2EpoxyController<MovieView, Boolean>() {
     lateinit var context: Context
     var listener: Listener? = null
-
-    private val onModelBoundListener =
-            OnModelBoundListener<CarouselModel_, Carousel>
-            { _, view, _ -> OverScrollDecoratorHelper.setUpOverScroll(view, OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL) }
 
     override fun buildModels(movie: MovieView?, fullDetails: Boolean) {
         movie?.let {
@@ -78,7 +76,6 @@ class MovieController @Inject constructor() : Typed2EpoxyController<MovieView, B
                 .id("production_companies_carousel")
                 .models(productionModels)
                 .padding(Carousel.Padding(0, 0))
-                .onBind(onModelBoundListener)
                 .addIf(productionModels.size > 0, this)
 
         DividerBindingModel_()
@@ -177,7 +174,6 @@ class MovieController @Inject constructor() : Typed2EpoxyController<MovieView, B
                 .models(castModels)
                 .padding(Carousel.Padding(0, 0))
                 .onBind { _, view, _ ->
-                    OverScrollDecoratorHelper.setUpOverScroll(view, OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL)
                     val typedValue = TypedValue()
                     context.theme.resolveAttribute(R.attr.highlightColor, typedValue, true)
                     view.setBackgroundColor(ContextCompat.getColor(context, typedValue.resourceId))
