@@ -16,7 +16,7 @@ object GlideImageLoader : ImageLoader {
         GlideApp.with(context)
                 .load(imageUrl)
                 .placeholder(typedValue.resourceId)
-                .transforms(CenterCrop(), RoundedCorners(10))
+                .centerCrop()
                 .into(imageView)
     }
 
@@ -24,7 +24,7 @@ object GlideImageLoader : ImageLoader {
         GlideApp.with(context)
                 .load(imageUrl)
                 .placeholder(placeHolder)
-                .transforms(CenterCrop())
+                .centerCrop()
                 .into(imageView)
     }
 

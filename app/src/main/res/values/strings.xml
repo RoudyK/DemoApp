@@ -60,4 +60,5 @@
     <string name="biography">Biography:</string>
     <string name="failed_update_watchlist">Failed to update watchlist</string>
     <string name="movie_container">movieContainer</string>
+    <string name="failed_to_load_movies">Failed to load movies</string>
 </resources>

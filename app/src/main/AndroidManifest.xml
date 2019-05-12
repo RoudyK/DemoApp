@@ -27,9 +27,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.activity.MoviesActivity" />
-        <activity android:name=".ui.activity.SettingsActivity" />
-
         <meta-data android:name="io.fabric.ApiKey" android:value="975af90154c6c3fee25ed61593fd0fb361878407" />
     </application>
 

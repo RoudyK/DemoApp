@@ -1,6 +1,5 @@
 package com.demo.roudykk.demoapp.controllers
 
-import android.content.Context
 import android.view.View
 import android.widget.RatingBar
 import com.airbnb.epoxy.Carousel
@@ -30,6 +29,7 @@ class HomeController @Inject constructor() : TypedEpoxyController<List<MovieGrou
             HeaderBindingModel_()
                     .id(movieGroup.title)
                     .title(movieGroup.title)
+                    .onActionListener(View.OnClickListener { listener?.onLoadMoreMovies(movieGroup) })
                     .addTo(this)
 
             val models = mutableListOf<EpoxyModel<*>>()

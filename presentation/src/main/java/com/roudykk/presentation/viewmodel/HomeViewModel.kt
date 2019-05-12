@@ -31,21 +31,19 @@ class HomeViewModel @Inject constructor(
     fun fetchMovieGroups() {
         if (this.liveData.value == null || this.liveData.value!!.data.isNullOrEmpty()) {
             this.liveData.postValue(Resource(ResourceState.LOADING, null, null))
+            this.getMoviesGroups.execute(MovieGroupsObserver())
         } else {
             this.liveData.postValue(Resource(ResourceState.SUCCESS, this.liveData.value?.data, null))
         }
-        this.getMoviesGroups.execute(MovieGroupsObserver())
     }
 
     inner class MovieGroupsObserver : DisposableObserver<List<MovieGroup>>() {
         override fun onComplete() {}
 
         override fun onNext(data: List<MovieGroup>) {
-            if (liveData.value == null || liveData.value!!.data != data) {
-                liveData.postValue(Resource(ResourceState.SUCCESS, data.map {
-                    movieGroupViewMapper.mapToView(it)
-                }, null))
-            }
+            liveData.postValue(Resource(ResourceState.SUCCESS, data.map {
+                movieGroupViewMapper.mapToView(it)
+            }, null))
         }
 
         override fun onError(e: Throwable) {

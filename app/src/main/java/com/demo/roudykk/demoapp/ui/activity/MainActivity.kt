@@ -87,7 +87,7 @@ class MainActivity : BaseActivity() {
             drawerLayout.closeDrawer(GravityCompat.START)
             when (it.itemId) {
                 R.id.nav_watchlist -> findNavController(R.id.nav_host_fragment).navigate(R.id.action_watchlist)
-                R.id.nav_settings -> SettingsActivity.launch(this)
+                R.id.nav_settings -> findNavController(R.id.nav_host_fragment).navigate(R.id.settings)
             }
             true
         }

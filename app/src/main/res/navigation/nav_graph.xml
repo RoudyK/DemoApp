@@ -32,6 +32,20 @@
             app:argType="com.roudykk.presentation.model.MovieView" />
     </fragment>
 
+    <fragment
+        android:id="@+id/movies"
+        android:name="com.demo.roudykk.demoapp.ui.fragment.MoviesFragment"
+        tools:layout="@layout/fragment_movies">
+        <argument
+            android:name="movieGroup"
+            app:argType="com.roudykk.presentation.model.MovieGroupView" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/settings"
+        android:name="com.demo.roudykk.demoapp.ui.fragment.SettingsFragment"
+        android:label="@string/settings" />
+
     <action
         android:id="@+id/action_search"
         app:destination="@id/search"
@@ -58,5 +72,17 @@
         <argument
             android:name="movie"
             app:argType="com.roudykk.presentation.model.MovieView" />
+    </action>
+
+    <action
+        android:id="@+id/action_movie_group"
+        app:destination="@id/movies"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim">
+        <argument
+            android:name="movieGroup"
+            app:argType="com.roudykk.presentation.model.MovieGroupView" />
     </action>
 </navigation>

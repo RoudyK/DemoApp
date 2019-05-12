@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -7,19 +8,49 @@
         <variable
             name="title"
             type="String" />
+
+        <variable
+            name="onActionListener"
+            type="android.view.View.OnClickListener" />
     </data>
 
-    <TextView
-        android:background="?attr/backgroundColor"
-        fontPath="fonts/AirbnbCereal-Bold.ttf"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/spacing_medium"
-        android:layout_marginRight="@dimen/spacing_medium"
-        android:layout_marginTop="@dimen/spacing_large"
-        android:text="@{title}"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        tools:text="@tools:sample/full_names" />
+        android:layout_height="wrap_content">
+
+        <TextView
+            fontPath="fonts/AirbnbCereal-Bold.ttf"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_medium"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:layout_marginRight="@dimen/spacing_medium"
+            android:background="?attr/backgroundColor"
+            android:text="@{title}"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/action"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@tools:sample/full_names" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/action"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:layout_marginEnd="@dimen/spacing_default"
+            android:fontFamily="@font/default_medium"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:onClickListener="@{onActionListener}"
+            android:text="More >"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

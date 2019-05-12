@@ -25,10 +25,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import androidx.test.espresso.intent.Intents.times
-import com.demo.roudykk.demoapp.ui.fragment.MainActivity
-import com.demo.roudykk.demoapp.ui.fragment.MovieFragment
-import com.demo.roudykk.demoapp.ui.fragment.SearchFragment
-import com.demo.roudykk.demoapp.ui.fragment.WatchListFragment
+import com.demo.roudykk.demoapp.ui.fragment.*
 
 
 class MainActivityTest {
@@ -175,7 +172,7 @@ class MainActivityTest {
                     .perform(swipeLeft())
         }
 
-        intended(hasComponent(MoviesActivity::class.java.name), times(movieGroups.size))
+        intended(hasComponent(MoviesFragment::class.java.name), times(movieGroups.size))
     }
 
     private fun stubGetMovieGroups(observable: Observable<List<MovieGroup>>) {

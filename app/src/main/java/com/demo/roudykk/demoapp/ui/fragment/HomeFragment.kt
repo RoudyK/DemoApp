@@ -5,17 +5,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.ViewCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.analytics.Analytics
 import com.demo.roudykk.demoapp.controllers.HomeController
 import com.demo.roudykk.demoapp.injection.ViewModelFactory
-import com.demo.roudykk.demoapp.ui.activity.MoviesActivity
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.roudykk.presentation.model.MovieGroupView
 import com.roudykk.presentation.model.MovieView
@@ -49,8 +46,8 @@ class HomeFragment : BaseFragment(), HomeController.Listener, Observer<Resource<
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         movieRv.layoutManager = LinearLayoutManager(context)
         homeController.listener = this
@@ -91,7 +88,7 @@ class HomeFragment : BaseFragment(), HomeController.Listener, Observer<Resource<
     }
 
     override fun onLoadMoreMovies(movieGroup: MovieGroupView) {
-        MoviesActivity.launch(context!!, movieGroup)
+        findNavController().navigate(MoviesFragmentDirections.actionMovieGroup(movieGroup))
     }
 
     override fun onMovieClicked(movie: MovieView, view: View) {
