@@ -27,6 +27,7 @@
 ### Software Structure
 - Clean Architecture
 - MVVM software architectural pattern
+- Android Navigation Component (Single Activity App)
 
 ### Run the App
 - Clone the Repo
@@ -37,11 +38,12 @@
 - ~Support Light and Dark themes~
 - ~Add crashlytics~
 - ~Writing unit tests~
-- Writing UI tests
+- ~Writing UI tests~
+- ~Code refactoring XD~
 - Code documentation
-- Code refactoring XD
 - CD/CI (Bitbucket pipeline + Hockeyapp)
 - Add product flavors for DEMO and FULL
-- Deeplinking
+- Deeplinking using navigation component
+- Export dimensions
 
 *"This project is in constant development, any tips or recommendations are appreciated"*
