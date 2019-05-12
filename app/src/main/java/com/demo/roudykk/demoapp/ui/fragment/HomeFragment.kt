@@ -4,16 +4,13 @@ import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewConfiguration
 import android.view.ViewGroup
 import androidx.core.view.ViewCompat
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.analytics.Analytics
 import com.demo.roudykk.demoapp.controllers.HomeController
@@ -38,10 +35,12 @@ class HomeFragment : BaseFragment(), HomeController.Listener, Observer<Resource<
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private var homeViewModel: HomeViewModel? = null
-    private lateinit var moviesPagerAdapter: MoviesPagerAdapter
+    @Inject
+    lateinit var homeController: HomeController
 
-    override fun onAttach(context: Context?) {
+    private var homeViewModel: HomeViewModel? = null
+
+    override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
     }
@@ -52,8 +51,12 @@ class HomeFragment : BaseFragment(), HomeController.Listener, Observer<Resource<
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        movieRv.layoutManager = LinearLayoutManager(context)
+        homeController.listener = this
+        movieRv.setController(homeController)
+
         this.initViewModel()
-        this.initViewPager()
 
         reload.setOnClickListener { this.homeViewModel?.fetchMovieGroups() }
 
@@ -69,33 +72,20 @@ class HomeFragment : BaseFragment(), HomeController.Listener, Observer<Resource<
         this.homeViewModel?.fetchMovieGroups()
     }
 
-    private fun initViewPager() {
-        if (!this::moviesPagerAdapter.isInitialized) {
-            this.moviesPagerAdapter = MoviesPagerAdapter(this.childFragmentManager)
-        }
-        this.viewPager.adapter = this.moviesPagerAdapter
-        this.tabLayout.setupWithViewPager(this.viewPager)
-    }
-
     override fun onChanged(resource: Resource<List<MovieGroupView>>?) {
         when (resource?.status) {
             ResourceState.LOADING -> {
-                this.tabLayout.visibility = View.GONE
                 this.loadingView.visibility = View.VISIBLE
                 this.errorView.visibility = View.GONE
-                this.moviesPagerAdapter.updateMovies(listOf())
             }
             ResourceState.SUCCESS -> {
-                this.tabLayout.visibility = View.VISIBLE
+                homeController.setData(resource.data)
                 this.loadingView.visibility = View.GONE
                 this.errorView.visibility = View.GONE
-                this.moviesPagerAdapter.updateMovies(resource.data)
             }
             ResourceState.ERROR -> {
-                this.tabLayout.visibility = View.GONE
                 this.loadingView.visibility = View.GONE
                 this.errorView.visibility = View.VISIBLE
-                this.moviesPagerAdapter.updateMovies(listOf())
             }
         }
     }
@@ -105,39 +95,11 @@ class HomeFragment : BaseFragment(), HomeController.Listener, Observer<Resource<
     }
 
     override fun onMovieClicked(movie: MovieView, view: View) {
-        val name = ViewCompat.getTransitionName(view)!!
-        findNavController().navigate(MovieFragmentDirections.actionMovie(movie), FragmentNavigatorExtras(
-                view to name
-        ))
+        findNavController().navigate(MovieFragmentDirections.actionMovie(movie))
     }
 
-    inner class MoviesPagerAdapter(fragmentManager: FragmentManager)
-        : FragmentStatePagerAdapter(fragmentManager) {
-
-        private var movieGroups = mutableListOf<MovieGroupView>()
-        private val movieGroupFragments = mutableListOf<MovieGroupFragment>()
-
-        fun updateMovies(movieGroups: List<MovieGroupView>?) {
-            movieGroups?.let {
-                this.movieGroupFragments.clear()
-                this.movieGroups = movieGroups.toMutableList()
-                this.movieGroups.forEach { movieGroup ->
-                    this.movieGroupFragments.add(MovieGroupFragment.newInstance(movieGroup))
-                }
-                this.notifyDataSetChanged()
-            }
-        }
-
-        override fun getItem(position: Int): Fragment {
-            return this.movieGroupFragments[position]
-        }
-
-        override fun getCount(): Int {
-            return this.movieGroupFragments.size
-        }
-
-        override fun getPageTitle(position: Int): CharSequence? {
-            return this.movieGroups[position].title
-        }
+    override fun onSaveInstanceState(outState: Bundle) {
+        homeController.onSaveInstanceState(outState)
+        super.onSaveInstanceState(outState)
     }
 }

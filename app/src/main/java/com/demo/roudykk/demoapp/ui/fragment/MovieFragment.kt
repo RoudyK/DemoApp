@@ -1,5 +1,6 @@
 package com.demo.roudykk.demoapp.ui.fragment
 
+import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -17,11 +18,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.transition.ChangeBounds
 import androidx.transition.TransitionInflater
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.analytics.Analytics
 import com.demo.roudykk.demoapp.controllers.MovieController
 import com.demo.roudykk.demoapp.db.PreferenceRepo
+import com.demo.roudykk.demoapp.images.AppImageLoader
 import com.demo.roudykk.demoapp.injection.ViewModelFactory
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.snackbar.Snackbar
@@ -54,10 +57,17 @@ class MovieFragment : BaseFragment(), MovieController.Listener, Observer<Resourc
     private lateinit var movieViewModel: MovieViewModel
     private var snackBar: Snackbar? = null
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        AndroidSupportInjection.inject(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
-        AndroidSupportInjection.inject(this)
+        val transition = TransitionInflater.from(context).inflateTransition(android.R.transition.slide_bottom)
+        sharedElementEnterTransition = ChangeBounds().apply {
+            enterTransition = transition
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

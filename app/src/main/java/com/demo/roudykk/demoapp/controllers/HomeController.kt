@@ -1,71 +1,72 @@
 package com.demo.roudykk.demoapp.controllers
 
+import android.content.Context
 import android.view.View
 import android.widget.RatingBar
+import com.airbnb.epoxy.Carousel
+import com.airbnb.epoxy.CarouselModel_
+import com.airbnb.epoxy.EpoxyModel
 import com.airbnb.epoxy.TypedEpoxyController
-import com.demo.roudykk.demoapp.*
+import com.demo.roudykk.demoapp.HeaderBindingModel_
+import com.demo.roudykk.demoapp.MovieBindingModel_
+import com.demo.roudykk.demoapp.MovieHeaderBindingModel_
+import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.extensions.applyTheme
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
 import com.roudykk.presentation.model.MovieGroupView
 import com.roudykk.presentation.model.MovieView
 import javax.inject.Inject
 
-class HomeController @Inject constructor() : TypedEpoxyController<MovieGroupView>() {
+class HomeController @Inject constructor() : TypedEpoxyController<List<MovieGroupView>>() {
 
     var listener: Listener? = null
 
     interface Listener {
         fun onLoadMoreMovies(movieGroup: MovieGroupView)
-
         fun onMovieClicked(movie: MovieView, view: View)
     }
 
-    override fun buildModels(movieGroup: MovieGroupView?) {
-        movieGroup?.movies?.let {
-            it.forEachIndexed { index, movie ->
-                if (index == 0) {
-                    MovieHeaderBindingModel_()
-                            .id(movie.id)
-                            .movie(movie)
-                            .onClickListener { view ->
-                                this.listener?.onMovieClicked(movie, view.findViewById(R.id.movieIv))
-                            }
-                            .onBind { _, view, _ ->
-                                val ratingBar = view.dataBinding.root.findViewById<RatingBar>(R.id.movieRb)
-                                ratingBar.applyTheme()
-                            }
-                            .addTo(this)
-                } else {
-                    ListMovieBindingModel_()
-                            .id(movie.id)
-                            .movie(movie)
-                            .onClickListener { view ->
-                                this.listener?.onMovieClicked(movie, view.findViewById(R.id.movieIv))
-                            }
-                            .onBind { _, view, _ ->
-                                val ratingBar = view.dataBinding.root.findViewById<RatingBar>(R.id.movieRb)
-                                ratingBar.applyTheme()
-                            }
-                            .addTo(this)
+    override fun buildModels(movieGroups: List<MovieGroupView>?) {
+        movieGroups?.forEach { movieGroup ->
+            HeaderBindingModel_()
+                    .id(movieGroup.title)
+                    .title(movieGroup.title)
+                    .addTo(this)
+
+            val models = mutableListOf<EpoxyModel<*>>()
+
+            movieGroup.movies.let {
+                it.forEachIndexed { index, movie ->
+                    if (index == 0) {
+                        models.add(MovieHeaderBindingModel_()
+                                .id(movie.id)
+                                .movie(movie)
+                                .onClickListener { view ->
+                                    this.listener?.onMovieClicked(movie, view.findViewById(R.id.movieIv))
+                                }
+                                .onBind { _, view, _ ->
+                                    val ratingBar = view.dataBinding.root.findViewById<RatingBar>(R.id.movieRb)
+                                    ratingBar.applyTheme()
+                                })
+                    } else {
+                        models.add(MovieBindingModel_()
+                                .id(movie.id)
+                                .movie(movie)
+                                .onClickListener { view ->
+                                    this.listener?.onMovieClicked(movie, view.findViewById(R.id.movieIv))
+                                }
+                                .onBind { _, view, _ ->
+                                    val ratingBar = view.dataBinding.root.findViewById<RatingBar>(R.id.movieRb)
+                                    ratingBar.applyTheme()
+                                })
+                    }
                 }
+
+                CarouselModel_()
+                        .id("carousel_${movieGroup.title}")
+                        .models(models)
+                        .padding(Carousel.Padding.resource(R.dimen.spacing_medium, R.dimen.spacing_medium, R.dimen.empty, R.dimen.empty, R.dimen.spacing_default))
+                        .addTo(this)
             }
-
-            FooterAdBindingModel_()
-                    .id("footer_ad")
-                    .onBind { _, view, _ ->
-                        val adView = view.dataBinding.root.findViewById<AdView>(R.id.adView)
-                        adView.loadAd(AdRequest.Builder().build())
-                    }
-                    .addTo(this)
-
-            MovieFooterBindingModel_()
-                    .id("footer")
-                    .onClickListener { _ ->
-                        this.listener?.onLoadMoreMovies(movieGroup)
-                    }
-                    .addTo(this)
         }
     }
-
 }

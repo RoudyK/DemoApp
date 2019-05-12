@@ -38,7 +38,7 @@ class PersonDetailsFragment : BottomSheetDialogFragment() {
     private lateinit var person: PersonView
     private lateinit var personViewModel: PersonViewModel
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
     }

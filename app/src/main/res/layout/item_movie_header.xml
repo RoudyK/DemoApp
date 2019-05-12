@@ -14,77 +14,81 @@
             type="android.view.View.OnClickListener" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:clickable="true"
-        android:contentDescription="@string/movie_container"
-        android:focusable="true"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:onClickListener="@{onClickListener}">
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="@dimen/large_carousel_item_size"
+        android:layout_height="@dimen/large_carousel_item_size"
+        app:cardCornerRadius="@dimen/default_radius"
+        app:cardElevation="0dp">
 
-        <ImageView
-            android:id="@+id/movieIv"
-            android:layout_width="0dp"
-            android:layout_height="240dp"
-            android:scaleType="centerCrop"
-            android:transitionName="@string/movie_image"
-            app:imageUrl="@{movie.getImageUrl()}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:placeHolder="@{@drawable/background_placeholder_header}"
-            tools:background="@drawable/background_placeholder_header" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="@dimen/large_carousel_item_size"
+            android:layout_height="@dimen/large_carousel_item_size"
+            android:background="@color/colorPrimary"
+            android:contentDescription="@string/movie_container"
+            android:onClickListener="@{onClickListener}">
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/background_overlay"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <ImageView
+                android:id="@+id/movieIv"
+                android:layout_width="0dp"
+                android:layout_height="240dp"
+                android:scaleType="centerCrop"
+                android:transitionName="@string/movie_image"
+                app:imageUrl="@{movie.getImageUrl()}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:placeHolder="@{@drawable/background_placeholder_header}"
+                tools:background="@drawable/background_placeholder_header" />
 
-        <TextView
-            android:id="@+id/movieTitleTv"
-            fontPath="fonts/AirbnbCereal-Medium.ttf"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:text="@{movie.title}"
-            android:textColor="@color/white"
-            android:textSize="22sp"
-            app:layout_constraintBottom_toTopOf="@+id/movieRb"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            tools:text="@tools:sample/full_names" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/background_overlay"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/movieTitleTv"
+                fontPath="fonts/AirbnbCereal-Medium.ttf"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{movie.title}"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                app:layout_constraintBottom_toTopOf="@+id/movieRb"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:text="@tools:sample/full_names" />
 
 
-        <RatingBar
-            android:id="@+id/movieRb"
-            style="@style/Base.Widget.AppCompat.RatingBar.Indicator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="20dp"
-            android:maxLines="2"
-            android:numStars="5"
-            android:rating="@{movie.voteAverage/2}"
-            android:textColor="@color/colorAccent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            tools:rating="3.5"
-            tools:text="@tools:sample/us_zipcodes" />
+            <RatingBar
+                android:id="@+id/movieRb"
+                style="@style/Base.Widget.AppCompat.RatingBar.Indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:maxLines="2"
+                android:numStars="5"
+                android:rating="@{movie.voteAverage/2}"
+                android:textColor="@color/colorAccent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                tools:rating="3.5"
+                tools:text="@tools:sample/us_zipcodes" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 </layout>

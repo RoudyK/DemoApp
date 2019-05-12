@@ -1,5 +1,6 @@
 package com.demo.roudykk.demoapp.ui.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -38,9 +39,8 @@ class WatchListFragment : BaseFragment(), SavedMoviesController.SavedMoviesListe
 
     private lateinit var watchListViewModel: WatchListViewModel
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
         AndroidSupportInjection.inject(this)
     }
 

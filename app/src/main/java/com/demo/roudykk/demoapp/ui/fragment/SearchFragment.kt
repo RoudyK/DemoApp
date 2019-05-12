@@ -1,5 +1,6 @@
 package com.demo.roudykk.demoapp.ui.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +14,6 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.analytics.Analytics
-import com.demo.roudykk.demoapp.analytics.consts.Source
 import com.demo.roudykk.demoapp.controllers.MoviesController
 import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.injection.ViewModelFactory
@@ -36,8 +36,8 @@ class SearchFragment : BaseFragment(), MoviesController.MoviesListener {
 
     private lateinit var searchViewModel: SearchViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
         AndroidSupportInjection.inject(this)
     }
 

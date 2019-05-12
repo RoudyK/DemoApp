@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="?attr/backgroundColor">
 
+
     <com.airbnb.epoxy.EpoxyRecyclerView
         android:id="@+id/movieRv"
         android:layout_width="match_parent"

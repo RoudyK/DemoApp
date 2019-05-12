@@ -35,8 +35,5 @@ abstract class AppModule {
     abstract fun contributePersonDetailsFragment(): PersonDetailsFragment
 
     @ContributesAndroidInjector
-    abstract fun contributeMovieGroupFragment(): MovieGroupFragment
-
-    @ContributesAndroidInjector
     abstract fun contributHomeFragment(): HomeFragment
 }
