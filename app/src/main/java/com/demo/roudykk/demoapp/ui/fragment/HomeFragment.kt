@@ -41,8 +41,8 @@ class HomeFragment : BaseFragment(), HomeController.Listener, Observer<Resource<
     private var homeViewModel: HomeViewModel? = null
 
     override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
         super.onAttach(context)
+        AndroidSupportInjection.inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

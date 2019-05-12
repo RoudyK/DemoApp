@@ -59,6 +59,7 @@
                 android:layout_marginRight="10dp"
                 android:ellipsize="end"
                 android:maxLines="2"
+                android:gravity="bottom"
                 android:minLines="2"
                 android:text="@{movie.title}"
                 android:textColor="@color/white"
