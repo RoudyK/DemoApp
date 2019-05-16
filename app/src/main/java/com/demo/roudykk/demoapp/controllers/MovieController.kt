@@ -114,10 +114,6 @@ class MovieController @Inject constructor() : Typed2EpoxyController<MovieView, B
                     .id("videos_carousel")
                     .models(videoItems)
                     .padding(Carousel.Padding(0, 20, 0, 0, 0))
-                    .onBind { _, view, _ ->
-                        view.setBackgroundColor(Color.BLACK)
-                        view.setPadding(0, 0, 0, 20)
-                    }
                     .addIf(videoItems.size > 0, this)
         }
     }
@@ -182,11 +178,6 @@ class MovieController @Inject constructor() : Typed2EpoxyController<MovieView, B
                 .id("cast_carousel")
                 .models(castModels)
                 .padding(Carousel.Padding(0, 0))
-                .onBind { _, view, _ ->
-                    val typedValue = TypedValue()
-                    context.theme.resolveAttribute(R.attr.highlightColor, typedValue, true)
-                    view.setBackgroundColor(ContextCompat.getColor(context, typedValue.resourceId))
-                }
                 .addIf(castModels.size > 0, this)
 
         DividerBindingModel_()
