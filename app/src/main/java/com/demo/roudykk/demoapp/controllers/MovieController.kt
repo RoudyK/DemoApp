@@ -84,33 +84,42 @@ class MovieController @Inject constructor() : Typed2EpoxyController<MovieView, B
     }
 
     private fun buildVideos(movie: MovieView) {
-        val videoItems = mutableListOf<VideoBindingModel_>()
+        movie.videos?.let {
 
-        movie.videos?.forEach { video ->
-            videoItems.add(VideoBindingModel_()
-                    .id(video.id)
-                    .video(video)
+            val videoItems = mutableListOf<VideoBindingModel_>()
+
+            val videos = if (it.size > 3) {
+                it.subList(0, 3)
+            } else {
+                it
+            }
+
+            videos.forEach { video ->
+                videoItems.add(VideoBindingModel_()
+                        .id(video.id)
+                        .video(video)
+                        .onBind { _, view, _ ->
+                            val youTubePlayerView = view.dataBinding.root.findViewById<YouTubePlayerView>(R.id.youtubeView)
+                            youTubePlayerView.initialize({ initializedYouTubePlayer ->
+                                initializedYouTubePlayer.addListener(object : AbstractYouTubePlayerListener() {
+                                    override fun onReady() {
+                                        initializedYouTubePlayer.cueVideo(video.key, 0f)
+                                    }
+                                })
+                            }, true)
+                        })
+            }
+
+            IndicatorCarouselModel_()
+                    .id("videos_carousel")
+                    .models(videoItems)
+                    .padding(Carousel.Padding(0, 20, 0, 0, 0))
                     .onBind { _, view, _ ->
-                        val youTubePlayerView = view.dataBinding.root.findViewById<YouTubePlayerView>(R.id.youtubeView)
-                        youTubePlayerView.initialize({ initializedYouTubePlayer ->
-                            initializedYouTubePlayer.addListener(object : AbstractYouTubePlayerListener() {
-                                override fun onReady() {
-                                    initializedYouTubePlayer.cueVideo(video.key, 0f)
-                                }
-                            })
-                        }, true)
-                    })
+                        view.setBackgroundColor(Color.BLACK)
+                        view.setPadding(0, 0, 0, 20)
+                    }
+                    .addIf(videoItems.size > 0, this)
         }
-
-        IndicatorCarouselModel_()
-                .id("videos_carousel")
-                .models(videoItems)
-                .padding(Carousel.Padding(0, 20, 0, 0, 0))
-                .onBind { _, view, _ ->
-                    view.setBackgroundColor(Color.BLACK)
-                    view.setPadding(0, 0, 0, 20)
-                }
-                .addIf(videoItems.size > 0, this)
     }
 
     private fun buildMetrics(movie: MovieView) {

@@ -9,6 +9,7 @@ import com.airbnb.epoxy.Carousel
 import com.crashlytics.android.Crashlytics
 import com.demo.roudykk.demoapp.controllers.helpers.StartSnapHelper
 import com.demo.roudykk.demoapp.injection.DaggerApplicationComponent
+import com.demo.roudykk.demoapp.injection.ViewModelFactory
 import com.google.android.gms.ads.MobileAds
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -29,6 +30,13 @@ class DemoApplication : Application(), HasActivityInjector, HasSupportFragmentIn
     @Inject
     lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    companion object {
+        lateinit var instance: DemoApplication
+    }
+
     override fun activityInjector(): AndroidInjector<Activity> {
         return this.activityInjector
     }
@@ -40,18 +48,12 @@ class DemoApplication : Application(), HasActivityInjector, HasSupportFragmentIn
     override fun onCreate() {
         super.onCreate()
 
+        instance = this
+
         DaggerApplicationComponent.builder()
                 .application(this)
                 .build()
                 .inject(this)
-
-        ViewPump.init(ViewPump.builder()
-                .addInterceptor(CalligraphyInterceptor(
-                        CalligraphyConfig.Builder()
-                                .setDefaultFontPath("fonts/AirbnbCereal-Light.ttf")
-                                .setFontAttrId(R.attr.fontPath)
-                                .build()))
-                .build())
 
         if (!BuildConfig.DEBUG) {
             Fabric.with(this, Crashlytics())

@@ -78,7 +78,6 @@ dependencies {
     implementation dependencies.rxAndroid
     implementation dependencies.rxJava
     implementation dependencies.overscroll
-    implementation dependencies.viewpump
     implementation dependencies.lottie
     implementation dependencies.googleAds
     implementation(dependencies.crashlytics) {

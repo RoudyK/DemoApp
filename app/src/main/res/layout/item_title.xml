@@ -10,7 +10,6 @@
     </data>
 
     <TextView
-        fontPath="fonts/AirbnbCereal-Bold.ttf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="14dp"

@@ -37,7 +37,6 @@
 
         <com.demo.roudykk.demoapp.ui.view.TightTextView
             android:id="@+id/personTv"
-            fontPath="fonts/AirbnbCereal-Medium.ttf"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -53,7 +52,6 @@
 
         <com.demo.roudykk.demoapp.ui.view.TightTextView
             android:id="@+id/characterTv"
-            fontPath="fonts/AirbnbCereal-Medium.ttf"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"

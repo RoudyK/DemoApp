@@ -6,13 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.analytics.Analytics
 import com.demo.roudykk.demoapp.controllers.HomeController
-import com.demo.roudykk.demoapp.injection.ViewModelFactory
+import com.demo.roudykk.demoapp.extensions.viewModel
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.roudykk.presentation.model.MovieGroupView
 import com.roudykk.presentation.model.MovieView
@@ -30,12 +29,9 @@ class HomeFragment : BaseFragment(), HomeController.Listener, Observer<Resource<
     override val fabAlignmentMode: Int = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
 
     @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
-    @Inject
     lateinit var homeController: HomeController
 
-    private var homeViewModel: HomeViewModel? = null
+    private val homeViewModel: HomeViewModel by viewModel()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -55,18 +51,14 @@ class HomeFragment : BaseFragment(), HomeController.Listener, Observer<Resource<
 
         this.initViewModel()
 
-        reload.setOnClickListener { this.homeViewModel?.fetchMovieGroups() }
+        reload.setOnClickListener { this.homeViewModel.fetchMovieGroups() }
 
         Analytics.getInstance(context!!).userOpenedHome()
     }
 
     private fun initViewModel() {
-        this.homeViewModel = ViewModelProviders
-                .of(this, viewModelFactory)
-                .get(HomeViewModel::class.java)
-
-        this.homeViewModel?.getMovieGroups()?.observe(this, this)
-        this.homeViewModel?.fetchMovieGroups()
+        this.homeViewModel.getMovieGroups().observe(this, this)
+        this.homeViewModel.fetchMovieGroups()
     }
 
     override fun onChanged(resource: Resource<List<MovieGroupView>>?) {

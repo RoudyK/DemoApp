@@ -34,7 +34,6 @@
             app:lottie_loop="true" />
 
         <TextView
-            fontPath="fonts/AirbnbCereal-Medium.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

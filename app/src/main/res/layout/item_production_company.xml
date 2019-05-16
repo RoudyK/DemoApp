@@ -35,7 +35,6 @@
 
         <com.demo.roudykk.demoapp.ui.view.TightTextView
             android:id="@+id/companyTv"
-            fontPath="fonts/AirbnbCereal-Medium.ttf"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

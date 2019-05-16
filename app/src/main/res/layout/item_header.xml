@@ -19,7 +19,6 @@
         android:layout_height="wrap_content">
 
         <TextView
-            fontPath="fonts/AirbnbCereal-Bold.ttf"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/spacing_medium"
@@ -38,7 +37,6 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/action"
             style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-            fontPath="fonts/AirbnbCereal-Medium.ttf"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/action_height_small"
             android:layout_marginTop="@dimen/spacing_large"
