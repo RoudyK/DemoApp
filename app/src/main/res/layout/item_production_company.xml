@@ -15,9 +15,9 @@
         android:layout_height="wrap_content"
         android:background="?attr/backgroundColor"
         android:orientation="vertical"
-        android:paddingLeft="14dp"
+        android:paddingLeft="@dimen/spacing_medium"
         android:paddingTop="@dimen/spacing_default"
-        android:paddingRight="14dp"
+        android:paddingRight="@dimen/spacing_medium"
         android:paddingBottom="@dimen/spacing_default">
 
         <ImageView

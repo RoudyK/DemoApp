@@ -19,9 +19,9 @@
         android:layout_height="wrap_content"
         android:onClickListener="@{onClickListener}"
         android:orientation="vertical"
-        android:paddingLeft="14dp"
+        android:paddingLeft="@dimen/spacing_medium"
         android:paddingTop="@dimen/spacing_default"
-        android:paddingRight="14dp"
+        android:paddingRight="@dimen/spacing_medium"
         android:paddingBottom="@dimen/spacing_default"
         tools:background="?highlightColor">
 
@@ -54,7 +54,7 @@
             android:id="@+id/characterTv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="@dimen/spacing_small"
             android:gravity="center"
             android:maxWidth="100dp"
             android:maxLines="2"

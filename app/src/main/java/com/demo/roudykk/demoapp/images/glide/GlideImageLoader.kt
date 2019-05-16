@@ -16,24 +16,25 @@ object GlideImageLoader : ImageLoader {
         context.theme.resolveAttribute(R.attr.placeHolder, typedValue, true)
         GlideApp.with(context)
                 .load(imageUrl)
+                .transform(CenterCrop(), RoundedCorners(20))
                 .transition(withCrossFade())
                 .placeholder(typedValue.resourceId)
-                .centerCrop()
                 .into(imageView)
     }
 
     override fun loadImage(context: Context, imageUrl: String, placeHolder: Int, imageView: ImageView) {
         GlideApp.with(context)
                 .load(imageUrl)
+                .transform(CenterCrop(), RoundedCorners(20))
                 .transition(withCrossFade())
                 .placeholder(placeHolder)
-                .centerCrop()
                 .into(imageView)
     }
 
     override fun loadImage(context: Context, imageUrl: String, placeHolder: Drawable, imageView: ImageView) {
         GlideApp.with(context)
                 .load(imageUrl)
+                .transform(CenterCrop(), RoundedCorners(20))
                 .transition(withCrossFade())
                 .placeholder(placeHolder)
                 .into(imageView)

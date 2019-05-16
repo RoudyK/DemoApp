@@ -45,14 +45,14 @@
                 android:id="@+id/genresRv"
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp" />
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:layout_marginRight="@dimen/spacing_small" />
 
             <TextView
                 android:id="@+id/overviewTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="@dimen/spacing_inline"
                 android:ellipsize="end"
                 android:maxLines="5"
                 android:text="@{movie.overview}"
@@ -64,7 +64,7 @@
                 style="@style/Widget.AppCompat.RatingBar.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="@dimen/spacing_inline"
                 android:layout_marginTop="@dimen/spacing_default"
                 android:numStars="5"
                 tools:rating="@{movie.voteAverage/2}" />
@@ -73,7 +73,7 @@
                 android:id="@+id/reviewsTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="@dimen/spacing_inline"
                 android:layout_marginTop="@dimen/spacing_default"
                 android:text="@{String.format(@string/x_reviews, String.valueOf(movie.voteCount))}"
                 android:textSize="14sp"
