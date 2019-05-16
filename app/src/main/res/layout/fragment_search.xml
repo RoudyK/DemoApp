@@ -23,7 +23,7 @@
                 android:id="@+id/searchEt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="@dimen/spacing_default"
                 android:background="@null"
                 android:hint="@string/search_movies"
                 android:imeOptions="actionSearch"

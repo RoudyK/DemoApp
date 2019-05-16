@@ -16,9 +16,9 @@
         android:background="?attr/backgroundColor"
         android:orientation="vertical"
         android:paddingLeft="14dp"
-        android:paddingTop="10dp"
+        android:paddingTop="@dimen/spacing_default"
         android:paddingRight="14dp"
-        android:paddingBottom="10dp">
+        android:paddingBottom="@dimen/spacing_default">
 
         <ImageView
             android:id="@+id/companyIv"
@@ -37,7 +37,7 @@
             android:id="@+id/companyTv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/spacing_default"
             android:gravity="center"
             android:maxWidth="100dp"
             android:maxLines="2"

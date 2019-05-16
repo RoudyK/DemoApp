@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="#80000000"
-            android:padding="10dp"
+            android:padding="@dimen/spacing_default"
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"

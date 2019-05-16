@@ -18,7 +18,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="@dimen/spacing_default"
             android:text="@{video.type}"
             android:textColor="@color/white"
             tools:text="Trailer" />

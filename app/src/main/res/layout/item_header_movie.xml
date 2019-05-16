@@ -65,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/spacing_default"
                 android:numStars="5"
                 tools:rating="@{movie.voteAverage/2}" />
 
@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/spacing_default"
                 android:text="@{String.format(@string/x_reviews, String.valueOf(movie.voteCount))}"
                 android:textSize="14sp"
                 tools:text="(19 reviews)" />

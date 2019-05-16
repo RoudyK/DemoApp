@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/background_action"
     android:foreground="?android:attr/selectableItemBackground"
-    android:padding="10dp"
+    android:padding="@dimen/spacing_default"
     android:gravity="center"
     android:textColor="@color/white"
     android:textStyle="bold"
