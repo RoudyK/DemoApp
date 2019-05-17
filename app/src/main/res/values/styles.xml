@@ -5,7 +5,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="backgroundColor">@color/backgroundColorLight</item>
+        <item name="contentBackgroundColor">@color/backgroundColorLight</item>
         <item name="navBackgroundColor">@color/navBackgroundColorLight</item>
         <item name="dividerColor">@color/colorDividerLight</item>
         <item name="highlightColor">@color/highlightColorLight</item>
@@ -18,7 +18,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="backgroundColor">@color/backgroundColorDark</item>
+        <item name="contentBackgroundColor">@color/backgroundColorDark</item>
         <item name="navBackgroundColor">@color/navBackgroundColorDark</item>
         <item name="dividerColor">@color/colorDividerDark</item>
         <item name="highlightColor">@color/highlightColorDark</item>
