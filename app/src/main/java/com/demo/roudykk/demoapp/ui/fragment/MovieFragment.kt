@@ -18,13 +18,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.transition.ChangeBounds
-import androidx.transition.TransitionInflater
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.analytics.Analytics
 import com.demo.roudykk.demoapp.controllers.MovieController
 import com.demo.roudykk.demoapp.db.PreferenceRepo
-import com.demo.roudykk.demoapp.images.AppImageLoader
 import com.demo.roudykk.demoapp.injection.ViewModelFactory
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.snackbar.Snackbar
@@ -136,7 +133,7 @@ class MovieFragment : BaseFragment(), MovieController.Listener, Observer<Resourc
 
     private fun initWindow() {
         val typedValue = TypedValue()
-        context?.theme?.resolveAttribute(R.attr.backgroundColor, typedValue, true)
+        context?.theme?.resolveAttribute(R.attr.contentBackgroundColor, typedValue, true)
     }
 
     override fun onCastClicked(person: PersonView) {

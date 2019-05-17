@@ -26,7 +26,7 @@
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
         android:onClickListener="@{onClickListener}"
-        android:background="?attr/backgroundColor">
+        android:background="?attr/contentBackgroundColor">
 
         <ImageView
             android:id="@+id/movieIv"

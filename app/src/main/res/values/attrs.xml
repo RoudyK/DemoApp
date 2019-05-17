@@ -6,7 +6,7 @@
         <attr name="android:textSize" format="dimension" />
     </declare-styleable>
 
-    <attr name="backgroundColor" format="reference" />
+    <attr name="contentBackgroundColor" format="reference" />
     <attr name="dividerColor" format="reference" />
     <attr name="highlightColor" format="reference" />
     <attr name="placeHolder" format="reference" />
