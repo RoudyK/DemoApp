@@ -1,19 +1,13 @@
 package com.demo.roudykk.demoapp.ui.activity
 
-import android.content.Context
-import android.content.Intent
 import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.ContextCompat
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.db.PreferenceRepo
-import com.demo.roudykk.demoapp.extensions.applyPopAnimation
-import com.demo.roudykk.demoapp.extensions.applyPushAnimation
-import io.github.inflationx.viewpump.ViewPumpContextWrapper
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -22,9 +16,9 @@ abstract class BaseActivity : AppCompatActivity() {
         if (PreferenceManager.getDefaultSharedPreferences(this)
                         .getBoolean(PreferenceRepo.PREFERENCE_DARK_THEME, false)) {
             setTheme(R.style.AppTheme_Dark)
-            delegate.setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
         } else {
-            delegate.setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_NO
         }
         super.onCreate(savedInstanceState)
     }
@@ -36,15 +30,5 @@ abstract class BaseActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        applyPopAnimation()
-    }
-
-    override fun startActivity(intent: Intent?) {
-        super.startActivity(intent)
-        applyPushAnimation()
     }
 }
