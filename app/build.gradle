@@ -63,7 +63,6 @@ dependencies {
     implementation dependencies.butterknife
     kapt dependencies.butterknifeCompiler
     implementation dependencies.androidAppCompat
-    implementation dependencies.androidSupport
     implementation dependencies.androidDesign
     implementation dependencies.androidCardView
     implementation dependencies.glide
