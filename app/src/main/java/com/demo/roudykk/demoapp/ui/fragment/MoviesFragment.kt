@@ -16,6 +16,7 @@ import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.controllers.MoviesController
 import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.extensions.parentAppBar
+import com.demo.roudykk.demoapp.extensions.viewModel
 import com.demo.roudykk.demoapp.extensions.withAppBar
 import com.demo.roudykk.demoapp.injection.ViewModelFactory
 import com.roudykk.presentation.model.MovieGroupView
@@ -32,10 +33,7 @@ class MoviesFragment : BaseFragment(), MoviesController.MoviesListener, Observer
     @Inject
     lateinit var moviesController: MoviesController
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
-    private lateinit var moviesViewModel: MoviesViewModel
+    private val moviesViewModel: MoviesViewModel  by viewModel()
     private lateinit var movieGroup: MovieGroupView
 
     override fun onAttach(context: Context) {
@@ -62,10 +60,6 @@ class MoviesFragment : BaseFragment(), MoviesController.MoviesListener, Observer
     }
 
     private fun initViewModel() {
-        this.moviesViewModel = ViewModelProviders
-                .of(this, this.viewModelFactory)
-                .get(MoviesViewModel::class.java)
-
         this.moviesViewModel.getMovies().observe(this, this)
     }
 

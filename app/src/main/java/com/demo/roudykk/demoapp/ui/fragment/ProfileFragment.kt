@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.controllers.ProfileController
 import com.demo.roudykk.demoapp.db.PreferenceRepo
+import com.demo.roudykk.demoapp.extensions.viewModel
 import com.demo.roudykk.demoapp.injection.ViewModelFactory
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.roudykk.presentation.model.PersonView
@@ -31,11 +32,8 @@ class ProfileFragment : BottomSheetDialogFragment() {
     @Inject
     lateinit var profileController: ProfileController
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
     private lateinit var person: PersonView
-    private lateinit var personViewModel: PersonViewModel
+    private val personViewModel: PersonViewModel  by viewModel()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -65,10 +63,6 @@ class ProfileFragment : BottomSheetDialogFragment() {
     }
 
     private fun initViewModel() {
-        this.personViewModel = ViewModelProviders
-                .of(this, this.viewModelFactory)
-                .get(PersonViewModel::class.java)
-
         this.personViewModel.getPerson().observe(this,
                 Observer { resource ->
                     if (resource.data != null) {

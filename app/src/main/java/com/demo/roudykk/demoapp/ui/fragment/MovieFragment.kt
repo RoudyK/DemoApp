@@ -24,6 +24,7 @@ import com.demo.roudykk.demoapp.controllers.MovieController
 import com.demo.roudykk.demoapp.db.PreferenceRepo
 import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.extensions.parentAppBar
+import com.demo.roudykk.demoapp.extensions.viewModel
 import com.demo.roudykk.demoapp.extensions.withAppBar
 import com.demo.roudykk.demoapp.injection.ViewModelFactory
 import com.google.android.material.bottomappbar.BottomAppBar
@@ -50,11 +51,9 @@ class MovieFragment : BaseFragment(), MovieController.Listener, Observer<Resourc
     @Inject
     lateinit var movieController: MovieController
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
 
     private lateinit var movie: MovieView
-    private lateinit var movieViewModel: MovieViewModel
+    private val movieViewModel: MovieViewModel by viewModel()
     private var snackBar: Snackbar? = null
 
     override fun onAttach(context: Context) {
@@ -103,10 +102,6 @@ class MovieFragment : BaseFragment(), MovieController.Listener, Observer<Resourc
     }
 
     private fun initViewModel() {
-        this.movieViewModel = ViewModelProviders
-                .of(this, this.viewModelFactory)
-                .get(MovieViewModel::class.java)
-
         this.movieViewModel.getMovie().observe(this, this)
     }
 

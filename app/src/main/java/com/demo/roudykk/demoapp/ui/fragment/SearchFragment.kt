@@ -17,6 +17,7 @@ import com.demo.roudykk.demoapp.analytics.Analytics
 import com.demo.roudykk.demoapp.controllers.MoviesController
 import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.extensions.parentAppBar
+import com.demo.roudykk.demoapp.extensions.viewModel
 import com.demo.roudykk.demoapp.extensions.withAppBar
 import com.demo.roudykk.demoapp.injection.ViewModelFactory
 import com.jakewharton.rxbinding2.widget.RxTextView
@@ -33,10 +34,7 @@ class SearchFragment : BaseFragment(), MoviesController.MoviesListener {
     @Inject
     lateinit var moviesController: MoviesController
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
-    private lateinit var searchViewModel: SearchViewModel
+    private val searchViewModel: SearchViewModel  by viewModel()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -56,10 +54,6 @@ class SearchFragment : BaseFragment(), MoviesController.MoviesListener {
     }
 
     private fun initViewModel() {
-        this.searchViewModel = ViewModelProviders
-                .of(this, this.viewModelFactory)
-                .get(SearchViewModel::class.java)
-
         this.searchViewModel.getMovies().observe(this,
                 Observer { resource ->
                     when (resource?.status) {

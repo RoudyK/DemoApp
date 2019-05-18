@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog.Builder
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,8 +16,8 @@ import com.demo.roudykk.demoapp.analytics.Analytics
 import com.demo.roudykk.demoapp.controllers.WatchListController
 import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.extensions.parentAppBar
+import com.demo.roudykk.demoapp.extensions.viewModel
 import com.demo.roudykk.demoapp.extensions.withAppBar
-import com.demo.roudykk.demoapp.injection.ViewModelFactory
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.roudykk.presentation.model.MovieView
 import com.roudykk.presentation.state.ResourceState
@@ -36,10 +35,7 @@ class WatchListFragment : BaseFragment(), WatchListController.SavedMoviesListene
     @Inject
     lateinit var watchListController: WatchListController
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
-    private lateinit var watchListViewModel: WatchListViewModel
+    private val watchListViewModel: WatchListViewModel  by viewModel()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -90,10 +86,6 @@ class WatchListFragment : BaseFragment(), WatchListController.SavedMoviesListene
     }
 
     private fun initViewModel() {
-        this.watchListViewModel = ViewModelProviders
-                .of(this, viewModelFactory)
-                .get(WatchListViewModel::class.java)
-
         this.watchListViewModel.getMovies().observe(this, Observer { resource ->
             when (resource?.status) {
                 ResourceState.SUCCESS -> {
