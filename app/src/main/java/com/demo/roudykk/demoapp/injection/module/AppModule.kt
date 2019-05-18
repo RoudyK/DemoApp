@@ -32,7 +32,7 @@ abstract class AppModule {
     abstract fun contributeSearchActivity(): SearchFragment
 
     @ContributesAndroidInjector
-    abstract fun contributePersonDetailsFragment(): PersonDetailsFragment
+    abstract fun contributePersonDetailsFragment(): ProfileFragment
 
     @ContributesAndroidInjector
     abstract fun contributHomeFragment(): HomeFragment

@@ -36,7 +36,6 @@ import com.roudykk.presentation.state.ResourceState
 import com.roudykk.presentation.viewmodel.MovieViewModel
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_movie.*
-import kotlinx.android.synthetic.main.fragment_movies.*
 import saschpe.android.customtabs.CustomTabsHelper
 import saschpe.android.customtabs.WebViewFallback
 import java.util.*
@@ -147,7 +146,7 @@ class MovieFragment : BaseFragment(), MovieController.Listener, Observer<Resourc
     }
 
     override fun onCastClicked(person: PersonView) {
-        val personFragment = PersonDetailsFragment.newInstance(person)
+        val personFragment = ProfileFragment.newInstance(person)
         personFragment.show(childFragmentManager, personFragment.tag)
     }
 

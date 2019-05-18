@@ -10,10 +10,18 @@
             type="String" />
     </data>
 
-    <LinearLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginStart="@dimen/spacing_default"
+        android:layout_marginTop="@dimen/spacing_inline"
+        android:layout_marginEnd="@dimen/spacing_default"
+        android:layout_marginBottom="@dimen/spacing_inline"
+        app:cardBackgroundColor="?contentBackgroundColor"
+        app:cardCornerRadius="@dimen/default_radius"
+        app:cardElevation="0dp"
+        app:strokeColor="?dividerColor"
+        app:strokeWidth="@dimen/default_stroke">
 
         <com.borjabravo.readmoretextview.ReadMoreTextView
             android:layout_width="match_parent"
@@ -26,7 +34,6 @@
             app:trimLines="5"
             app:trimMode="trimModeLine"
             tools:text="@tools:sample/lorem/random" />
-
-    </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 </layout>

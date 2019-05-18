@@ -1,6 +1,8 @@
 package com.demo.roudykk.demoapp.ui.fragment
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.ContextThemeWrapper
@@ -11,23 +13,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import butterknife.ButterKnife
-import butterknife.OnClick
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.controllers.ProfileController
 import com.demo.roudykk.demoapp.db.PreferenceRepo
-import com.demo.roudykk.demoapp.images.AppImageLoader
 import com.demo.roudykk.demoapp.injection.ViewModelFactory
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.roudykk.presentation.model.PersonView
 import com.roudykk.presentation.state.ResourceState
 import com.roudykk.presentation.viewmodel.PersonViewModel
 import dagger.android.support.AndroidSupportInjection
-import kotlinx.android.synthetic.main.fragment_person_details.*
+import kotlinx.android.synthetic.main.fragment_profile.*
 import javax.inject.Inject
 
 
-class PersonDetailsFragment : BottomSheetDialogFragment() {
+class ProfileFragment : BottomSheetDialogFragment() {
 
     @Inject
     lateinit var profileController: ProfileController
@@ -39,8 +38,8 @@ class PersonDetailsFragment : BottomSheetDialogFragment() {
     private lateinit var personViewModel: PersonViewModel
 
     override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
         super.onAttach(context)
+        AndroidSupportInjection.inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -50,20 +49,17 @@ class PersonDetailsFragment : BottomSheetDialogFragment() {
         } else {
             ContextThemeWrapper(activity, R.style.AppTheme)
         }
-        val view = inflater.cloneInContext(contextThemeWrapper).inflate(R.layout.fragment_person_details, container, false)
-        ButterKnife.bind(this, view)
-
-        return view
+        return inflater.cloneInContext(contextThemeWrapper).inflate(R.layout.fragment_profile, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         if (arguments != null && arguments!!.containsKey(PERSON)) {
             this.person = arguments!!.getParcelable(PERSON)!!
 
             this.initViewModel()
             this.initRv()
-            this.populatePreview(this.person)
             this.personViewModel.fetchPerson(this.person.id)
         }
     }
@@ -75,50 +71,27 @@ class PersonDetailsFragment : BottomSheetDialogFragment() {
 
         this.personViewModel.getPerson().observe(this,
                 Observer { resource ->
-                    when (resource?.status) {
-                        ResourceState.LOADING -> {
-                            this.progressbar.visibility = View.VISIBLE
-                            this.reloadTv.visibility = View.GONE
-                        }
-                        ResourceState.SUCCESS -> {
-                            this.progressbar.visibility = View.GONE
-                            this.person = resource.data!!
-                            this.profileController.setData(this.person)
-                        }
-                        ResourceState.ERROR -> {
-                            this.reloadTv.visibility = View.VISIBLE
-                            this.progressbar.visibility = View.GONE
-                        }
+                    if (resource.data != null) {
+                        this.person = resource.data!!
                     }
-
+                    this.profileController.setData(resource, this.person)
                 })
     }
 
     private fun initRv() {
         this.personRv.layoutManager = LinearLayoutManager(context)
         this.personRv.itemAnimator = DefaultItemAnimator()
+        this.profileController.errorAction = { this.personViewModel.fetchPerson(this.person.id) }
         this.personRv.setController(this.profileController)
-    }
-
-    private fun populatePreview(person: PersonView) {
-        if (context != null) {
-            AppImageLoader.loadImage(context!!, person.getImageUrl(), R.drawable.ic_person_48dp, personIv)
-            this.personNameTv.text = person.name
-        }
-    }
-
-    @OnClick(R.id.reloadTv)
-    fun reload() {
-        this.personViewModel.fetchPerson(this.person.id)
     }
 
     companion object {
         private const val PERSON = "PERSON"
 
-        fun newInstance(person: PersonView): PersonDetailsFragment {
+        fun newInstance(person: PersonView): ProfileFragment {
             val bundle = Bundle()
             bundle.putParcelable(PERSON, person)
-            val fragment = PersonDetailsFragment()
+            val fragment = ProfileFragment()
             fragment.arguments = bundle
             return fragment
         }
