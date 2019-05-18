@@ -13,13 +13,13 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.analytics.Analytics
-import com.demo.roudykk.demoapp.features.movies.MoviesController
 import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.extensions.parentAppBar
 import com.demo.roudykk.demoapp.extensions.viewModel
 import com.demo.roudykk.demoapp.extensions.withAppBar
+import com.demo.roudykk.demoapp.features.movie.MovieFragmentDirections
+import com.demo.roudykk.demoapp.features.movies.MoviesController
 import com.demo.roudykk.demoapp.ui.fragment.BaseFragment
-import com.demo.roudykk.demoapp.ui.fragment.MovieFragmentDirections
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.roudykk.presentation.model.MovieView
 import com.roudykk.presentation.state.ResourceState

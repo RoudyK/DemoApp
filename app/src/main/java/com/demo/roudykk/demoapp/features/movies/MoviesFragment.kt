@@ -16,9 +16,8 @@ import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.extensions.parentAppBar
 import com.demo.roudykk.demoapp.extensions.viewModel
 import com.demo.roudykk.demoapp.extensions.withAppBar
+import com.demo.roudykk.demoapp.features.movie.MovieFragmentDirections
 import com.demo.roudykk.demoapp.ui.fragment.BaseFragment
-import com.demo.roudykk.demoapp.ui.fragment.MovieFragmentDirections
-import com.demo.roudykk.demoapp.ui.fragment.MoviesFragmentArgs
 import com.roudykk.presentation.model.MovieGroupView
 import com.roudykk.presentation.model.MovieView
 import com.roudykk.presentation.state.Resource
