@@ -123,7 +123,7 @@ class MovieController @Inject constructor() : Typed2EpoxyController<MovieView, B
             IndicatorCarouselModel_()
                     .id("videos_carousel")
                     .models(videoItems)
-                    .padding(Carousel.Padding(0, 20, 0, 0, 0))
+                    .padding(Carousel.Padding.resource(R.dimen.empty, R.dimen.spacing_inline, R.dimen.empty, R.dimen.spacing_inline, R.dimen.empty))
                     .onBind { _, view, _ ->
                         view.isNestedScrollingEnabled = false
                     }
