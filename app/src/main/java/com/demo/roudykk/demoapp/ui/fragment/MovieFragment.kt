@@ -161,7 +161,7 @@ class MovieFragment : BaseFragment(), MovieController.Listener, Observer<Resourc
     }
 
     private fun showSnackBar() {
-        this.snackBar = Snackbar.make(rootLayout, getString(R.string.failed_load_movie), Snackbar.LENGTH_INDEFINITE)
+        this.snackBar = Snackbar.make(movieRv, getString(R.string.failed_load_movie), Snackbar.LENGTH_INDEFINITE)
         this.snackBar?.setAction(getString(R.string.retry).toUpperCase(Locale.getDefault())) {
             this.movieViewModel.fetchMovie(this.movie.id)
         }

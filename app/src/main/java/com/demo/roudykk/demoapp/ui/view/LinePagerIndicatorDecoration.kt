@@ -1,5 +1,6 @@
 package com.demo.roudykk.demoapp.ui.view
 
+import android.content.Context
 import android.content.res.Resources
 import android.graphics.Canvas
 import android.graphics.Paint
@@ -8,12 +9,16 @@ import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.demo.roudykk.demoapp.R
+import com.demo.roudykk.demoapp.extensions.color
+import kotlin.contracts.ExperimentalContracts
 
 
-class LinePagerIndicatorDecoration : RecyclerView.ItemDecoration() {
+@ExperimentalContracts
+class LinePagerIndicatorDecoration(context: Context?) : RecyclerView.ItemDecoration() {
 
-    private val colorActive = -0x1
-    private val colorInactive = 0x66FFFFFF
+    private var colorActive = context.color(R.color.colorPrimary) ?: 0
+    private val colorInactive = context.color(R.color.colorPrimaryPale) ?: 0
 
     /**
      * Height of the space the indicator takes up at the bottom of the view.
@@ -23,16 +28,16 @@ class LinePagerIndicatorDecoration : RecyclerView.ItemDecoration() {
     /**
      * Indicator stroke width.
      */
-    private val mIndicatorStrokeWidth = DP * 2
+    private val mIndicatorStrokeWidth = DP * 4
 
     /**
      * Indicator width.
      */
-    private val mIndicatorItemLength = DP * 16
+    private val mIndicatorItemLength = DP * 18
     /**
      * Padding between indicators.
      */
-    private val mIndicatorItemPadding = DP * 4
+    private val mIndicatorItemPadding = DP * 6
 
     /**
      * Some more natural animation interpolation
@@ -103,28 +108,21 @@ class LinePagerIndicatorDecoration : RecyclerView.ItemDecoration() {
         mPaint.color = colorActive
 
         // width of item indicator including padding
-        val itemWidth = mIndicatorItemLength + mIndicatorItemPadding
+        val itemWidth = mIndicatorItemLength
 
-        if (progress == 0f) {
-            // no swipe, draw a normal indicator
-            val highlightStart = indicatorStartX + itemWidth * highlightPosition
+        var highlightStart = indicatorStartX + (itemWidth * highlightPosition) + (mIndicatorItemPadding * highlightPosition) + (mIndicatorItemPadding * progress)
+        // calculate partial highlight
+        val partialLength = mIndicatorItemLength * progress
+
+        // draw the cut off highlight
+        c.drawLine(highlightStart + partialLength, indicatorPosY,
+                highlightStart + mIndicatorItemLength, indicatorPosY, mPaint)
+
+        // draw the highlight overlapping to the next item as well
+        if (highlightPosition < itemCount - 1) {
+            highlightStart += itemWidth
             c.drawLine(highlightStart, indicatorPosY,
-                    highlightStart + mIndicatorItemLength, indicatorPosY, mPaint)
-        } else {
-            var highlightStart = indicatorStartX + itemWidth * highlightPosition
-            // calculate partial highlight
-            val partialLength = mIndicatorItemLength * progress
-
-            // draw the cut off highlight
-            c.drawLine(highlightStart + partialLength, indicatorPosY,
-                    highlightStart + mIndicatorItemLength, indicatorPosY, mPaint)
-
-            // draw the highlight overlapping to the next item as well
-            if (highlightPosition < itemCount - 1) {
-                highlightStart += itemWidth
-                c.drawLine(highlightStart, indicatorPosY,
-                        highlightStart + partialLength, indicatorPosY, mPaint)
-            }
+                    highlightStart + partialLength, indicatorPosY, mPaint)
         }
     }
 

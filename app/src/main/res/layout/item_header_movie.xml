@@ -77,7 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{String.format(@string/x_reviews, String.valueOf(movie.voteCount))}"
-                android:textSize="14sp"
+                android:textSize="@dimen/text_size_small"
                 tools:text="(19 reviews)" />
 
         </LinearLayout>

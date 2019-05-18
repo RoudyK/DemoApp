@@ -27,26 +27,27 @@ class MainActivity : BaseActivity() {
 
         findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener { _, _, _ ->
             (bottomAppBar.behavior as BottomAppBar.Behavior).slideUp(bottomAppBar)
-            toolbar.post {
-                trySafe {
-                    /**
-                     * This fixes a bug where animateLayoutChanges in Toolbar doesn't animate
-                     * the toolbar back to its original position when the new destination doesn't
-                     * have a nav icon.
-                     */
-                    val childCount = toolbar.childCount
-                    for (i in 0..childCount) {
-                        val child = toolbar.getChildAt(i)
-                        if (child is TextView) {
-                            if (toolbar?.navigationIcon == null) {
-                                val animator = ObjectAnimator.ofInt(child, "left", toolbar.contentInsetStart)
-                                animator.duration = 300
-                                animator.start()
-                            }
-                        }
-                    }
-                }
-            }
+            // TODO: Broken on new version of material, fix later. (There's a bug with animateLayoutChanges true on Toolbar)
+//            toolbar.post {
+//                trySafe {
+//                    /**
+//                     * This fixes a bug where animateLayoutChanges in Toolbar doesn't animate
+//                     * the toolbar back to its original position when the new destination doesn't
+//                     * have a nav icon.
+//                     */
+//                    val childCount = toolbar.childCount
+//                    for (i in 0..childCount) {
+//                        val child = toolbar.getChildAt(i)
+//                        if (child is TextView) {
+//                            if (toolbar?.navigationIcon == null) {
+//                                val animator = ObjectAnimator.ofInt(child, "left", toolbar.contentInsetStart)
+//                                animator.duration = 300
+//                                animator.start()
+//                            }
+//                        }
+//                    }
+//                }
+//            }
             Handler().postDelayed({
                 trySafe {
                     val fragment = nav_host_fragment?.childFragmentManager?.fragments?.getOrNull(0)

@@ -14,7 +14,7 @@ public class IndicatorCarousel extends Carousel {
 
     public IndicatorCarousel(Context context) {
         super(context);
-        addItemDecoration(new LinePagerIndicatorDecoration());
+        addItemDecoration(new LinePagerIndicatorDecoration(context));
     }
 
     @Nullable

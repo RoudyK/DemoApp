@@ -64,6 +64,9 @@ class HomeController @Inject constructor() : TypedEpoxyController<List<MovieGrou
                 CarouselModel_()
                         .id("carousel_${movieGroup.title}")
                         .models(models)
+                        .onBind { _, view, _ ->
+                            view.isNestedScrollingEnabled = false
+                        }
                         .padding(Carousel.Padding.resource(R.dimen.spacing_medium, R.dimen.spacing_medium, R.dimen.empty, R.dimen.empty, R.dimen.spacing_default))
                         .addTo(this)
             }
