@@ -61,4 +61,9 @@
     <string name="failed_update_watchlist">Failed to update watchlist</string>
     <string name="movie_container">movieContainer</string>
     <string name="failed_to_load_movies">Failed to load movies</string>
+    <string name="more"><![CDATA[More >]]></string>
+    <string name="trailers">Trailers</string>
+    <string name="crew_cast"><![CDATA[Cast & Crew]]></string>
+    <string name="metrics"><![CDATA[Details & Metrics]]></string>
+    <string name="production_companies">Production Companies</string>
 </resources>

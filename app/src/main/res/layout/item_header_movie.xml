@@ -39,7 +39,6 @@
             android:layout_marginStart="@dimen/spacing_default"
             android:layout_marginTop="@dimen/spacing_default"
             android:layout_marginEnd="@dimen/spacing_default"
-            android:layout_marginBottom="@dimen/spacing_default"
             android:background="?attr/contentBackgroundColor"
             android:gravity="bottom"
             android:orientation="vertical"

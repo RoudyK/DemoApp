@@ -14,57 +14,67 @@
             type="android.view.View.OnClickListener" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClickListener="@{onClickListener}"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/spacing_medium"
-        android:paddingTop="@dimen/spacing_default"
-        android:paddingRight="@dimen/spacing_medium"
-        android:paddingBottom="@dimen/spacing_default"
-        tools:background="?highlightColor">
+        android:layout_height="match_parent"
+        app:cardBackgroundColor="?contentBackgroundColor"
+        app:cardCornerRadius="@dimen/default_radius"
+        app:cardElevation="0dp"
+        app:strokeColor="?dividerColor"
+        app:strokeWidth="@dimen/default_stroke">
 
-        <ImageView
-            android:id="@+id/personIv"
-            imageUrl="@{person.getImageUrl()}"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="?placeHolder" />
-
-        <com.demo.roudykk.demoapp.ui.view.TightTextView
-            android:id="@+id/personTv"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_default"
-            android:gravity="center"
-            android:maxWidth="100dp"
-            android:maxLines="2"
-            android:text="@{person.name}"
-            android:textSize="12sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/personIv"
-            tools:text="Roudy Kanaan" />
+            android:onClickListener="@{onClickListener}"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/spacing_medium"
+            android:paddingTop="@dimen/spacing_default"
+            android:paddingRight="@dimen/spacing_medium"
+            android:paddingBottom="@dimen/spacing_default"
+            tools:background="?highlightColor">
 
-        <com.demo.roudykk.demoapp.ui.view.TightTextView
-            android:id="@+id/characterTv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_small"
-            android:gravity="center"
-            android:maxWidth="100dp"
-            android:maxLines="2"
-            android:text="@{person.character}"
-            android:textColor="@color/colorAccent"
-            android:textSize="12sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/personTv"
-            tools:text="As Alejandro" />
+            <ImageView
+                android:id="@+id/personIv"
+                app:imageUrl="@{person.getImageUrl()}"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="?placeHolder" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.demo.roudykk.demoapp.ui.view.TightTextView
+                android:id="@+id/personTv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_default"
+                android:gravity="center"
+                android:maxWidth="100dp"
+                android:maxLines="2"
+                android:text="@{person.name}"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/personIv"
+                tools:text="Roudy Kanaan" />
+
+            <com.demo.roudykk.demoapp.ui.view.TightTextView
+                android:id="@+id/characterTv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:gravity="center"
+                android:maxWidth="100dp"
+                android:maxLines="2"
+                android:text="@{person.character}"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/personTv"
+                tools:text="As Alejandro" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 </layout>

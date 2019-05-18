@@ -1,9 +1,6 @@
 package com.demo.roudykk.demoapp.controllers
 
 import android.content.Context
-import android.graphics.Color
-import android.util.TypedValue
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DefaultItemAnimator
 import com.airbnb.epoxy.Carousel
 import com.airbnb.epoxy.CarouselModel_
@@ -65,26 +62,39 @@ class MovieController @Inject constructor() : Typed2EpoxyController<MovieView, B
     }
 
     private fun buildProductionCompanies(movie: MovieView) {
-        val productionModels = mutableListOf<ProductionCompanyBindingModel_>()
-        movie.productionCompanies?.forEach { company ->
-            productionModels.add(ProductionCompanyBindingModel_()
-                    .id(company.id)
-                    .company(company))
+        movie.productionCompanies?.let {
+            HeaderBindingModel_()
+                    .id("prod_companies_header")
+                    .title(context.getString(R.string.production_companies))
+                    .hideAction(true)
+                    .addTo(this)
+
+            val productionModels = mutableListOf<ProductionCompanyBindingModel_>()
+            movie.productionCompanies?.forEach { company ->
+                productionModels.add(ProductionCompanyBindingModel_()
+                        .id(company.id)
+                        .company(company))
+            }
+
+            CarouselModel_()
+                    .id("production_companies_carousel")
+                    .models(productionModels)
+                    .padding(Carousel.Padding.resource(R.dimen.spacing_default, R.dimen.spacing_small, R.dimen.empty, R.dimen.empty, R.dimen.spacing_default))
+                    .onBind { _, view, _ ->
+                        view.isNestedScrollingEnabled = false
+                    }
+                    .addIf(productionModels.size > 0, this)
         }
-
-        CarouselModel_()
-                .id("production_companies_carousel")
-                .models(productionModels)
-                .padding(Carousel.Padding(0, 0))
-                .addIf(productionModels.size > 0, this)
-
-        DividerBindingModel_()
-                .id("production_companies_divider")
-                .addIf(productionModels.size > 0, this)
     }
 
     private fun buildVideos(movie: MovieView) {
         movie.videos?.let {
+
+            HeaderBindingModel_()
+                    .id("trailers_header")
+                    .title(context.getString(R.string.trailers))
+                    .hideAction(true)
+                    .addTo(this)
 
             val videoItems = mutableListOf<VideoBindingModel_>()
 
@@ -114,11 +124,20 @@ class MovieController @Inject constructor() : Typed2EpoxyController<MovieView, B
                     .id("videos_carousel")
                     .models(videoItems)
                     .padding(Carousel.Padding(0, 20, 0, 0, 0))
+                    .onBind { _, view, _ ->
+                        view.isNestedScrollingEnabled = false
+                    }
                     .addIf(videoItems.size > 0, this)
         }
     }
 
     private fun buildMetrics(movie: MovieView) {
+        HeaderBindingModel_()
+                .id("metrics_header")
+                .title(context.getString(R.string.metrics))
+                .hideAction(true)
+                .addTo(this)
+
         MetricBindingModel_()
                 .id("release_date")
                 .title(context.getString(R.string.release_date))
@@ -163,45 +182,53 @@ class MovieController @Inject constructor() : Typed2EpoxyController<MovieView, B
     }
 
     private fun buildCast(movie: MovieView) {
-        val castModels = mutableListOf<CastBindingModel_>()
+        movie.cast?.let {
 
-        movie.cast?.forEach { person ->
-            castModels.add(CastBindingModel_()
-                    .id("$person.id $person.cast_id")
-                    .person(person)
-                    .onClickListener { _ ->
-                        this.listener?.onCastClicked(person)
-                    })
+            HeaderBindingModel_()
+                    .id("cast_header")
+                    .title(context.getString(R.string.crew_cast))
+                    .hideAction(true)
+                    .addTo(this)
+
+            val castModels = mutableListOf<CastBindingModel_>()
+
+            movie.cast?.forEach { person ->
+                castModels.add(CastBindingModel_()
+                        .id("$person.id $person.cast_id")
+                        .person(person)
+                        .onClickListener { _ ->
+                            this.listener?.onCastClicked(person)
+                        })
+            }
+
+            CarouselModel_()
+                    .id("cast_carousel")
+                    .models(castModels)
+                    .padding(Carousel.Padding.resource(R.dimen.spacing_default, R.dimen.spacing_small, R.dimen.empty, R.dimen.empty, R.dimen.spacing_default))
+                    .onBind { _, view, _ ->
+                        view.isNestedScrollingEnabled = false
+                    }
+                    .addIf(castModels.size > 0, this)
         }
-
-        CarouselModel_()
-                .id("cast_carousel")
-                .models(castModels)
-                .padding(Carousel.Padding(0, 0))
-                .addIf(castModels.size > 0, this)
-
-        DividerBindingModel_()
-                .id("cast_divider")
-                .addIf(castModels.size > 0, this)
     }
 
     private fun buildReviews(movie: MovieView) {
-        TitleBindingModel_()
-                .id("reviews_title")
-                .title(context.getString(R.string.reviews))
-                .addIf({
-                    movie.reviews != null
-                            && movie.reviews!!.isNotEmpty()
-                }, this)
-
-        movie.reviews?.forEach { review ->
-            ReviewBindingModel_()
-                    .id(review.id)
-                    .review(review)
-                    .onClickListener { _ ->
-                        this.listener?.onReadFullReviewClicked(review)
-                    }
+        movie.reviews?.let {
+            HeaderBindingModel_()
+                    .id("reviews_header")
+                    .title(context.getString(R.string.reviews))
+                    .hideAction(true)
                     .addTo(this)
+
+            movie.reviews?.forEach { review ->
+                ReviewBindingModel_()
+                        .id(review.id)
+                        .review(review)
+                        .onClickListener { _ ->
+                            this.listener?.onReadFullReviewClicked(review)
+                        }
+                        .addTo(this)
+            }
         }
     }
 
