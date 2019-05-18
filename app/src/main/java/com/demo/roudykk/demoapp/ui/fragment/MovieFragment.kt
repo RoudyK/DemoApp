@@ -22,6 +22,7 @@ import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.analytics.Analytics
 import com.demo.roudykk.demoapp.controllers.MovieController
 import com.demo.roudykk.demoapp.db.PreferenceRepo
+import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.injection.ViewModelFactory
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.snackbar.Snackbar
@@ -110,6 +111,7 @@ class MovieFragment : BaseFragment(), MovieController.Listener, Observer<Resourc
     private fun initRv() {
         this.movieRv.layoutManager = LinearLayoutManager(context)
         this.movieRv.itemAnimator = DefaultItemAnimator()
+        this.movieRv.addOverScroll()
         this.movieController.listener = this
         this.movieController.context = context!!
         this.movieRv.setController(this.movieController)

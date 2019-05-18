@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.analytics.Analytics
 import com.demo.roudykk.demoapp.controllers.HomeController
+import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.extensions.viewModel
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.roudykk.presentation.model.MovieGroupView
@@ -47,6 +48,7 @@ class HomeFragment : BaseFragment(), HomeController.Listener, Observer<Resource<
 
         movieHomeRv.layoutManager = LinearLayoutManager(context)
         homeController.listener = this
+        movieHomeRv.addOverScroll()
         movieHomeRv.setController(homeController)
 
         this.initViewModel()

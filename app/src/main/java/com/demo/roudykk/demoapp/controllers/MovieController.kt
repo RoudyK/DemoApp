@@ -9,6 +9,7 @@ import com.airbnb.epoxy.Typed2EpoxyController
 import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager
 import com.demo.roudykk.demoapp.*
 import com.demo.roudykk.demoapp.controllers.models.IndicatorCarouselModel_
+import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayerView
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.AbstractYouTubePlayerListener
 import com.roudykk.presentation.model.MovieView
@@ -79,8 +80,9 @@ class MovieController @Inject constructor() : Typed2EpoxyController<MovieView, B
             CarouselModel_()
                     .id("production_companies_carousel")
                     .models(productionModels)
-                    .padding(Carousel.Padding.resource(R.dimen.spacing_default, R.dimen.spacing_small, R.dimen.empty, R.dimen.empty, R.dimen.spacing_default))
+                    .padding(Carousel.Padding.resource(R.dimen.spacing_default, R.dimen.spacing_small, R.dimen.spacing_default, R.dimen.empty, R.dimen.spacing_default))
                     .onBind { _, view, _ ->
+                        view.addOverScroll()
                         view.isNestedScrollingEnabled = false
                     }
                     .addIf(productionModels.size > 0, this)
@@ -94,7 +96,7 @@ class MovieController @Inject constructor() : Typed2EpoxyController<MovieView, B
                     .id("trailers_header")
                     .title(context.getString(R.string.trailers))
                     .hideAction(true)
-                    .addTo(this)
+                    .addIf(it.isNotEmpty(), this)
 
             val videoItems = mutableListOf<VideoBindingModel_>()
 
@@ -204,8 +206,9 @@ class MovieController @Inject constructor() : Typed2EpoxyController<MovieView, B
             CarouselModel_()
                     .id("cast_carousel")
                     .models(castModels)
-                    .padding(Carousel.Padding.resource(R.dimen.spacing_default, R.dimen.spacing_small, R.dimen.empty, R.dimen.empty, R.dimen.spacing_default))
+                    .padding(Carousel.Padding.resource(R.dimen.spacing_default, R.dimen.spacing_small, R.dimen.spacing_default, R.dimen.empty, R.dimen.spacing_default))
                     .onBind { _, view, _ ->
+                        view.addOverScroll()
                         view.isNestedScrollingEnabled = false
                     }
                     .addIf(castModels.size > 0, this)
@@ -218,7 +221,7 @@ class MovieController @Inject constructor() : Typed2EpoxyController<MovieView, B
                     .id("reviews_header")
                     .title(context.getString(R.string.reviews))
                     .hideAction(true)
-                    .addTo(this)
+                    .addIf(it.isNotEmpty(), this)
 
             movie.reviews?.forEach { review ->
                 ReviewBindingModel_()
@@ -227,7 +230,7 @@ class MovieController @Inject constructor() : Typed2EpoxyController<MovieView, B
                         .onClickListener { _ ->
                             this.listener?.onReadFullReviewClicked(review)
                         }
-                        .addTo(this)
+                        .addIf(it.isNotEmpty(), this)
             }
         }
     }
