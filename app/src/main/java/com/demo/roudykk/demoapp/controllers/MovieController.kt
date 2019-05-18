@@ -67,7 +67,7 @@ class MovieController @Inject constructor() : Typed2EpoxyController<MovieView, B
                     .id("prod_companies_header")
                     .title(context.getString(R.string.production_companies))
                     .hideAction(true)
-                    .addTo(this)
+                    .addIf(it.isNotEmpty(), this)
 
             val productionModels = mutableListOf<ProductionCompanyBindingModel_>()
             movie.productionCompanies?.forEach { company ->
@@ -83,7 +83,7 @@ class MovieController @Inject constructor() : Typed2EpoxyController<MovieView, B
                     .onBind { _, view, _ ->
                         view.isNestedScrollingEnabled = false
                     }
-                    .addIf(productionModels.size > 0, this)
+                    .addIf(it.isNotEmpty(), this)
         }
     }
 
@@ -188,7 +188,7 @@ class MovieController @Inject constructor() : Typed2EpoxyController<MovieView, B
                     .id("cast_header")
                     .title(context.getString(R.string.crew_cast))
                     .hideAction(true)
-                    .addTo(this)
+                    .addIf(it.isNotEmpty(), this)
 
             val castModels = mutableListOf<CastBindingModel_>()
 

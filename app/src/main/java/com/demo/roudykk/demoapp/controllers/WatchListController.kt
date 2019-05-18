@@ -5,7 +5,7 @@ import com.demo.roudykk.demoapp.SavedMovieBindingModel_
 import com.roudykk.presentation.model.MovieView
 import javax.inject.Inject
 
-class SavedMoviesController @Inject constructor() : TypedEpoxyController<List<MovieView>>() {
+class WatchListController @Inject constructor() : TypedEpoxyController<List<MovieView>>() {
 
     var savedMoviesListener: SavedMoviesListener? = null
 

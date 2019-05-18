@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.analytics.Analytics
-import com.demo.roudykk.demoapp.controllers.SavedMoviesController
+import com.demo.roudykk.demoapp.controllers.WatchListController
 import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.extensions.parentAppBar
 import com.demo.roudykk.demoapp.extensions.withAppBar
@@ -28,13 +28,13 @@ import kotlinx.android.synthetic.main.fragment_watch_list.*
 import java.util.*
 import javax.inject.Inject
 
-class WatchListFragment : BaseFragment(), SavedMoviesController.SavedMoviesListener {
+class WatchListFragment : BaseFragment(), WatchListController.SavedMoviesListener {
     override val supportsFabAction: Boolean = true
     override val fabIconRes: Int? = R.drawable.ic_delete
     override val fabAlignmentMode: Int = BottomAppBar.FAB_ALIGNMENT_MODE_END
 
     @Inject
-    lateinit var savedMoviesController: SavedMoviesController
+    lateinit var watchListController: WatchListController
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -64,8 +64,8 @@ class WatchListFragment : BaseFragment(), SavedMoviesController.SavedMoviesListe
                 .setTitle(getString(R.string.delete_movies))
                 .setMessage(getString(R.string.delete_all_movies_confirmation))
                 .setPositiveButton(getString(R.string.ok).toUpperCase(Locale.getDefault())) { _, _ ->
-                    if (this.savedMoviesController.currentData != null) {
-                        Analytics.getInstance(context!!).userDeletedAllMoviesWatchList(this.savedMoviesController.currentData!!.size)
+                    if (this.watchListController.currentData != null) {
+                        Analytics.getInstance(context!!).userDeletedAllMoviesWatchList(this.watchListController.currentData!!.size)
                     }
                     this.watchListViewModel.clearMovieWatchList()
                 }
@@ -80,8 +80,8 @@ class WatchListFragment : BaseFragment(), SavedMoviesController.SavedMoviesListe
         this.moviesRv.layoutManager = LinearLayoutManager(context)
         this.moviesRv.itemAnimator = DefaultItemAnimator()
         this.moviesRv.addOverScroll()
-        this.savedMoviesController.savedMoviesListener = this
-        this.moviesRv.setController(this.savedMoviesController)
+        this.watchListController.savedMoviesListener = this
+        this.moviesRv.setController(this.watchListController)
     }
 
     override fun onResume() {
@@ -107,7 +107,7 @@ class WatchListFragment : BaseFragment(), SavedMoviesController.SavedMoviesListe
                     } else {
                         emptyView.visibility = View.VISIBLE
                     }
-                    this.savedMoviesController.setData(movies)
+                    this.watchListController.setData(movies)
                 }
                 ResourceState.ERROR -> {
                     Toast.makeText(context, getString(R.string.failed_update_watchlist),
