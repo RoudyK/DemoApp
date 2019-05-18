@@ -82,7 +82,6 @@ class MovieController @Inject constructor() : Typed2EpoxyController<MovieView, B
                     .models(productionModels)
                     .padding(Carousel.Padding.resource(R.dimen.spacing_default, R.dimen.spacing_small, R.dimen.spacing_default, R.dimen.empty, R.dimen.spacing_default))
                     .onBind { _, view, _ ->
-                        view.addOverScroll()
                         view.isNestedScrollingEnabled = false
                     }
                     .addIf(productionModels.size > 0, this)
