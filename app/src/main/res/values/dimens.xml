@@ -24,4 +24,5 @@
     <dimen name="genres_height">38dp</dimen>
     <dimen name="default_stroke">1dp</dimen>
     <dimen name="icon_size_small">16dp</dimen>
+    <dimen name="app_bar_elevation">2dp</dimen>
 </resources>

@@ -1,8 +1,9 @@
 package com.demo.roudykk.demoapp.extensions
 
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.airbnb.epoxy.EpoxyController
-import com.airbnb.epoxy.EpoxyRecyclerView
+import com.demo.roudykk.demoapp.R
+import com.demo.roudykk.demoapp.ui.activity.MainActivity
 import com.google.android.material.appbar.AppBarLayout
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 
@@ -13,37 +14,24 @@ fun RecyclerView.addOverScroll() {
     OverScrollDecoratorHelper.setUpOverScroll(this, OverScrollDecoratorHelper.ORIENTATION_VERTICAL)
 }
 
-/**
- * Provides an easy way to build models for [EpoxyRecyclerView]
- */
-fun EpoxyRecyclerView.withModels(callback: EpoxyController.() -> Unit) {
-    setControllerAndBuildModels(object : EpoxyController() {
-        override fun buildModels() {
-            callback()
-        }
-    })
-}
-
-/**
- * Provides an easy way to build models for [EpoxyRecyclerView] through DataBinding
- */
-fun EpoxyRecyclerView.withModels(modelsBuilder: ModelsBuilder) {
-    setControllerAndBuildModels(object : EpoxyController() {
-        override fun buildModels() {
-            modelsBuilder.build(this)
-        }
-    })
-}
-
-fun RecyclerView.withAppBar(appBarLayout: AppBarLayout) {
+fun RecyclerView.withAppBar(appBarLayout: AppBarLayout?) {
+    if (canScrollVertically(-1)) {
+        appBarLayout?.elevation = context.resources.getDimension(R.dimen.app_bar_elevation)
+    } else {
+        appBarLayout?.elevation = 0F
+    }
     addOnScrollListener(object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
             if (canScrollVertically(-1)) {
-                appBarLayout.elevation = 20F
+                appBarLayout?.elevation = context.resources.getDimension(R.dimen.app_bar_elevation)
             } else {
-                appBarLayout.elevation = 0F
+                appBarLayout?.elevation = 0F
             }
         }
     })
+}
+
+fun Fragment.parentAppBar(): AppBarLayout? {
+    return (activity as MainActivity).appBar()
 }

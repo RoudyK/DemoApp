@@ -16,6 +16,8 @@ import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.analytics.Analytics
 import com.demo.roudykk.demoapp.controllers.MoviesController
 import com.demo.roudykk.demoapp.extensions.addOverScroll
+import com.demo.roudykk.demoapp.extensions.parentAppBar
+import com.demo.roudykk.demoapp.extensions.withAppBar
 import com.demo.roudykk.demoapp.injection.ViewModelFactory
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.roudykk.presentation.model.MovieView
@@ -80,6 +82,11 @@ class SearchFragment : BaseFragment(), MoviesController.MoviesListener {
         this.moviesRv.itemAnimator = DefaultItemAnimator()
         this.moviesController.moviesListener = this
         this.moviesRv.setController(this.moviesController)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        this.moviesRv.withAppBar(appBarLayout)
     }
 
     private fun initSearchEt() {

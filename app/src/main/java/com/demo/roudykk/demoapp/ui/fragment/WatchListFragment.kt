@@ -16,6 +16,8 @@ import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.analytics.Analytics
 import com.demo.roudykk.demoapp.controllers.SavedMoviesController
 import com.demo.roudykk.demoapp.extensions.addOverScroll
+import com.demo.roudykk.demoapp.extensions.parentAppBar
+import com.demo.roudykk.demoapp.extensions.withAppBar
 import com.demo.roudykk.demoapp.injection.ViewModelFactory
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.roudykk.presentation.model.MovieView
@@ -80,6 +82,11 @@ class WatchListFragment : BaseFragment(), SavedMoviesController.SavedMoviesListe
         this.moviesRv.addOverScroll()
         this.savedMoviesController.savedMoviesListener = this
         this.moviesRv.setController(this.savedMoviesController)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        this.moviesRv.withAppBar(parentAppBar())
     }
 
     private fun initViewModel() {

@@ -23,6 +23,8 @@ import com.demo.roudykk.demoapp.analytics.Analytics
 import com.demo.roudykk.demoapp.controllers.MovieController
 import com.demo.roudykk.demoapp.db.PreferenceRepo
 import com.demo.roudykk.demoapp.extensions.addOverScroll
+import com.demo.roudykk.demoapp.extensions.parentAppBar
+import com.demo.roudykk.demoapp.extensions.withAppBar
 import com.demo.roudykk.demoapp.injection.ViewModelFactory
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.snackbar.Snackbar
@@ -34,6 +36,7 @@ import com.roudykk.presentation.state.ResourceState
 import com.roudykk.presentation.viewmodel.MovieViewModel
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_movie.*
+import kotlinx.android.synthetic.main.fragment_movies.*
 import saschpe.android.customtabs.CustomTabsHelper
 import saschpe.android.customtabs.WebViewFallback
 import java.util.*
@@ -115,6 +118,11 @@ class MovieFragment : BaseFragment(), MovieController.Listener, Observer<Resourc
         this.movieController.listener = this
         this.movieController.context = context!!
         this.movieRv.setController(this.movieController)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        this.movieRv.withAppBar(parentAppBar())
     }
 
     override fun onChanged(resource: Resource<MovieView>?) {

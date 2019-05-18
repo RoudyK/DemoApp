@@ -12,6 +12,7 @@ import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.extensions.trySafe
 import com.demo.roudykk.demoapp.ui.fragment.BaseFragment
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
@@ -104,5 +105,9 @@ class MainActivity : BaseActivity() {
         } else {
             super.onBackPressed()
         }
+    }
+
+    fun appBar(): AppBarLayout? {
+        return appBarLayout
     }
 }

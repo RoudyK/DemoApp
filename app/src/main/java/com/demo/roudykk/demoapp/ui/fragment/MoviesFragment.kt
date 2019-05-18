@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.controllers.MoviesController
 import com.demo.roudykk.demoapp.extensions.addOverScroll
+import com.demo.roudykk.demoapp.extensions.parentAppBar
+import com.demo.roudykk.demoapp.extensions.withAppBar
 import com.demo.roudykk.demoapp.injection.ViewModelFactory
 import com.roudykk.presentation.model.MovieGroupView
 import com.roudykk.presentation.model.MovieView
@@ -74,6 +76,11 @@ class MoviesFragment : BaseFragment(), MoviesController.MoviesListener, Observer
         this.moviesController.moviesListener = this
         this.moviesRv.setController(this.moviesController)
         this.moviesController.setData(this.movieGroup.movies)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        this.moviesRv.withAppBar(parentAppBar())
     }
 
     override fun hasMoreToLoad(): Boolean {

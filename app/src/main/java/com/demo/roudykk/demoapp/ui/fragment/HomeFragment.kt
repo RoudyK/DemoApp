@@ -12,7 +12,9 @@ import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.analytics.Analytics
 import com.demo.roudykk.demoapp.controllers.HomeController
 import com.demo.roudykk.demoapp.extensions.addOverScroll
+import com.demo.roudykk.demoapp.extensions.parentAppBar
 import com.demo.roudykk.demoapp.extensions.viewModel
+import com.demo.roudykk.demoapp.extensions.withAppBar
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.roudykk.presentation.model.MovieGroupView
 import com.roudykk.presentation.model.MovieView
@@ -21,6 +23,7 @@ import com.roudykk.presentation.state.ResourceState
 import com.roudykk.presentation.viewmodel.HomeViewModel
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_movies.*
 import javax.inject.Inject
 
 class HomeFragment : BaseFragment(), HomeController.Listener, Observer<Resource<List<MovieGroupView>>> {
@@ -56,6 +59,11 @@ class HomeFragment : BaseFragment(), HomeController.Listener, Observer<Resource<
         reload.setOnClickListener { this.homeViewModel.fetchMovieGroups() }
 
         Analytics.getInstance(context!!).userOpenedHome()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        this.movieHomeRv.withAppBar(parentAppBar())
     }
 
     private fun initViewModel() {
