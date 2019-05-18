@@ -1,4 +1,4 @@
-package com.demo.roudykk.demoapp.controllers
+package com.demo.roudykk.demoapp.features.watchlist
 
 import com.airbnb.epoxy.TypedEpoxyController
 import com.demo.roudykk.demoapp.SavedMovieBindingModel_

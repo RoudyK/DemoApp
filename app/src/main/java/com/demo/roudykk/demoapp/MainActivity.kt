@@ -1,16 +1,14 @@
-package com.demo.roudykk.demoapp.ui.activity
+package com.demo.roudykk.demoapp
 
-import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.os.Handler
-import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI.navigateUp
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
-import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.extensions.trySafe
+import com.demo.roudykk.demoapp.ui.activity.BaseActivity
 import com.demo.roudykk.demoapp.ui.fragment.BaseFragment
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomappbar.BottomAppBar

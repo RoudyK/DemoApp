@@ -13,7 +13,6 @@ import androidx.test.rule.ActivityTestRule
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.TestApplication
 import com.demo.roudykk.demoapp.test.MoviesFactory
-import com.demo.roudykk.demoapp.ui.activity.*
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.whenever
 import com.roudykk.domain.model.Movie
@@ -25,7 +24,11 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import androidx.test.espresso.intent.Intents.times
-import com.demo.roudykk.demoapp.ui.fragment.*
+import com.demo.roudykk.demoapp.MainActivity
+import com.demo.roudykk.demoapp.features.movie.MovieFragment
+import com.demo.roudykk.demoapp.features.movies.MoviesFragment
+import com.demo.roudykk.demoapp.features.search.SearchFragment
+import com.demo.roudykk.demoapp.features.watchlist.WatchListFragment
 
 
 class MainActivityTest {

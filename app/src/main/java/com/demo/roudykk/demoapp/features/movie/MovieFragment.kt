@@ -1,4 +1,4 @@
-package com.demo.roudykk.demoapp.ui.fragment
+package com.demo.roudykk.demoapp.features.movie
 
 import android.content.Context
 import android.net.Uri
@@ -15,18 +15,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.analytics.Analytics
-import com.demo.roudykk.demoapp.controllers.MovieController
 import com.demo.roudykk.demoapp.db.PreferenceRepo
 import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.extensions.parentAppBar
 import com.demo.roudykk.demoapp.extensions.viewModel
 import com.demo.roudykk.demoapp.extensions.withAppBar
-import com.demo.roudykk.demoapp.injection.ViewModelFactory
+import com.demo.roudykk.demoapp.ui.fragment.BaseFragment
+import com.demo.roudykk.demoapp.ui.fragment.MovieFragmentArgs
+import com.demo.roudykk.demoapp.features.profile.ProfileFragment
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.snackbar.Snackbar
 import com.roudykk.presentation.model.MovieView

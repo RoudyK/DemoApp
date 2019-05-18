@@ -1,4 +1,4 @@
-package com.demo.roudykk.demoapp.ui.fragment
+package com.demo.roudykk.demoapp.features.watchlist
 
 import android.content.Context
 import android.os.Bundle
@@ -13,11 +13,12 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.analytics.Analytics
-import com.demo.roudykk.demoapp.controllers.WatchListController
 import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.extensions.parentAppBar
 import com.demo.roudykk.demoapp.extensions.viewModel
 import com.demo.roudykk.demoapp.extensions.withAppBar
+import com.demo.roudykk.demoapp.ui.fragment.BaseFragment
+import com.demo.roudykk.demoapp.ui.fragment.MovieFragmentDirections
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.roudykk.presentation.model.MovieView
 import com.roudykk.presentation.state.ResourceState

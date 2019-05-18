@@ -1,4 +1,4 @@
-package com.demo.roudykk.demoapp.ui.fragment
+package com.demo.roudykk.demoapp.features.settings
 
 import android.content.Context
 import android.content.Intent
@@ -7,7 +7,7 @@ import android.os.Bundle
 import androidx.preference.PreferenceFragmentCompat
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.db.PreferenceRepo
-import com.demo.roudykk.demoapp.ui.activity.MainActivity
+import com.demo.roudykk.demoapp.MainActivity
 
 class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedPreferenceChangeListener {
 

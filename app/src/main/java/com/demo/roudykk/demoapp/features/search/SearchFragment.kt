@@ -1,4 +1,4 @@
-package com.demo.roudykk.demoapp.ui.fragment
+package com.demo.roudykk.demoapp.features.search
 
 import android.content.Context
 import android.os.Bundle
@@ -8,18 +8,18 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.analytics.Analytics
-import com.demo.roudykk.demoapp.controllers.MoviesController
+import com.demo.roudykk.demoapp.features.movies.MoviesController
 import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.demo.roudykk.demoapp.extensions.parentAppBar
 import com.demo.roudykk.demoapp.extensions.viewModel
 import com.demo.roudykk.demoapp.extensions.withAppBar
-import com.demo.roudykk.demoapp.injection.ViewModelFactory
+import com.demo.roudykk.demoapp.ui.fragment.BaseFragment
+import com.demo.roudykk.demoapp.ui.fragment.MovieFragmentDirections
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.roudykk.presentation.model.MovieView
 import com.roudykk.presentation.state.ResourceState

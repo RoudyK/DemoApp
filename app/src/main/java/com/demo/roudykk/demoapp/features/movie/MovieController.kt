@@ -1,4 +1,4 @@
-package com.demo.roudykk.demoapp.controllers
+package com.demo.roudykk.demoapp.features.movie
 
 import android.content.Context
 import androidx.recyclerview.widget.DefaultItemAnimator

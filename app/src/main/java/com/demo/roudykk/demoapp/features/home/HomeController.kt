@@ -1,4 +1,4 @@
-package com.demo.roudykk.demoapp.controllers
+package com.demo.roudykk.demoapp.features.home
 
 import android.view.View
 import android.widget.RatingBar

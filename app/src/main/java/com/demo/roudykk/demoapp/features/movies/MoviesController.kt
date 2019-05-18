@@ -1,4 +1,4 @@
-package com.demo.roudykk.demoapp.controllers
+package com.demo.roudykk.demoapp.features.movies
 
 import android.widget.RatingBar
 import com.airbnb.epoxy.TypedEpoxyController

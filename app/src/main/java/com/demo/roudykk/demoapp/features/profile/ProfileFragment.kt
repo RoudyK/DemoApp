@@ -1,4 +1,4 @@
-package com.demo.roudykk.demoapp.ui.fragment
+package com.demo.roudykk.demoapp.features.profile
 
 import android.content.Context
 import android.graphics.Color
@@ -10,17 +10,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.demo.roudykk.demoapp.R
-import com.demo.roudykk.demoapp.controllers.ProfileController
 import com.demo.roudykk.demoapp.db.PreferenceRepo
 import com.demo.roudykk.demoapp.extensions.viewModel
-import com.demo.roudykk.demoapp.injection.ViewModelFactory
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.roudykk.presentation.model.PersonView
-import com.roudykk.presentation.state.ResourceState
 import com.roudykk.presentation.viewmodel.PersonViewModel
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_profile.*

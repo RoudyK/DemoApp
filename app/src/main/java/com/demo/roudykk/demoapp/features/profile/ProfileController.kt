@@ -1,4 +1,4 @@
-package com.demo.roudykk.demoapp.controllers
+package com.demo.roudykk.demoapp.features.profile
 
 import android.content.Context
 import com.airbnb.epoxy.Typed2EpoxyController

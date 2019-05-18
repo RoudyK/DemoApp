@@ -15,8 +15,8 @@ import androidx.test.rule.ActivityTestRule
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.TestApplication
 import com.demo.roudykk.demoapp.test.MoviesFactory
-import com.demo.roudykk.demoapp.ui.fragment.MovieFragment
-import com.demo.roudykk.demoapp.ui.fragment.SearchFragment
+import com.demo.roudykk.demoapp.features.movie.MovieFragment
+import com.demo.roudykk.demoapp.features.search.SearchFragment
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.whenever
 import com.roudykk.domain.model.Movie

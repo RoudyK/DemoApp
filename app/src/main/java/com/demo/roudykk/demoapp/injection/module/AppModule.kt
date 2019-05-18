@@ -1,8 +1,13 @@
 package com.demo.roudykk.demoapp.injection.module
 
+import com.demo.roudykk.demoapp.MainActivity
 import com.demo.roudykk.demoapp.UiThread
-import com.demo.roudykk.demoapp.ui.activity.*
-import com.demo.roudykk.demoapp.ui.fragment.*
+import com.demo.roudykk.demoapp.features.home.HomeFragment
+import com.demo.roudykk.demoapp.features.movie.MovieFragment
+import com.demo.roudykk.demoapp.features.movies.MoviesFragment
+import com.demo.roudykk.demoapp.features.profile.ProfileFragment
+import com.demo.roudykk.demoapp.features.search.SearchFragment
+import com.demo.roudykk.demoapp.features.watchlist.WatchListFragment
 import com.roudykk.domain.executor.PostExecutionThread
 import dagger.Binds
 import dagger.Module

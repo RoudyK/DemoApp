@@ -7,25 +7,25 @@
 
     <fragment
         android:id="@+id/home"
-        android:name="com.demo.roudykk.demoapp.ui.fragment.HomeFragment"
+        android:name="com.demo.roudykk.demoapp.features.home.HomeFragment"
         android:label="@string/movies"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/search"
-        android:name="com.demo.roudykk.demoapp.ui.fragment.SearchFragment"
+        android:name="com.demo.roudykk.demoapp.features.search.SearchFragment"
         android:label="@string/search"
         tools:layout="@layout/fragment_search" />
 
     <fragment
         android:id="@+id/watchList"
-        android:name="com.demo.roudykk.demoapp.ui.fragment.WatchListFragment"
+        android:name="com.demo.roudykk.demoapp.features.watchlist.WatchListFragment"
         android:label="@string/watch_list"
         tools:layout="@layout/fragment_watch_list" />
 
     <fragment
         android:id="@+id/movie"
-        android:name="com.demo.roudykk.demoapp.ui.fragment.MovieFragment"
+        android:name="com.demo.roudykk.demoapp.features.movie.MovieFragment"
         tools:layout="@layout/fragment_movie">
         <argument
             android:name="movie"
@@ -34,7 +34,7 @@
 
     <fragment
         android:id="@+id/movies"
-        android:name="com.demo.roudykk.demoapp.ui.fragment.MoviesFragment"
+        android:name="com.demo.roudykk.demoapp.features.movies.MoviesFragment"
         tools:layout="@layout/fragment_movies">
         <argument
             android:name="movieGroup"
@@ -43,7 +43,7 @@
 
     <fragment
         android:id="@+id/settings"
-        android:name="com.demo.roudykk.demoapp.ui.fragment.SettingsFragment"
+        android:name="com.demo.roudykk.demoapp.features.settings.SettingsFragment"
         android:label="@string/settings" />
 
     <action
