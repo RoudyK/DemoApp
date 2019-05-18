@@ -16,7 +16,7 @@ class ProfileController @Inject constructor(val context: Context) : Typed2EpoxyC
 
             PersonAvatarBindingModel_()
                     .id("person_header")
-                    .imageUrl(person.getImageUrl())
+                    .person(person)
                     .addTo(this@ProfileController)
 
             when (it.status) {

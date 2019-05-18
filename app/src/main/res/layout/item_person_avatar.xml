@@ -1,32 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
-            name="imageUrl"
-            type="String" />
+            name="person"
+            type="com.roudykk.presentation.model.PersonView" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/spacing_large"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/spacing_default"
+        android:layout_marginTop="@dimen/spacing_large"
         android:orientation="vertical">
 
         <ImageView
-            app:imageUrl="@{imageUrl}"
-            app:placeHolder="?placeHolder"
+            android:id="@+id/avatar"
             android:layout_width="@dimen/icon_size_big"
             android:layout_height="@dimen/icon_size_big"
             android:background="@drawable/background_person_avatar"
             android:padding="@dimen/spacing_default"
+            app:imageUrl="@{person.getImageUrl()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:placeHolder="?placeHolder" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_medium"
+            android:layout_marginTop="@dimen/spacing_default"
+            android:layout_marginRight="@dimen/spacing_medium"
+            android:layout_marginBottom="@dimen/spacing_default"
+            android:background="?attr/contentBackgroundColor"
+            android:gravity="center"
+            android:text="@{person.name}"
+            android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            app:layout_constraintTop_toBottomOf="@+id/avatar"
+            tools:text="@tools:sample/full_names" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
