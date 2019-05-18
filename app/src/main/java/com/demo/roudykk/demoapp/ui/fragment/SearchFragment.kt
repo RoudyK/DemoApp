@@ -86,6 +86,7 @@ class SearchFragment : BaseFragment(), MoviesController.MoviesListener {
 
     override fun onResume() {
         super.onResume()
+        parentAppBar()?.elevation = 0f
         this.moviesRv.withAppBar(appBarLayout)
     }
 

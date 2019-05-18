@@ -9,7 +9,6 @@ import com.airbnb.epoxy.Typed2EpoxyController
 import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager
 import com.demo.roudykk.demoapp.*
 import com.demo.roudykk.demoapp.controllers.models.IndicatorCarouselModel_
-import com.demo.roudykk.demoapp.extensions.addOverScroll
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayerView
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.AbstractYouTubePlayerListener
 import com.roudykk.presentation.model.MovieView
@@ -207,7 +206,6 @@ class MovieController @Inject constructor() : Typed2EpoxyController<MovieView, B
                     .models(castModels)
                     .padding(Carousel.Padding.resource(R.dimen.spacing_default, R.dimen.spacing_small, R.dimen.spacing_default, R.dimen.empty, R.dimen.spacing_default))
                     .onBind { _, view, _ ->
-                        view.addOverScroll()
                         view.isNestedScrollingEnabled = false
                     }
                     .addIf(castModels.size > 0, this)
