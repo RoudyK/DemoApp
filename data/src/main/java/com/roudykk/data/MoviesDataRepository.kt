@@ -18,6 +18,7 @@ class MoviesDataRepository @Inject constructor(
         private val personEntityMapper: PersonEntityMapper,
         private val factory: MoviesDataStoreFactory
 ) : MoviesRepository {
+
     override fun getMovieGroups(): Observable<List<MovieGroup>> {
         return this.factory.getRemoteDataStore().getMovieGroups()
                 .map {
