@@ -43,9 +43,9 @@ import javax.inject.Inject
 
 
 class MovieFragment : BaseFragment(), MovieController.Listener, Observer<Resource<MovieView>> {
-    override val supportsFabAction: Boolean = true
-    override val fabIconRes: Int? = R.drawable.ic_add
-    override val fabAlignmentMode: Int = BottomAppBar.FAB_ALIGNMENT_MODE_END
+    override fun supportsFabAction(): Boolean = true
+    override fun fabIconRes(): Int? = R.drawable.ic_add
+    override fun fabAlignmentMode(): Int = BottomAppBar.FAB_ALIGNMENT_MODE_END
 
     @Inject
     lateinit var movieController: MovieController
@@ -79,7 +79,7 @@ class MovieFragment : BaseFragment(), MovieController.Listener, Observer<Resourc
         }
     }
 
-    override val fabAction: () -> Unit = {
+    override fun fabAction(): () -> Unit = {
         AlertDialog.Builder(context!!)
                 .setTitle(getString(R.string.add_movie))
                 .setMessage(getString(R.string.add_movie_confirmation))

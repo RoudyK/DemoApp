@@ -31,9 +31,9 @@ import java.util.*
 import javax.inject.Inject
 
 class WatchListFragment : BaseFragment(), WatchListController.SavedMoviesListener {
-    override val supportsFabAction: Boolean = true
-    override val fabIconRes: Int? = R.drawable.ic_delete
-    override val fabAlignmentMode: Int = BottomAppBar.FAB_ALIGNMENT_MODE_END
+    override fun supportsFabAction(): Boolean = true
+    override fun fabIconRes(): Int? = R.drawable.ic_delete
+    override fun fabAlignmentMode(): Int = BottomAppBar.FAB_ALIGNMENT_MODE_END
 
     @Inject
     lateinit var watchListController: WatchListController
@@ -58,7 +58,7 @@ class WatchListFragment : BaseFragment(), WatchListController.SavedMoviesListene
     }
 
 
-    override val fabAction: () -> Unit = {
+    override fun fabAction(): () -> Unit = {
         AlertDialog.Builder(ContextThemeWrapper(context, R.style.DemoAlertDialog))
                 .setTitle(getString(R.string.delete_movies))
                 .setMessage(getString(R.string.delete_all_movies_confirmation))

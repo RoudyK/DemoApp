@@ -12,8 +12,9 @@ import com.demo.roudykk.demoapp.MainActivity
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.db.PreferenceRepo
 import com.demo.roudykk.demoapp.extensions.getThemeWrapper
+import com.demo.roudykk.demoapp.ui.fragment.BaseFragmentBuilder
 
-class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedPreferenceChangeListener {
+class SettingsFragment : PreferenceFragmentCompat(), BaseFragmentBuilder, SharedPreferences.OnSharedPreferenceChangeListener {
 
     private lateinit var sContext: Context
 
@@ -41,12 +42,7 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
             return
         }
 
-        activity?.finish()
-        val intent = Intent(sContext, MainActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or
-                Intent.FLAG_ACTIVITY_CLEAR_TOP or
-                Intent.FLAG_ACTIVITY_CLEAR_TASK
-        activity?.startActivity(intent)
+        activity?.recreate()
     }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {

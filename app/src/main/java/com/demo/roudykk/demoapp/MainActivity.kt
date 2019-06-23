@@ -12,7 +12,7 @@ import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.demo.roudykk.demoapp.extensions.trySafe
 import com.demo.roudykk.demoapp.ui.activity.BaseActivity
-import com.demo.roudykk.demoapp.ui.fragment.BaseFragment
+import com.demo.roudykk.demoapp.ui.fragment.BaseFragmentBuilder
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
-
 
     private val navController: NavController
         get() = findNavController(R.id.nav_host_fragment)
@@ -50,23 +49,23 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             Handler().postDelayed({
                 trySafe {
                     val fragment = nav_host_fragment?.childFragmentManager?.fragments?.getOrNull(0)
-                    (fragment as BaseFragment?)?.let {
-                        val hasChangedAlignmentMode = it.fabAlignmentMode != bottomAppBar.fabAlignmentMode
-                        if (it.supportsFabAction) {
+                    (fragment as BaseFragmentBuilder?)?.let {
+                        val hasChangedAlignmentMode = it.fabAlignmentMode() != bottomAppBar.fabAlignmentMode
+                        if (it.supportsFabAction()) {
                             if (hasChangedAlignmentMode && bottomFab.isShown) {
                                 bottomFab.hide(object : FloatingActionButton.OnVisibilityChangedListener() {
                                     override fun onHidden(fab: FloatingActionButton?) {
                                         super.onHidden(fab)
-                                        bottomAppBar.fabAlignmentMode = it.fabAlignmentMode
-                                        it.fabIconRes?.let { iconRes ->
+                                        bottomAppBar.fabAlignmentMode = it.fabAlignmentMode()
+                                        it.fabIconRes()?.let { iconRes ->
                                             bottomFab.setImageDrawable(ContextCompat.getDrawable(this@MainActivity, iconRes))
                                         }
                                         bottomFab.show()
                                     }
                                 })
                             } else {
-                                bottomAppBar.fabAlignmentMode = it.fabAlignmentMode
-                                it.fabIconRes?.let { iconRes ->
+                                bottomAppBar.fabAlignmentMode = it.fabAlignmentMode()
+                                it.fabIconRes()?.let { iconRes ->
                                     bottomFab.setImageDrawable(ContextCompat.getDrawable(this@MainActivity, iconRes))
                                 }
                                 bottomFab.show()
@@ -74,7 +73,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                         } else {
                             bottomFab.hide()
                         }
-                        bottomFab.setOnClickListener { _ -> it.fabAction() }
+                        bottomFab.setOnClickListener { _ -> it.fabAction().invoke() }
                     }
                 }
             }, 100)
