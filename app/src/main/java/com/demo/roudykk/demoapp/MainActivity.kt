@@ -28,21 +28,6 @@ class MainActivity : BaseActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val drawerToggle = object: ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
-            override fun onDrawerOpened(drawerView: View) {
-                super.onDrawerOpened(drawerView)
-                invalidateOptionsMenu()
-            }
-
-            override fun onDrawerClosed(drawerView: View) {
-                super.onDrawerClosed(drawerView)
-                invalidateOptionsMenu()
-            }
-        }
-        drawerToggle.isDrawerIndicatorEnabled = true
-        drawerLayout.addDrawerListener(drawerToggle)
-        drawerToggle.syncState()
-
         findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener { _, _, _ ->
             (bottomAppBar.behavior as BottomAppBar.Behavior).slideUp(bottomAppBar)
             // TODO: Broken on new version of material, fix later. (There's a bug with animateLayoutChanges true on Toolbar)
