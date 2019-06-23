@@ -2,6 +2,7 @@
 
 ### Screenshots
 [OUTDATED]
+
 <img src="https://github.com/RoudyK/DemoApp/blob/master/screenshots/1.png" width="200"> <img src="https://github.com/RoudyK/DemoApp/blob/master/screenshots/2.png" width="200"> <img src="https://github.com/RoudyK/DemoApp/blob/master/screenshots/3.png" width="200"> <img src="https://github.com/RoudyK/DemoApp/blob/master/screenshots/4.png" width="200">
 
 <img src="https://github.com/RoudyK/DemoApp/blob/master/screenshots/5.png" width="200"> <img src="https://github.com/RoudyK/DemoApp/blob/master/screenshots/6.png" width="200"> <img src="https://github.com/RoudyK/DemoApp/blob/master/screenshots/7.png" width="200"> <img src="https://github.com/RoudyK/DemoApp/blob/master/screenshots/8.png" width="200">
@@ -47,6 +48,8 @@
 - Deeplinking using navigation component
 - ~Export dimensions~
 - Splash Screen
+- About Page
+- "Add to Watch list" animation
 - Release Configs
 
 *"This project is in constant development, any tips or recommendations are appreciated"*
