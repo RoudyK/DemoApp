@@ -64,3 +64,8 @@ inline fun trySafe(predicate: () -> Unit) {
         Log.d("Logger", "$exception")
     }
 }
+
+
+inline fun logD(predicate: () -> String) {
+    Log.d("Logger", predicate())
+}

@@ -1,4 +1,4 @@
-package com.demo.roudykk.demoapp
+package com.demo.roudykk.demoapp.injection
 
 import com.roudykk.domain.executor.PostExecutionThread
 import io.reactivex.Scheduler

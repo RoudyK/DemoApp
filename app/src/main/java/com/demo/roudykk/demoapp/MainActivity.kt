@@ -2,6 +2,8 @@ package com.demo.roudykk.demoapp
 
 import android.os.Bundle
 import android.os.Handler
+import android.view.View
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.navigation.findNavController
@@ -14,6 +16,7 @@ import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.content_main.*
 
 
@@ -23,6 +26,22 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        val drawerToggle = object: ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+            override fun onDrawerOpened(drawerView: View) {
+                super.onDrawerOpened(drawerView)
+                invalidateOptionsMenu()
+            }
+
+            override fun onDrawerClosed(drawerView: View) {
+                super.onDrawerClosed(drawerView)
+                invalidateOptionsMenu()
+            }
+        }
+        drawerToggle.isDrawerIndicatorEnabled = true
+        drawerLayout.addDrawerListener(drawerToggle)
+        drawerToggle.syncState()
 
         findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener { _, _, _ ->
             (bottomAppBar.behavior as BottomAppBar.Behavior).slideUp(bottomAppBar)

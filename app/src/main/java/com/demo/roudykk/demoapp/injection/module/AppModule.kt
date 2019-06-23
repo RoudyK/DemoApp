@@ -1,7 +1,7 @@
 package com.demo.roudykk.demoapp.injection.module
 
 import com.demo.roudykk.demoapp.MainActivity
-import com.demo.roudykk.demoapp.UiThread
+import com.demo.roudykk.demoapp.injection.UiThread
 import com.demo.roudykk.demoapp.features.home.HomeFragment
 import com.demo.roudykk.demoapp.features.movie.MovieFragment
 import com.demo.roudykk.demoapp.features.movies.MoviesFragment

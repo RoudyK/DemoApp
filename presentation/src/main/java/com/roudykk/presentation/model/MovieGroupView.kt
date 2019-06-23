@@ -9,11 +9,11 @@ data class MovieGroupView(val title: String,
                           val totalPages: Int,
                           val index: String) : Parcelable {
     constructor(source: Parcel) : this(
-            source.readString(),
-            source.createTypedArrayList(MovieView.CREATOR),
+            source.readString()!!,
+            source.createTypedArrayList(MovieView.CREATOR)!!,
             source.readInt(),
             source.readInt(),
-            source.readString()
+            source.readString()!!
     )
 
     override fun describeContents() = 0

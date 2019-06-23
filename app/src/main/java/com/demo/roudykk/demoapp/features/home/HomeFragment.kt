@@ -10,10 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.analytics.Analytics
-import com.demo.roudykk.demoapp.extensions.addOverScroll
-import com.demo.roudykk.demoapp.extensions.parentAppBar
-import com.demo.roudykk.demoapp.extensions.viewModel
-import com.demo.roudykk.demoapp.extensions.withAppBar
+import com.demo.roudykk.demoapp.extensions.*
 import com.demo.roudykk.demoapp.features.movie.MovieFragmentDirections
 import com.demo.roudykk.demoapp.features.movies.MoviesFragmentDirections
 import com.demo.roudykk.demoapp.ui.fragment.BaseFragment
@@ -51,6 +48,7 @@ class HomeFragment : BaseFragment(), HomeController.Listener, Observer<Resource<
         super.onViewCreated(view, savedInstanceState)
 
         movieHomeRv.layoutManager = LinearLayoutManager(context)
+
         homeController.listener = this
         movieHomeRv.addOverScroll()
         movieHomeRv.setController(homeController)
@@ -99,7 +97,16 @@ class HomeFragment : BaseFragment(), HomeController.Listener, Observer<Resource<
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
+        logD { "onSaveInstanceState($outState)" }
         homeController.onSaveInstanceState(outState)
         super.onSaveInstanceState(outState)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        logD { "onViewStateRestored($savedInstanceState)" }
+        trySafe {
+            homeController.onRestoreInstanceState(savedInstanceState)
+        }
     }
 }

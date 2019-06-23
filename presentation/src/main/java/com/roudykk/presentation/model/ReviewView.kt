@@ -8,10 +8,10 @@ class ReviewView(var id: String,
                  var content: String,
                  var url: String) : Parcelable {
     constructor(source: Parcel) : this(
-            source.readString(),
-            source.readString(),
-            source.readString(),
-            source.readString()
+            source.readString()!!,
+            source.readString()!!,
+            source.readString()!!,
+            source.readString()!!
     )
 
     override fun describeContents() = 0
