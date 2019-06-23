@@ -33,16 +33,14 @@ ext {
     def constraintVersion = "2.0.0-beta1"
     def rxBindingVersion = "2.1.1"
     def overScrollVersion = "1.0.4"
-    def lottieVersion = "2.5.4"
+    def lottieVersion = "3.0.1"
     def crashlyticsVersion = "2.9.4@aar"
     def mixpanelVersion = "5.4.1"
     def chipsVersion = "0.3.7@aar"
     def youtubeVersion = "8.0.1"
-    def indicatorVersion = "1.0.9"
     def coordinatorVersion = "1.0.4"
     def customTabsVersion = "1.1.2"
     def readMoreVersion = "2.1.0"
-    def calligraphyVersion = "3.0.0"
     def mockitoAndroidVersion = "2.18.3"
     def playServicesVersion = "15.0.1"
     def preferencesVersion = "1.0.0"
@@ -175,11 +173,9 @@ ext {
             lifecycleExtensions: "androidx.lifecycle:lifecycle-extensions:${lifeCycleVersion}",
             chipsLayoutManager : "com.beloo.widget:ChipsLayoutManager:${chipsVersion}",
             youtuberPlayer     : "com.pierfrancescosoffritti.androidyoutubeplayer:core:${youtubeVersion}",
-            pagerIndicator     : "com.ryanjeffreybrooks:indefinitepagerindicator:${indicatorVersion}",
             coordinatorLayout  : "com.otaliastudios:bottomsheetcoordinatorlayout:${coordinatorVersion}",
             customTabs         : "saschpe.android:customtabs:${customTabsVersion}",
             readmoretv         : "com.borjabravo:readmoretextview:${readMoreVersion}",
-            calligraphy        : "io.github.inflationx:calligraphy3:${calligraphyVersion}",
             googleAds          : "com.google.android.gms:play-services-ads:${playServicesVersion}",
             preferences        : "androidx.preference:preference:${preferencesVersion}"
     ]
