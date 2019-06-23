@@ -2,52 +2,51 @@ package com.demo.roudykk.demoapp
 
 import android.os.Bundle
 import android.os.Handler
+import android.view.MenuItem
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI.navigateUp
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.demo.roudykk.demoapp.extensions.trySafe
 import com.demo.roudykk.demoapp.ui.activity.BaseActivity
 import com.demo.roudykk.demoapp.ui.fragment.BaseFragment
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
+class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-class MainActivity : BaseActivity() {
+
+    private val navController: NavController
+        get() = findNavController(R.id.nav_host_fragment)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener { _, _, _ ->
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        supportActionBar?.setDisplayShowHomeEnabled(false)
+
+        initDestinationListener()
+
+        setupActionBarWithNavController(this, navController)
+        navigationView.setupWithNavController(navController)
+
+        bottomAppBar.setNavigationOnClickListener { drawerLayout.openDrawer(GravityCompat.START) }
+
+        navigationView.setNavigationItemSelectedListener(this)
+    }
+
+    private fun initDestinationListener() {
+        navController.addOnDestinationChangedListener { _, _, _ ->
             (bottomAppBar.behavior as BottomAppBar.Behavior).slideUp(bottomAppBar)
-            // TODO: Broken on new version of material, fix later. (There's a bug with animateLayoutChanges true on Toolbar)
-//            toolbar.post {
-//                trySafe {
-//                    /**
-//                     * This fixes a bug where animateLayoutChanges in Toolbar doesn't animate
-//                     * the toolbar back to its original position when the new destination doesn't
-//                     * have a nav icon.
-//                     */
-//                    val childCount = toolbar.childCount
-//                    for (i in 0..childCount) {
-//                        val child = toolbar.getChildAt(i)
-//                        if (child is TextView) {
-//                            if (toolbar?.navigationIcon == null) {
-//                                val animator = ObjectAnimator.ofInt(child, "left", toolbar.contentInsetStart)
-//                                animator.duration = 300
-//                                animator.start()
-//                            }
-//                        }
-//                    }
-//                }
-//            }
             Handler().postDelayed({
                 trySafe {
                     val fragment = nav_host_fragment?.childFragmentManager?.fragments?.getOrNull(0)
@@ -80,22 +79,22 @@ class MainActivity : BaseActivity() {
                 }
             }, 100)
         }
-
-        setupActionBarWithNavController(this, findNavController(R.id.nav_host_fragment))
-        bottomAppBar.setNavigationOnClickListener { drawerLayout.openDrawer(GravityCompat.START) }
-
-        navigationView.setNavigationItemSelectedListener {
-            drawerLayout.closeDrawer(GravityCompat.START)
-            when (it.itemId) {
-                R.id.nav_watchlist -> findNavController(R.id.nav_host_fragment).navigate(R.id.action_watchlist)
-                R.id.nav_settings -> findNavController(R.id.nav_host_fragment).navigate(R.id.settings)
-            }
-            true
-        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return navigateUp(findNavController(R.id.nav_host_fragment), drawerLayout)
+        return NavigationUI.navigateUp(navController, drawerLayout)
+    }
+
+    override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
+        menuItem.isChecked = true
+        drawerLayout.closeDrawers()
+        when (menuItem.itemId) {
+            R.id.home -> navController.navigate(R.id.home)
+            R.id.watchList -> navController.navigate(R.id.watchList)
+            R.id.about -> navController.navigate(R.id.about)
+            R.id.settings -> navController.navigate(R.id.settings)
+        }
+        return true
     }
 
     override fun onBackPressed() {

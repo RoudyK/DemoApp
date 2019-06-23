@@ -66,4 +66,5 @@
     <string name="crew_cast"><![CDATA[Cast & Crew]]></string>
     <string name="metrics"><![CDATA[Details & Metrics]]></string>
     <string name="production_companies">Production Companies</string>
+    <string name="nav_home">Home</string>
 </resources>
