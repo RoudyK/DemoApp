@@ -3,8 +3,8 @@ package com.demo.roudykk.demoapp.ui.view
 import android.content.Context
 import android.text.Layout
 import android.util.AttributeSet
-import android.view.View
 import android.widget.TextView
+import kotlin.math.ceil
 
 class TightTextView : TextView {
     constructor(context: Context) : super(context)
@@ -16,13 +16,13 @@ class TightTextView : TextView {
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
 
-        val specModeW = View.MeasureSpec.getMode(widthMeasureSpec)
-        if (specModeW != View.MeasureSpec.EXACTLY) {
+        val specModeW = MeasureSpec.getMode(widthMeasureSpec)
+        if (specModeW != MeasureSpec.EXACTLY) {
             val layout = layout
             if (layout != null) {
-                val w = Math.ceil(getMaxLineWidth(layout).toDouble()).toInt() + compoundPaddingLeft + compoundPaddingRight
+                val w = ceil(getMaxLineWidth(layout).toDouble()).toInt() + compoundPaddingLeft + compoundPaddingRight
                 if (w < measuredWidth) {
-                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(w, View.MeasureSpec.AT_MOST),
+                    super.onMeasure(MeasureSpec.makeMeasureSpec(w, MeasureSpec.AT_MOST),
                             heightMeasureSpec)
                 }
             }

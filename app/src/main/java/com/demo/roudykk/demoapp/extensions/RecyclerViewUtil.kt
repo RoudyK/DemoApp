@@ -2,8 +2,8 @@ package com.demo.roudykk.demoapp.extensions
 
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.MainActivity
+import com.demo.roudykk.demoapp.R
 import com.google.android.material.appbar.AppBarLayout
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 

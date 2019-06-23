@@ -2,8 +2,6 @@ package com.demo.roudykk.demoapp
 
 import android.os.Bundle
 import android.os.Handler
-import android.view.View
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.navigation.findNavController
@@ -16,7 +14,6 @@ import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.content_main.*
 
 

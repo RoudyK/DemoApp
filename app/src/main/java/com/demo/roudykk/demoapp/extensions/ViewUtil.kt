@@ -3,7 +3,6 @@ package com.demo.roudykk.demoapp.extensions
 import android.graphics.PorterDuff
 import android.graphics.drawable.LayerDrawable
 import android.widget.RatingBar
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.demo.roudykk.demoapp.R
 

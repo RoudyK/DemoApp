@@ -16,9 +16,6 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import dagger.android.support.HasSupportFragmentInjector
 import io.fabric.sdk.android.Fabric
-import io.github.inflationx.calligraphy3.CalligraphyConfig
-import io.github.inflationx.calligraphy3.CalligraphyInterceptor
-import io.github.inflationx.viewpump.ViewPump
 import javax.inject.Inject
 
 
