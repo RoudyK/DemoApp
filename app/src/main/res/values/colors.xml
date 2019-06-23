@@ -7,8 +7,9 @@
     <color name="colorAccent">#FD003B</color>
     <color name="colorNavigation">#db5b79</color>
 
-    <color name="colorPrimaryBurgundy">#A3626E</color>
+    <color name="colorPrimaryBurgundy">#AC6D79</color>
     <color name="colorPrimaryDarkBurgundy">#470D18</color>
+    <color name="colorAccentBurgundy">#B93756</color>
 
     <color name="colorRating">#d6d6d6</color>
 
@@ -27,6 +28,10 @@
     <color name="navBackgroundColorDark">#393939</color>
     <color name="navBackgroundColorLight">#FFFFFF</color>
     <color name="navBackgroundColorBurgundy">#5C1724</color>
+
+    <color name="colorPlaceHolderDark">#505050</color>
+    <color name="colorPlaceHolderLight">#efefef</color>
+    <color name="colorPlaceHolderBurgundy">#410E18</color>
 
     <color name="white">#ffffff</color>
     <color name="colorHint">#bdbdbd</color>

@@ -27,7 +27,8 @@
 
         <ImageView
             android:id="@+id/movieIv"
-            imageUrl="@{movie.getImageUrl()}"
+            app:imageUrl="@{movie.getImageUrl()}"
+            app:placeHolder="@{@drawable/background_placeholder}"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="@dimen/spacing_default"
@@ -35,7 +36,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="?placeHolder" />
+            tools:src="@drawable/background_placeholder" />
 
 
         <TextView
@@ -80,7 +81,7 @@
             android:layout_marginStart="@dimen/spacing_small"
             android:layout_marginTop="@dimen/spacing_tiny"
             android:text="@{String.format(@string/x_reviews, String.valueOf(movie.voteCount))}"
-            android:textColor="@color/colorAccent"
+            android:textColor="?attr/colorAccent"
             android:textSize="12sp"
             app:layout_constraintLeft_toRightOf="@+id/movieRb"
             app:layout_constraintTop_toBottomOf="@+id/movieNameTv"

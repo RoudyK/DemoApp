@@ -10,11 +10,12 @@
         <item name="navBackgroundColor">@color/navBackgroundColorLight</item>
         <item name="dividerColor">@color/colorDividerLight</item>
         <item name="highlightColor">@color/highlightColorLight</item>
-        <item name="placeHolder">@drawable/background_placeholder</item>
+        <item name="placeHolderColor">@color/colorPlaceHolderLight</item>
         <item name="android:statusBarColor">@color/white</item>
         <item name="tabStyle">@style/Widget.MaterialComponents.TabLayout</item>
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
         <item name="navTextColor">@android:color/secondary_text_light</item>
+        <item name="alertDialogTheme">@style/DemoAlertDialog</item>
     </style>
 
     <style name="AppTheme.Dark" parent="ThemeOverlay.MaterialComponents.Dark">
@@ -27,11 +28,12 @@
         <item name="navBackgroundColor">@color/navBackgroundColorDark</item>
         <item name="dividerColor">@color/colorDividerDark</item>
         <item name="highlightColor">@color/highlightColorDark</item>
-        <item name="placeHolder">@drawable/background_placeholder_dark</item>
+        <item name="placeHolderColor">@color/colorPlaceHolderDark</item>
         <item name="android:statusBarColor">@color/backgroundColorDark</item>
         <item name="tabStyle">@style/TabLayoutDark</item>
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
         <item name="navTextColor">@android:color/secondary_text_dark</item>
+        <item name="alertDialogTheme">@style/DemoAlertDialog</item>
     </style>
 
     <style name="AppTheme.Burgundy" parent="ThemeOverlay.MaterialComponents.Dark">
@@ -39,16 +41,22 @@
         <item name="android:windowContentTransitions">true</item>
         <item name="colorPrimary">@color/colorPrimaryBurgundy</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDarkBurgundy</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorAccentBurgundy</item>
         <item name="contentBackgroundColor">@color/backgroundColorBurgundy</item>
         <item name="navBackgroundColor">@color/navBackgroundColorBurgundy</item>
         <item name="dividerColor">@color/colorDividerBurgundy</item>
         <item name="highlightColor">@color/highlightColorBurgundy</item>
-        <item name="placeHolder">@drawable/background_placeholder_dark</item>
+        <item name="placeHolderColor">@color/colorPlaceHolderBurgundy</item>
         <item name="android:statusBarColor">@color/backgroundColorBurgundy</item>
         <item name="tabStyle">@style/TabLayoutDark</item>
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
         <item name="navTextColor">@android:color/secondary_text_dark</item>
+        <item name="alertDialogTheme">@style/DemoAlertDialog</item>
+    </style>
+
+    <style name="DemoAlertDialog" parent="ThemeOverlay.MaterialComponents.Dialog">
+        <item name="android:background">?attr/contentBackgroundColor</item>
+        <item name="textColorAlertDialogListItem">?attr/navTextColor</item>
     </style>
 
     <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">

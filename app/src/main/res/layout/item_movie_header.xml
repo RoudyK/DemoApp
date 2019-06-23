@@ -23,7 +23,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="@dimen/large_carousel_item_size"
             android:layout_height="@dimen/large_carousel_item_size"
-            android:background="@color/colorPrimary"
+            android:background="?attr/colorPrimary"
             android:contentDescription="@string/movie_container"
             android:onClickListener="@{onClickListener}">
 
@@ -81,7 +81,7 @@
                 android:maxLines="2"
                 android:numStars="5"
                 android:rating="@{movie.voteAverage/2}"
-                android:textColor="@color/colorAccent"
+                android:textColor="?attr/colorAccent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 tools:rating="3.5"

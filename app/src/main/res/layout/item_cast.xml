@@ -37,12 +37,13 @@
             <ImageView
                 android:id="@+id/personIv"
                 app:imageUrl="@{person.getImageUrl()}"
+                app:placeHolder="@{@drawable/background_placeholder}"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="?placeHolder" />
+                tools:src="@drawable/background_placeholder" />
 
             <com.demo.roudykk.demoapp.ui.view.TightTextView
                 android:id="@+id/personTv"
@@ -68,7 +69,7 @@
                 android:maxWidth="100dp"
                 android:maxLines="2"
                 android:text="@{person.character}"
-                android:textColor="@color/colorAccent"
+                android:textColor="?attr/colorAccent"
                 android:textSize="12sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

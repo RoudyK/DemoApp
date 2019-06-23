@@ -2,10 +2,12 @@ package com.demo.roudykk.demoapp.features.watchlist
 
 import android.content.Context
 import android.os.Bundle
+import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AlertDialog.Builder
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -57,7 +59,7 @@ class WatchListFragment : BaseFragment(), WatchListController.SavedMoviesListene
 
 
     override val fabAction: () -> Unit = {
-        Builder(context!!)
+        AlertDialog.Builder(ContextThemeWrapper(context, R.style.DemoAlertDialog))
                 .setTitle(getString(R.string.delete_movies))
                 .setMessage(getString(R.string.delete_all_movies_confirmation))
                 .setPositiveButton(getString(R.string.ok).toUpperCase(Locale.getDefault())) { _, _ ->

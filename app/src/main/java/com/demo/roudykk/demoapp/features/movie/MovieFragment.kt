@@ -80,12 +80,7 @@ class MovieFragment : BaseFragment(), MovieController.Listener, Observer<Resourc
     }
 
     override val fabAction: () -> Unit = {
-        AlertDialog.Builder(if (PreferenceManager.getDefaultSharedPreferences(context)
-                        .getBoolean(PreferenceRepo.PREFERENCE_THEME, false)) {
-            ContextThemeWrapper(context, R.style.AppTheme_Dark)
-        } else {
-            ContextThemeWrapper(context, R.style.AppTheme)
-        })
+        AlertDialog.Builder(context!!)
                 .setTitle(getString(R.string.add_movie))
                 .setMessage(getString(R.string.add_movie_confirmation))
                 .setPositiveButton(getString(R.string.ok).toUpperCase(Locale.getDefault())) { _, _ ->

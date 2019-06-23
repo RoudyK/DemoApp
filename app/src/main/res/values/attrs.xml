@@ -9,8 +9,9 @@
     <attr name="contentBackgroundColor" format="reference" />
     <attr name="dividerColor" format="reference" />
     <attr name="highlightColor" format="reference" />
-    <attr name="placeHolder" format="reference" />
     <attr name="navBackgroundColor" format="reference" />
     <attr name="navTextColor" format="reference" />
+    <attr name="placeHolderColor" format="reference" />
+    <attr name="placeHolder" format="reference" />
 
 </resources>
