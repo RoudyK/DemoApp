@@ -50,6 +50,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="?attr/colorPrimary"
         android:src="@drawable/ic_search"
+        app:borderWidth="0dp"
         app:layout_anchor="@id/bottomAppBar"
         app:tint="@color/white" />
 
