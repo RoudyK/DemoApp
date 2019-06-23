@@ -17,6 +17,7 @@
         tools:listitem="@layout/item_list_movie" />
 
     <LinearLayout
+        android:layout_marginBottom="?attr/actionBarSize"
         android:id="@+id/emptyView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,8 +28,8 @@
         android:visibility="gone">
 
         <com.airbnb.lottie.LottieAnimationView
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_width="200dp"
+            android:layout_height="140dp"
             app:lottie_autoPlay="true"
             app:lottie_fileName="animation-sad.json"
             app:lottie_loop="true" />
@@ -37,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/spacing_default"
+            android:layout_marginTop="-20dp"
             android:gravity="center"
             android:text="@string/it_s_lonely_here"
             tools:ignore="MissingPrefix" />
