@@ -23,7 +23,7 @@
 - [Mixpanel](https://github.com/mixpanel/mixpanel-android) - User Analytics
 - [Dagger2](https://github.com/google/dagger) - Dependency Injections
 
-### Software Structure
+### Structure
 - Clean Architecture
 - MVVM software architectural pattern
 - Android Navigation Component (Single Activity App)
@@ -35,14 +35,17 @@
 
 ### TODO
 - ~Support Light and Dark themes~
+- ~Support multiple themes with ability to easily create themes~
 - ~Add crashlytics~
 - ~Writing unit tests~
 - ~Writing UI tests~
 - ~Code refactoring XD~
-- Code documentation
+- ~Code documentation~
 - CD/CI (Bitbucket pipeline + Hockeyapp)
 - Add product flavors for DEMO and FULL
 - Deeplinking using navigation component
-- Export dimensions
+- ~Export dimensions~
+- Splash Screen
+- Release Configs
 
 *"This project is in constant development, any tips or recommendations are appreciated"*
