@@ -89,7 +89,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         menuItem.isChecked = true
         drawerLayout.closeDrawers()
         when (menuItem.itemId) {
-            R.id.home -> navController.navigate(R.id.home)
+            R.id.home -> navController.popBackStack(R.id.home, false)
             R.id.watchList -> navController.navigate(R.id.watchList)
             R.id.about -> navController.navigate(R.id.about)
             R.id.settings -> navController.navigate(R.id.settings)

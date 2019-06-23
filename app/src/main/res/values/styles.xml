@@ -51,4 +51,8 @@
         <item name="android:textColorSecondary">@color/colorPrimary</item>
         <item name="actionMenuTextColor">@color/colorPrimary</item>
     </style>
+
+    <style name="NavigationDrawerTheme">
+        <item name="colorControlHighlight">@android:color/transparent</item>
+    </style>
 </resources>
