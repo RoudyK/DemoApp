@@ -25,20 +25,20 @@ abstract class AppModule {
     abstract fun contributeMainActivity(): MainActivity
 
     @ContributesAndroidInjector
-    abstract fun contributeMoviesActivity(): MoviesFragment
+    abstract fun contributeMoviesFragment(): MoviesFragment
 
     @ContributesAndroidInjector
-    abstract fun contributeMovieActivity(): MovieFragment
+    abstract fun contributeMovieFragment(): MovieFragment
 
     @ContributesAndroidInjector
-    abstract fun contributeWatchListActivity(): WatchListFragment
+    abstract fun contributeWatchListFragment(): WatchListFragment
 
     @ContributesAndroidInjector
-    abstract fun contributeSearchActivity(): SearchFragment
+    abstract fun contributeSearchFragment(): SearchFragment
 
     @ContributesAndroidInjector
     abstract fun contributePersonDetailsFragment(): ProfileFragment
 
     @ContributesAndroidInjector
-    abstract fun contributHomeFragment(): HomeFragment
+    abstract fun contributeHomeFragment(): HomeFragment
 }

@@ -97,14 +97,12 @@ class HomeFragment : BaseFragment(), HomeController.Listener, Observer<Resource<
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        logD { "onSaveInstanceState($outState)" }
         homeController.onSaveInstanceState(outState)
         super.onSaveInstanceState(outState)
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
-        logD { "onViewStateRestored($savedInstanceState)" }
         trySafe {
             homeController.onRestoreInstanceState(savedInstanceState)
         }
