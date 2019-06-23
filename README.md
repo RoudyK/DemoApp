@@ -15,7 +15,6 @@
 - Add/Remove movies from watch list
 
 ### Used Dependencies
-- [Butterknife](https://github.com/JakeWharton/butterknife) - Bind views and click listeners
 - [Airbnb Epoxy](https://github.com/airbnb/epoxy) - Building complex layouts using RecyclerView
 - [Glide](https://github.com/bumptech/glide) - Displaying images aysnchronously
 - [Retrofit 2](https://github.com/square/retrofit) - Network calls and Rx

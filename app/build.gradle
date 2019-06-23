@@ -60,8 +60,6 @@ dependencies {
     implementation dependencies.epoxy
     kapt dependencies.epoxyProcessor
     implementation dependencies.epoxyDatabinding
-    implementation dependencies.butterknife
-    kapt dependencies.butterknifeCompiler
     implementation dependencies.androidAppCompat
     implementation dependencies.androidDesign
     implementation dependencies.androidCardView

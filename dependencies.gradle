@@ -29,7 +29,6 @@ ext {
     //Android Libraries + Test
     def rxAndroidVersion = "2.1.1"
     def epoxyVersion = "3.4.2"
-    def butterKnifeVersion = "10.1.0"
     def glideVersion = "4.9.0"
     def constraintVersion = "2.0.0-beta1"
     def rxBindingVersion = "2.1.1"
@@ -153,8 +152,6 @@ ext {
             epoxy              : "com.airbnb.android:epoxy:$epoxyVersion",
             epoxyProcessor     : "com.airbnb.android:epoxy-processor:$epoxyVersion",
             epoxyDatabinding   : "com.airbnb.android:epoxy-databinding:$epoxyVersion",
-            butterknife        : "com.jakewharton:butterknife:${butterKnifeVersion}",
-            butterknifeCompiler: "com.jakewharton:butterknife-compiler:${butterKnifeVersion}",
             androidAppCompat   : "androidx.appcompat:appcompat:1.1.0-alpha05",
             androidDesign      : "com.google.android.material:material:1.1.0-alpha06",
             androidCardView    : "androidx.cardview:cardview:1.0.0",
