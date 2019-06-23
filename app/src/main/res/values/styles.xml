@@ -13,6 +13,7 @@
         <item name="android:statusBarColor">@color/white</item>
         <item name="tabStyle">@style/Widget.MaterialComponents.TabLayout</item>
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+        <item name="navTextColor">@android:color/secondary_text_light</item>
     </style>
 
     <style name="AppTheme.Dark" parent="ThemeOverlay.MaterialComponents.Dark">
@@ -27,6 +28,7 @@
         <item name="android:statusBarColor">@color/backgroundColorDark</item>
         <item name="tabStyle">@style/TabLayoutDark</item>
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+        <item name="navTextColor">@android:color/secondary_text_dark</item>
     </style>
 
     <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">

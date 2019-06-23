@@ -11,5 +11,6 @@
     <attr name="highlightColor" format="reference" />
     <attr name="placeHolder" format="reference" />
     <attr name="navBackgroundColor" format="reference" />
+    <attr name="navTextColor" format="reference" />
 
 </resources>
