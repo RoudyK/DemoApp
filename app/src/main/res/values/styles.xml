@@ -34,6 +34,23 @@
         <item name="navTextColor">@android:color/secondary_text_dark</item>
     </style>
 
+    <style name="AppTheme.Burgundy" parent="ThemeOverlay.MaterialComponents.Dark">
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="colorPrimary">@color/colorPrimaryBurgundy</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkBurgundy</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="contentBackgroundColor">@color/backgroundColorBurgundy</item>
+        <item name="navBackgroundColor">@color/navBackgroundColorBurgundy</item>
+        <item name="dividerColor">@color/colorDividerBurgundy</item>
+        <item name="highlightColor">@color/highlightColorBurgundy</item>
+        <item name="placeHolder">@drawable/background_placeholder_dark</item>
+        <item name="android:statusBarColor">@color/backgroundColorBurgundy</item>
+        <item name="tabStyle">@style/TabLayoutDark</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+        <item name="navTextColor">@android:color/secondary_text_dark</item>
+    </style>
+
     <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/AppModalStyle</item>
     </style>
@@ -44,17 +61,17 @@
 
     <style name="TabLayoutDark" parent="@style/Widget.MaterialComponents.TabLayout">
         <item name="tabTextColor">?android:textColorPrimary</item>
-        <item name="tabSelectedTextColor">@color/colorPrimary</item>
+        <item name="tabSelectedTextColor">?attr/colorPrimary</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="ToolBarStyle" parent="Theme.AppCompat">
-        <item name="android:textColorPrimary">@color/colorPrimary</item>
-        <item name="android:textColorSecondary">@color/colorPrimary</item>
-        <item name="actionMenuTextColor">@color/colorPrimary</item>
+    <style name="ToolBarStyle">
+        <item name="android:textColorPrimary">?attr/colorPrimary</item>
+        <item name="android:textColorSecondary">?attr/colorPrimary</item>
+        <item name="actionMenuTextColor">?attr/colorPrimary</item>
     </style>
 
     <style name="NavigationDrawerTheme">

@@ -81,7 +81,7 @@ class MovieFragment : BaseFragment(), MovieController.Listener, Observer<Resourc
 
     override val fabAction: () -> Unit = {
         AlertDialog.Builder(if (PreferenceManager.getDefaultSharedPreferences(context)
-                        .getBoolean(PreferenceRepo.PREFERENCE_DARK_THEME, false)) {
+                        .getBoolean(PreferenceRepo.PREFERENCE_THEME, false)) {
             ContextThemeWrapper(context, R.style.AppTheme_Dark)
         } else {
             ContextThemeWrapper(context, R.style.AppTheme)

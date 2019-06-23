@@ -13,10 +13,25 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         requestedOrientation = SCREEN_ORIENTATION_USER_PORTRAIT
-        if (PreferenceManager.getDefaultSharedPreferences(this)
-                        .getBoolean(PreferenceRepo.PREFERENCE_DARK_THEME, false)) {
-            setTheme(R.style.AppTheme_Dark)
-            delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
+        val selectedTheme = PreferenceManager.getDefaultSharedPreferences(this)
+                .getString(PreferenceRepo.PREFERENCE_THEME, PreferenceRepo.Theme.LIGHT.value)
+
+        val theme = PreferenceRepo.Theme.values().firstOrNull { it.value == selectedTheme }
+        if (theme != null) {
+            when (theme) {
+                PreferenceRepo.Theme.LIGHT -> {
+                    setTheme(R.style.AppTheme)
+                    delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_NO
+                }
+                PreferenceRepo.Theme.DARK -> {
+                    setTheme(R.style.AppTheme_Dark)
+                    delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
+                }
+                PreferenceRepo.Theme.BURGUNDY -> {
+                    setTheme(R.style.AppTheme_Burgundy)
+                    delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
+                }
+            }
         } else {
             delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_NO
         }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="themes">
+        <item>light</item>
+        <item>dark</item>
+        <item>burgundy</item>
+    </array>
+    <array name="themes_display">
+        <item>Light</item>
+        <item>Dark</item>
+        <item>Burgundy</item>
+    </array>
+</resources>

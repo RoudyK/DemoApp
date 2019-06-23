@@ -9,11 +9,13 @@ import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.db.PreferenceRepo
+import com.demo.roudykk.demoapp.extensions.getThemeWrapper
 import com.demo.roudykk.demoapp.extensions.viewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.roudykk.presentation.model.PersonView
@@ -37,13 +39,7 @@ class ProfileFragment : BottomSheetDialogFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val contextThemeWrapper = if (PreferenceManager.getDefaultSharedPreferences(context)
-                        .getBoolean(PreferenceRepo.PREFERENCE_DARK_THEME, false)) {
-            ContextThemeWrapper(activity, R.style.AppTheme_Dark)
-        } else {
-            ContextThemeWrapper(activity, R.style.AppTheme)
-        }
-        return inflater.cloneInContext(contextThemeWrapper).inflate(R.layout.fragment_profile, container, false)
+        return inflater.cloneInContext(context.getThemeWrapper()).inflate(R.layout.fragment_profile, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

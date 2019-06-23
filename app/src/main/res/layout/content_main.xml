@@ -42,13 +42,13 @@
         app:fabCradleMargin="@dimen/bottom_app_bar_fab_margin"
         app:hideOnScroll="true"
         app:navigationIcon="@drawable/ic_menu_black_24dp"
-        tools:backgroundTint="@color/colorPrimary" />
+        tools:backgroundTint="?attr/colorPrimary" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/bottomFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="?attr/colorPrimary"
         android:src="@drawable/ic_search"
         app:layout_anchor="@id/bottomAppBar"
         app:tint="@color/white" />
