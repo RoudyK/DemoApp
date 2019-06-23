@@ -10,7 +10,7 @@
 
 <img src="https://github.com/RoudyK/DemoApp/blob/master/screenshots/13.png" width="200"> <img src="https://github.com/RoudyK/DemoApp/blob/master/screenshots/14.png" width="200"> <img src="https://github.com/RoudyK/DemoApp/blob/master/screenshots/11.png" width="200"> <img src="https://github.com/RoudyK/DemoApp/blob/master/screenshots/15.png" width="200">
 
-<img src="https://github.com/RoudyK/DemoApp/blob/master/screenshots/16.png" width="200"> <img src="https://github.com/RoudyK/DemoApp/blob/master/screenshots/10.png" width="200"> <img src="https://github.com/RoudyK/DemoApp/blob/master/screenshots/17.png" width="200"> <img src="https://github.com/RoudyK/DemoApp/blob/master/screenshots/18.png" width="200">
+<img src="https://github.com/RoudyK/DemoApp/blob/master/screenshots/16.png" width="200"> <img src="https://github.com/RoudyK/DemoApp/blob/master/screenshots/16.png" width="200"> <img src="https://github.com/RoudyK/DemoApp/blob/master/screenshots/17.png" width="200"> <img src="https://github.com/RoudyK/DemoApp/blob/master/screenshots/18.png" width="200">
 
 ### Features
 - Explore movies
