@@ -36,4 +36,6 @@
     <color name="white">#ffffff</color>
     <color name="colorHint">#bdbdbd</color>
     <color name="navSelectedColor">#40BD6A7D</color>
+
+    <color name="backgroundColorUpdateTheme">#1E1F20</color>
 </resources>

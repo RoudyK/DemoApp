@@ -30,4 +30,5 @@
     <dimen name="icon_size_big">200dp</dimen>
     <dimen name="progress_bar_width">200dp</dimen>
     <dimen name="bottom_sheet_min_height">600dp</dimen>
+    <dimen name="text_size_large">22sp</dimen>
 </resources>

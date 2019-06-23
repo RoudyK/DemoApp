@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,8 @@ import com.demo.roudykk.demoapp.MainActivity
 import com.demo.roudykk.demoapp.R
 import com.demo.roudykk.demoapp.db.PreferenceRepo
 import com.demo.roudykk.demoapp.extensions.getThemeWrapper
+import com.demo.roudykk.demoapp.extensions.trySafe
+import com.demo.roudykk.demoapp.ui.activity.UpdateThemeActivity
 import com.demo.roudykk.demoapp.ui.fragment.BaseFragmentBuilder
 
 class SettingsFragment : PreferenceFragmentCompat(), BaseFragmentBuilder, SharedPreferences.OnSharedPreferenceChangeListener {
@@ -42,7 +45,16 @@ class SettingsFragment : PreferenceFragmentCompat(), BaseFragmentBuilder, Shared
             return
         }
 
-        activity?.recreate()
+        Handler().postDelayed({
+            trySafe {
+                startActivity(Intent(context, UpdateThemeActivity::class.java))
+                activity?.overridePendingTransition(-1, -1)
+
+                Handler().postDelayed({
+                    trySafe { activity?.recreate() }
+                }, 1000)
+            }
+        }, 150)
     }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
